@@ -25,7 +25,6 @@ class CreateInterestUserTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
