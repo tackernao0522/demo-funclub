@@ -13,7 +13,7 @@ class InterestTableSeeder extends Seeder
     {
         $interests = ["HTML", "CSS", "JavaScript", "PHP"];
         foreach ($interests as $item) {
-            DB::table('interests')->insert(['name' => $item]);
+            DB::table('interests')->insert(["name" => $item]);
         }
     }
 }
