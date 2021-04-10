@@ -18,15 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+// 決済ボタンを表示するページ
+Route::get('/', 'PaymentsController@index')->name('index');
 
-Route::get('/user/info', 'UserController@getUserInfo')->name('user.info');
-Route::get('/user/edit', 'UserController@editUserInfo')->name('user.edit');
-Route::post('/user/update', 'UserController@updateUserInfo')->name('user.update');
+// Stripeの処理
+Route::post('/payment', 'PaymentsController@payment')->name('payment');
 
-Route::post('/user/paid', 'UserController@becomePaidMember')->name('user.paid');
-Route::post('/user/cancel', 'UserController@cancelPaidMember')->name('user.cancel');
-
-Route::get('/user/payment', 'User\PaymentController@getCurrentPayment')->name('user.payment');
-Route::get('/user/payment/form', 'User\PaymentController@getPaymentForm')->name('user.payment.form');
-Route::post('/user/payment/store', 'User\PaymentController@storePaymentInfo')->name('user.payment.store');
-Route::post('/user/payment/destroy', 'User\PaymentController@deletePaymentInfo')->name('user.payment.destroy');
+// 決済完了ページ
+Route::get('/complete', 'PaymentsController@complete')->name('complete');
