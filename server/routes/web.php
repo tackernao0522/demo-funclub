@@ -11,15 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'TopController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 // 決済ボタンを表示するページ
-Route::get('/', 'PaymentsController@index')->name('index');
+// Route::get('/', 'PaymentsController@index')->name('index');
 
 // Stripeの処理
 Route::post('/payment', 'PaymentsController@payment')->name('payment');
