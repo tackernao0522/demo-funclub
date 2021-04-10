@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -9,6 +10,7 @@ use App\Payment;
 
 class PaymentController extends Controller
 {
+    //
     public function __construct()
     {
         $this->middleware('auth');
