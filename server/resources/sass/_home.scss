@@ -2,10 +2,13 @@
 html {
   font-size: 100%;
 }
-body {
+main {
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
   line-height: 1.7; /* 行の高さの指定 */
   color: $brown;
+}
+a {
+  text-decoration: none !important;
 }
 img {
   max-width: 100%;
@@ -25,7 +28,7 @@ img {
     margin-left: 36px;
   }
   a {
-    color: #432;
+    color: $brown;
   }
   a:hover {
     color: $lightcyan;
@@ -43,10 +46,10 @@ img {
 /* HOME */
 .home-content {
   text-align: center;
-  margin: 10px 0 42px;
+  margin: 110px 0 42px;
   p {
     font-size: 1.125rem;
-    margin: 10px 0 42px;
+    margin: 40px 0 42px;
   }
 }
 /* 見出し */
@@ -65,6 +68,7 @@ img {
   padding: 18px 32px;
   &:hover {
     background: $darkcyan;
+    color: $white;
   }
 }
 .big-bg {
