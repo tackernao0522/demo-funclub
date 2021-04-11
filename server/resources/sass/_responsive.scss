@@ -55,4 +55,19 @@
   .post-cat {
     margin-left: 80px;
   }
+
+  /* INFOMATION */
+  .info-content.wrapper {
+    margin-top: 20% !important;
+    p {
+      margin: 20px 0 0 !important;
+    }
+  }
+  .big-box {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    img {
+      height: 100% !important;
+    }
+  }
 }

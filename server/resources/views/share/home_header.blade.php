@@ -3,8 +3,8 @@
       <nav>
         <ul class="main-nav">
           <li><a href="{{ route('articles.index') }}">News</a></li>
-          <li><a href="#">Menu</a></li>
-          <li><a href="#l">Contact</a></li>
+          <li><a href="{{ route('informations.index') }}">Information</a></li>
+          <li><a href="#">Contact</a></li>
         </ul>
       </nav>
     </header>
