@@ -1,0 +1,24 @@
+.sub-title {
+  font-size: 1.375rem;
+  padding: 0 8px 8px;
+  border-bottom: 2px $lightcyan solid;
+  font-weight: normal;
+}
+aside p {
+  padding: 12px 10px;
+}
+.sub-menu {
+  margin-bottom: 60px;
+  list-style: none;
+  li {
+    border-bottom: 1px #ddd solid;
+  }
+  a {
+    color: $brown;
+    padding: 10px;
+    display: block;
+    &:hover {
+      color: $lightcyan;
+    }
+  }
+}

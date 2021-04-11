@@ -16,6 +16,7 @@
 // });
 
 Route::get('/', 'TopController@index');
+Route::get('news', 'ArticleController@index')->name('articles.index');
 
 Auth::routes();
 
