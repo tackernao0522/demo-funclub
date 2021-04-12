@@ -53,10 +53,6 @@ News
       おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
     </p>
   </aside>
-
-  <div class="ad">
-    <img src="images/banner.jpg" alt="新メニュー登場">
-  </div>
 </div><!-- /.news-contents -->
 
 @include('share.footer')

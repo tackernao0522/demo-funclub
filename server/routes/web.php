@@ -18,6 +18,7 @@
 Route::get('/', 'TopController@index');
 Route::get('news', 'ArticleController@index')->name('articles.index');
 Route::get('information', 'InformationController@index')->name('informations.index');
+Route::get('contact', 'ContactController@contactShowForm')->name('contact.form');
 
 Auth::routes();
 

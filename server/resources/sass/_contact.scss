@@ -1,0 +1,77 @@
+/* CONTACT */
+.contact-wrapper {
+    margin: 30px 0 0 28px;
+}
+#contact {
+    background-image: url(/images/contact-bg.jpg);
+    min-height: 100vh;
+}
+/* フォーム */
+form .contact {
+    margin-bottom: 14px;
+}
+.contact-label {
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+    display: block;
+}
+// .contact-button,
+input[type="text"],
+input[type="email"],
+textarea {
+    background: $inputArea;
+    border: 1px $white solid;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    max-width: 240px;
+}
+textarea {
+    width: 100%;
+    max-width: 480px;
+    height: 6rem;
+}
+input[type="submit"] {
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+#location {
+    padding: 4% 0;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.location-info {
+    width: 22%;
+    p {
+        padding: 12px 10px !important;
+    }
+}
+.location-map {
+    width: 74%;
+}
+/* iframe */
+iframe {
+    width: 100%;
+}
+/* SNS */
+#sns {
+    background: $snsBackgd;
+    padding: 4% 0;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    .sub-title {
+        margin-bottom: 30px;
+    }
+}
+.sns-box {
+    width: 30%;
+}
