@@ -17,11 +17,14 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->enum('role', ['member', 'admin'])->default('member');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+        DB::table('users')->insert(['id' => 1, 'name' => 'Administrator', 'email' => 'admin@example.com', 'password' => bcrypt('password'), 'role' => 'admin']);
+        DB::table('users')->insert(['id' => 2, 'name' => 'User', 'email' => 'user@example.com', 'password' => bcrypt('password')]);
     }
 
     /**

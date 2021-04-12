@@ -2,6 +2,7 @@
 | Domain | Method   | URI                    | Name               | Action                                                                 | Middleware                                        |
 +--------+----------+------------------------+--------------------+------------------------------------------------------------------------+---------------------------------------------------+
 |        | GET|HEAD | /                      |                    | App\Http\Controllers\TopController@index                               | web                                               |
+|        | GET|HEAD | admin                  | admin              | App\Http\Controllers\AdminController@index                             | web,admin                                         |
 |        | GET|HEAD | api/user               |                    | Closure                                                                | api,auth:api                                      |
 |        | GET|HEAD | complete               | complete           | App\Http\Controllers\PaymentsController@complete                       | web                                               |
 |        | GET|HEAD | contact                | contact.form       | App\Http\Controllers\ContactController@contactShowForm                 | web                                               |
