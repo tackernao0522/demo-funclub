@@ -9,8 +9,9 @@
 }
 /* 記事部分 */
 article {
-  width: 60%;
-  order: 2;
+  margin-bottom: 50px;
+  width: 75%;
+  order: 1;
   img {
     margin-bottom: 20px;
   }
@@ -21,10 +22,7 @@ article {
 /* サイドバー */
 aside {
   width: 22%;
-  order: 3;
-}
-.ad {
-  order: 1;
+  order: 2;
 }
 .news-contents {
   display: flex;
