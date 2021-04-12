@@ -20,7 +20,7 @@ News
       <p class="post-date">3/30<span>2021</span></p>
       <p class="post-cat">カテゴリー：お店の紹介</p>
     </header>
-    <img src="images/wall.jpg" alt="店内の様子">
+    <img src="images/concert.jpg" alt="店内の様子">
     <p>
       体に優しい自然食を提供する、WCB CAFE。無添加の食材を利用したメニューが特徴です。
       おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
