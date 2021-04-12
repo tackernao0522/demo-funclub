@@ -1,87 +1,88 @@
 /* 共通部分 */
 html {
-  font-size: 100%;
+    font-size: 100%;
 }
 main {
-  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
-  line-height: 1.7; /* 行の高さの指定 */
-  color: $brown;
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic,
+        "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+    line-height: 1.7; /* 行の高さの指定 */
+    color: $brown;
 }
 a {
-  text-decoration: none !important;
+    text-decoration: none !important;
 }
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
 /* HEADER */
 .logo {
-  width: 210px;
-  margin-top: 14px;
+    width: 210px;
+    margin-top: 14px;
 }
 .main-nav {
-  display: flex;
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  margin-top: 34px;
-  list-style: none;
-  li {
-    margin-left: 36px;
-  }
-  a {
-    color: $brown;
-  }
-  a:hover {
-    color: $lightcyan;
-  }
+    display: flex;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin-top: 34px;
+    list-style: none;
+    li {
+        margin-left: 36px;
+    }
+    a {
+        color: $brown;
+    }
+    a:hover {
+        color: $lightcyan;
+    }
 }
 .page-header {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 .wrapper {
-  max-width: 1100px;
-  margin: 0 auto !important;
-  padding: 0 4%;
+    max-width: 1100px;
+    margin: 0 auto !important;
+    padding: 0 4%;
 }
 /* HOME */
 .home-content {
-  /* 画面中央と余白の指定 */
-  text-align: center;
-  margin-top: 11% !important;
+    /* 画面中央と余白の指定 */
+    text-align: center;
+    margin-top: 11% !important;
 }
 .home-content p {
-  /* <p>タグへのフォントサイズと余白の指定 */
-  font-size: 1.125rem;
-  margin: 40px 0 42px;
+    /* <p>タグへのフォントサイズと余白の指定 */
+    font-size: 1.125rem;
+    margin: 40px 0 42px;
 }
 /* 見出し */
 .page-title {
-  font-size: 5rem;
-  font-family: 'Philosopher', serif;
-  text-transform: uppercase;
-  font-weight: normal;
+    font-size: 5rem;
+    font-family: "Philosopher", serif;
+    text-transform: uppercase;
+    font-weight: normal;
 }
 /* ボタン */
 .button {
-  font-size: 1.375rem;
-  background: $lightcyan;
-  color: $white;
-  border-radius: 5px;
-  padding: 18px 32px;
-  &:hover {
-    background: $darkcyan;
+    font-size: 1.375rem;
+    background: $lightcyan;
     color: $white;
-  }
+    border-radius: 5px;
+    padding: 18px 32px;
+    &:hover {
+        background: $darkcyan;
+        color: $white;
+    }
 }
 .big-bg {
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 #home {
-  background-image: url(/images/main-bg.jpg);
-  min-height: 100vh;
-  & .page-title {
-    text-transform: none;
-  }
+    background-image: url(/images/audience.jpg);
+    min-height: 100vh;
+    & .page-title {
+        text-transform: none;
+    }
 }
