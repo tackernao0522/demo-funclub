@@ -96,4 +96,18 @@
     .sns-box {
         margin-bottom: 30px;
     }
+    /* admin.index */
+    .admin-top {
+        width: 200px !important;
+        margin: 10px auto 0 auto;
+        ul li {
+            list-style: none;
+            height: 50px;
+            border: 2px solid gray;
+            a {
+                display: inline-block;
+                line-height: 45px;
+            }
+        }
+    }
 }

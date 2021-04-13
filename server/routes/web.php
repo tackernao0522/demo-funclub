@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 Route::get('admin', 'AdminController@index')->name('admin');
+Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
 Route::get('/', 'TopController@index');
 Route::get('news', 'ArticleController@index')->name('articles.index');
 Route::get('information', 'InformationController@index')->name('informations.index');

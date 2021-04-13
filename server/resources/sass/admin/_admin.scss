@@ -10,4 +10,15 @@
 .admin-top {
     width: 65%;
     margin: 10px auto 0 auto;
+    text-align: center;
+    ul li {
+        list-style: none;
+        height: 50px;
+        border: 2px solid gray;
+        a {
+            display: inline-block;
+            line-height: 45px;
+            font-size: 1.5rem;
+        }
+    }
 }
