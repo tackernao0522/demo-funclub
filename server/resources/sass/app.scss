@@ -1,29 +1,32 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 // top
-@import 'home';
+@import "home";
 
 // news
-@import 'article';
+@import "article";
 
 // footer
-@import 'footer';
+@import "footer";
 
 // aside
-@import 'aside';
+@import "aside";
 
 // responsive
-@import 'responsive';
+@import "responsive";
 
 // information
-@import 'information';
+@import "information";
 
 // contact
-@import 'contact';
+@import "contact";
+
+// admin
+@import "admin/admin";
