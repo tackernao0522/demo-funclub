@@ -17,26 +17,12 @@ News
   <article>
     @foreach($posts as $post)
     <header class="post-info">
-      <h2 class="post-title">店内ギャラリーの絵が新しくなりました</h2>
+      <h2 class="post-title">{{ $post->post_title }}</h2>
       <p class="post-date">{{ $post->post_date->format('n/d') }}<span>{{ $post->post_date->format('Y') }}</span></p>
       <p class="post-cat">カテゴリー：お店の紹介</p>
     </header>
-    <img src="/images/concert.jpg" alt="店内の様子">
-    <p>
-      体に優しい自然食を提供する、WCB CAFE。無添加の食材を利用したメニューが特徴です。
-      おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
-      体に優しい自然食を提供する、WCB CAFE。無添加の食材を利用したメニューが特徴です。
-      おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
-    </p>
-    <p>
-      体に優しい自然食を提供する、WCB CAFE。無添加の食材を利用したメニューが特徴です。
-      おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
-      体に優しい自然食を提供する、WCB CAFE。無添加の食材を利用したメニューが特徴です。
-      おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
-      体に優しい自然食を提供する、WCB CAFE。無添加の食材を利用したメニューが特徴です。
-      おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
-    </p>
-    <p>体に優しい自然食を提供する、WCB CAFE。</p>
+    <img src="/storage/article-images/{{ $post->post_image_name }}" alt="ライブの様子等">
+    <p>{!! nl2br(e( $post->body )) !!}</p>
     @endforeach
   </article>
 
