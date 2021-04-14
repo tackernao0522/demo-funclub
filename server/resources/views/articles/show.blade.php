@@ -34,11 +34,10 @@ News
       <li><a href="">{{ $category_name }}</a></li>
     </ul>
 
-    <h3 class="sub-title">このお店について</h3>
-    <p>
-      体に優しい自然食を提供する、WCB CAFE。無添加の食材を利用したメニューが特徴です。
-      おいしいブレンドコーヒーとヘルシーなオーガニックフードで体の内側から癒やされてください。
-    </p>
+    @foreach($sub_titles as $sub_title)
+    <h3 class="sub-title">{{ $sub_title->sub_title }}</h3>
+    <p>{!! nl2br(e( $sub_title->description )) !!}</p>
+    @endforeach
   </aside>
 </div><!-- /.news-contents -->
 
