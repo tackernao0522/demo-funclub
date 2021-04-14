@@ -31,10 +31,9 @@ News
   <aside>
     <h3 class="sub-title">カテゴリー</h3>
     <ul class="sub-menu">
-      <li><a href="#">カテゴリー1</a></li>
-      <li><a href="#">カテゴリー2</a></li>
-      <li><a href="#">カテゴリー3</a></li>
-      <li><a href="#">その他</a></li>
+      @foreach($categories as $category)
+      <li><a href="{{ route('news.category', $category->id) }}">{{ $category->name }}</a></li>
+      @endforeach
     </ul>
 
     <h3 class="sub-title">このお店について</h3>

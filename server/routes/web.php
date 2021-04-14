@@ -16,8 +16,10 @@
 // });
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
+Route::get('admin/posts/{category}/index', 'Admin\PostController@categoryShow')->name('categories.show');
 Route::get('/', 'TopController@index');
 Route::get('news', 'ArticleController@index')->name('articles.index');
+Route::get('news/{category}/index', 'ArticleController@categoryNews')->name('news.category');
 Route::get('information', 'InformationController@index')->name('informations.index');
 Route::get('contact', 'ContactController@contactShowForm')->name('contact.form');
 
