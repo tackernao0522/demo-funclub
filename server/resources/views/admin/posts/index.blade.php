@@ -19,7 +19,7 @@ News
     <header class="post-info">
       <h2 class="post-title">{{ $post->post_title }}</h2>
       <p class="post-date">{{ $post->post_date->format('n/d') }}<span>{{ $post->post_date->format('Y') }}</span></p>
-      <p class="post-cat">カテゴリー：お店の紹介</p>
+      <p class="post-cat">カテゴリー：{{ $post->primaryCategory->name }}</p>
     </header>
     <img src="/storage/article-images/{{ $post->post_image_name }}" alt="ライブの様子等">
     <p>{!! nl2br(e( $post->body )) !!}</p>
@@ -29,10 +29,10 @@ News
   <aside>
     <h3 class="sub-title">カテゴリー</h3>
     <ul class="sub-menu">
-      <li><a href="#">お店の紹介</a></li>
-      <li><a href="#">期間限定メニュー</a></li>
-      <li><a href="#">イベント</a></li>
-      <li><a href="#">お客様との会話</a></li>
+      <li><a href="#">カテゴリー1</a></li>
+      <li><a href="#">カテゴリー2</a></li>
+      <li><a href="#">カテゴリー3</a></li>
+      <li><a href="#">その他</a></li>
     </ul>
 
     <h3 class="sub-title">このお店について</h3>
