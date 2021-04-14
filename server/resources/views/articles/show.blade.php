@@ -21,17 +21,17 @@ News
       <p class="post-date">{{ $post->post_date->format('n/d') }}<span>{{ $post->post_date->format('Y') }}</span></p>
       <p class="post-cat">カテゴリー：{{ $post->primaryCategory->name }}</p>
     </header>
-    <img src="/storage/article-images/{{ $post->post_image_name }}" alt="ライブの様子等">
+    <img src="/storage/article-images/{{ $post->post_image_name }}" alt="店内の様子">
+    <p>
     <p>{!! nl2br(e( $post->body )) !!}</p>
+    </p>
     @endforeach
   </article>
 
   <aside>
     <h3 class="sub-title">カテゴリー</h3>
     <ul class="sub-menu">
-      @foreach($categories as $category)
-      <li><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a></li>
-      @endforeach
+      <li><a href="">{{ $category_name }}</a></li>
     </ul>
 
     <h3 class="sub-title">このお店について</h3>

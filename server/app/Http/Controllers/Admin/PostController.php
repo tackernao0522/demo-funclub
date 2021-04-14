@@ -21,10 +21,23 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        // $categories = PrimaryCategory::orderBy('sort_no')->get();
+        $categories = PrimaryCategory::orderBy('sort_no')->get();
         // dd($posts, $categories);
         return view('admin.posts.index')
-            ->with('posts', $posts);
-            // ->with('categories', $categories);
+            ->with('posts', $posts)
+            ->with('categories', $categories);
+    }
+
+    public function categoryShow(PrimaryCategory $category)
+    {
+        $categories = PrimaryCategory::all();
+        $posts = Post::where('primary_category_id', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('admin.posts.show', [
+            'category_name' => $category->name,
+            'posts' => $posts,
+        ]);
     }
 }
