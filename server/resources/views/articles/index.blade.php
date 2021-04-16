@@ -14,19 +14,7 @@ News
 </div><!-- /#news -->
 
 <div class="news-contents wrapper">
-  <article>
-    @foreach($posts as $post)
-    <header class="post-info">
-      <h2 class="post-title">{{ $post->post_title }}</h2>
-      <p class="post-date">{{ $post->post_date->format('n/d') }}<span>{{ $post->post_date->format('Y') }}</span></p>
-      <p class="post-cat">カテゴリー：{{ $post->primaryCategory->name }}</p>
-    </header>
-    <img src="/storage/article-images/{{ $post->post_image_name }}" alt="店内の様子">
-    <p>
-    <p>{!! nl2br(e( $post->body )) !!}</p>
-    </p>
-    @endforeach
-  </article>
+  @include('share.article_contents')
 
   <aside>
     <h3 class="sub-title">カテゴリー</h3>

@@ -1,0 +1,87 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css");
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: #f4f7f8;
+}
+
+.navbar {
+    margin: 2rem 0 2.5rem 0;
+}
+
+.my-navbar {
+    align-items: center;
+    background: #333;
+    display: flex;
+    height: 6rem;
+    justify-content: space-between;
+    padding: 0 2%;
+    margin-bottom: 3rem;
+}
+
+.my-navbar-brand {
+    font-size: 18px;
+}
+
+.my-navbar-brand,
+.my-navbar-item {
+    color: #8c8c8c;
+}
+
+.my-navbar-brand:hover,
+a.my-navbar-item:hover {
+    color: #ffffff;
+}
+
+.header-title.post {
+    width: 250px;
+    height: 5rem;
+    margin: 25px auto;
+    background-color: rgba(0, 255, 255, 0.297);
+    text-align: center;
+    font-size: 2rem;
+    border: inset 10px;
+}
+
+.table td:nth-child(2),
+.table td:nth-child(3),
+.table td:nth-child(4) {
+    white-space: nowrap;
+    width: 1px;
+}
+
+.form-control[disabled],
+.form-control[readonly] {
+    background-color: #fff;
+}
+.panel-default > .panel-heading {
+    font-size: 2rem;
+}
+label.article {
+    font-size: 2rem;
+}
+.article-image {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.btn {
+    width: 7rem;
+    height: 4rem;
+    font-size: 2rem;
+}
+.form-control {
+    height: 35px;
+    font-size: 1.5rem;
+}
+.input-form {
+    margin: 0 auto;
+    width: 90%;
+}
+
+@media (max-width: 600px) {
+    img.image-form-box {
+        width: 100% !important;
+    }
+}

@@ -14,9 +14,15 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+// administrator
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
+Route::get('artice/post/create', 'Admin\PostController@articleCreateForm')->name('articles.create');
+Route::post('artice/post/create', 'Admin\PostController@articleCreate');
 Route::get('admin/posts/{category}/index', 'Admin\PostController@categoryShow')->name('categories.show');
+
+// user
 Route::get('/', 'TopController@index');
 Route::get('news', 'ArticleController@index')->name('articles.index');
 Route::get('news/{category}/index', 'ArticleController@categoryNews')->name('news.category');

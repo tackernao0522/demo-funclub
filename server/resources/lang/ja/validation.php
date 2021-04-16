@@ -116,6 +116,8 @@ return [
     |
     */
 
-  'attributes' => [],
+  'attributes' => [
+    'date' => '作成日',
+  ],
 
 ];
