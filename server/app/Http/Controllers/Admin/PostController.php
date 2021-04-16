@@ -59,7 +59,7 @@ class PostController extends Controller
     public function categoryShow(PrimaryCategory $category)
     {
         $posts = Post::where('primary_category_id', $category->id)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('post_date', 'desc')
             ->paginate(10);
         $sub_titles = SubTitle::with('post')->get();
 
