@@ -5,6 +5,16 @@ News
 @endsection
 
 @section('content')
+<div class="row article-post">
+  <div class="col-8 offset-2">
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+      {{ session('status') }}
+    </div>
+    @endif
+  </div>
+</div>
+
 <div id="news" class="big-bg">
   @include('admin.share.home_header')
 
@@ -14,17 +24,7 @@ News
 </div><!-- /#news -->
 
 <div class="news-contents wrapper">
-  <article>
-    @foreach($posts as $post)
-    <header class="post-info">
-      <h2 class="post-title">{{ $post->post_title }}</h2>
-      <p class="post-date">{{ $post->post_date->format('n/d') }}<span>{{ $post->post_date->format('Y') }}</span></p>
-      <p class="post-cat">カテゴリー：{{ $post->primaryCategory->name }}</p>
-    </header>
-    <img src="/storage/article-images/{{ $post->post_image_name }}" alt="ライブの様子等">
-    <p>{!! nl2br(e( $post->body )) !!}</p>
-    @endforeach
-  </article>
+  @include('share.article_contents')
 
   <aside>
     <h3 class="sub-title">カテゴリー</h3>
