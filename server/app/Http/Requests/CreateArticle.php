@@ -24,7 +24,7 @@ class CreateArticle extends FormRequest
     public function rules()
     {
         return [
-            'item-image' => 'required|file|image',
+            'item-image' => 'file|image',
             'primary_category' => 'required|integer',
             'post_title' => 'required|max:100',
             'post_date' => 'required|date',

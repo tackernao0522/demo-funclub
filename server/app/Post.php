@@ -5,6 +5,7 @@ namespace App;
 use App\SubTitle;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Carbon\Carbon;
 
 class Post extends Model
@@ -17,12 +18,12 @@ class Post extends Model
         'post_image_name',
     ];
 
-    public function primaryCategory()
+    public function primaryCategory(): BelongsTo
     {
-        return $this->belongsTo(PrimaryCategory::class);
+        return $this->belongsTo('App\PrimaryCategory');
     }
 
-    public function subTitle()
+    public function subTitle(): HasOne
     {
         return $this->hasOne(SubTitle::class);
     }

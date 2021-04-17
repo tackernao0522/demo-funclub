@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\PrimaryCategory;
 use App\SubTitle;
+use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -35,8 +38,8 @@ class PostController extends Controller
     public function articleCreateForm()
     {
         $categories = PrimaryCategory::orderBy('sort_no')->get();
-        return view('admin.posts.form')
-            ->with('categories', $categories);
+
+        return view('admin.posts.form', ['categories' => $categories]);
     }
 
     public function articleCreate(CreateArticle $request)
@@ -68,6 +71,34 @@ class PostController extends Controller
             'posts' => $posts,
             'sub_titles' => $sub_titles,
         ]);
+    }
+
+    public function articleEditForm(Post $post)
+    {
+        $categories = PrimaryCategory::orderBy('sort_no')->get();
+
+        if (auth()->user()->id != (Auth::user()->role === 'admin')) {
+            return redirect(route('/'))->with('status', '権限がありません。');
+        }
+        return view('admin.posts.edit_form', ['post' => $post, 'categories' => $categories]);
+    }
+
+    public function editArticle(CreateArticle $request, Post $post)
+    {
+        if ($request->has('item-image')) {
+            $fileName = $this->saveImage($request->file('item-image'));
+            $post->post_image_name = $fileName;
+        }
+
+        $post->post_title = $request->post_title;
+        $post->post_date = $request->post_date;
+        $post->body = $request->body;
+        $post->primary_category_id = $request->input('primary_category');
+
+        $post->save();
+
+        return redirect()->route('posts.index')
+            ->with('status', 'ニュースを更新しました。');
     }
 
     private function saveImage(UploadedFile $file): string
