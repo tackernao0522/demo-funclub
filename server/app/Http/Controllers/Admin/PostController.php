@@ -73,7 +73,6 @@ class PostController extends Controller
         ]);
     }
 
-
     public function articleEditForm(Post $post)
     {
         $categories = PrimaryCategory::orderBy('sort_no')->get();
