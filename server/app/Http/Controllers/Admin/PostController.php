@@ -101,6 +101,14 @@ class PostController extends Controller
             ->with('status', 'ニュースを更新しました。');
     }
 
+    public function destroy(Post $id)
+    {
+        $id->delete();
+
+        return redirect()->route('posts.index')
+            ->with('status', 'ニュースを削除しました。');
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();

@@ -12,7 +12,7 @@
         <i class="fas fa-pen mr-1"></i>編集する
       </a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item text-danger" data-toggle="modal" data-target="#">
+      <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $post->id }}">
         <i class="fas fa-trash-alt mr-1"></i>投稿を削除する
       </a>
     </div>
@@ -21,7 +21,7 @@
 <!-- Dropdown -->
 
 <!-- modal -->
-<div id="" class="modal fade" tabindex="-1" role="dialog">
+<div id="modal-delete-{{ $post->id }}" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -29,11 +29,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" action="">
+      <form method="POST" action="{{ route('articles.destroy', ['id' => $post->id]) }}">
         @csrf
         @method('DELETE')
         <div class="modal-body">
-          {{-- $postApp->title --}}を削除します。よろしいですか？
+          {{ $post->post_title }}を削除します。よろしいですか？
         </div>
         <div class="modal-footer justify-content-between">
           <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
