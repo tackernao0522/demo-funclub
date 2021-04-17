@@ -14,8 +14,8 @@
 |        | GET|HEAD | api/user                      |                       | Closure                                                                | api,auth:api                                         |
 |        | GET|HEAD | artice/post/create            | articles.create       | App\Http\Controllers\Admin\PostController@articleCreateForm            | web,admin                                            |
 |        | POST     | artice/post/create            |                       | App\Http\Controllers\Admin\PostController@articleCreate                | web,admin                                            |
-|        | GET|HEAD | article/post/edit/{id}        | articles.edit         | App\Http\Controllers\Admin\PostController@articleEditForm              | web,admin                                            |
-|        | POST     | article/post/edit/{id}        |                       | App\Http\Controllers\Admin\PostController@editArticle                  | web,admin                                            |
+|        | GET|HEAD | article/post/edit/{post}      | articles.edit         | App\Http\Controllers\Admin\PostController@articleEditForm              | web,admin                                            |
+|        | POST     | article/post/edit/{post}      |                       | App\Http\Controllers\Admin\PostController@editArticle                  | web,admin                                            |
 |        | DELETE   | article/post/{id}             | articles.destroy      | App\Http\Controllers\Admin\PostController@destroy                      | web,admin                                            |
 |        | GET|HEAD | complete                      | complete              | App\Http\Controllers\PaymentsController@complete                       | web                                                  |
 |        | GET|HEAD | contact                       | contact.form          | App\Http\Controllers\ContactController@contactShowForm                 | web                                                  |
