@@ -11,7 +11,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('post_date', 'desc')->get();
         $categories = PrimaryCategory::orderBy('sort_no')->get();
         $sub_titles = SubTitle::with('post')->get();
 

@@ -20,6 +20,9 @@ Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
 Route::get('artice/post/create', 'Admin\PostController@articleCreateForm')->name('articles.create');
 Route::post('artice/post/create', 'Admin\PostController@articleCreate');
+Route::get('article/post/edit/{post}', 'Admin\PostController@articleEditForm')->name('articles.edit');
+Route::post('article/post/edit/{post}', 'Admin\PostController@editArticle');
+Route::delete('article/post/{id}', 'Admin\PostController@destroy')->name('articles.destroy');
 Route::get('admin/posts/{category}/index', 'Admin\PostController@categoryShow')->name('categories.show');
 
 // user
