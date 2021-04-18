@@ -17,7 +17,7 @@ Information
 
 <div class="wrapper grid">
   <div class="item big-box">
-    <img src="images/menu1.jpg" alt="">
+    <img src="/images/menu1.jpg" alt="">
     <p>写真キャプション写真キャプション</p>
   </div>
   @foreach($informations as $info)

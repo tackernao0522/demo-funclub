@@ -18,21 +18,31 @@
 // administrator
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
+// 新規News投稿
 Route::get('artice/post/create', 'Admin\PostController@articleCreateForm')->name('articles.create');
 Route::post('artice/post/create', 'Admin\PostController@articleCreate');
+// News編集
 Route::get('article/post/edit/{post}', 'Admin\PostController@articleEditForm')->name('articles.edit');
 Route::post('article/post/edit/{post}', 'Admin\PostController@editArticle');
+// News削除
 Route::delete('article/post/{id}', 'Admin\PostController@destroy')->name('articles.destroy');
+// カテゴリー別ページ
 Route::get('admin/posts/{category}/index', 'Admin\PostController@categoryShow')->name('categories.show');
+// サブタイトル更新(サイドバー)
 Route::get('sub_title/edit', 'Admin\PostController@subTitleEditForm')->name('subTitle.edit');
 Route::post('sub_title/edit/{subTitle}', 'Admin\PostController@editSubTitle')->name('edit');
-
+// Information division
+Route::get('admin/info/index', 'Admin\InformationController@index')->name('info.index');
 
 // user
 Route::get('/', 'TopController@index');
+// Newsページ
 Route::get('news', 'ArticleController@index')->name('articles.index');
+// カテゴリー別ページ
 Route::get('news/{category}/index', 'ArticleController@categoryNews')->name('news.category');
+// Informationページ
 Route::get('information', 'InformationController@index')->name('informations.index');
+// Contactページ
 Route::get('contact', 'ContactController@contactShowForm')->name('contact.form');
 
 Auth::routes();
