@@ -22,10 +22,10 @@
       <li><a href="">{{ $category_name }}</a></li>
     </ul>
 
-    @foreach($sub_titles as $sub_title)
+    @include('admin.share.sub_title_drop')
+
     <h3 class="sub-title">{{ $sub_title->sub_title }}</h3>
     <p>{!! nl2br(e( $sub_title->description )) !!}</p>
-    @endforeach
   </aside>
 </div><!-- /.news-contents -->
 

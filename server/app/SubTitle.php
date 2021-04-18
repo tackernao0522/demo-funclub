@@ -4,12 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Post;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+// use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SubTitle extends Model
 {
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
+    protected $fillable = [
+        'id',
+        'sub_title',
+        'description',
+    ];
+
+    // public function posts(): HasMany
+    // {
+    //     return $this->hasMany('App\Post');
+    // }
 }
