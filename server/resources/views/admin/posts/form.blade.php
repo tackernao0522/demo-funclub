@@ -9,7 +9,7 @@ News新規投稿
 @endsection
 
 @section('content')
-<div class="header-title post">News新規投稿ページ</div>
+<div class="header-title post"><a href="{{ route('posts.index') }}">News新規投稿ページ</a></div>
 <div class="container">
   <div class="row">
     <div class="input-form">
