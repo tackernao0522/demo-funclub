@@ -1,7 +1,7 @@
 <article>
   @foreach($posts as $post)
-  <header class="post-info">
     @include('admin.share.modal')
+  <header class="post-info">
     <h2 class="post-title">{!! nl2br(e( $post->post_title )) !!}</h2>
     <p class="post-date">{{ $post->formatted_post_date }}<span>{{ $post->formatted_post_year }}</span></p>
     <p class="post-cat">カテゴリー：{{ $post->primaryCategory->name }}</p>

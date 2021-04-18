@@ -77,9 +77,6 @@ class PostController extends Controller
     {
         $categories = PrimaryCategory::orderBy('sort_no')->get();
 
-        if (auth()->user()->id != (Auth::user()->role === 'admin')) {
-            return redirect(route('/'))->with('status', '権限がありません。');
-        }
         return view('admin.posts.edit_form', ['post' => $post, 'categories' => $categories]);
     }
 

@@ -1,13 +1,13 @@
 <!-- Dropdown -->
 @if (Auth::user()->role === 'admin')
-<div class="ml-auto card-text">
-  <div class="dropdown" style="margin: 0 0 5px 85%">
+<div class="ml-auto card-text text-center">
+  <div class="dropdown pb-1">
     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <button type="button" class="btn btn-primary text-muted m-0 p-2">
-        <i class="fas fa-caret-down" style="color: white; width: 20px"></i>
+      <button type="button" class="btn btn-primary text-muted m-0 p-2" style="width: 200px">
+        <i class="fas fa-caret-down" style="color: white"></i>
       </button>
     </a>
-    <div class="dropdown-menu dropdown-menu-left" style="margin-top: 25px; margin-right: 135px">
+    <div class="dropdown-menu dropdown-menu-right" style="margin-top: 25px; width: 200px">
       <a class="dropdown-item" href="{{ route('articles.edit', ['post' => $post]) }}">
         <i class="fas fa-pen mr-1"></i>編集する
       </a>
