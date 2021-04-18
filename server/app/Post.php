@@ -4,7 +4,7 @@ namespace App;
 
 use App\SubTitle;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+// use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Carbon\Carbon;
 
@@ -23,10 +23,10 @@ class Post extends Model
         return $this->belongsTo('App\PrimaryCategory');
     }
 
-    public function subTitle(): HasOne
-    {
-        return $this->hasOne(SubTitle::class);
-    }
+    // public function subTitle(): BelongsTo
+    // {
+    //     return $this->belongsTo('App\SubTitle');
+    // }
 
     /**
      * 整形した期限日

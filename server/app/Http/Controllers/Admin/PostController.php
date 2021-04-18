@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateArticle;
+use App\Http\Requests\SubTitleRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use App\PrimaryCategory;
@@ -27,12 +28,12 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('post_date', 'desc')->get();
         $categories = PrimaryCategory::orderBy('sort_no')->get();
-        $sub_titles = SubTitle::with('post')->get();
+        $sub_title = SubTitle::where('id', 1)->first();
 
         return view('admin.posts.index')
             ->with('posts', $posts)
             ->with('categories', $categories)
-            ->with('sub_titles', $sub_titles);
+            ->with('sub_title', $sub_title);
     }
 
     public function articleCreateForm()
@@ -64,12 +65,12 @@ class PostController extends Controller
         $posts = Post::where('primary_category_id', $category->id)
             ->orderBy('post_date', 'desc')
             ->paginate(10);
-        $sub_titles = SubTitle::with('post')->get();
+        $sub_title = SubTitle::where('id', 1)->first();
 
         return view('admin.posts.show', [
             'category_name' => $category->name,
             'posts' => $posts,
-            'sub_titles' => $sub_titles,
+            'sub_title' => $sub_title,
         ]);
     }
 
@@ -104,6 +105,23 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')
             ->with('status', 'ニュースを削除しました。');
+    }
+
+    public function subTitleEditForm(SubTitle $subTitle)
+    {
+        $subTitle = SubTitle::where('id', 1)->first();
+        return view('admin.sub_title.form', ['subTitle' => $subTitle]);
+    }
+
+    public function editSubTitle(SubTitleRequest $request, SubTitle $subTitle)
+    {
+        $subTitle->sub_title = $request->sub_title;
+        $subTitle->description = $request->description;
+
+        $subTitle->save();
+
+        return redirect()->route('posts.index')
+            ->with('status', '更新しました。');
     }
 
     private function saveImage(UploadedFile $file): string

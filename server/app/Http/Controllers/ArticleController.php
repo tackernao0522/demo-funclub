@@ -13,12 +13,12 @@ class ArticleController extends Controller
     {
         $posts = Post::orderBy('post_date', 'desc')->get();
         $categories = PrimaryCategory::orderBy('sort_no')->get();
-        $sub_titles = SubTitle::with('post')->get();
+        $sub_title = SubTitle::where('id', 1)->first();
 
         return view('articles.index')
             ->with('posts', $posts)
             ->with('categories', $categories)
-            ->with('sub_titles', $sub_titles);
+            ->with('sub_title', $sub_title);
     }
 
     public function categoryNews(PrimaryCategory $category)
@@ -26,12 +26,12 @@ class ArticleController extends Controller
         $posts = Post::where('primary_category_id', $category->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        $sub_titles = SubTitle::with('post')->get();
+        $sub_title = SubTitle::where('id', 1)->first();
 
         return view('articles.show', [
             'category_name' => $category->name,
             'posts' => $posts,
-            'sub_titles' => $sub_titles,
+            'sub_title' => $sub_title,
         ]);
     }
 }

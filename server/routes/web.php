@@ -24,6 +24,9 @@ Route::get('article/post/edit/{post}', 'Admin\PostController@articleEditForm')->
 Route::post('article/post/edit/{post}', 'Admin\PostController@editArticle');
 Route::delete('article/post/{id}', 'Admin\PostController@destroy')->name('articles.destroy');
 Route::get('admin/posts/{category}/index', 'Admin\PostController@categoryShow')->name('categories.show');
+Route::get('sub_title/edit', 'Admin\PostController@subTitleEditForm')->name('subTitle.edit');
+Route::post('sub_title/edit/{subTitle}', 'Admin\PostController@editSubTitle')->name('edit');
+
 
 // user
 Route::get('/', 'TopController@index');

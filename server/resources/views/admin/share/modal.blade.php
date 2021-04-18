@@ -1,5 +1,5 @@
 <!-- Dropdown -->
-@if (Auth::user()->role === 'admin')
+@if ( Auth::check() && Auth::user()->role === 'admin' )
 <div class="ml-auto card-text text-center">
   <div class="dropdown pb-1">
     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
