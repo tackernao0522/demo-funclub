@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InfoHeaderBodyRequeset;
 use Illuminate\Http\Request;
 use App\HeaderBody;
 use App\Information;
@@ -29,5 +30,12 @@ class InformationController extends Controller
             ->with('header_body', $header_body)
             ->with('big_image', $big_image)
             ->with('informations', $informations);
+    }
+
+    public function infoHeaderBodyEditForm(HeaderBody $headerBody)
+    {
+        $headerBody = HeaderBody::where('id', 1)->first();
+
+        return view('admin.info_header_body.form', ['headerBody' => $headerBody]);
     }
 }

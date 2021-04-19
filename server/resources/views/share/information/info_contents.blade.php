@@ -6,6 +6,7 @@
     <!-- $header_body->body  -->
     <p>{!! nl2br(e( $header_body->body )) !!}</p>
   </div><!-- /.info-content -->
+  @include('admin.share.info_header_body_drop')
 </div><!-- /#info -->
 
 <div class="wrapper grid">
