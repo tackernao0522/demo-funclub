@@ -47,4 +47,11 @@ class InformationController extends Controller
         return redirect()->route('info.index')
             ->with('status', '更新しました。');
     }
+
+    public function infoBigImageForm(BigImage $bigImage)
+    {
+        $bigImage = BigImage::where('id', 1)->first();
+
+        return view('admin.big_image.form', ['bigImage' => $bigImage]);
+    }
 }
