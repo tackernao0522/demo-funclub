@@ -3,7 +3,7 @@
   <nav>
     <ul class="main-nav">
       <li><a href="{{ route('posts.index') }}">News</a></li>
-      <li><a href="{{ route('informations.index') }}">Info</a></li>
+      <li><a href="{{ route('info.index') }}">Info</a></li>
       <li><a href="{{ route('contact.form') }}">Contact</a></li>
     </ul>
   </nav>

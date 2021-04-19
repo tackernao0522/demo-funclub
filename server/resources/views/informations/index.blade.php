@@ -23,7 +23,10 @@ Information
   @foreach($informations as $info)
   <div class="item">
     <img src="/storage/info-images/{{ $info->info_image_name }}" alt="">
-    <p>写真キャプション写真キャプション</p>
+    <p>
+      {!! nl2br(e(Str::limit($info->description, 16))) !!}
+      <a class="card-link" href="#">続きを読む</a>
+    </p>
   </div>
   @endforeach
 </div><!-- /.grid -->
