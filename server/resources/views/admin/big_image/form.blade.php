@@ -23,7 +23,7 @@
             @endforeach
           </div>
           @endif
-          <form action="#" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('big_info.edit', ['bigImage' => $bigImage->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="article-image">メイン画像</div>
             <span class="item-image-form image-picker">

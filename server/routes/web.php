@@ -38,6 +38,7 @@ Route::get('info_header/edit', 'Admin\InformationController@infoHeaderBodyEditFo
 Route::post('info_header/edit/{headerBody}', 'Admin\InformationController@editInfoHeaderBody')->name('infomation_header.edit');
 // BigImage更新
 Route::get('main_image/edit', 'Admin\InformationController@infoBigImageForm')->name('big_image.edit');
+Route::post('main_image/edit/{bigImage}', 'Admin\InformationController@editInfoBigImage')->name('big_info.edit');
 
 // user
 Route::get('/', 'TopController@index');
