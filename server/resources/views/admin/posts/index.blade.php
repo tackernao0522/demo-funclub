@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-News
+News(Admin)
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@ News
 </div>
 
 <div id="news" class="big-bg">
-  @include('admin.share.home_header')
+  @include('share.home_header')
 
   <div class="wrapper">
     <h2 class="page-title">News</h2>

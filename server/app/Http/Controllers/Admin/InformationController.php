@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\HeaderBody;
 use App\Information;
+use App\BigImage;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -22,9 +23,11 @@ class InformationController extends Controller
     {
         $informations = Information::orderBy('created_at', 'desc')->get();
         $header_body = HeaderBody::where('id', 1)->first();
+        $big_image = BigImage::where('id', 1)->first();
 
         return view('admin.information.index')
             ->with('header_body', $header_body)
+            ->with('big_image', $big_image)
             ->with('informations', $informations);
     }
 }
