@@ -17,20 +17,33 @@
   @include('admin.share.info_header_body_drop')
 </div><!-- /#info -->
 
+
 <div class="wrapper grid">
   <div class="item big-box">
-    <img src="/storage/big-info-images/menu1.jpg" alt="">
+    <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" alt="">
     <p>
-      {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
+      @if ( Auth::check() && Auth::user()->role === 'admin' )
+      {!! nl2br(e(Str::limit($big_image->description, 11))) !!}
       <a class="card-link" href="#">続きを読む</a>
+      <a class="btn btn-success info-image-edit" href="{{ route('big_image.edit') }}">編集</a>
+      @else
+      {!! nl2br(e(Str::limit($big_image->description, 11))) !!}
+      <a class="card-link" href="#">続きを読む(会員限定)</a>
+      @endif
     </p>
   </div>
   @foreach($informations as $info)
   <div class="item">
     <img src="/storage/info-images/{{ $info->info_image_name }}" alt="">
     <p>
-      {!! nl2br(e(Str::limit($info->description, 16))) !!}
+      @if ( Auth::check() && Auth::user()->role === 'admin' )
+      {!! nl2br(e(Str::limit($info->description, 11))) !!}
       <a class="card-link" href="#">続きを読む</a>
+      <a class="btn btn-success info-image-edit" href="#">編集</a>
+      @else
+      {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
+      <a class="card-link" href="#">続きを読む(会員限定)</a>
+      @endif
     </p>
   </div>
   @endforeach
