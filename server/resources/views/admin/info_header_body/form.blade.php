@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<div class="header-title post">INFOヘッダー文編集</div>
+<div class="header-title post">INFOヘッダー文の編集</div>
 <div class="container">
   <div class="row">
     <div class="input-form">
@@ -23,11 +23,11 @@
             @endforeach
           </div>
           @endif
-          <form action="" method="POST">
+          <form action="{{ route('infomation_header.edit', ['headerBody' => $headerBody]) }}" method="POST">
             @csrf
             <div class="form-group">
-              <label class="article" for="body">INFOヘッダー文</label>
-              <textarea name="body" class="form-control" id="body" cols="30" rows="10">{{ old('body', $headerBody->body) }}</textarea>
+              <label class="article" for="info_header_body">INFOヘッダー文</label>
+              <textarea name="info_header_body" class="form-control" id="info_header_body" cols="30" rows="10">{{ old('info_header_body', $headerBody->info_header_body) }}</textarea>
             </div>
             <div class="text-right">
               <button type="submit" class="btn btn-success">更新</button>

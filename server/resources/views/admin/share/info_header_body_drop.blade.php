@@ -8,7 +8,7 @@
       </button>
     </a>
     <div class="dropdown-menu dropdown-menu-right" style="margin-top: 25px; width: 200px; text-align:center">
-      <a class="dropdown-item" href="{{ route('info_header.edit') }}">
+      <a class="dropdown-item" href="{{ route('info_header.edit')}}">
         <i class="fas fa-pen mr-1"></i>編集する
       </a>
     </div>

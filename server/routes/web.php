@@ -35,6 +35,7 @@ Route::post('sub_title/edit/{subTitle}', 'Admin\PostController@editSubTitle')->n
 Route::get('admin/info/index', 'Admin\InformationController@index')->name('info.index');
 // インフォーメーションヘッダーコンテンツ更新
 Route::get('info_header/edit', 'Admin\InformationController@infoHeaderBodyEditForm')->name('info_header.edit');
+Route::post('info_header/edit/{headerBody}', 'Admin\InformationController@editInfoHeaderBody')->name('infomation_header.edit');
 
 // user
 Route::get('/', 'TopController@index');
