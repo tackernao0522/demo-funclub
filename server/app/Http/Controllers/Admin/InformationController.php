@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\InfoHeaderBodyRequeset;
+use App\Http\Requests\InfoHeaderBodyRequest;
 use Illuminate\Http\Request;
 use App\HeaderBody;
 use App\Information;
@@ -37,5 +37,14 @@ class InformationController extends Controller
         $headerBody = HeaderBody::where('id', 1)->first();
 
         return view('admin.info_header_body.form', ['headerBody' => $headerBody]);
+    }
+
+    public function editInfoHeaderBody(InfoHeaderBodyRequest $request, HeaderBody $headerBody)
+    {
+        $headerBody->info_header_body = $request->info_header_body;
+        $headerBody->save();
+
+        return redirect()->route('info.index')
+            ->with('status', '更新しました。');
     }
 }

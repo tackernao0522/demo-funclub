@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class HeaderBody extends Model
 {
     protected $fillable = [
-        'body',
+        'info_header_body',
     ];
 }

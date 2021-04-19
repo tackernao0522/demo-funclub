@@ -15,7 +15,7 @@ class CreateHeaderBodiesTable extends Migration
     {
         Schema::create('header_bodies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('body');
+            $table->text('info_header_body');
             $table->timestamps();
         });
     }

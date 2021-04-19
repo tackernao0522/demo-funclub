@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditHeaderBody extends FormRequest
+class InfoHeaderBodyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class EditHeaderBody extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|max:104',
+            'info_header_body' => 'required|max:120',
         ];
     }
 
     public function attributes()
     {
         return [
-            'body' => 'ヘッダー文',
+            'info_header_body' => 'ヘッダー文',
         ];
     }
 }
