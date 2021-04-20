@@ -78,7 +78,7 @@ class InformationController extends Controller
         Image::make($file)->fit(665, 535)->save($tempPath);
 
         $filePath = Storage::disk('public')
-            ->putFile('big-info-images', new File($tempPath));
+            ->putFile('info-images', new File($tempPath));
 
         return basename($filePath);
     }

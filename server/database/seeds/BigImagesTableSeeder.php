@@ -13,7 +13,7 @@ class BigImagesTableSeeder extends Seeder
     public function run()
     {
         DB::table('big_images')->insert([
-            'info_big_image_name' => 'menu1.jpg',
+            'info_big_image_name' => 'menu3.jpg',
             'description' => '説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。説明が入ります。',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
