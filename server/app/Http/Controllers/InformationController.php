@@ -11,7 +11,7 @@ class InformationController extends Controller
 {
     public function index()
     {
-        $informations = Information::orderBy('created_at', 'desc')->get();
+        $informations = Information::orderBy('updated_at', 'desc')->get();
         $header_body = HeaderBody::where('id', 1)->first();
         $big_image = BigImage::where('id', 1)->first();
 

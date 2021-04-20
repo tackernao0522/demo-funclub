@@ -45,6 +45,8 @@ Route::post('info/post/create', 'Admin\InformationController@informationCreate')
 // SmallImage更新
 Route::get('small_image/edit/{smallImage}', 'Admin\InformationController@infoSmallImageForm')->name('small_image.edit');
 Route::post('small_image/edit/{smallImage}', 'Admin\InformationController@editInfoSmallImage');
+// Info削除
+Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('info.destroy');
 
 // user
 Route::get('/', 'TopController@index');
