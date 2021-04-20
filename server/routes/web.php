@@ -39,6 +39,9 @@ Route::post('info_header/edit/{headerBody}', 'Admin\InformationController@editIn
 // BigImage更新
 Route::get('main_image/edit', 'Admin\InformationController@infoBigImageForm')->name('big_image.edit');
 Route::post('main_image/edit/{bigImage}', 'Admin\InformationController@editInfoBigImage')->name('big_info.edit');
+// 新規information投稿
+Route::get('info/post/create', 'Admin\InformationController@informationCreateForm')->name('information.create');
+Route::post('info/post/create', 'Admin\InformationController@informationCreate');
 
 // user
 Route::get('/', 'TopController@index');

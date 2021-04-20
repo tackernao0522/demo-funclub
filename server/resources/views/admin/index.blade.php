@@ -10,7 +10,7 @@
   <div class="admin-top">
     <ul>
       <li><a href="{{ route('articles.create') }}">News（新規投稿）</a></li>
-      <li><a href="#">Infomation</a></li>
+      <li><a href="{{ route('information.create') }}">Infomation（新規投稿）</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </div>

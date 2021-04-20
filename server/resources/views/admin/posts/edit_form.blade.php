@@ -27,8 +27,8 @@ News新規投稿
             @csrf
             <div class="article-image">ニュース画像</div>
             <span class="item-image-form image-picker">
-              <input type="file" name="item-image" class="d-none" accept="image/png,image/jpeg,image/gif" id="item-image" />
-              <label for="item-image" class="d-inline-block" role="button">
+              <input type="file" name="post_image_name" class="d-none" accept="image/png,image/jpeg,image/gif" id="post_image_name" />
+              <label for="post_image_name" class="d-inline-block" role="button">
                 @if (!empty($post->post_image_name))
                 <img class="image-form-box" src="/storage/article-images/{{ $post->post_image_name }}" style="object-fit: cover; width: 300px; height: 300px;">
                 @else

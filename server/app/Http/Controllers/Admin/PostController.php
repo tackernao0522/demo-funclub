@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateArticle;
 use App\Http\Requests\SubTitleRequest;
+use App\Http\Requests\EditCreateRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use App\PrimaryCategory;
@@ -45,7 +46,7 @@ class PostController extends Controller
 
     public function articleCreate(CreateArticle $request)
     {
-        $imageArticleName = $this->saveImage($request->file('item-image'));
+        $imageArticleName = $this->saveImage($request->file('post_image_name'));
 
         $post = new Post();
         $post->post_image_name = $imageArticleName;
@@ -81,10 +82,10 @@ class PostController extends Controller
         return view('admin.posts.edit_form', ['post' => $post, 'categories' => $categories]);
     }
 
-    public function editArticle(CreateArticle $request, Post $post)
+    public function editArticle(EditCreateRequest $request, Post $post)
     {
-        if ($request->has('item-image')) {
-            $fileName = $this->saveImage($request->file('item-image'));
+        if ($request->has('post_image_name')) {
+            $fileName = $this->saveImage($request->file('post_image_name'));
             $post->post_image_name = $fileName;
         }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InfoHeaderBodyRequest;
 use App\Http\Requests\BigImageRequest;
+use App\Http\Requests\CreateInfoRequest;
 use Illuminate\Http\Request;
 use App\HeaderBody;
 use App\Information;
@@ -23,7 +24,7 @@ class InformationController extends Controller
 
     public function index()
     {
-        $informations = Information::orderBy('created_at', 'desc')->get();
+        $informations = Information::orderBy('updated_at', 'desc')->get();
         $header_body = HeaderBody::where('id', 1)->first();
         $big_image = BigImage::where('id', 1)->first();
 
@@ -58,8 +59,8 @@ class InformationController extends Controller
 
     public function editInfoBigImage(BigImageRequest $request, BigImage $bigImage)
     {
-        if ($request->has('item-image')) {
-            $fileName = $this->saveImage($request->file('item-image'));
+        if ($request->has('info_big_image_name')) {
+            $fileName = $this->saveImage($request->file('info_big_image_name'));
             $bigImage->info_big_image_name = $fileName;
         }
 
@@ -71,11 +72,42 @@ class InformationController extends Controller
             ->with('status', '更新しました。');
     }
 
+    public function informationCreateForm()
+    {
+        return view('admin.information.form');
+    }
+
+    public function informationCreate(CreateInfoRequest $request)
+    {
+        $imageInfoName = $this->saveSmallImage($request->file('info_image_name'));
+
+        $Information = new Information();
+        $Information->info_image_name = $imageInfoName;
+        $Information->description = $request->description;
+
+        $Information->save();
+
+        return redirect()->route('info.index')
+            ->with('status', 'Infoを投稿しました。');
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();
 
         Image::make($file)->fit(665, 535)->save($tempPath);
+
+        $filePath = Storage::disk('public')
+            ->putFile('big-info-images', new File($tempPath));
+
+        return basename($filePath);
+    }
+
+    private function saveSmallImage(UploadedFile $file): string
+    {
+        $tempPath = $this->makeTempPath();
+
+        Image::make($file)->fit(318, 236)->save($tempPath);
 
         $filePath = Storage::disk('public')
             ->putFile('info-images', new File($tempPath));
