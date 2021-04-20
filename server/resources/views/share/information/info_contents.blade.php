@@ -20,12 +20,12 @@
 
 <div class="wrapper grid">
   <div class="item big-box">
-    <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" alt="">
+    <img src="/storage/info-images/{{ $big_image->info_big_image_name }}" alt="">
     <p>
       @if ( Auth::check() && Auth::user()->role === 'admin' )
-      {!! nl2br(e(Str::limit($big_image->description, 11))) !!}
+      {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
       <a class="card-link" href="#">続きを読む</a>
-      <a class="btn btn-success info-image-edit" href="{{ route('big_image.edit') }}">編集</a>
+      @include('admin.share.information.big_image_drop')
       @else
       {!! nl2br(e(Str::limit($big_image->description, 11))) !!}
       <a class="card-link" href="#">続きを読む(会員限定)</a>
@@ -37,9 +37,9 @@
     <img src="/storage/info-images/{{ $info->info_image_name }}" alt="">
     <p>
       @if ( Auth::check() && Auth::user()->role === 'admin' )
-      {!! nl2br(e(Str::limit($info->description, 11))) !!}
+      {!! nl2br(e(Str::limit($info->description, 16))) !!}
       <a class="card-link" href="#">続きを読む</a>
-      <a class="btn btn-success info-image-edit" href="#">編集</a>
+      @include('admin.share.information.info_image_drop')
       @else
       {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
       <a class="card-link" href="#">続きを読む(会員限定)</a>
