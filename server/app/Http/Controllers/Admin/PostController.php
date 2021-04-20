@@ -93,7 +93,6 @@ class PostController extends Controller
         $post->post_date = $request->post_date;
         $post->body = $request->body;
         $post->primary_category_id = $request->input('primary_category');
-
         $post->save();
 
         return redirect()->route('posts.index')

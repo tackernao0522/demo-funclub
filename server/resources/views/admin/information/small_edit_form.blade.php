@@ -19,11 +19,11 @@ Info編集
             @endforeach
           </div>
           @endif
-          <form action="" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('small_image.edit', ['smallImage' => $smallImage->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="article-image">INFO画像</div>
             <span class="item-image-form image-picker">
-              <input type="file" name="post_image_name" class="d-none" accept="image/png,image/jpeg,image/gif" id="info_image_name" />
+              <input type="file" name="info_image_name" class="d-none" accept="image/png,image/jpeg,image/gif" id="info_image_name" />
               <label for="info_image_name" class="d-inline-block" role="button">
                 @if (!empty($smallImage->info_image_name))
                 <img class="image-form-box" src="/storage/info-images/{{ $smallImage->info_image_name }}" style="object-fit: cover; width: 300px; height: 300px;">

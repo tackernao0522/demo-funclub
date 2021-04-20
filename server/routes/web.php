@@ -44,7 +44,7 @@ Route::get('info/post/create', 'Admin\InformationController@informationCreateFor
 Route::post('info/post/create', 'Admin\InformationController@informationCreate');
 // SmallImage更新
 Route::get('small_image/edit/{smallImage}', 'Admin\InformationController@infoSmallImageForm')->name('small_image.edit');
-Route::post('main_image/edit/{smallImage}', 'Admin\InformationController@editInfoSmallImage');
+Route::post('small_image/edit/{smallImage}', 'Admin\InformationController@editInfoSmallImage');
 
 // user
 Route::get('/', 'TopController@index');
