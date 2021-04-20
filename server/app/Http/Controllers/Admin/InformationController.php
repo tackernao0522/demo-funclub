@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 use App\HeaderBody;
 use App\Information;
 use App\BigImage;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -111,6 +109,14 @@ class InformationController extends Controller
 
         return redirect()->route('info.index')
             ->with('status', 'Infoを編集しました。');
+    }
+
+    public function destroy(Information $id)
+    {
+        $id->delete();
+
+        return redirect()->route('info.index')
+            ->with('status', 'infoを削除しました。');
     }
 
     private function saveImage(UploadedFile $file): string

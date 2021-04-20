@@ -41,7 +41,7 @@
       <a class="card-link" href="#">続きを読む</a>
       @include('admin.share.information.info_image_drop')
       @else
-      {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
+      {!! nl2br(e(Str::limit($info->description, 16))) !!}
       <a class="card-link" href="#">続きを読む(会員限定)</a>
       @endif
     </p>

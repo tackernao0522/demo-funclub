@@ -13,9 +13,4 @@ class SubTitle extends Model
         'sub_title',
         'description',
     ];
-
-    // public function posts(): HasMany
-    // {
-    //     return $this->hasMany('App\Post');
-    // }
 }
