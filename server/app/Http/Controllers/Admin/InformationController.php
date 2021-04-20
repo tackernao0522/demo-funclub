@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\InfoHeaderBodyRequest;
 use App\Http\Requests\BigImageRequest;
 use App\Http\Requests\CreateInfoRequest;
+use App\Http\Requests\EditSmallImageRequest;
 use Illuminate\Http\Request;
 use App\HeaderBody;
 use App\Information;
 use App\BigImage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -94,6 +97,20 @@ class InformationController extends Controller
     public function infoSmallImageForm(Information $smallImage)
     {
         return view('admin.information.small_edit_form', ['smallImage' => $smallImage]);
+    }
+
+    public function editInfoSmallImage(EditSmallImageRequest $request, Information $smallImage)
+    {
+        if ($request->has('info_image_name')) {
+            $smallInfofileName = $this->saveSmallImage($request->file('info_image_name'));
+            $smallImage->info_image_name = $smallInfofileName;
+        }
+
+        $smallImage->description = $request->description;
+        $smallImage->save();
+
+        return redirect()->route('info.index')
+            ->with('status', 'Infoを編集しました。');
     }
 
     private function saveImage(UploadedFile $file): string
