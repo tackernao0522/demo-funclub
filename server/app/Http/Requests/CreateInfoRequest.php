@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateArticle extends FormRequest
+class CreateInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,16 @@ class CreateArticle extends FormRequest
     public function rules()
     {
         return [
-            'post_image_name' => 'required|file|image',
-            'primary_category' => 'required|integer',
-            'post_title' => 'required|max:100',
-            'post_date' => 'required|date',
-            'body' => 'required|string|max:2000',
+            'info_image_name' => 'required|file|image',
+            'description' => 'required|string|max:2000',
         ];
     }
 
     public function attributes()
     {
         return [
-            'post_image_name' => 'ニュース画像',
-            'post_title' => 'タイトル',
-            'post_date' => '作成日',
-            'body' => '本文',
+            'info_image_name' => '画像',
+            'description' => '説明文',
         ];
     }
 }

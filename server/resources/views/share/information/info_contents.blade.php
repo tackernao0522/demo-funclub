@@ -20,7 +20,7 @@
 
 <div class="wrapper grid">
   <div class="item big-box">
-    <img src="/storage/info-images/{{ $big_image->info_big_image_name }}" alt="">
+    <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" alt="">
     <p>
       @if ( Auth::check() && Auth::user()->role === 'admin' )
       {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
