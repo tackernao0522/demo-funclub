@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-News新規投稿
+News編集
 @endsection
 
 @section('content')

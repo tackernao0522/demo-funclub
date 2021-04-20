@@ -91,6 +91,11 @@ class InformationController extends Controller
             ->with('status', 'Infoを投稿しました。');
     }
 
+    public function infoSmallImageForm(Information $smallImage)
+    {
+        return view('admin.information.small_edit_form', ['smallImage' => $smallImage]);
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();
