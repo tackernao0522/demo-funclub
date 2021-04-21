@@ -20,7 +20,7 @@ Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
 // top_title編集
 Route::get('top/edit', 'Admin\TopController@topTitleForm')->name('top.edit_form');
-Route::get('top/edit/{top_title}', 'Admin\TopController@editTopTitle')->name('top.edit');
+Route::post('top/edit/{top}', 'Admin\TopController@editTopTitle')->name('top.edit');
 // 新規News投稿
 Route::get('artice/post/create', 'Admin\PostController@articleCreateForm')->name('articles.create');
 Route::post('artice/post/create', 'Admin\PostController@articleCreate');
@@ -52,7 +52,7 @@ Route::post('small_image/edit/{smallImage}', 'Admin\InformationController@editIn
 Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('info.destroy');
 
 // user
-Route::get('/', 'TopController@index');
+Route::get('/', 'TopController@index')->name('top');
 // Newsページ
 Route::get('news', 'ArticleController@index')->name('articles.index');
 // カテゴリー別ページ
