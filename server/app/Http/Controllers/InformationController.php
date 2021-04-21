@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\HeaderBody;
 use App\BigImage;
 use App\Information;
@@ -19,5 +20,19 @@ class InformationController extends Controller
             ->with('header_body', $header_body)
             ->with('big_image', $big_image)
             ->with('informations', $informations);
+    }
+
+    public function show(Information $information)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            $header_body = HeaderBody::where('id', 1)->first();
+
+            return view('informations.show')
+                ->with('header_body', $header_body)
+                ->with('information', $information);
+        } else {
+            return redirect()->route('info.index')
+                ->with('status', 'プレミアム会員のみ閲覧出来ます。');
+        }
     }
 }
