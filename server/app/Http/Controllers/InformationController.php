@@ -31,8 +31,23 @@ class InformationController extends Controller
                 ->with('header_body', $header_body)
                 ->with('information', $information);
         } else {
-            return redirect()->route('info.index')
-                ->with('status', 'プレミアム会員のみ閲覧出来ます。');
+            return redirect()->back()
+                ->with('status', '有料会員のみ閲覧できます。');
+        }
+    }
+
+    public function bigShow()
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            $header_body = HeaderBody::where('id', 1)->first();
+            $big_image = BigImage::where('id', 1)->first();
+
+            return view('informations.big_show')
+                ->with('header_body', $header_body)
+                ->with('big_image', $big_image);
+        } else {
+            return redirect()->back()
+                ->with('status', '有料会員のみ閲覧できます。');
         }
     }
 }

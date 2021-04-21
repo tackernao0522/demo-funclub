@@ -24,11 +24,14 @@
     <p>
       @if ( Auth::check() && Auth::user()->role === 'admin' )
       {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
-      <a class="card-link" href="">続きを読む</a>
+      <a class="card-link" href="{{ route('bigInfo.show') }}">続きを読む</a>
       @include('admin.share.information.big_image_drop')
+      @elseif ( Auth::check() && Auth::user()->role === 'premium' )
+      {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
+      <a class="card-link" href="{{ route('bigInfo.show') }}">続きを読む</a>
       @else
       {!! nl2br(e(Str::limit($big_image->description, 11))) !!}
-      <a class="card-link" href="">続きは有料会員限定</a>
+      <a class="card-link" href="{{ route('bigInfo.show') }}">続きは有料会員限定</a>
       @endif
     </p>
   </div>
