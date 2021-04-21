@@ -56,6 +56,12 @@ Route::get('news', 'ArticleController@index')->name('articles.index');
 Route::get('news/{category}/index', 'ArticleController@categoryNews')->name('news.category');
 // Informationページ
 Route::get('information', 'InformationController@index')->name('informations.index');
+
+Route::group(['middleware' => 'auth'], function () {
+  // Info詳細
+  Route::resource('information', 'InformationController', ['only' => ['show']] );
+});
+
 // Contactページ
 Route::get('contact', 'ContactController@contactShowForm')->name('contact.form');
 
