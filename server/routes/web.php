@@ -58,6 +58,8 @@ Route::get('news/{category}/index', 'ArticleController@categoryNews')->name('new
 Route::get('information', 'InformationController@index')->name('informations.index');
 
 Route::group(['middleware' => 'auth'], function () {
+  // BinInfo詳細
+  Route::get('main_info', 'InformationController@bigShow')->name('bigInfo.show');
   // Info詳細
   Route::resource('information', 'InformationController', ['only' => ['show']] );
 });

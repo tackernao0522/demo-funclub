@@ -27,7 +27,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('post_date', 'desc')->get();
+        $posts = Post::all()->sortByDesc('post_date')->load('primaryCategory');
         $categories = PrimaryCategory::orderBy('sort_no')->get();
         $sub_title = SubTitle::where('id', 1)->first();
 
@@ -65,7 +65,8 @@ class PostController extends Controller
     {
         $posts = Post::where('primary_category_id', $category->id)
             ->orderBy('post_date', 'desc')
-            ->paginate(10);
+            ->get()
+            ->load('primaryCategory');
         $sub_title = SubTitle::where('id', 1)->first();
 
         return view('admin.posts.show', [

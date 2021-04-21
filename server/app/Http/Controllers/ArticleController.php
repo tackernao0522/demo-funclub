@@ -11,7 +11,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('post_date', 'desc')->get();
+        $posts = Post::all()->sortByDesc('post_date')->load('primaryCategory');
         $categories = PrimaryCategory::orderBy('sort_no')->get();
         $sub_title = SubTitle::where('id', 1)->first();
 
@@ -24,8 +24,9 @@ class ArticleController extends Controller
     public function categoryNews(PrimaryCategory $category)
     {
         $posts = Post::where('primary_category_id', $category->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->orderBy('post_date', 'desc')
+            ->get()
+            ->load('primaryCategory');
         $sub_title = SubTitle::where('id', 1)->first();
 
         return view('articles.show', [
