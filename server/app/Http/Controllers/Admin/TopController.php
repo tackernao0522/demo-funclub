@@ -17,6 +17,6 @@ class TopController extends Controller
     {
         $top = TopTitle::where('id', 1)->first();
 
-        return view('admin.top.title', ['top' => $top]);
+        return view('admin.top.title_form', ['top' => $top]);
     }
 }
