@@ -29,7 +29,13 @@ Top
     @endif
     <h2 class="page-title">{{ $top->main_title }}</h2>
     <p>{!! nl2br(e( $top->content )) !!}</p>
+    @if ( Auth::check() && Auth::user()->role === 'admin')
+    <div style="margin-bottom: 70px">
+      <a class="button" href="{{ route('informations.index') }}">INFORMATION</a>
+    </div>
+    @else
     <a class="button" href="{{ route('informations.index') }}">INFORMATION</a>
+    @endif
   </div><!-- /.home-content -->
 </div><!-- /#home -->
 @endsection

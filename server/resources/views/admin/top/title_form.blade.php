@@ -19,7 +19,7 @@ Topタイトル編集
             @endforeach
           </div>
           @endif
-          <form action="" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('top.edit', ['top' => $top]) }}" method="POST">
             @csrf
             <div class="form-group">
               <label class="article" for="main_title">メインタイトル</label>
