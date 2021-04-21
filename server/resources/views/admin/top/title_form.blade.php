@@ -1,16 +1,16 @@
 @extends('layouts.article')
 
 @section('title')
-ヘッダー文の更新
+Topタイトル編集
 @endsection
 
 @section('content')
-<div class="header-title post">INFOヘッダー文の編集</div>
+<div class="header-title post">Topタイトル編集ページ</div>
 <div class="container">
   <div class="row">
     <div class="input-form">
       <nav class="panel panel-default">
-        <div class="panel-heading">INFOヘッダー文の編集</div>
+        <div class="panel-heading">Topタイトルを編集する</div>
         <div class="panel-body">
           @if($errors->any())
           <div class="alert alert-danger">
@@ -19,11 +19,15 @@
             @endforeach
           </div>
           @endif
-          <form action="{{ route('infomation_header.edit', ['headerBody' => $headerBody]) }}" method="POST">
+          <form action="" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label class="article" for="info_header_body">INFOヘッダー文</label>
-              <textarea name="info_header_body" class="form-control" id="info_header_body" cols="30" rows="10">{{ old('info_header_body', $headerBody->info_header_body) }}</textarea>
+              <label class="article" for="main_title">メインタイトル</label>
+              <input type="text" class="form-control" name="main_title" id="main_title" value="{{ old('main_title', $top->main_title) }}" />
+            </div>
+            <div class="form-group">
+              <label class="article" for="content">コンテンツ</label>
+              <input type="text" class="form-control" name="content" id="content" value="{{ old('content', $top->content) }}" />
             </div>
             <div class="text-right">
               <button type="submit" class="btn btn-success">更新</button>

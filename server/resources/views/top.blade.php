@@ -9,8 +9,26 @@ Top
   @include('share.home_header')
 
   <div class="home-content wrapper">
-    <h2 class="page-title">We'll Make Your Day</h2>
-    <p>おしゃれなカフェで癒やされてみませんか？無添加の食材で体の中からリフレッシュ。</p>
+    <!-- Dropdown -->
+    @if ( Auth::check() && Auth::user()->role === 'admin' )
+    <div class="ml-auto card-text text-center">
+      <div class="dropdown mt-2 pb-3">
+        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-light text-muted m-0 p-2" style="width: 200px">
+            <i class="fas fa-caret-down" style="color: blue"></i>
+          </button>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" style="margin-top: 25px; width: 200px; text-align:center">
+          <a class="dropdown-item" href="{{ route('top.edit_form')}}">
+            <i class="fas fa-pen mr-1"></i>編集する
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Dropdown -->
+    @endif
+    <h2 class="page-title">{{ $top->main_title }}</h2>
+    <p>{!! nl2br(e( $top->content )) !!}</p>
     <a class="button" href="{{ route('informations.index') }}">INFORMATION</a>
   </div><!-- /.home-content -->
 </div><!-- /#home -->

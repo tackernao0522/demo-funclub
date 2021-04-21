@@ -18,6 +18,9 @@
 // administrator
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
+// top_title編集
+Route::get('top/edit', 'Admin\TopController@topTitleForm')->name('top.edit_form');
+Route::get('top/edit/{top_title}', 'Admin\TopController@editTopTitle')->name('top.edit');
 // 新規News投稿
 Route::get('artice/post/create', 'Admin\PostController@articleCreateForm')->name('articles.create');
 Route::post('artice/post/create', 'Admin\PostController@articleCreate');

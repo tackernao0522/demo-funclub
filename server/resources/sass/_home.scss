@@ -52,8 +52,12 @@ img {
 }
 .home-content p {
     /* <p>タグへのフォントサイズと余白の指定 */
+    width: 75%;
+    border-radius: 10%;
     font-size: 1.125rem;
-    margin: 40px 0 42px;
+    margin: 40px auto;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.466);
 }
 /* 見出し */
 .page-title {
