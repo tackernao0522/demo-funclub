@@ -64,11 +64,17 @@ Route::group(['middleware' => 'auth'], function () {
   // BinInfo詳細
   Route::get('main_info', 'InformationController@bigShow')->name('bigInfo.show');
   // Info詳細
-  Route::resource('information', 'InformationController', ['only' => ['show']] );
+  Route::resource('information', 'InformationController', ['only' => ['show']]);
 });
 
 // Contactページ
 Route::get('contact', 'ContactController@contactShowForm')->name('contact.form');
+// 確認ページ
+Route::post('confirm', 'ContactController@confirm')->name('confirm');
+// DB登録、メール送信(管理者へ)
+Route::post('process', 'ContactController@process')->name('process');
+// 完了ページ
+Route::get('complete', 'ContactController@complete')->name('complete');
 
 Auth::routes();
 
@@ -80,4 +86,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/payment', 'PaymentsController@payment')->name('payment');
 
 // 決済完了ページ
-Route::get('/complete', 'PaymentsController@complete')->name('complete');
+// Route::get('/complete', 'PaymentsController@complete')->name('complete');
