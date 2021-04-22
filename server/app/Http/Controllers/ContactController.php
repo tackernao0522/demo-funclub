@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ContactRequest;
 use App\Contact;
+use App\Mail\ContactMail;
 
 class ContactController extends Controller
 {
@@ -20,7 +23,7 @@ class ContactController extends Controller
         return view('contact.confirm', ['inputs' => $inputs]);
     }
 
-    public function process(Request $request)
+    public function process(ContactRequest $request)
     {
         $action = $request->get('action', 'return');
         $input = $request->except('action');
@@ -29,6 +32,8 @@ class ContactController extends Controller
             $contact = new Contact();
             $contact->fill($input);
             $contact->save();
+
+            Mail::to($input['your_email'])->send(new ContactMail('mails.contact', 'お問い合わせありがとうございます', $input));
 
             return redirect()->route('complete');
         } else {
