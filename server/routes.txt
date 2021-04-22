@@ -21,9 +21,11 @@
 |        | GET|HEAD | complete                      | complete               | App\Http\Controllers\ContactController@complete                         | web                                                  |
 |        | POST     | confirm                       | confirm                | App\Http\Controllers\ContactController@confirm                          | web                                                  |
 |        | GET|HEAD | contact                       | contact.form           | App\Http\Controllers\ContactController@contactShowForm                  | web                                                  |
+|        | GET|HEAD | contacts/edit/{contact}       | contact.edit_form      | App\Http\Controllers\AdminController@contactEditForm                    | web,admin                                            |
+|        | GET|HEAD | contacts/list                 | contact.list           | App\Http\Controllers\AdminController@contactList                        | web,admin                                            |
 |        | GET|HEAD | home                          | home                   | App\Http\Controllers\HomeController@index                               | web,auth                                             |
-|        | GET|HEAD | info/post/create              | information.create     | App\Http\Controllers\Admin\InformationController@informationCreateForm  | web,admin                                            |
 |        | POST     | info/post/create              |                        | App\Http\Controllers\Admin\InformationController@informationCreate      | web,admin                                            |
+|        | GET|HEAD | info/post/create              | information.create     | App\Http\Controllers\Admin\InformationController@informationCreateForm  | web,admin                                            |
 |        | DELETE   | info/post/{id}                | info.destroy           | App\Http\Controllers\Admin\InformationController@destroy                | web,admin                                            |
 |        | GET|HEAD | info_header/edit              | info_header.edit       | App\Http\Controllers\Admin\InformationController@infoHeaderBodyEditForm | web,admin                                            |
 |        | POST     | info_header/edit/{headerBody} | infomation_header.edit | App\Http\Controllers\Admin\InformationController@editInfoHeaderBody     | web,admin                                            |

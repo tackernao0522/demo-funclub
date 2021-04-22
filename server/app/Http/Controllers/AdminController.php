@@ -23,4 +23,18 @@ class AdminController extends Controller
 
         return view('admin/contacts.list', ['contacts' => $contacts]);
     }
+
+    public function contactEditForm(Contact $contact)
+    {
+        return view('admin/contacts.list_form', ['contact' => $contact]);
+    }
+
+    public function EditStatus(Request $request, Contact $contact)
+    {
+        $contact->status = $request->status;
+        $contact->save();
+
+        return redirect()->route('contact.list')
+            ->with('status', '状態を更新しました。');
+    }
 }
