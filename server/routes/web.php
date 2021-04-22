@@ -17,6 +17,8 @@
 
 // administrator
 Route::get('admin', 'AdminController@index')->name('admin');
+// Contactリスト
+Route::get('/contacts/list', 'AdminController@contactList')->name('contact.list');
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
 // top_title編集
 Route::get('top/edit', 'Admin\TopController@topTitleForm')->name('top.edit_form');
