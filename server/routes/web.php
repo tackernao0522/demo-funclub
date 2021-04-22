@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -19,6 +8,10 @@
 Route::get('admin', 'AdminController@index')->name('admin');
 // Contactリスト
 Route::get('/contacts/list', 'AdminController@contactList')->name('contact.list');
+// Contact詳細
+Route::get('/contacts/edit/{contact}', 'AdminController@contactEditForm')->name('contact.edit');
+Route::post('/contacts/edit/{contact}', 'AdminController@EditStatus');
+// ニュースページ
 Route::get('admin/posts/index', 'Admin\PostController@index')->name('posts.index');
 // top_title編集
 Route::get('top/edit', 'Admin\TopController@topTitleForm')->name('top.edit_form');
