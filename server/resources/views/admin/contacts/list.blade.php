@@ -5,7 +5,7 @@ Contactリスト
 @endsection
 
 @section('content')
-<div class="header-title"><a href="{{ route('posts.index') }}">Contactリスト</a></div>
+<div class="header-title"><a href="{{ route('admin') }}">Contactリスト</a></div>
 <div class="row article-post">
   <div class="col-8 offset-2">
     @if (session('status'))
