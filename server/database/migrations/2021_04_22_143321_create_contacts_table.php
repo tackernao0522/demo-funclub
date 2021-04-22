@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
             $table->bigIncrements('id');
             $table->string('your_name');
             $table->string('your_email');
-            $table->string('your_message');
+            $table->text('your_message');
             $table->timestamps();
         });
     }
