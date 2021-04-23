@@ -21,18 +21,57 @@ Contactリスト
       <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">名前</th>
-            <th scope="col">状態</th>
+            <th scope="col" style="width: 30%">状態</th>
+            <th scope="col" style="width: 30%">名前</th>
+            <th scope="col" style="width: 30%"></th>
           </tr>
         </thead>
         <tbody>
           @foreach($contacts as $contact)
           <tr>
-            <th scope="row">{{ $contact->id }}</th>
+            <th scope="row"><span class="{{ $contact->status_class }}">{{ $contact->status_label }}</span></th>
             <td><a href="{{ route('contact.edit', ['contact' => $contact]) }}" style="color: white">{{ $contact->your_name }}</a></td>
             <td>
-              <span class="{{ $contact->status_class }}">{{ $contact->status_label }}</span>
+              <!-- Dropdown -->
+              <div class="card-text">
+                <div class="dropdown pb-1" style="height: 10px">
+                  <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="text-muted" style="height: 30px;">
+                      <i class="fas fa-caret-square-down"></i>
+                    </button>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" style="margin: 25px 0 0 50px; width: 200px">
+                    <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $contact->id }}">
+                      <i class="fas fa-trash-alt pl-4"></i>投稿を削除する
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Dropdown -->
+
+              <!-- modal -->
+              <div id="modal-delete-{{ $contact->id }}" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST" action="{{ route('contacts.destroy', ['id' => $contact->id]) }}">
+                      @csrf
+                      @method('DELETE')
+                      <div class="modal-body" style="color: black">
+                        リスト：{{ $contact->your_name }}さんを削除します。よろしいですか？
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                        <button type="submit" class="btn btn-danger">削除する</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </td>
           </tr>
           @endforeach
