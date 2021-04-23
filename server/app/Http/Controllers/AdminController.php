@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Contact;
 
 class AdminController extends Controller
@@ -17,11 +18,27 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function contactList()
+    public function contactList(Request $request)
     {
-        $contacts = Contact::orderBy('created_at', 'desc')->get();
+        $query = Contact::query();
 
-        return view('admin/contacts.list', ['contacts' => $contacts]);
+        if ($request->filled('keyword')) {
+            $keyword = '%' . $this->escape($request->input('keyword')) . '%';
+            $query->where(function ($query) use ($keyword) {
+                $query->where('your_name', 'LIKE', $keyword);
+                $query->orWhere('status', 'LIKE', $keyword);
+            });
+        }
+
+        $defaults = [
+            'keyword' => $request->input('keyword'),
+        ];
+
+        $contacts = $query->orderBy('created_at', 'desc')->paginate(2);
+
+        return view('admin/contacts.list')
+            ->with('contacts', $contacts)
+            ->with('defaults', $defaults);
     }
 
     public function contactEditForm(Contact $contact)
@@ -49,5 +66,14 @@ class AdminController extends Controller
             return redirect()->route('contact.list')
                 ->with('status', '未対応リストは削除できません。');
         }
+    }
+
+    private function escape(string $value)
+    {
+        return str_replace(
+            ['\\', '%', '_'],
+            ['\\\\', '\\%', '\\_'],
+            $value
+        );
     }
 }
