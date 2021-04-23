@@ -5,7 +5,6 @@ Contactリスト
 @endsection
 
 @section('content')
-<div class="header-title"><a href="{{ route('admin') }}">Contactリスト</a></div>
 <div class="row article-post">
   <div class="col-8 offset-2">
     @if (session('status'))
@@ -16,6 +15,13 @@ Contactリスト
   </div>
 </div>
 <div class="container">
+  <div class="header-title"><a href="{{ route('admin') }}">Contactリスト</a></div>
+  <nav class="navbar navbar-light bg-light">
+    <form class="form-inline" mthod="GET" action="{{ route('contact.list') }}">
+      <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="状態:1or2又は名前" value="{{ $defaults['keyword'] ?? '' }}" style="width: 155px">
+      <button class="btn btn-outline-success my-2 my-sm-0 contact-search" type="submit" style="height: 35px; line-height: 10px; width: 50px; font-size: 11px">検索</button>
+    </form>
+  </nav>
   <div class="row">
     <div class="col-sm">
       <table class="table table-dark">
@@ -29,7 +35,11 @@ Contactリスト
         <tbody>
           @foreach($contacts as $contact)
           <tr>
-            <th scope="row"><span class="{{ $contact->status_class }}">{{ $contact->status_label }}</span></th>
+            @if ($contact->status == 1)
+            <th scope="row"><span class="{{ $contact->status_class }}">1:{{ $contact->status_label }}</span></th>
+            @else
+            <th scope="row"><span class="{{ $contact->status_class }}">2:{{ $contact->status_label }}</span></th>
+            @endif
             <td><a href="{{ route('contact.edit', ['contact' => $contact]) }}" style="color: white">{{ $contact->your_name }}</a></td>
             <td>
               <!-- Dropdown -->
@@ -42,7 +52,7 @@ Contactリスト
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" style="margin: 25px 0 0 50px; width: 200px">
                     <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $contact->id }}">
-                      <i class="fas fa-trash-alt pl-4"></i>投稿を削除する
+                      <i class="fas fa-trash-alt pl-1"></i>このリストを削除する
                     </a>
                   </div>
                 </div>
@@ -77,6 +87,10 @@ Contactリスト
           @endforeach
         </tbody>
       </table>
+      <div class="justify-content-center mt-3">
+        {{ $contacts->appends(Request::only('keyword'))->links() }}
+      </div>
+      <button class="btn btn-primary" type="button" onclick="history.back()">Back</button>
     </div>
   </div>
 </div>
