@@ -47,7 +47,7 @@ class AdminController extends Controller
                 ->with('status', '削除しました。');
         } else {
             return redirect()->route('contact.list')
-                ->with('status', '未対応は削除できません。');
+                ->with('status', '未対応リストは削除できません。');
         }
     }
 }
