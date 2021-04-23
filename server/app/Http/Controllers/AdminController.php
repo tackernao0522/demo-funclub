@@ -37,4 +37,12 @@ class AdminController extends Controller
         return redirect()->route('contact.list')
             ->with('status', '状態を更新しました。');
     }
+
+    public function destroy(Contact $id)
+    {
+        $id->delete();
+
+        return redirect()->route('contact.list')
+            ->with('status', '削除しました。');
+    }
 }

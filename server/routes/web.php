@@ -8,6 +8,8 @@
 Route::get('admin', 'AdminController@index')->name('admin');
 // Contactリスト
 Route::get('/contacts/list', 'AdminController@contactList')->name('contact.list');
+// Contactリスト(削除)
+Route::delete('/contacts/list/{id}', 'AdminController@destroy')->name('contacts.destroy');
 // Contact詳細
 Route::get('/contacts/edit/{contact}', 'AdminController@contactEditForm')->name('contact.edit');
 Route::post('/contacts/edit/{contact}', 'AdminController@EditStatus');
