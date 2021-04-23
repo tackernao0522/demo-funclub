@@ -40,9 +40,14 @@ class AdminController extends Controller
 
     public function destroy(Contact $id)
     {
-        $id->delete();
+        if ($id->status == '2') {
+            $id->delete();
 
-        return redirect()->route('contact.list')
-            ->with('status', '削除しました。');
+            return redirect()->route('contact.list')
+                ->with('status', '削除しました。');
+        } else {
+            return redirect()->route('contact.list')
+                ->with('status', '未対応は削除できません。');
+        }
     }
 }
