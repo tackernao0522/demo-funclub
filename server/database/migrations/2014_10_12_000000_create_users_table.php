@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
         });
         DB::table('users')->insert(['id' => 1, 'name' => 'Administrator', 'email' => 'admin@example.com', 'password' => bcrypt('password'), 'role' => 'admin']);
         DB::table('users')->insert(['id' => 2, 'name' => 'Premium', 'email' => 'premium@example.com', 'password' => bcrypt('password'), 'role' => 'premium']);
-        DB::table('users')->insert(['id' => 3, 'name' => 'User', 'email' => 'user@example.com', 'password' => bcrypt('password')]);
+        DB::table('users')->insert(['id' => 3, 'name' => 'User', 'email' => 'takaki55730317@gmail.com', 'password' => bcrypt('password')]);
     }
 
     /**
