@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Premium;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
@@ -27,6 +29,8 @@ class PaymentsController extends Controller
                     'currency' => 'jpy'
                 ));
 
+                Mail::to(Auth::user()->email)->send(new Premium());
+
                 $user = Auth::user();
                 $user->role = 'premium';
                 $user->save();
@@ -37,10 +41,5 @@ class PaymentsController extends Controller
                 return $e->getMessage();
             }
         }
-    }
-
-    public function complete()
-    {
-        return view('complete');
     }
 }
