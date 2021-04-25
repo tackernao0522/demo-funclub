@@ -61,12 +61,29 @@
                         </li>
                         @endif
                         @else
+                        @if ( Auth::check() && Auth::user()->role === 'member' )
+                        <form action="{{ asset('payment') }}" method="POST" class="text-left mt-1">
+                            {{ csrf_field() }}
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-amount="1000" data-name="Stripe Demo" data-label="有料会員入会 (¥1000)" data-description="これはStripeのデモです。" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="JPY">
+                            </script>
+                        </form>
+                        @endif
                         <li class="nav-item dropdown">
+                            @if ( Auth::check() && Auth::user()->role === 'member' )
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->name }}[無料会員]<span class="caret"></span>
                             </a>
+                            @elseif ( Auth::check() && Auth::user()->role === 'premium' )
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}[有料会員]<span class="caret"></span>
+                            </a>
+                            @elseif ( Auth::check() && Auth::user()->role === 'admin' )
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}[管理者]<span class="caret"></span>
+                            </a>
+                            @endif
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
