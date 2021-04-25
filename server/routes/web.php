@@ -51,9 +51,9 @@ Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('in
 // user
 Route::get('/', 'TopController@index')->name('top');
 // Newsページ
-Route::get('news', 'ArticleController@index')->name('articles.index');
+Route::get('/news', 'ArticleController@index')->name('articles.index');
 // カテゴリー別ページ
-Route::get('news/{category}/index', 'ArticleController@categoryNews')->name('news.category');
+Route::get('/news/{category}/index', 'ArticleController@categoryNews')->name('news.category');
 // Informationページ
 Route::get('information', 'InformationController@index')->name('informations.index');
 
@@ -76,11 +76,6 @@ Route::get('complete', 'ContactController@complete')->name('complete');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-// 決済ボタンを表示するページ
-// Route::get('/', 'PaymentsController@index')->name('index');
 
 // Stripeの処理
 Route::post('/payment', 'PaymentsController@payment')->name('payment');
-
-// 決済完了ページ
-// Route::get('/complete', 'PaymentsController@complete')->name('complete');
