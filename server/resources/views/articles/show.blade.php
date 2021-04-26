@@ -17,12 +17,14 @@
   @include('share.article_contents')
 
   <aside>
-    <h3 class="sub-title">カテゴリー</h3>
-    <ul class="sub-menu">
-      <li><a href="">{{ $category_name }}</a></li>
-    </ul>
-    <h3 class="sub-title">{{ $sub_title->sub_title }}</h3>
-    <p>{!! nl2br(e( $sub_title->description )) !!}</p>
+    <div id="sidebar_fixed">
+      <h3 class="sub-title">カテゴリー</h3>
+      <ul class="sub-menu">
+        <li><a href="">{{ $category_name }}</a></li>
+      </ul>
+      <h3 class="sub-title">{{ $sub_title->sub_title }}</h3>
+      <p>{!! nl2br(e( $sub_title->description )) !!}</p>
+    </div>
   </aside>
 </div><!-- /.news-contents -->
 
