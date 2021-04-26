@@ -13,23 +13,25 @@
 |        | GET|HEAD | admin/posts/index             | posts.index            | App\Http\Controllers\Admin\PostController@index                         | web,admin                                            |
 |        | GET|HEAD | admin/posts/{category}/index  | categories.show        | App\Http\Controllers\Admin\PostController@categoryShow                  | web,admin                                            |
 |        | GET|HEAD | api/user                      |                        | Closure                                                                 | api,auth:api                                         |
-|        | GET|HEAD | artice/post/create            | articles.create        | App\Http\Controllers\Admin\PostController@articleCreateForm             | web,admin                                            |
 |        | POST     | artice/post/create            |                        | App\Http\Controllers\Admin\PostController@articleCreate                 | web,admin                                            |
-|        | GET|HEAD | article/post/edit/{post}      | articles.edit          | App\Http\Controllers\Admin\PostController@articleEditForm               | web,admin                                            |
+|        | GET|HEAD | artice/post/create            | articles.create        | App\Http\Controllers\Admin\PostController@articleCreateForm             | web,admin                                            |
 |        | POST     | article/post/edit/{post}      |                        | App\Http\Controllers\Admin\PostController@editArticle                   | web,admin                                            |
+|        | GET|HEAD | article/post/edit/{post}      | articles.edit          | App\Http\Controllers\Admin\PostController@articleEditForm               | web,admin                                            |
 |        | DELETE   | article/post/{id}             | articles.destroy       | App\Http\Controllers\Admin\PostController@destroy                       | web,admin                                            |
 |        | GET|HEAD | complete                      | complete               | App\Http\Controllers\ContactController@complete                         | web                                                  |
 |        | POST     | confirm                       | confirm                | App\Http\Controllers\ContactController@confirm                          | web                                                  |
 |        | GET|HEAD | contact                       | contact.form           | App\Http\Controllers\ContactController@contactShowForm                  | web                                                  |
-|        | GET|HEAD | contacts/edit/{contact}       | contact.edit_form      | App\Http\Controllers\AdminController@contactEditForm                    | web,admin                                            |
+|        | POST     | contacts/edit/{contact}       |                        | App\Http\Controllers\AdminController@EditStatus                         | web,admin                                            |
+|        | GET|HEAD | contacts/edit/{contact}       | contact.edit           | App\Http\Controllers\AdminController@contactEditForm                    | web,admin                                            |
 |        | GET|HEAD | contacts/list                 | contact.list           | App\Http\Controllers\AdminController@contactList                        | web,admin                                            |
+|        | DELETE   | contacts/list/{id}            | contacts.destroy       | App\Http\Controllers\AdminController@destroy                            | web,admin                                            |
 |        | GET|HEAD | home                          | home                   | App\Http\Controllers\HomeController@index                               | web,auth                                             |
 |        | POST     | info/post/create              |                        | App\Http\Controllers\Admin\InformationController@informationCreate      | web,admin                                            |
 |        | GET|HEAD | info/post/create              | information.create     | App\Http\Controllers\Admin\InformationController@informationCreateForm  | web,admin                                            |
 |        | DELETE   | info/post/{id}                | info.destroy           | App\Http\Controllers\Admin\InformationController@destroy                | web,admin                                            |
 |        | GET|HEAD | info_header/edit              | info_header.edit       | App\Http\Controllers\Admin\InformationController@infoHeaderBodyEditForm | web,admin                                            |
 |        | POST     | info_header/edit/{headerBody} | infomation_header.edit | App\Http\Controllers\Admin\InformationController@editInfoHeaderBody     | web,admin                                            |
-|        | GET|HEAD | information                   | informations.index     | App\Http\Controllers\InformationController@index                        | web                                                  |
+|        | GET|HEAD | information                   | informations.index     | App\Http\Controllers\InformationController@index                        | web,auth                                             |
 |        | GET|HEAD | information/{information}     | information.show       | App\Http\Controllers\InformationController@show                         | web,auth                                             |
 |        | POST     | login                         |                        | App\Http\Controllers\Auth\LoginController@login                         | web,guest                                            |
 |        | GET|HEAD | login                         | login                  | App\Http\Controllers\Auth\LoginController@showLoginForm                 | web,guest                                            |
@@ -37,10 +39,10 @@
 |        | GET|HEAD | main_image/edit               | big_image.edit         | App\Http\Controllers\Admin\InformationController@infoBigImageForm       | web,admin                                            |
 |        | POST     | main_image/edit/{bigImage}    | big_info.edit          | App\Http\Controllers\Admin\InformationController@editInfoBigImage       | web,admin                                            |
 |        | GET|HEAD | main_info                     | bigInfo.show           | App\Http\Controllers\InformationController@bigShow                      | web,auth                                             |
-|        | GET|HEAD | news                          | articles.index         | App\Http\Controllers\ArticleController@index                            | web                                                  |
-|        | GET|HEAD | news/{category}/index         | news.category          | App\Http\Controllers\ArticleController@categoryNews                     | web                                                  |
-|        | GET|HEAD | password/confirm              | password.confirm       | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm     | web,auth                                             |
+|        | GET|HEAD | news                          | articles.index         | App\Http\Controllers\ArticleController@index                            | web,auth                                             |
+|        | GET|HEAD | news/{category}/index         | news.category          | App\Http\Controllers\ArticleController@categoryNews                     | web,auth                                             |
 |        | POST     | password/confirm              |                        | App\Http\Controllers\Auth\ConfirmPasswordController@confirm             | web,auth                                             |
+|        | GET|HEAD | password/confirm              | password.confirm       | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm     | web,auth                                             |
 |        | POST     | password/email                | password.email         | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail   | web                                                  |
 |        | POST     | password/reset                | password.update        | App\Http\Controllers\Auth\ResetPasswordController@reset                 | web                                                  |
 |        | GET|HEAD | password/reset                | password.request       | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm  | web                                                  |
@@ -49,8 +51,8 @@
 |        | POST     | process                       | process                | App\Http\Controllers\ContactController@process                          | web                                                  |
 |        | GET|HEAD | register                      | register               | App\Http\Controllers\Auth\RegisterController@showRegistrationForm       | web,guest                                            |
 |        | POST     | register                      |                        | App\Http\Controllers\Auth\RegisterController@register                   | web,guest                                            |
-|        | POST     | small_image/edit/{smallImage} |                        | App\Http\Controllers\Admin\InformationController@editInfoSmallImage     | web,admin                                            |
 |        | GET|HEAD | small_image/edit/{smallImage} | small_image.edit       | App\Http\Controllers\Admin\InformationController@infoSmallImageForm     | web,admin                                            |
+|        | POST     | small_image/edit/{smallImage} |                        | App\Http\Controllers\Admin\InformationController@editInfoSmallImage     | web,admin                                            |
 |        | GET|HEAD | stripe/payment/{id}           | cashier.payment        | Laravel\Cashier\Http\Controllers\PaymentController@show                 | Laravel\Cashier\Http\Middleware\VerifyRedirectUrl    |
 |        | POST     | stripe/webhook                | cashier.webhook        | Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook        |                                                      |
 |        | GET|HEAD | sub_title/edit                | subTitle.edit          | App\Http\Controllers\Admin\PostController@subTitleEditForm              | web,admin                                            |
