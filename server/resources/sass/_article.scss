@@ -24,6 +24,10 @@ aside {
     width: 22%;
     order: 2;
 }
+#sidebar_fixed {
+    position: sticky;
+    top: 70px;
+}
 .news-contents {
     display: flex;
     justify-content: space-between;
