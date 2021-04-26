@@ -50,14 +50,14 @@ Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('in
 
 // user
 Route::get('/', 'TopController@index')->name('top');
-// Newsページ
-Route::get('/news', 'ArticleController@index')->name('articles.index');
-// カテゴリー別ページ
-Route::get('/news/{category}/index', 'ArticleController@categoryNews')->name('news.category');
-// Informationページ
-Route::get('information', 'InformationController@index')->name('informations.index');
 
 Route::group(['middleware' => 'auth'], function () {
+  // Newsページ
+  Route::get('/news', 'ArticleController@index')->name('articles.index');
+  // カテゴリー別ページ
+  Route::get('/news/{category}/index', 'ArticleController@categoryNews')->name('news.category');
+  // Informationページ
+  Route::get('information', 'InformationController@index')->name('informations.index');
   // BinInfo詳細
   Route::get('main_info', 'InformationController@bigShow')->name('bigInfo.show');
   // Info詳細
