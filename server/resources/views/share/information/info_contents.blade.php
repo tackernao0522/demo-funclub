@@ -18,7 +18,19 @@
 </div><!-- /#info -->
 
 
-<div class="wrapper grid">
+<div class="d-flex justify-content-center mt-5 pt-1" style="margin-bottom: -100px">
+  @if ( Auth::check() && Auth::user()->role === 'admin' )
+  <div class="mr-2" style="margin-top: -7px">
+    <button class="btn btn-primary" type="button" onclick="history.back()">Back</button>
+  </div>
+  @else
+  <div class="mr-2">
+    <button class="btn btn-primary" type="button" onclick="history.back()">Back</button>
+  </div>
+  @endif
+  {{ $informations->links('vendor.pagination.original') }}
+</div>
+<div class="wrapper grid" style="margin-top: 100px !important">
   <div class="item big-box">
     <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" alt="">
     <p>

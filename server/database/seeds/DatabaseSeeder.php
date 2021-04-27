@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(SubTitlesTableSeeder::class);
-        // $this->call(PrimaryCategoriesTableSeeder::class);
         $this->call(HeaderBodiesTableSeeder::class);
         $this->call(InformationsTableSeeder::class);
         $this->call(BigImagesTableSeeder::class);
         $this->call(TopTitlesTableSeeder::class);
+        $this->call(ContactsTableSeeder::class);
     }
 }

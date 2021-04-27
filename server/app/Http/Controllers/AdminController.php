@@ -34,7 +34,7 @@ class AdminController extends Controller
             'keyword' => $request->input('keyword'),
         ];
 
-        $contacts = $query->orderBy('created_at', 'desc')->paginate(2);
+        $contacts = $query->orderBy('created_at', 'desc')->paginate(20);
 
         return view('admin/contacts.list')
             ->with('contacts', $contacts)

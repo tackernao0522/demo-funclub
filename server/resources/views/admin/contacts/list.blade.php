@@ -18,7 +18,7 @@ Contactリスト
   <div class="header-title"><a href="{{ route('admin') }}">Contactリスト</a></div>
   <nav class="navbar navbar-light bg-light">
     <form class="form-inline" mthod="GET" action="{{ route('contact.list') }}">
-      <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="状態:1or2又は名前" value="{{ $defaults['keyword'] ?? '' }}" style="width: 155px">
+      <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="状態:1or2又は名前" value="{{ $defaults['keyword'] ?? '' }}" style="border:1px solid; width: 155px">
       <button class="btn btn-outline-success my-2 my-sm-0 contact-search" type="submit" style="height: 35px; line-height: 10px; width: 50px; font-size: 11px">検索</button>
     </form>
   </nav>
@@ -87,10 +87,12 @@ Contactリスト
           @endforeach
         </tbody>
       </table>
-      <div class="justify-content-center mt-3">
-        {{ $contacts->appends(Request::only('keyword'))->links() }}
+      <div class="d-flex justify-content-center mt-3 pt-1">
+        <div style="margin-top: -6px">
+          <button class="btn btn-primary" type="button" onclick="history.back()">Back</button>
+        </div>
+        {{ $contacts->appends(Request::only('keyword'))->links('vendor.pagination.simple-bootstrap-4') }}
       </div>
-      <button class="btn btn-primary" type="button" onclick="history.back()">Back</button>
     </div>
   </div>
 </div>
