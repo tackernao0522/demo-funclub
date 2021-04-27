@@ -44,9 +44,9 @@ Info(詳細)
     </div>
     <!-- Dropdown -->
     @endif
-    <div style="text-align: center">
-      <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" style="width: 90%" alt="ライブの様子等">
-      <p style="width: 90%; margin: 0 auto; text-align: left">{!! nl2br(e( $big_image->description )) !!}</p>
+    <div style="margin: 0 0 0 300px;">
+      <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" style="width: 70%" alt="ライブの様子等">
+      <p style="width: 70%; margin: 0; padding-left: 5px; text-align: left">{!! nl2br(e( $big_image->description )) !!}</p>
     </div>
     <hr>
   </article>
