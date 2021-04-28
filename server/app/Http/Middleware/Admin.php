@@ -33,6 +33,6 @@ class Admin
         }
 
         // admin以外はログイン画面にリダイレクト
-        return redirect()->route('login')->with('error', '権限がありません');
+        return redirect()->route('top')->with('error', '権限がありません');
     }
 }
