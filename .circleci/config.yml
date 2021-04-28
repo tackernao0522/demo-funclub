@@ -25,7 +25,7 @@ jobs:
           paths:
             - ./server/node_modules
       - run: cd server/; npm run dev
-      - run: cd server/; php artisan migrate
+      - run: cd server/; php artisan migrate --force
       - run: cd server/; php artisan db:seed
       - run:
           working_directory: server
