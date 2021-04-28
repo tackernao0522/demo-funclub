@@ -25,6 +25,13 @@ jobs:
           paths:
             - ./server/node_modules
       - run: cd server/; npm run dev
+      - run:
+          name: get ready for mysql
+          command: |
+            sudo apt-get update
+            sudo apt-get install default-mysql-client
+            sudo docker-php-ext-install pdo_mysql
+            dockerize -wait tcp://localhost:3306 -timeout 1m
       - run: cd server/; php artisan migrate --force
       - run: cd server/; php artisan db:seed
       - run:
