@@ -40,6 +40,5 @@ jobs:
       - run: cd server/; php artisan migrate --force
       - run: cd server/; php artisan db:seed
       - run:
-          working_directory: server
           name: php test
-          command: vendor/bin/phpunit
+          command:  php ./server/vendor/bin/phpunit --configuration=./server/phpunit.xml
