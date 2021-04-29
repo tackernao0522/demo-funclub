@@ -20,6 +20,8 @@ class TopControllerTest extends TestCase
     {
         // $this->seed(TopTitlesTableSeeder::class);
         $top = factory(TopTitle::class)->create();
+        $top = TopTitle::where('id', 1)->first();
+        // dd($top);
 
         $response = $this->get(route('top', ['top' => $top]));
 
