@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use TopTitlesTableSeeder;
 use PrimaryCategoriesTableSeeder;
 use SubTitlesTableSeeder;
+use App\TopTitle;
 use App\User;
 use Tests\TestCase;
 
@@ -17,9 +18,10 @@ class TopControllerTest extends TestCase
     // TopページへアクセスするとStatus200が返されるか
     public function testIndex()
     {
-        $this->seed(TopTitlesTableSeeder::class);
+        // $this->seed(TopTitlesTableSeeder::class);
+        $top = factory(TopTitle::class)->create();
 
-        $response = $this->get(route('top'));
+        $response = $this->get(route('top', ['top' => $top]));
 
         $response->assertStatus(200)
             ->assertViewIs('top');
