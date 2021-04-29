@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use TopTitlesTableSeeder;
 use PrimaryCategoriesTableSeeder;
 use SubTitlesTableSeeder;
 use App\TopTitle;
@@ -18,10 +17,8 @@ class TopControllerTest extends TestCase
     // TopページへアクセスするとStatus200が返されるか
     public function testIndex()
     {
-        // $this->seed(TopTitlesTableSeeder::class);
         $top = factory(TopTitle::class)->create();
         $top = TopTitle::where('id', 1)->first();
-        // dd($top);
 
         $response = $this->get(route('top', ['top' => $top]));
 
