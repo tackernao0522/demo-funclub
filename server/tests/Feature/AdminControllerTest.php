@@ -56,4 +56,49 @@ class AdminControllerTest extends TestCase
 
         $response->assertRedirect(route('top'));
     }
+
+    // 未ログイン時にAdmin用Contactリストにアクセスするとログイン画面にリダイレクトする
+    public function testGuestContactList()
+    {
+        $response = $this->get(route('contact.list'));
+
+        $response->assertRedirect(route('login'));
+    }
+
+    // 'Admin'はContactリストにアクセスできる
+    public function testAdminContactList()
+    {
+        $user = factory(User::class)->make([
+            'role' => 'admin',
+        ]);
+
+        $response = $this->actingAs($user)
+            ->get(route('contact.list'));
+
+        $response->assertViewIs('admin.contacts.list');
+    }
+
+    // MemberがContactリストにアクセスするとTopページにリダイレクトする
+    public function testMemberContactList()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)
+            ->get(route('contact.list'));
+
+        $response->assertRedirect(route('top'));
+    }
+
+    // PremiumがContactリストにアクセスするとTopページにリダイレクトする
+    public function testPremiumContactList()
+    {
+        $user = factory(User::class)->make([
+            'role' => 'premium',
+        ]);
+
+        $response = $this->actingAs($user)
+            ->get(route('contact.list'));
+
+        $response->assertRedirect(route('top'));
+    }
 }

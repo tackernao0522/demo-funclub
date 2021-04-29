@@ -36,7 +36,7 @@ class AdminController extends Controller
 
         $contacts = $query->orderBy('created_at', 'desc')->paginate(20);
 
-        return view('admin/contacts.list')
+        return view('admin.contacts.list')
             ->with('contacts', $contacts)
             ->with('defaults', $defaults);
     }
