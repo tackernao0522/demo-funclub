@@ -12,17 +12,6 @@ class TopControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    // TopページへアクセスするとStatus200が返されるか
-    public function testIndex()
-    {
-        $this->seed(TopTitlesTableSeeder::class);
-
-        $response = $this->get(route('top'));
-
-        $response->assertStatus(200)
-            ->assertViewIs('top');
-    }
-
     // 未ログイン時にTopページタイトルフォームにアクセスしてもログイン画面にリダイレクトする
     public function testGuestTopTitleForm()
     {
