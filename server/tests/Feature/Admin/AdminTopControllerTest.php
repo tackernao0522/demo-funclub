@@ -8,7 +8,7 @@ use TopTitlesTableSeeder;
 use Tests\TestCase;
 use App\User;
 
-class TopControllerTest extends TestCase
+class AdminTopControllerTest extends TestCase
 {
     use RefreshDatabase;
 

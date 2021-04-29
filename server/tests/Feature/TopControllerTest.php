@@ -19,7 +19,7 @@ class TopControllerTest extends TestCase
     {
         $this->seed(TopTitlesTableSeeder::class);
 
-        $response = $this->get('/');
+        $response = $this->get(route('top'));
 
         $response->assertStatus(200)
             ->assertViewIs('top');
