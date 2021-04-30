@@ -96,9 +96,9 @@ class InformationControllerTest extends TestCase
         $header_body = HeaderBody::where('id', 1)->first();
 
         $this->seed(BigImagesTableSeeder::class);
-        $information = BigImage::where('id', 1)->first();
+        $big_image = BigImage::where('id', 1)->first();
 
-        $response = $this->get(route('bigInfo.show', ['header_body' => $header_body, 'information' => $information]));
+        $response = $this->get(route('bigInfo.show', ['header_body' => $header_body, 'big_image' => $big_image]));
 
         $response->assertRedirect('login');
     }
@@ -110,14 +110,14 @@ class InformationControllerTest extends TestCase
         $header_body = HeaderBody::where('id', 1)->first();
 
         $this->seed(BigImagesTableSeeder::class);
-        $information = BigImage::where('id', 1)->first();
+        $big_image = BigImage::where('id', 1)->first();
 
         $user = factory(User::class)->make([
             'role' => 'admin',
         ]);
 
         $response = $this->actingAs($user)
-            ->get(route('bigInfo.show', ['header_body' => $header_body, 'information' => $information]));
+            ->get(route('bigInfo.show', ['header_body' => $header_body, 'big_image' => $big_image]));
 
         $response->assertStatus(200)
             ->assertViewIs('informations.big_show');
@@ -130,14 +130,14 @@ class InformationControllerTest extends TestCase
         $header_body = HeaderBody::where('id', 1)->first();
 
         $this->seed(BigImagesTableSeeder::class);
-        $information = BigImage::where('id', 1)->first();
+        $big_image = BigImage::where('id', 1)->first();
 
         $user = factory(User::class)->make([
             'role' => 'premium',
         ]);
 
         $response = $this->actingAs($user)
-            ->get(route('bigInfo.show', ['header_body' => $header_body, 'information' => $information]));
+            ->get(route('bigInfo.show', ['header_body' => $header_body, 'big_image' => $big_image]));
 
         $response->assertStatus(200)
             ->assertViewIs('informations.big_show');
@@ -150,12 +150,12 @@ class InformationControllerTest extends TestCase
         $header_body = HeaderBody::where('id', 1)->first();
 
         $this->seed(BigImagesTableSeeder::class);
-        $information = BigImage::where('id', 1)->first();
+        $big_image = BigImage::where('id', 1)->first();
 
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)
-            ->get(route('bigInfo.show', ['header_body' => $header_body, 'information' => $information]));
+            ->get(route('bigInfo.show', ['header_body' => $header_body, 'big_image' => $big_image]));
 
         $response->assertStatus(302);
     }
