@@ -11,7 +11,7 @@ use App\Information;
 use HeaderBodiesTableSeeder;
 use InformationsTableSeeder;
 use BigImagesTableSeeder;
-
+// use Illuminate\Validation\Rules\In;
 use Tests\TestCase;
 
 class InformationControllerTest extends TestCase
@@ -24,8 +24,9 @@ class InformationControllerTest extends TestCase
         $this->seed(HeaderBodiesTableSeeder::class);
         $header_body = HeaderBody::where('id', 1)->first();
 
-        $this->seed(InformationsTableSeeder::class);
-        $information = Information::where('id', 1)->first();
+        // $this->seed(InformationsTableSeeder::class);
+        $information = factory(Information::class)->create();
+        $information = Information::where('id', 145)->first();
 
         $response = $this->get(route('information.show', ['header_body' => $header_body, 'information' => $information]));
 
@@ -38,8 +39,8 @@ class InformationControllerTest extends TestCase
         $this->seed(HeaderBodiesTableSeeder::class);
         $header_body = HeaderBody::where('id', 1)->first();
 
-        $this->seed(InformationsTableSeeder::class);
-        $information = Information::where('id', 1)->first();
+        $information = factory(Information::class)->create();
+        $information = Information::where('id', 145)->first();
 
         $user = factory(User::class)->make([
             'role' => 'admin',
@@ -94,6 +95,7 @@ class InformationControllerTest extends TestCase
     {
         $this->seed(HeaderBodiesTableSeeder::class);
         $header_body = HeaderBody::where('id', 1)->first();
+        // dd($header_body);
 
         $this->seed(BigImagesTableSeeder::class);
         $big_image = BigImage::where('id', 1)->first();
