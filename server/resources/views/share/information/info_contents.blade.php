@@ -32,7 +32,7 @@
 </div>
 <div class="wrapper grid" style="margin-top: 100px !important">
   <div class="item big-box">
-    <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" alt="">
+    <img src="{{ Storage::disk('s3')->url("big-info-images/{$big_image->info_big_image_name}") }}" alt="">
     <p>
       @if ( Auth::check() && Auth::user()->role === 'admin' )
       {!! nl2br(e(Str::limit($big_image->description, 16))) !!}
@@ -49,7 +49,7 @@
   </div>
   @foreach($informations as $info)
   <div class="item">
-    <img src="/storage/info-images/{{ $info->info_image_name }}" alt="">
+    <img src="{{ Storage::disk('s3')->url("info-images/{$info->info_image_name}") }}" alt="">
     <p>
       @if ( Auth::check() && Auth::user()->role === 'admin' )
       {!! nl2br(e(Str::limit($info->description, 16))) !!}

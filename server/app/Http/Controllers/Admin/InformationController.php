@@ -125,7 +125,7 @@ class InformationController extends Controller
 
         Image::make($file)->fit(665, 535)->save($tempPath);
 
-        $filePath = Storage::disk('public')
+        $filePath = Storage::disk('s3')
             ->putFile('big-info-images', new File($tempPath));
 
         return basename($filePath);
@@ -137,7 +137,7 @@ class InformationController extends Controller
 
         Image::make($file)->fit(318, 236)->save($tempPath);
 
-        $filePath = Storage::disk('public')
+        $filePath = Storage::disk('s3')
             ->putFile('info-images', new File($tempPath));
 
         return basename($filePath);
