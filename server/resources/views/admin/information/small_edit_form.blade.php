@@ -26,7 +26,7 @@ Info編集
               <input type="file" name="info_image_name" class="d-none" accept="image/png,image/jpeg,image/gif" id="info_image_name" />
               <label for="info_image_name" class="d-inline-block" role="button">
                 @if (!empty($smallImage->info_image_name))
-                <img class="image-form-box" src="/storage/info-images/{{ $smallImage->info_image_name }}" style="object-fit: cover; width: 300px; height: 300px;">
+                <img class="image-form-box" src="{{ Storage::disk('s3')->url("info-images/{$smallImage->info_image_name}") }}" style="object-fit: cover; width: 300px; height: 300px;">
                 @else
                 <img class="image-form-box" src="/images/item-image-default.png" style="object-fit: cover; width: 300px; height: 300px;">
               </label>

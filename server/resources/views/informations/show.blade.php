@@ -28,7 +28,7 @@ Info(詳細)
   <article style="margin: 70px auto">
     @include('admin.information.small_info_modal')
     <div style="text-align: center">
-      <img src="/storage/info-images/{{ $information->info_image_name }}" style="width: 90%" alt="ライブの様子等">
+      <img src="{{ Storage::disk('s3')->url("info-images/{$information->info_image_name}") }}" style="width: 90%" alt="ライブの様子等">
       <p style="width: 90%; margin: 0 auto; text-align: left">{!! nl2br(e( $information->description )) !!}</p>
     </div>
     <hr>

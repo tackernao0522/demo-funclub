@@ -58,17 +58,17 @@ class TopControllerTest extends TestCase
     }
 
     // ログイン状態でTopページの"INFORMATION"をクリックするとInformationページに遷移
-    public function testAuthUserGetInformation()
-    {
-        $this->seed();
-        $user = factory(User::class)->create();
+    // public function testAuthUserGetInformation()
+    // {
+    //     $this->seed();
+    //     $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)
-            ->get(route('informations.index'));
+    //     $response = $this->actingAs($user)
+    //         ->get(route('informations.index'));
 
-        $response->assertStatus(200)
-            ->assertViewIs('informations.index');
-    }
+    //     $response->assertStatus(200)
+    //         ->assertViewIs('informations.index');
+    // }
 
     // 未ログインでもログイン時でもContactPageにアクセス可能
     public function testGuestOrAuthUserContact()

@@ -45,7 +45,8 @@ Info(詳細)
     <!-- Dropdown -->
     @endif
     <div style="text-align: center">
-      <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" style="width: 90%" alt="ライブの様子等">
+      {{-- <img src="/storage/big-info-images/{{ $big_image->info_big_image_name }}" style="width: 90%" alt="ライブの様子等"> --}}
+      <img src="{{ Storage::disk('s3')->url("big-info-images/{$big_image->info_big_image_name}") }}" style="width: 90%" alt="ライブの様子等">
       <p style="width: 90%; margin: 0 auto; text-align: left">{!! nl2br(e( $big_image->description )) !!}</p>
     </div>
     <hr>

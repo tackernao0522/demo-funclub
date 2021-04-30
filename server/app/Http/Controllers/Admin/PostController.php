@@ -131,7 +131,7 @@ class PostController extends Controller
 
         Image::make($file)->fit(754, 424)->save($tempPath);
 
-        $filePath = Storage::disk('public')
+        $filePath = Storage::disk('s3')
             ->putFile('article-images', new File($tempPath));
 
         return basename($filePath);
