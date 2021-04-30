@@ -38,6 +38,5 @@ jobs:
             sudo docker-php-ext-install pdo_mysql
             dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
-          working_directory: server
           name: php test
-          command:  php ./server/vendor/bin/phpunit
+          command: php ./server/vendor/bin/phpunit --configuration=./server/phpunit.xml
