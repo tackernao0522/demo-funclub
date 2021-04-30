@@ -39,4 +39,4 @@ jobs:
             dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
           name: php test
-          command:  php ./server/vendor/bin/phpunit --configuration=./server/phpunit.xml
+          command: php ./server/vendor/bin/phpunit --configuration=./server/phpunit.xml
