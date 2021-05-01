@@ -54,7 +54,7 @@ jobs:
           key: composer-no-dev-v1-{{ checksum "./server/composer.lock" }}
           paths:
             - vendor
-      - resotore_cache:
+      - restore_cache:
           key: npm-v1-{{ checksum "./server/package-lock.json" }}
       - run:
           name: npm ci
