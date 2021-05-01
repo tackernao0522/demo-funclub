@@ -69,11 +69,11 @@ jobs:
       - run: cd server/; npm run prod
       - run:
           name: archive artifacts
-          command: zip -ryq tp-ci.zip .
+          command: zip -ryq demofun-ci.zip .
       - aws-cli/install
       - run:
           namae: upload artifacts to s3
-          command: aws s3 cp tp-ci.zip s3://${AWS_S3_BUCKET_NAME}
+          command: aws s3 cp demofun-ci.zip s3://${AWS_S3_BUCKET_NAME}
       - run:
           name: deploy to prod
           command: |
