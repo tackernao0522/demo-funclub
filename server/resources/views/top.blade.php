@@ -7,15 +7,7 @@ Top
 @section('content')
 <div id="home" class="big-bg">
   @include('share.home_header')
-  <div class="row article-post">
-    <div class="col-8 offset-2">
-      @if (session('status'))
-      <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-      </div>
-      @endif
-    </div>
-  </div>
+  @include('share.status_card')
   <div class="home-content wrapper">
     <!-- Dropdown -->
     @if ( Auth::check() && Auth::user()->role === 'admin' )

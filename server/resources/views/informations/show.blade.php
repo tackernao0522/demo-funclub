@@ -7,15 +7,7 @@ Info(詳細)
 @section('content')
 <div id="info" class="big-bg">
   @include('share.home_header')
-  <div class="row article-post">
-    <div class="col-8 offset-2">
-      @if (session('status'))
-      <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-      </div>
-      @endif
-    </div>
-  </div>
+  @include('share.status_card')
   <div class="info-content wrapper">
     <h2 class="page-title">Info</h2>
     <!-- $header_body->body  -->
