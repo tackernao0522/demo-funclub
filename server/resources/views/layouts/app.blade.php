@@ -72,7 +72,7 @@
                                 </script>
                             </form>
                             @endif
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" style="width: 130px; border: none">
                                 @if ( Auth::check() && Auth::user()->role === 'member' )
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}[無料会員]<span class="caret"></span>
