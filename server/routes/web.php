@@ -1,5 +1,6 @@
 <?php
 
+Route::group(['middleware' => 'auth.very_basic'], function () {
   // administrator
   Route::get('admin', 'AdminController@index')->name('admin');
   // Contactリスト
@@ -75,3 +76,4 @@
 
   // Stripeの処理
   Route::post('/payment', 'PaymentsController@payment')->name('payment');
+});
