@@ -5,15 +5,7 @@ News(Admin)
 @endsection
 
 @section('content')
-<div class="row article-post">
-  <div class="col-8 offset-2">
-    @if (session('status'))
-    <div class="alert alert-success" role="alert">
-      {{ session('status') }}
-    </div>
-    @endif
-  </div>
-</div>
+@include('share.status_card')
 
 <div id="news" class="big-bg">
   @include('share.home_header')

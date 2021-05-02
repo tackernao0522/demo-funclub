@@ -5,15 +5,7 @@ Contactリスト
 @endsection
 
 @section('content')
-<div class="row article-post">
-  <div class="col-8 offset-2">
-    @if (session('status'))
-    <div class="alert alert-success" role="alert">
-      {{ session('status') }}
-    </div>
-    @endif
-  </div>
-</div>
+@include('share.status_card')
 <div class="container">
   <div class="header-title"><a href="{{ route('admin') }}">Contactリスト</a></div>
   <nav class="navbar navbar-light bg-light">
