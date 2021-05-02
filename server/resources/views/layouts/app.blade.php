@@ -72,17 +72,17 @@
                                 </script>
                             </form>
                             @endif
-                            <li class="nav-item dropdown" style="width: 130px; border: 1px solid #737373">
+                            <li class="nav-item dropdown" style="width: 130px">
                                 @if ( Auth::check() && Auth::user()->role === 'member' )
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" style="outline: none" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}[無料会員]<span class="caret"></span>
                                 </a>
                                 @elseif ( Auth::check() && Auth::user()->role === 'premium' )
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" style="outline: none" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}[有料会員]<span class="caret"></span>
                                 </a>
                                 @elseif ( Auth::check() && Auth::user()->role === 'admin' )
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" style="outline: none" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}[管理者]<span class="caret"></span>
                                 </a>
                                 @endif
