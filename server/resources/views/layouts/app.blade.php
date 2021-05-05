@@ -11,6 +11,7 @@
     <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
     <meata name="description" content="しゅうちゃんバンドのファンクラブサイト"></meata>
 
+    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-25/css/5-1-25.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -21,8 +22,6 @@
     @else
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     @endif
-    <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
 
@@ -36,82 +35,62 @@
 
 <body>
     <div id="app">
-        <div id="header-nav">
-            <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <header id="header-logo">
+            <h1 class="main-logo"><a href="/"><img class="logo" src="/images/logo.png" alt="WCBカフェホーム"></a></h1>
+        </header>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('会員登録') }}</a>
-                            </li>
-                            @endif
-                            @else
-                            @if ( Auth::check() && Auth::user()->role === 'member' )
-                            <form action="{{ asset('payment') }}" method="POST" class="text-left mt-1">
-                                {{ csrf_field() }}
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-amount="1000" data-name="Stripe Demo" data-label="有料会員入会 (¥1000)" data-description="これはStripeのデモです。" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="JPY">
-                                </script>
-                            </form>
-                            @endif
-                            <li class="nav-item dropdown" style="width: 130px">
-                                @if ( Auth::check() && Auth::user()->role === 'member' )
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" style="outline: none" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}[無料会員]<span class="caret"></span>
-                                </a>
-                                @elseif ( Auth::check() && Auth::user()->role === 'premium' )
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" style="outline: none" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}[有料会員]<span class="caret"></span>
-                                </a>
-                                @elseif ( Auth::check() && Auth::user()->role === 'admin' )
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" style="outline: none" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}[管理者]<span class="caret"></span>
-                                </a>
-                                @endif
-
-                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    @if ( Auth::check() && Auth::user()->role === 'admin' )
-                                    <a class="dropdown-item" href="{{ route('admin') }}">
-                                        {{ __('管理者用') }}
-                                    </a>
-                                    @endif
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+        <div class="openbtn"><span></span><span></span><span></span></div>
+        <nav id="g-nav">
+            <div id="g-nav-list">
+                <ul>
+                    @guest
+                    <li><a href="{{ route('login') }}" style="color: #6cb2eb">ログイン</a></li>
+                    @if (Route::has('register'))
+                    <li><a href="{{ route('register') }}">初めに無料会員登録</a></li>
+                    @endif
+                    @else
+                    @if ( Auth::check() && Auth::user()->role === 'member' )
+                    <form action="{{ asset('payment') }}" method="POST" class="text-center mt-1 mb-2">
+                        {{ csrf_field() }}
+                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-amount="1000" data-name="Stripe Demo" data-label="有料会員入会 (¥1000)" data-description="これはStripeのデモです。" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="JPY">
+                        </script>
+                    </form>
+                    @endif
+                    @if ( Auth::check() && Auth::user()->role === 'member' )
+                    <li>{{ Auth::user()->name }}さん<span> [無料会員]</span></li>
+                    @elseif ( Auth::check() && Auth::user()->role === 'premium' )
+                    <li>{{ Auth::user()->name }}さん<span> [有料会員]</span></li>
+                    @elseif ( Auth::check() && Auth::user()->role === 'admin' )
+                    <li>{{ Auth::user()->name }}さん<span> [管理者]</span></li>
+                    @else
+                    @endif
+                    <li><a class="logout-hover" style="color: #0bd" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{ __('ログアウト') }}</a></li>
+                    @if ( Auth::check() && Auth::user()->role === 'admin' )
+                    <li><a href="{{ route('admin') }}">{{ __('管理者用') }}</a></li>
+                    @endif
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    @endguest
+                    @if ( Auth::check() && Auth::user()->role === 'admin' )
+                    <li><a href="/">TOP</a></li>
+                    <li><a href="{{ route('posts.index') }}">News</a></li>
+                    <li><a href="{{ route('info.index') }}">Info</a></li>
+                    @else
+                    <li><a href="/">TOP</a></li>
+                    <li><a href="{{ route('articles.index') }}">News</a></li>
+                    <li><a href="{{ route('informations.index') }}">Info</a></li>
+                    @endif
+                    <li><a href="{{ route('contact.form') }}">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
 
         <main>
             @yield('content')
         </main>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="{{ mix('js/app.js') }}"></script>
     </div>
 </body>

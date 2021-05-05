@@ -6,10 +6,8 @@ News
 
 @section('content')
 <div id="news" class="big-bg">
-  @include('share.home_header')
-
   <div class="wrapper">
-    <h2 class="page-title">News</h2>
+    <h2 class="page-title" style="padding-top: 15px">News</h2>
   </div><!-- /.wrapper -->
 </div><!-- /#news -->
 

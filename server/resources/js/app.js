@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 
+import './global_header_menu'
+
 document.querySelector('.image-picker input')
     .addEventListener('change', (e) => {
         const input = e.target;
