@@ -92,6 +92,7 @@
         </main>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ mix('js/global_header_menu.js') }}"></script>
     </div>
 </body>
 
