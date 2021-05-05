@@ -6,10 +6,7 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
-.row.article-post {
-    padding-top: 20px;
-    text-align: center;
-}
+
 @media (max-width: 600px) {
     .alert-success {
         font-size: 11px;
