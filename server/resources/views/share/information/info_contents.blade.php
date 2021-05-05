@@ -1,5 +1,4 @@
 <div id="info" class="big-bg">
-  @include('share.home_header')
   @include('share.status_card')
   <div class="info-content wrapper">
     <h2 class="page-title">Info</h2>
