@@ -6,8 +6,6 @@ Contact
 
 @section('content')
 <div id="contact" class="big-bg">
-  @include('share.home_header')
-
   <div class="contact-wrapper">
     <h2 class="page-title">Contact</h2>
     @if($errors->any())
