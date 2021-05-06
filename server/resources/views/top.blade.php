@@ -6,7 +6,6 @@ Top
 
 @section('content')
 <div id="home" class="big-bg">
-  @include('share.home_header')
   @include('share.status_card')
   <div class="home-content wrapper">
     <!-- Dropdown -->
