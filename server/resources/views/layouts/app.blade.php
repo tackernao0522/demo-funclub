@@ -49,17 +49,16 @@
                     <li><a href="{{ route('register') }}">初めに無料会員登録</a></li>
                     @endif
                     @else
+                    @if ( Auth::check() && Auth::user()->role === 'premium' )
+                    <li class="subscription-link"><a href="{{route('subscription.cancel', Auth::user()->id) }}" class="btn btn-danger">プレミアム会員の解約はこちら</a></li>
+                    @endif
                     @if ( Auth::check() && Auth::user()->role === 'member' )
-                    <form action="{{ asset('payment') }}" method="POST" class="text-center mt-1 mb-2">
-                        {{ csrf_field() }}
-                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-amount="1000" data-name="Stripe Demo" data-label="有料会員入会 (¥1000)" data-description="これはStripeのデモです。" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="JPY">
-                        </script>
-                    </form>
+                    <li class="subscription-link"><a href="{{ route('stripe.subscription') }}" class="btn btn-success">プレミアム会員入会(月額1000円)</a></li>
                     @endif
                     @if ( Auth::check() && Auth::user()->role === 'member' )
                     <li>{{ Auth::user()->name }}さん<span> [無料会員]</span></li>
                     @elseif ( Auth::check() && Auth::user()->role === 'premium' )
-                    <li>{{ Auth::user()->name }}さん<span> [有料会員]</span></li>
+                    <li>{{ Auth::user()->name }}さん<span> [プレミアム会員]</span></li>
                     @elseif ( Auth::check() && Auth::user()->role === 'admin' )
                     <li>{{ Auth::user()->name }}さん<span> [管理者]</span></li>
                     @else
@@ -94,9 +93,6 @@
         <script src="{{ mix('js/app.js') }}"></script>
         <script src="{{ mix('js/global_header_menu.js') }}"></script>
     </div>
-</body>
-
-</html>
 </body>
 
 </html>

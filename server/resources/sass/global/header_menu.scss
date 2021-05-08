@@ -77,6 +77,13 @@
 .logout-hover:hover {
     color: red !important;
 }
+li.subscription-link {
+    width: 70%;
+    margin: 0 auto 10px;
+}
+a.btn.btn-success {
+    color: rgba(255, 255, 255, 0.966) !important;
+}
 
 /*========= ボタンのためのCSS ===============*/
 .openbtn {

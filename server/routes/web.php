@@ -74,6 +74,9 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
 
   Route::get('/home', 'HomeController@index')->name('home');
 
-  // Stripeの処理
-  Route::post('/payment', 'PaymentsController@payment')->name('payment');
+  // Stripeサブスクリプションの処理
+  Route::get('/subscription', 'StripeController@subscription')->name('stripe.subscription');
+  Route::post('/subscription/afterpay', 'StripeController@afterpay')->name('stripe.afterpay');
+  Route::get('/subscription/cancel/{user}', 'StripeController@cancelForm')->name('subscription.cancel');
+  Route::post('/subscription/cancel/{user}', 'StripeController@cancelSubscription');
 });
