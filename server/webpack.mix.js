@@ -16,4 +16,5 @@ mix.js('resources/js/global_header_menu.js', 'public/js')
 mix.sourceMaps().js('node_modules/popper.js/dist/popper.js', 'public/js').sourceMaps()
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/style.scss', 'public/css')
+   .sass('resources/sass/stripe.scss', 'public/css')
    .version();
