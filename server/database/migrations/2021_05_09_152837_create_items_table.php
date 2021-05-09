@@ -19,6 +19,11 @@ class CreateItemsTable extends Migration
             $table->bigInteger('buyer_id')->unsigned()->nullable();
             $table->bigInteger('secondary_ec_category_id')->unsigned();
             $table->bigInteger('item_condition_id')->unsigned();
+            $table->string('name');
+            $table->string('item_image_name');
+            $table->text('description');
+            $table->integer('price')->unsigned();
+            $table->string('state');
 
             $table->timestamps();
 
