@@ -82,4 +82,11 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
 
   // チケット以外の販売
   Route::get('sell', 'Admin\SellController@showSellForm')->name('sell');
+  Route::post('sell', 'Admin\SellController@sellItem');
+
+  // 販売商品一覧
+  Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
+  Route::get('items/{item}', function () {
+    return "商品詳細";
+  })->name('item');
 });
