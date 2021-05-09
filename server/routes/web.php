@@ -79,4 +79,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::post('/subscription/afterpay', 'StripeController@afterpay')->name('stripe.afterpay');
   Route::get('/subscription/cancel/{user}', 'StripeController@cancelForm')->name('subscription.cancel');
   Route::post('/subscription/cancel/{user}', 'StripeController@cancelSubscription');
+
+  // チケット以外の販売
+  Route::get('sell', 'Admin\SellController@showSellForm')->name('sell');
 });
