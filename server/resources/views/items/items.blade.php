@@ -16,7 +16,7 @@ Online Shop
 <div class="wrapper grid" style="margin-top: 100px !important;">
   @foreach ($items as $item)
   <a href="{{ route('item', [$item->id]) }}">
-  <div class="item" style="border: 1px solid black; max-width: 254.22px; max-height: 362.22px; margin: 0 auto">
+  <div class="item items-index" style="border: 1px solid black; max-width: 254.22px; max-height: 362.22px; margin: 0 auto">
     <div class="position-relative overflow-hidden" style="border-bottom: 1px solid black">
       <img class="card-img-top" src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}">
       <div class="position-absolute py-2 px-3" style="left: 0; bottom: 20px; color: white; background-color: rgba(0, 0, 0, 0.70)">
