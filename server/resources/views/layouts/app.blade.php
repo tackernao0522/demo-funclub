@@ -50,10 +50,10 @@
                     @endif
                     @else
                     @if ( Auth::check() && Auth::user()->role === 'premium' )
-                    <li class="subscription-link"><a href="{{route('subscription.cancel', Auth::user()->id) }}" class="btn btn-danger">プレミアム会員の解約はこちら</a></li>
+                    <li class="subscription-link premium-link"><a href="{{route('subscription.cancel', Auth::user()->id) }}" class="btn btn-danger">プレミアム会員解約</a></li>
                     @endif
                     @if ( Auth::check() && Auth::user()->role === 'member' )
-                    <li class="subscription-link"><a href="{{ route('stripe.subscription') }}" class="btn btn-success">プレミアム会員入会(月額1000円)</a></li>
+                    <li class="subscription-link premium-link"><a href="{{ route('stripe.subscription') }}" class="btn btn-success">プレミアム会員(月額1000円)</a></li>
                     @endif
                     @if ( Auth::check() && Auth::user()->role === 'member' )
                     <li>{{ Auth::user()->name }}さん<span> [無料会員]</span></li>
