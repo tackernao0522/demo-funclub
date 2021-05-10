@@ -59,8 +59,17 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('main_info', 'InformationController@bigShow')->name('bigInfo.show');
     // Info詳細
     Route::resource('information', 'InformationController', ['only' => ['show']]);
+    // チケット以外の販売
+    Route::get('sell', 'Admin\SellController@showSellForm')->name('sell');
+    Route::post('sell', 'Admin\SellController@sellItem');
+    // 商品購入画面
+    Route::get('items/{item}/buy', function () {
+      return "商品購入画面";
+    })->name('item.buy');
     // Online shop(商品一覧)
     Route::get('/items/index', 'ItemsController@showItems')->name('items.index');
+    // Online shop(商品詳細)
+    Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
   });
 
   // Contactページ
@@ -82,13 +91,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::get('/subscription/cancel/{user}', 'StripeController@cancelForm')->name('subscription.cancel');
   Route::post('/subscription/cancel/{user}', 'StripeController@cancelSubscription');
 
-  // チケット以外の販売
-  Route::get('sell', 'Admin\SellController@showSellForm')->name('sell');
-  Route::post('sell', 'Admin\SellController@sellItem');
 
   // 販売商品一覧
   Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
-  Route::get('items/{item}', function () {
-    return "商品詳細";
-  })->name('item');
 });
