@@ -121,4 +121,11 @@
         max-width: 100% !important;
         max-height: 100% !important;
     }
+    // item-detail
+    .item.item-detail {
+        width: 100% !important;
+    }
+    .wrapper.item-detail-card {
+        padding: 0 6% !important;
+    }
 }
