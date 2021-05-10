@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // Info詳細
     Route::resource('information', 'InformationController', ['only' => ['show']]);
     // Online shop(商品一覧)
-    Route::get('/items/index', 'itemsController@showItems')->name('items.index');
+    Route::get('/items/index', 'ItemsController@showItems')->name('items.index');
   });
 
   // Contactページ
