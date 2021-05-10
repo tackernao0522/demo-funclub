@@ -32,7 +32,7 @@ class InformationController extends Controller
                 ->with('information', $information);
         } else {
             return redirect()->back()
-                ->with('status', '有料会員のみ閲覧できます。');
+                ->with('status', 'プレミアム会員のみ閲覧できます。');
         }
     }
 
@@ -47,7 +47,7 @@ class InformationController extends Controller
                 ->with('big_image', $big_image);
         } else {
             return redirect()->back()
-                ->with('status', '有料会員のみ閲覧できます。');
+                ->with('status', 'プレミアム会員のみ閲覧できます。');
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 
 class ItemsController extends Controller
@@ -19,7 +20,12 @@ class ItemsController extends Controller
 
     public function showItemDetail(Item $item)
     {
-        return view('items.item_detail')
-            ->with('item', $item);
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            return view('items.item_detail')
+                ->with('item', $item);
+        } else {
+            return redirect()->back()
+                ->with('status', 'プレミアム会員限定販売です。');
+        }
     }
 }
