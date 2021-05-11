@@ -86,8 +86,8 @@
             </div>
             {{-- 発送までの日数  --}}
             <div class="form-group">
-              <label class="article" for="deliveryTime">配送方法</label>
-              <select name="deliveryTime" class="form-control">
+              <label class="article" for="delivery_time">配送までの日数</label>
+              <select name="delivery_time" class="form-control">
                 @foreach ($deliveryTimes as $deliveryTime)
                 <option value="{{$deliveryTime->id}}" {{old('deliveryTime') == $deliveryTime->id ? 'selected' : ''}}>{{ $deliveryTime->name }}</option>
                 @endforeach
