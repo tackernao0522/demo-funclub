@@ -39,6 +39,11 @@
               <label class="article" for="description">商品の説明</label>
               <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
             </div>
+            {{-- 在庫数 --}}
+            <div class="form-group">
+              <label class="article" for="stock">在庫数</label>
+              <input type="text" class="form-control" name="stock" id="stock" value="{{ old('stock') }}" pladeholder="半角数字で入力してください" />
+            </div>
             {{-- カテゴリー --}}
             <div class="form-group">
               <label class="article" for="ec_category">カテゴリー</label>
@@ -58,6 +63,33 @@
               <select name="condition" class="form-control">
                 @foreach ($conditions as $condition)
                 <option value="{{$condition->id}}" {{old('condition') == $condition->id ? 'selected' : ''}}>{{ $condition->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            {{-- 配送料の負担  --}}
+            <div class="form-group">
+              <label class="article" for="payer">配送料</label>
+              <select name="payer" class="form-control">
+                @foreach ($shippingFeePayers as $payer)
+                <option value="{{$payer->id}}" {{old('payer') == $payer->id ? 'selected' : ''}}>{{ $payer->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            {{-- 配送方法  --}}
+            <div class="form-group">
+              <label class="article" for="delivery">配送方法</label>
+              <select name="delivery" class="form-control">
+                @foreach ($deliveryMethods as $delivery)
+                <option value="{{$delivery->id}}" {{old('delivery') == $delivery->id ? 'selected' : ''}}>{{ $delivery->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            {{-- 発送までの日数  --}}
+            <div class="form-group">
+              <label class="article" for="delivery_time">配送方法</label>
+              <select name="delivery_time" class="form-control">
+                @foreach ($deliveryTimes as $deliveryTime)
+                <option value="{{$deliveryTime->id}}" {{old('deliveryTime') == $deliveryTime->id ? 'selected' : ''}}>{{ $deliveryTime->name }}</option>
                 @endforeach
               </select>
             </div>

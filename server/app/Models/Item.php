@@ -27,6 +27,21 @@ class Item extends Model
         return $this->belongsTo(ItemCondition::class, 'item_condition_id');
     }
 
+    public function payer()
+    {
+        return $this->belongsTo(ShippingFeePayer::class, 'shipping_fee_payer_id');
+    }
+
+    public function delivery()
+    {
+        return $this->belongsTo(DeliveryMethod::class, 'delivery_method_id');
+    }
+
+    public function deliveryTime()
+    {
+        return $this->belongsTo(deliveryTime::class, 'delivery_time_id');
+    }
+
     public function getIsStateSellingAttribute()
     {
         return $this->state === self::STATE_SELLING;

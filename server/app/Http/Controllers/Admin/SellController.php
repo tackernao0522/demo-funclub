@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Models\Item;
 use App\Models\ItemCondition;
+use App\Models\ShippingFeePayer;
 use App\Models\PrimaryEcCategory;
+use App\Models\DeliveryMethod;
+use App\Models\DeliveryTime;
 
 class SellController extends Controller
 {
@@ -33,10 +36,16 @@ class SellController extends Controller
             ->get();
 
         $conditions = ItemCondition::orderBy('sort_no')->get();
+        $shippingFeePayers = ShippingFeePayer::orderBy('sort_no')->get();
+        $deliveryMethods = DeliveryMethod::orderBy('sort_no')->get();
+        $deliveryTimes = DeliveryTime::orderBy('sort_no')->get();
 
         return view('admin.ec.sell')
             ->with('categories', $categories)
-            ->with('conditions', $conditions);
+            ->with('conditions', $conditions)
+            ->with('shippingFeePayers', $shippingFeePayers)
+            ->with('deliveryMethods', $deliveryMethods)
+            ->with('deliveryTimes', $deliveryTimes);
     }
 
     public function sellItem(SellRequest $request)
@@ -50,8 +59,12 @@ class SellController extends Controller
         $item->seller_id                = $user->id;
         $item->name                     = $request->input('name');
         $item->description              = $request->input('description');
+        $item->stock                    = $request->input('stock');
         $item->secondary_ec_category_id = $request->input('ec_category');
         $item->item_condition_id        = $request->input('condition');
+        $item->delivery_method_id       = $request->input('delivery');
+        $item->delivery_time_id         = $request->input('delivery_time');
+        $item->shipping_fee_payer_id    = $request->input('payer');
         $item->price                    = $request->input('price');
         $item->state                    = Item::STATE_SELLING;
         $item->save();
