@@ -33,7 +33,7 @@
       </tr>
       <tr>
         <th>残在庫数</th>
-        <td>{{-- $item->stock --}}</td>
+        <td>{{ $item->stock }}</td>
       </tr>
       <tr>
         <th>カテゴリー</th>
@@ -45,15 +45,15 @@
       </tr>
       <tr>
         <th>配送料の負担</th>
-        <td>{{-- $item->payer->name --}}</td>
+        <td>{{ $item->payer->name }}</td>
       </tr>
       <tr>
         <th>配送方法</th>
-        <td>{{-- $item->delivery->name --}}</td>
+        <td>{{ $item->delivery->name }}</td>
       </tr>
       <tr>
         <th>発送までの日数</th>
-        <td>{{-- $item->deliveryTime->name --}}</td>
+        <td>{{ $item->deliveryTime->name }}</td>
       </tr>
     </table>
     <img class="card-img-top" src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}">
