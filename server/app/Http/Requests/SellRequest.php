@@ -22,7 +22,7 @@ class SellRequest extends FormRequest
             'condition' => ['required', 'integer'],
             'payer' => ['required', 'integer'],
             'delivery' => ['required', 'integer'],
-            'delivery_time' => ['required', 'integer'],
+            'deliveryTime' => ['required', 'integer'],
             'price' => ['required', 'integer', 'min:100', 'max:9999999'],
         ];
     }
@@ -38,7 +38,7 @@ class SellRequest extends FormRequest
             'condition' => '商品の状態',
             'payer' => '配送料の負担',
             'delivery' => '配送方法',
-            'delivery_time' => '発送までの日数',
+            'deliveryTime' => '発送までの日数',
             'price' => '販売価格',
         ];
     }
