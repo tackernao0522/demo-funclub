@@ -39,7 +39,7 @@ class Item extends Model
 
     public function deliveryTime()
     {
-        return $this->belongsTo(deliveryTime::class, 'delivery_time_id');
+        return $this->belongsTo(DeliveryTime::class, 'delivery_time_id');
     }
 
     public function getIsStateSellingAttribute()

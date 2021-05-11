@@ -53,7 +53,7 @@
       </tr>
       <tr>
         <th>発送までの日数</th>
-        <td>{{-- $item->deliveryTime->name --}}</td>
+        <td>{{ $item->deliveryTime->name }}</td>
       </tr>
     </table>
     <img class="card-img-top" src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}">
