@@ -59,8 +59,8 @@ class DeliveryMethodsTableSeeder extends Seeder
                 'sort_no' => 9,
             ],
         ];
-        foreach ($delivery_seeds as $deliveryMethods) {
-            DB::table('delivery_methods')->insert($deliveryMethods);
+        foreach ($delivery_seeds as $deliveryMethod) {
+            DB::table('delivery_methods')->insert($deliveryMethod);
         }
     }
 }
