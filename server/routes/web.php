@@ -70,6 +70,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/items/index', 'ItemsController@showItems')->name('items.index');
     // Online shop(商品詳細)
     Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
+    // 販売商品一覧
+    Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
   });
 
   // Contactページ
@@ -90,8 +92,4 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::post('/subscription/afterpay', 'StripeController@afterpay')->name('stripe.afterpay');
   Route::get('/subscription/cancel/{user}', 'StripeController@cancelForm')->name('subscription.cancel');
   Route::post('/subscription/cancel/{user}', 'StripeController@cancelSubscription');
-
-
-  // 販売商品一覧
-  Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
 });
