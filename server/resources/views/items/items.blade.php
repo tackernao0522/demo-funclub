@@ -21,7 +21,9 @@ Online Shop
 
 <div class="header-title items-title" style="margin-top: 5px; border-color: gold; width: 65%">Premium会員限定販売</div>
 
-<div class="wrapper grid" style="margin-top: 50px !important;">
+@include('items.categories_search')
+
+<div class="wrapper grid" style="margin-top: 50px !important">
   @foreach ($items as $item)
   <a href="{{ route('item', [$item->id]) }}">
     <div class="item items-index" style="border: 1px solid black; max-width: 254.22px; max-height: 362.22px; margin: 0 auto">
@@ -46,7 +48,7 @@ Online Shop
   @endforeach
 </div>
 <div class="d-flex justify-content-center">
-  {{ $items->links('vendor.pagination.original') }}
+  {{ $items->appends(Request::only('keyword', 'category'))->links('vendor.pagination.original') }}
 </div>
 
 @include('share.footer')

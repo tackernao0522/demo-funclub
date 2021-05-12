@@ -4,3 +4,9 @@ h5.card-title.item-name {
 h5.card-title.item-name:hover {
     color: $cyan;
 }
+
+@media (max-width: 600px) {
+    nav.navbar.navbar-light.bg-light.item-search {
+        max-width: 100% !important;
+    }
+}

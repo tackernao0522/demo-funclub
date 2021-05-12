@@ -7,6 +7,7 @@
 @section('content')
 <div class="container">
   @include('share.status_card')
+  @include('items.categories_search')
   <div class="row">
     <div class="col-10 offset-1 bg-white mt-5">
 
@@ -43,5 +44,8 @@
       @endforeach
     </div>
   </div>
+</div>
+<div class="d-flex justify-content-center">
+  {{ $items->appends(Request::only('keyword', 'category'))->links('vendor.pagination.original') }}
 </div>
 @endsection
