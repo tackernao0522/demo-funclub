@@ -37,6 +37,9 @@
         <li><a href="{{ route('info.index') }}">Info</a></li>
         <li><a href="{{ route('items.index') }}">Online Shop</a></li>
         <li><a href="{{ route('contact.form') }}">Contact</a></li>
+        @if (Auth::check())
+        <li><a href="{{ route('mypage.bought-items') }}">購入した商品</a></li>
+        @endif
       </ul>
     </div>
   </nav>

@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Models\Item::class, 'seller_id');
     }
+
+    public function boughtItems()
+    {
+        return $this->hasMany(Models\Item::class, 'buyer_id');
+    }
 }
