@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
     // 購入商品一覧
     Route::prefix('mypage')
-      ->namespace('Mypage')
+      ->namespace('MyPage')
       ->group(function () {
         Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');
       });
