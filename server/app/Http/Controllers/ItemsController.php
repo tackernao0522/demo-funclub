@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use App\Models\Item;
+use App\User;
+use Carbon\Carbon;
 use App\Models\PrimaryEcCategory;
+use Payjp\Charge;
 
 class ItemsController extends Controller
 {
@@ -71,6 +76,46 @@ class ItemsController extends Controller
         }
     }
 
+    public function showBuyItemForm(Item $item)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            if (!$item->isStateSelling) {
+                abort(404);
+            }
+
+            return view('items.item_buy_form')
+                ->with('item', $item);
+        } else {
+            return redirect()->back()
+                ->with('status', 'プレミアム会員限定販売です。');
+        }
+    }
+
+    public function buyItem(Request $request, Item $item)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            $user = Auth::user();
+
+            if (!$item->isStateSelling) {
+                abort(404);
+            }
+
+            $token = $request->input('card-token');
+
+            try {
+                $this->settlement($item->id, $item->seller->id, $user->id, $token);
+            } catch (\Exception $e) {
+                Log::error($e);
+                return redirect()->back()
+                    ->with('type', 'danger')
+                    ->with('message', '購入処理が失敗しました。');
+            }
+
+            return redirect()->route('item', [$item->id])
+                ->with('message', '商品を購入しました。');
+        }
+    }
+
     private function escape(string $value)
     {
         return str_replace(
@@ -78,5 +123,41 @@ class ItemsController extends Controller
             ['\\\\', '\\%', '\\_'],
             $value
         );
+    }
+
+    private function settlement($itemID, $sellerID, $buyerID, $token)
+    {
+        DB::beginTransaction();
+
+        try {
+            $seller = User::lockForUpdate()->find($sellerID);
+            $item = Item::lockForUpdate()->find($itemID);
+
+            if ($item->isStateBought) {
+                throw new \Exception('多重決済');
+            }
+
+            $item->state = Item::STATE_BOUGHT;
+            $item->bought_at = Carbon::now();
+            $item->buyer_id = $buyerID;
+            $item->save();
+
+            $seller->sales += $item->price;
+            $seller->save();
+
+            $charge = Charge::create([
+                'card'     => $token,
+                'amount'   => $item->price,
+                'currency' => 'jpy'
+            ]);
+            if (!$charge->captured) {
+                throw new \Exception('支払い確定失敗');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
     }
 }
