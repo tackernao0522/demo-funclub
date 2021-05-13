@@ -28,6 +28,7 @@ class CreateTiemsTable extends Migration
             $table->text('description');
             $table->integer('price')->unsigned();
             $table->string('state');
+            $table->timestamp('bought_at')->nullable();
 
             $table->timestamps();
 
