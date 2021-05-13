@@ -42,7 +42,7 @@
             {{-- 在庫数 --}}
             <div class="form-group">
               <label class="article" for="stock">在庫数</label>
-              <input type="text" class="form-control" name="stock" id="stock" value="{{ old('stock') }}" pladeholder="半角数字で入力してください" />
+              <input type="text" class="form-control" name="stock" id="stock" value="{{ old('stock') }}" placeholder="半角数字で入力してください" />
             </div>
             {{-- カテゴリー --}}
             <div class="form-group">
