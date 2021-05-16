@@ -49,7 +49,7 @@ Online Shop
       <h6 style="margin-left: 19px; padding-top: 5px; color: fuchsia">在庫数：{{ $item->stock }}</h6>
       <div class="card-body">
         <small class="text-muted" style="margin: -10px 0 0 -10px">{{$item->secondaryEcCategory->primaryEcCategory->name}} / {{$item->secondaryEcCategory->name}}</small>
-        <h5 class="card-title item-name" style="padding-top: 15px">{{$item->name}}</h5>
+        <h5 class="card-title item-name" style="padding-top: 15px">{!! nl2br(e(Str::limit($item->name, 16))) !!}</h5>
       </div>
     </a>
     @include('items.cart_items.cart_form')
