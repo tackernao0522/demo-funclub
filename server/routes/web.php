@@ -77,6 +77,14 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       ->group(function () {
         Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');
       });
+    // カートの中身
+    Route::get('/cartItems', 'CartItemController@index');
+    // カートに入れる
+    Route::post('/cartItem', 'CartItemController@store')->name('cart.item');
+    // カート商品削除
+    Route::delete('/cartitem/{cartItem}', 'CartItemController@destroy');
+    // カート商品数量変更
+    Route::put('/cartitem/{cartItem}', 'CartItemController@update');
   });
 
   // Contactページ

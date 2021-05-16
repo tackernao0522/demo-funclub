@@ -32,7 +32,7 @@
             <div class="card-title mt-2 font-weight-bold" style="font-size: 15px">残在庫数：{{$item->stock}}</div>
             <div>
               <i class="fas fa-yen-sign"></i>
-              <span class="ml-1">{{number_format($item->price)}}</span>
+              <span class="ml-1">{{number_format($item->price)}}(税込)</span>
               <i class="far fa-clock ml-3"></i>
               <span>{{$item->created_at->format('Y年n月j日 H:i')}}</span>
             </div>

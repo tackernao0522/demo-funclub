@@ -5,8 +5,27 @@ h5.card-title.item-name:hover {
     color: $cyan;
 }
 
+a.cart_items_index {
+    color: azure;
+}
+
+.cart-items-box {
+    margin-top: 5px;
+}
+
+a.cart_items_index:hover {
+    background-color: crimson;
+}
+
 @media (max-width: 600px) {
     nav.navbar.navbar-light.bg-light.item-search {
         max-width: 100% !important;
+    }
+    input.form-control.cart-edit-form {
+        width: 32%;
+    }
+    button.btn.btn-danger.ml-1.cart-item-delete {
+        margin-top: 6px;
+        width: 100%;
     }
 }
