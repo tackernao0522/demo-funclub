@@ -46,6 +46,11 @@ class Item extends Model
         return $this->belongsTo(DeliveryTime::class, 'delivery_time_id');
     }
 
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class, 'item_id', 'id');
+    }
+
     public function getIsStateSellingAttribute()
     {
         return $this->state === self::STATE_SELLING;

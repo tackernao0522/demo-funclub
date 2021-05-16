@@ -95,7 +95,7 @@
             </div>
             {{-- 販売価格 --}}
             <div calss="form-group">
-              <label class="article" for="price">販売価格</label>
+              <label class="article" for="price">販売価格(税込)</label>
               <input type="number" class="form-control" name="price" id="price" value="{{ old('price') }}" />
             </div>
             <div class="text-right mt-3">

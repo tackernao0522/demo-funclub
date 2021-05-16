@@ -83,6 +83,13 @@
                     <li><a href="{{ route('informations.index') }}">Info</a></li>
                     <li><a href="{{ route('items.index') }}">Online Shop</a></li>
                     @endif
+                    @if ( Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium' )
+                    <li>
+                        <a href="/cartItems">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>カートの中身を見る
+                        </a>
+                    </li>
+                    @endif
                     @if (Auth::check())
                     <li><a href="{{ route('mypage.bought-items') }}">購入した商品</a></li>
                     @endif
