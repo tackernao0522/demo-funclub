@@ -35,5 +35,5 @@
 
 <div class="font-weight-bold text-center pb-3 pt-3" style="font-size: 24px">
   <i class="fas fa-yen-sign"></i>
-  <span>{{number_format($item->price)}}円(税込)</span>
+  <span>{{number_format($item->price)}}</span>
 </div>
