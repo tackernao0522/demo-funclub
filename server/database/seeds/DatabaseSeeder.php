@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ShippingFeePayersTableSeeder::class);
         $this->call(DeliveryMethodsTableSeeder::class);
         $this->call(DeliveryTimesTableSeeder::class);
+        $this->call(ItemsTableSeeder::class);
     }
 }

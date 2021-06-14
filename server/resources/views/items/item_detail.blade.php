@@ -12,13 +12,13 @@
 </div><!-- /#news -->
 
 <!-- <div class="container"> -->
-  <div class="col-12 offset-2 text-center status-alert" id="status-alert" style="margin: 0 auto; width: 67%">
-    @if (session('message'))
-    <div class="alert alert-{{ session('type', 'success') }}" role="alert">
-      {{ session('message') }}
-    </div>
-    @endif
+<div class="col-12 offset-2 text-center status-alert" id="status-alert" style="margin: 0 auto; width: 67%">
+  @if (session('message'))
+  <div class="alert alert-{{ session('type', 'success') }}" role="alert">
+    {{ session('message') }}
   </div>
+  @endif
+</div>
 <div class="wrapper item-detail-card">
   <div class="item item-detail" style="width: 65%; margin: 0 auto">
 

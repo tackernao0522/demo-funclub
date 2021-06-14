@@ -62,15 +62,18 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // チケット以外の販売
     Route::get('sell', 'Admin\SellController@showSellForm')->name('sell');
     Route::post('sell', 'Admin\SellController@sellItem');
+    // 販売商品編集
+    Route::get('/edit_item/{item}', 'Admin\SellController@itemEditForm')->name('items.edit');
+    Route::post('/edit_item/{item}', 'Admin\SellController@editItem');
     // Online shop(商品一覧)
     Route::get('/items/index', 'ItemsController@showItems')->name('items.index');
     // Online shop(商品詳細)
     Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
+    // 販売商品一覧
+    Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
     // 商品購入画面
     Route::get('items/{item}/buy', 'ItemsController@showBuyItemForm')->name('item.buy');
     Route::post('items/{item}/buy', 'ItemsController@buyItem');
-    // 販売商品一覧
-    Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
     // 購入商品一覧
     Route::prefix('mypage')
       ->namespace('MyPage')

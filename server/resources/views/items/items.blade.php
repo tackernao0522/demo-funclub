@@ -25,7 +25,7 @@ Online Shop
 
 <div class="wrapper grid" style="margin-top: 50px !important">
   @foreach ($items as $item)
-  <div class="item items-index" style="border: 1px solid black; max-width: 254.22px; max-height: 362.22px; margin: 0 auto">
+  <div class="item items-index" style="border: 1px solid black; max-width: 254.22px; margin: 0 auto">
     <div class="position-relative overflow-hidden" style="border-bottom: 1px solid black">
       <img class="card-img-top" src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}">
       <div class="position-absolute py-2 px-3" style="left: 0; bottom: 20px; color: white; background-color: rgba(0, 0, 0, 0.70)">
@@ -38,13 +38,18 @@ Online Shop
       </div>
       @endif
     </div>
-    <a href="{{ route('item', [$item->id]) }}">
-      <h6 style="margin-left: 19px; padding-top: 5px; color: fuchsia">在庫数：{{ $item->stock }}</h6>
-      <div class="card-body">
-      <small class="text-muted" style="margin: -10px 0 0 -10px">{{$item->secondaryEcCategory->primaryEcCategory->name}} / {{$item->secondaryEcCategory->name}}</small>
+    @if (Auth::check() && Auth::user()->role === 'admin')
+    <div class="cart-form item-cart">
+      <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
+    </div>
+    @endif
+    <h6 style="margin-left: 19px; margin-bottom: 20px; padding-top: 5px; color: fuchsia">在庫数：{{ $item->stock }}</h6>
+    <small class="text-muted" style="margin: -10px 0 0 -10px">{{$item->secondaryEcCategory->primaryEcCategory->name}} / {{$item->secondaryEcCategory->name}}</small>
+    <div class="card-body">
+      <a href="{{ route('item', [$item->id]) }}">
         <h5 class="card-title item-name" style="padding-top: 15px">{!! nl2br(e(Str::limit($item->name, 16))) !!}</h5>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
   @endforeach
 </div>

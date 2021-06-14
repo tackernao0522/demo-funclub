@@ -16,6 +16,7 @@
       @forelse ($items as $item)
       <div class="item" style="margin-bottom: 20px">
         <img src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}" class="img-fluid" style="height: 140px;">
+        <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary sold_items"><i class="nav-icon fas fa-edit"></i></a>
         <div class="d-flex mt-3 border position-relative">
           <div>
           </div>
