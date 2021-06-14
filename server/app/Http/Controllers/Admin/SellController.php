@@ -123,6 +123,14 @@ class SellController extends Controller
             ->with('status', '商品ID：' . $item->id . 'を更新しました。');
     }
 
+    public function destroy(Item $id)
+    {
+        $id->delete();
+
+        return redirect()->route('sold-items',)
+            ->with('status', $id->name . 'を削除しました。');
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();

@@ -9,12 +9,20 @@ a.btn.btn-primary.sold_items {
     margin-top: -95px;
 }
 
+a.btn.btn-danger.sold_items {
+    margin-top: -95px;
+}
+
 @media (max-width: 600px) {
     nav.navbar.navbar-light.bg-light.item-search {
         max-width: 100% !important;
     }
 
     a.btn.btn-primary.sold_items {
+        margin: -95px 0 -10px 10px;
+    }
+
+    a.btn.btn-danger.sold_items {
         margin: -95px 0 -10px 10px;
     }
 }

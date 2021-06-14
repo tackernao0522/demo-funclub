@@ -65,6 +65,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // 販売商品編集
     Route::get('/edit_item/{item}', 'Admin\SellController@itemEditForm')->name('items.edit');
     Route::post('/edit_item/{item}', 'Admin\SellController@editItem');
+    // 商品削除
+    Route::delete('item/{id}', 'Admin\SellController@destroy')->name('items.destroy');
     // Online shop(商品一覧)
     Route::get('/items/index', 'ItemsController@showItems')->name('items.index');
     // Online shop(商品詳細)

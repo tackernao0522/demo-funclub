@@ -34,6 +34,8 @@
 <img class="card-img-top" src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}">
 @if ( Auth::check() && Auth::user()->role === 'admin' )
 <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary sold_items"><i class="nav-icon fas fa-edit"></i></a>
+<a href="#" id="delete" class="btn btn-danger sold_items" data-toggle="modal" data-target="#modal-delete-{{ $item->id }}"><i class="nav-icon fas fa-trash"></i></a>
+@include('admin.ec.modal')
 @endif
 <div class="font-weight-bold text-center pb-3 pt-3" style="font-size: 24px">
   <i class="fas fa-yen-sign"></i>

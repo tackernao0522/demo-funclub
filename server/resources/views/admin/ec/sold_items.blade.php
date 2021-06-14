@@ -17,6 +17,10 @@
       <div class="item" style="margin-bottom: 20px">
         <img src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}" class="img-fluid" style="height: 140px;">
         <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary sold_items"><i class="nav-icon fas fa-edit"></i></a>
+        <a href="#" id="delete" class="btn btn-danger sold_items" data-toggle="modal" data-target="#modal-delete-{{ $item->id }}"><i class="nav-icon fas fa-trash"></i></a>
+
+        @include('admin.ec.modal')
+
         <div class="d-flex mt-3 border position-relative">
           <div>
           </div>

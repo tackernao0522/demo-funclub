@@ -41,6 +41,8 @@ Online Shop
     @if (Auth::check() && Auth::user()->role === 'admin')
     <div class="cart-form item-cart">
       <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
+      <a href="#" id="delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $item->id }}"><i class="nav-icon fas fa-trash"></i></a>
+      @include('admin.ec.modal')
     </div>
     @endif
     <h6 style="margin-left: 19px; margin-bottom: 20px; padding-top: 5px; color: fuchsia">在庫数：{{ $item->stock }}</h6>
