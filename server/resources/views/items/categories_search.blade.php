@@ -1,3 +1,18 @@
+@if ( Auth::check() && Auth::user()->role === 'admin' )
+<div class="d-flex justify-content-center" style="margin-bottom: 10px">
+  <a href="{{ route('cart.index') }}">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>カートの中身を見る
+  </a>
+  [{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}]
+</div>
+@elseif ( Auth::check() && Auth::user()->role === 'premium' )
+<div class="d-flex justify-content-center">
+  <a href="{{ route('cart.index') }}">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>カートの中身を見る
+  </a>
+  [{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}]
+</div>
+@endif
 <nav class="navbar navbar-light bg-light item-search" style="max-width: 65%; margin: 0 auto">
   <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo01"> -->
   <form class="form-inline my-2 my-lg-0" style="margin: 0 auto">

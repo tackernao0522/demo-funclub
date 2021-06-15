@@ -36,8 +36,13 @@
         <li><a href="{{ route('posts.index') }}">News</a></li>
         <li><a href="{{ route('info.index') }}">Info</a></li>
         <li><a href="{{ route('items.index') }}">Online Shop</a></li>
-        <li><a href="{{ route('contact.form') }}">Contact</a></li>
+        <li>
+          <a href="{{ route('cart.index') }}">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>カートの中身を見る[{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}]
+          </a>
+        </li>
         @if (Auth::check())
+        <li><a href="{{ route('contact.form') }}">Contact</a></li>
         <li><a href="{{ route('mypage.bought-items') }}">購入した商品</a></li>
         @endif
       </ul>

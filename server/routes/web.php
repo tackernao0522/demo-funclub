@@ -71,6 +71,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/items/index', 'ItemsController@showItems')->name('items.index');
     // Online shop(商品詳細)
     Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
+    // カートに商品追加
+    Route::get('/addToCart/{id}', 'ItemsController@addToCart');
+    // カートの中身
+    Route::get('/cart', 'ItemsController@cart')->name('cart.index');
     // 販売商品一覧
     Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
     // 商品購入画面
@@ -82,14 +86,14 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       ->group(function () {
         Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');
       });
-    // カートの中身
-    Route::get('/cartItems', 'CartItemController@index');
-    // カートに入れる
-    Route::post('/cartItem', 'CartItemController@store')->name('cart.item');
-    // カート商品削除
-    Route::delete('/cartitem/{cartItem}', 'CartItemController@destroy');
-    // カート商品数量変更
-    Route::put('/cartitem/{cartItem}', 'CartItemController@update');
+    // // カートの中身
+    // Route::get('/cartItems', 'CartItemController@index');
+    // // カートに入れる
+    // Route::post('/cartItem', 'CartItemController@store')->name('cart.item');
+    // // カート商品削除
+    // Route::delete('/cartitem/{cartItem}', 'CartItemController@destroy');
+    // // カート商品数量変更
+    // Route::put('/cartitem/{cartItem}', 'CartItemController@update');
   });
 
   // Contactページ
