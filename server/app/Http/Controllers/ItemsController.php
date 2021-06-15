@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\User;
+use App\Cart;
+use Session;
 use Carbon\Carbon;
 use App\Models\PrimaryEcCategory;
 use Payjp\Charge;
@@ -73,6 +75,35 @@ class ItemsController extends Controller
         } else {
             return redirect()->back()
                 ->with('status', 'プレミアム会員限定販売です。');
+        }
+    }
+
+    public function addToCart($id)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+
+            $item = Item::find($id);
+
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->add($item, $id);
+            Session::put('cart', $cart);
+            // dd(Session::get('cart'));
+
+            return back()->with('status', $item->name . 'をカートに入れました。');
+        }
+    }
+
+    public function cart()
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            if (!Session::has('cart')) {
+                return view('items.cart.index');
+            }
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+
+            return view('items.cart.index', ['items' => $cart->items]);
         }
     }
 
