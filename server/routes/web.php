@@ -82,8 +82,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // 販売商品一覧
     Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
     // 商品購入画面
-    Route::get('items/{item}/buy', 'ItemsController@showBuyItemForm')->name('item.buy');
-    Route::post('items/{item}/buy', 'ItemsController@buyItem');
+    Route::get('/buy/items', 'ItemsController@showBuyItemForm')->name('items.buy');
+    Route::post('/buy/items', 'ItemsController@buyItem');
     // 購入商品一覧
     Route::prefix('mypage')
       ->namespace('MyPage')
