@@ -138,7 +138,7 @@
                             </td>
 
                             <td>
-                                {{ $order->name }}<br>
+                                {{ $order->name }} 様<br>
                                 {{ Auth::user()->email }}
                             </td>
                         </tr>
@@ -178,7 +178,7 @@
                 @foreach($orders as $order)
                 @foreach($order->cart->items as $item)
                 <tr class="item">
-                    <td>{{ $item['item_name'] }} 様</td>
+                    <td>{{ $item['item_name'] }}</td>
                     <td>{{ $item['qty'] }}</td>
                     <td>{{ number_format($item['item_price']) }}</td>
                     <td>
