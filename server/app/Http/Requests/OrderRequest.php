@@ -28,6 +28,7 @@ class OrderRequest extends FormRequest
             'zip_code' => ['required', 'string'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'string'],
+            'card_name' => ['required', 'alpha', 'string'],
         ];
     }
 
@@ -38,6 +39,7 @@ class OrderRequest extends FormRequest
             'zip_code' => '郵便番号',
             'address' => 'お届け先住所',
             'phone_number' => '電話番号',
+            'card_name' => 'カード名義',
         ];
     }
 }

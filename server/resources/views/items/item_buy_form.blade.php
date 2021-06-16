@@ -81,25 +81,25 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="lastname">カード番号</label>
-                                <input type="text" class="form-control" id="card-number">
+                                <input type="text" class="form-control" id="card-number" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="lastname">有効月</label>
-                                <input type="text" id="card-expiry-month" class="form-control">
+                                <input type="text" id="card-expiry-month" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="lastname">有効年</label>
-                                <input type="text" id="card-expiry-year" class="form-control">
+                                <input type="text" id="card-expiry-year" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="lastname">CVC</label>
-                                <input type="text" id="card-cvc" class="form-control">
+                                <input type="text" id="card-cvc" class="form-control" required>
                             </div>
                         </div>
 
