@@ -17,8 +17,16 @@
     </div>
 </div>
 
+
 <section class="ftco-section ftco-cart">
     <div class="container">
+        <div class="col-12 offset-2 text-center status-alert mt-3" id="status-alert" style="margin: 0 auto; width: 67%">
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
+        </div>
         <div class="row">
             <div class="col-md-12 ftco-animate">
                 <div class="cart-list">
@@ -49,7 +57,7 @@
                                 </td>
 
                                 <td class="price">¥{{ number_format($item['item_price']) }}</td>
-                                <form action="{{-- url('/update_qty/'.$product['product_id']) --}}" method="POST">
+                                <form action="{{ route('update.qty', $item['item_id']) }}" method="POST">
                                     @csrf
                                     <td class="quantity">
                                         <div class="input-group mb-3">

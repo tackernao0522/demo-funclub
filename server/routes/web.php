@@ -75,6 +75,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/addToCart/{id}', 'ItemsController@addToCart');
     // カートの中身
     Route::get('/cart', 'ItemsController@cart')->name('cart.index');
+    // カート商品数量変更
+    Route::post('/update_qty/{id}', 'ItemsController@update_qty')->name('update.qty');
     // 販売商品一覧
     Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
     // 商品購入画面
