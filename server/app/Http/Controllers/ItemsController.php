@@ -176,10 +176,6 @@ class ItemsController extends Controller
             $order->cart = serialize($cart);
             $order->payer_id = $payer_id;
 
-            $order->save();
-
-            $orders = Order::all();
-
             \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             try {
                 $charge = Charge::create(array(
@@ -193,6 +189,10 @@ class ItemsController extends Controller
 
                 return redirect()->route('items.buy')->with('error', '購入処理に失敗しました。');
             }
+
+            $order->save();
+
+            $orders = Order::all();
 
             Session::forget('cart');
 
