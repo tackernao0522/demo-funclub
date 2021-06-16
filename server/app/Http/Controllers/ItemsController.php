@@ -94,6 +94,20 @@ class ItemsController extends Controller
         }
     }
 
+    public function update_qty(Request $request, $id)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            $item = Item::find($id);
+
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->updateQty($id, $request->quantity);
+            Session::put('cart', $cart);
+
+            return back()->with('status', $item->name . 'の数量を ' . $request->quantity . ' に変更しました。');
+        }
+    }
+
     public function cart()
     {
         if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
