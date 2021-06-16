@@ -19,14 +19,14 @@
 
 
 <section class="ftco-section ftco-cart">
-    <div class="container">
-        <div class="col-12 offset-2 text-center status-alert mt-3" id="status-alert" style="margin: 0 auto; width: 67%">
-            @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-            @endif
+    <div class="col-12 offset-2 text-center status-alert mt-3" id="status-alert" style="margin: 0 auto; width: 67%">
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
         </div>
+        @endif
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col-md-12 ftco-animate">
                 <div class="cart-list">
@@ -45,7 +45,7 @@
                             @if (Session::has('cart'))
                             @foreach($items as $item)
                             <tr class="text-center">
-                                <td class="product-remove"><a href="{{-- url('/remove_from_cart/' . $product['product_id']) --}}"><span class="ion-ios-close"></span></a></td>
+                                <td class="product-remove"><a href="{{ route('remove.cart', $item['item_id']) }}"><span class="ion-ios-close"></span></a></td>
 
                                 <td class="image-prod">
                                     <div class="img" style="background-image:url({{ Storage::disk('s3')->url("item-images/{$item['item_image_name']}") }})"></div>
@@ -71,12 +71,6 @@
                                 <td class="total">¥{{ number_format($item['qty'] * $item['item_price']) }}</td>
                             </tr><!-- END TR-->
                             @endforeach
-                            @else
-                            @if (Session::has('status'))
-                            <div class="alert alert-success">
-                                {{ Session::get('status') }}
-                            </div>
-                            @endif
                             @endif
                         </tbody>
                     </table>

@@ -19,6 +19,13 @@
   </div>
   @endif
 </div>
+<div class="col-12 offset-2 text-center status-alert" id="status-alert" style="margin: 0 auto; width: 67%">
+  @if (session('status'))
+  <div class="alert alert-success" role="alert">
+    {{ session('status') }}
+  </div>
+  @endif
+</div>
 <div class="wrapper item-detail-card">
   <div class="item item-detail" style="width: 65%; margin: 0 auto">
 

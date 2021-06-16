@@ -90,7 +90,8 @@ class ItemsController extends Controller
             Session::put('cart', $cart);
             // dd(Session::get('cart'));
 
-            return back()->with('status', $item->name . 'をカートに入れました。');
+            return back()
+                ->with('status', $item->name . 'をカートに入れました。');
         }
     }
 
@@ -105,6 +106,25 @@ class ItemsController extends Controller
             Session::put('cart', $cart);
 
             return back()->with('status', $item->name . 'の数量を ' . $request->quantity . ' に変更しました。');
+        }
+    }
+
+    public function remove_from_cart($id)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            $item = Item::find($id);
+
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->removeItem($id);
+
+            if (count($cart->items) > 0) {
+                Session::put('cart', $cart);
+            } else {
+                Session::forget('cart');
+            }
+
+            return redirect()->route('cart.index')->with('status', $item->name . 'を削除しました。');
         }
     }
 
