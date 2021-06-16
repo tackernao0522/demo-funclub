@@ -28,7 +28,7 @@ class OrderRequest extends FormRequest
             'zip_code' => ['required', 'string'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'string'],
-            'card_name' => ['required', 'alpha', 'string'],
+            'card_name' => ['required', 'string'],
         ];
     }
 

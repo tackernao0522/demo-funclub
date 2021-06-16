@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendOrderMail;
 use App\Http\Requests\OrderRequest;
 use App\Models\Item;
 use App\User;
@@ -174,6 +176,8 @@ class ItemsController extends Controller
             $order->cart = serialize($cart);
             $order->payer_id = $payer_id;
 
+            $order->save();
+
             $orders = Order::all();
 
             \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -197,15 +201,13 @@ class ItemsController extends Controller
             $orders->transform(function ($order, $key) {
                 $order->cart = unserialize($order->cart);
 
-
                 return $order;
                 // php artisan make:migration add_payer_id_to_orders
             });
 
-            $order->save();
 
             // php artisan make:mail SendOrderMail
-            // Mail::to(Auth::user()->email)->send(new SendOrderMail($orders));
+            Mail::to(Auth::user()->email)->send(new SendOrderMail($orders));
 
             return redirect()->route('cart.index')
                 ->with('status', 'お支払いが完了しました。');
