@@ -11,6 +11,11 @@ class SellRequest extends FormRequest
      *
      * @return bool
      */
+    public function authorize()
+    {
+        return true;
+    }
+
     public function rules()
     {
         return [

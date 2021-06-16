@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\OrderRequest;
 use App\Models\Item;
 use App\User;
 use App\Cart;
+use App\Models\Order;
 use Session;
 use Carbon\Carbon;
 use App\Models\PrimaryEcCategory;
-use Payjp\Charge;
+use Stripe\Charge;
 
 class ItemsController extends Controller
 {
@@ -141,43 +143,72 @@ class ItemsController extends Controller
         }
     }
 
-    public function showBuyItemForm(Item $item)
+    public function showBuyItemForm()
     {
         if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
-            if (!$item->isStateSelling) {
-                abort(404);
+            // if (!$item->isStateSelling) {
+            //     abort(404);
+            // }
+
+            if (!Session::has('cart')) {
+                return redirect()->route('items.index')->with('status', 'カートの中身はありません。');
             }
 
-            return view('items.item_buy_form')
-                ->with('item', $item);
-        } else {
-            return redirect()->back()
-                ->with('status', 'プレミアム会員限定販売です。');
+            return view('items.item_buy_form');
         }
     }
 
-    public function buyItem(Request $request, Item $item)
+    public function buyItem(OrderRequest $request)
     {
         if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
-            $user = Auth::user();
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
 
-            if (!$item->isStateSelling) {
-                abort(404);
-            }
+            $payer_id = time();
 
-            $token = $request->input('card-token');
+            $order = new Order();
+            $order->name = $request->input('name');
+            $order->zip_code = $request->input('zip_code');
+            $order->address = $request->input('address');
+            $order->phone_number = $request->input('phone_number');
+            $order->cart = serialize($cart);
+            $order->payer_id = $payer_id;
 
+            $orders = Order::all();
+
+            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             try {
-                $this->settlement($item->id, $item->seller->id, $user->id, $token);
+                $charge = Charge::create(array(
+                    "amount" => $cart->totalPrice,
+                    "currency" => "jpy",
+                    "source" => $request->input('stripeToken'), // obtainded with Stripe.js
+                    "description" => "Demofun Online Shop"
+                ));
             } catch (\Exception $e) {
-                Log::error($e);
-                return redirect()->back()
-                    ->with('type', 'danger')
-                    ->with('message', '購入処理が失敗しました。');
+                Session::put('error', $e->getMessage());
+
+                return redirect()->route('items.buy')->with('error', '購入処理に失敗しました。');
             }
 
-            return redirect()->route('item', [$item->id])
-                ->with('message', '商品を購入しました。');
+            Session::forget('cart');
+
+            $orders = Order::where('payer_id', $payer_id)->get();
+
+            $orders->transform(function ($order, $key) {
+                $order->cart = unserialize($order->cart);
+
+
+                return $order;
+                // php artisan make:migration add_payer_id_to_orders
+            });
+
+            $order->save();
+
+            // php artisan make:mail SendOrderMail
+            // Mail::to(Auth::user()->email)->send(new SendOrderMail($orders));
+
+            return redirect()->route('cart.index')
+                ->with('status', 'お支払いが完了しました。');
         }
     }
 

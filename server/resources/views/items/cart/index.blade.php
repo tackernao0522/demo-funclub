@@ -117,7 +117,7 @@
             </div>
             <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
-                    <h3>カートの中身合計</h3>
+                    <h3>カート内合計</h3>
                     <p class="d-flex">
                         <span>小計</span>
                         <span>¥{{ number_format(Session::has('cart') ? Session::get('cart')->totalPrice : 0) }}</span>
@@ -136,7 +136,7 @@
                         <span>¥{{ number_format(Session::has('cart') ? Session::get('cart')->totalPrice : 0) }}</span>
                     </p>
                 </div>
-                <p><a href="{{ url('/checkout') }}" class="btn btn-primary py-3 px-4">決済ページへ</a></p>
+                <p><a href="{{ route('items.buy') }}" class="btn btn-primary py-3 px-4">決済ページへ</a></p>
             </div>
         </div>
     </div>
