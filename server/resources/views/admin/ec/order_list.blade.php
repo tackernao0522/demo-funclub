@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+{{Form::hidden('', $increment = 1)}}
 @include('share.status_card')
 <div class="container">
     <div class="header-title"><a href="{{ route('admin') }}">オーダーリスト</a></div>
@@ -19,6 +20,7 @@
             <table class="table table-dark">
                 <thead>
                     <tr>
+                        <th scope="col" style="width: 10%"></th>
                         <th scope="col" style="width: 30%">状態</th>
                         <th scope="col" style="width: 30%">名前</th>
                         <th scope="col" style="width: 30%"></th>
@@ -27,10 +29,11 @@
                 <tbody>
                     @foreach($orders as $order)
                     <tr>
+                        <td>{{ $increment }}</td>
                         @if ($order->status == 1)
-                        <th scope="row"><span class="{{ $order->status_class }}">1:{{ $order->status_label }}</span></th>
+                        <td scope="row"><span class="{{ $order->status_class }}">1:{{ $order->status_label }}</span></td>
                         @else
-                        <th scope="row"><span class="{{ $order->status_class }}">2:{{ $order->status_label }}</span></th>
+                        <td scope="row"><span class="{{ $order->status_class }}">2:{{ $order->status_label }}</span></td>
                         @endif
                         <td><a href="{{ route('order.edit', ['id' => $order]) }}" style="color: white">{{ $order->name }}</a></td>
                         <td>
@@ -43,7 +46,7 @@
                                         </button>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" style="margin: 25px 0 0 50px; width: 200px">
-                                        <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{-- $contact->id --}}">
+                                        <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $order->id }}">
                                             <i class="fas fa-trash-alt pl-1"></i>このリストを削除する
                                         </a>
                                     </div>
@@ -52,7 +55,7 @@
                             <!-- Dropdown -->
 
                             <!-- modal -->
-                            <div id="modal-delete-{{-- $contact->id --}}" class="modal fade" tabindex="-1" role="dialog">
+                            <div id="modal-delete-{{ $order->id }}" class="modal fade" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -60,11 +63,11 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="POST" action="{{-- route('contacts.destroy', ['id' => $contact->id]) --}}">
+                                        <form method="POST" action="{{ route('order.destroy', ['id' => $order->id]) }}">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-body" style="color: black">
-                                                リスト：{{-- $contact->your_name --}}さんを削除します。よろしいですか？
+                                                リスト：{{ $order->name }}さんを削除します。よろしいですか？
                                             </div>
                                             <div class="modal-footer justify-content-between">
                                                 <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
@@ -76,6 +79,7 @@
                             </div>
                         </td>
                     </tr>
+                    {{Form::hidden('', $increment = $increment + 1)}}
                     @endforeach
                 </tbody>
             </table>
