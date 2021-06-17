@@ -44,6 +44,11 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::post('small_image/edit/{smallImage}', 'Admin\InformationController@editInfoSmallImage');
   // Info削除
   Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('info.destroy');
+  // オーダーリスト
+  Route::get('/item/orders', 'Admin\OrderController@orders')->name('item.orders');
+  // オーダリスト編集フォーム
+  Route::get('/order/edit/{id}', 'Admin\OrderController@orderEditForm')->name('order.edit');
+  Route::post('/order/edit/{order}', 'Admin\OrderController@EditStatus')->name('edit.status');
 
   // user
   Route::get('/', 'TopController@index')->name('top');
@@ -90,14 +95,6 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       ->group(function () {
         Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');
       });
-    // // カートの中身
-    // Route::get('/cartItems', 'CartItemController@index');
-    // // カートに入れる
-    // Route::post('/cartItem', 'CartItemController@store')->name('cart.item');
-    // // カート商品削除
-    // Route::delete('/cartitem/{cartItem}', 'CartItemController@destroy');
-    // // カート商品数量変更
-    // Route::put('/cartitem/{cartItem}', 'CartItemController@update');
   });
 
   // Contactページ

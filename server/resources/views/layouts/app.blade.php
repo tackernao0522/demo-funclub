@@ -67,6 +67,7 @@
                                                      document.getElementById('logout-form').submit();">{{ __('ログアウト') }}</a></li>
                     @if ( Auth::check() && Auth::user()->role === 'admin' )
                     <li><a href="{{ route('admin') }}">{{ __('管理者用') }}</a></li>
+                    <li><a href="{{ route('item.orders') }}">オーダーリスト</a></li>
                     @endif
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

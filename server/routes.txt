@@ -14,10 +14,10 @@
 |        | GET|HEAD | admin/posts/index             | posts.index            | App\Http\Controllers\Admin\PostController@index                         | web,auth.very_basic,admin                            |
 |        | GET|HEAD | admin/posts/{category}/index  | categories.show        | App\Http\Controllers\Admin\PostController@categoryShow                  | web,auth.very_basic,admin                            |
 |        | GET|HEAD | api/user                      |                        | Closure                                                                 | api,auth:api                                         |
-|        | POST     | artice/post/create            |                        | App\Http\Controllers\Admin\PostController@articleCreate                 | web,auth.very_basic,admin                            |
 |        | GET|HEAD | artice/post/create            | articles.create        | App\Http\Controllers\Admin\PostController@articleCreateForm             | web,auth.very_basic,admin                            |
-|        | POST     | article/post/edit/{post}      |                        | App\Http\Controllers\Admin\PostController@editArticle                   | web,auth.very_basic,admin                            |
+|        | POST     | artice/post/create            |                        | App\Http\Controllers\Admin\PostController@articleCreate                 | web,auth.very_basic,admin                            |
 |        | GET|HEAD | article/post/edit/{post}      | articles.edit          | App\Http\Controllers\Admin\PostController@articleEditForm               | web,auth.very_basic,admin                            |
+|        | POST     | article/post/edit/{post}      |                        | App\Http\Controllers\Admin\PostController@editArticle                   | web,auth.very_basic,admin                            |
 |        | DELETE   | article/post/{id}             | articles.destroy       | App\Http\Controllers\Admin\PostController@destroy                       | web,auth.very_basic,admin                            |
 |        | GET|HEAD | buy/items                     | items.buy              | App\Http\Controllers\ItemsController@showBuyItemForm                    | web,auth.very_basic,auth                             |
 |        | POST     | buy/items                     |                        | App\Http\Controllers\ItemsController@buyItem                            | web,auth.very_basic,auth                             |
@@ -32,13 +32,14 @@
 |        | POST     | edit_item/{item}              |                        | App\Http\Controllers\Admin\SellController@editItem                      | web,auth.very_basic,auth,admin                       |
 |        | GET|HEAD | edit_item/{item}              | items.edit             | App\Http\Controllers\Admin\SellController@itemEditForm                  | web,auth.very_basic,auth,admin                       |
 |        | GET|HEAD | home                          | home                   | App\Http\Controllers\HomeController@index                               | web,auth.very_basic,auth                             |
-|        | POST     | info/post/create              |                        | App\Http\Controllers\Admin\InformationController@informationCreate      | web,auth.very_basic,admin                            |
 |        | GET|HEAD | info/post/create              | information.create     | App\Http\Controllers\Admin\InformationController@informationCreateForm  | web,auth.very_basic,admin                            |
+|        | POST     | info/post/create              |                        | App\Http\Controllers\Admin\InformationController@informationCreate      | web,auth.very_basic,admin                            |
 |        | DELETE   | info/post/{id}                | info.destroy           | App\Http\Controllers\Admin\InformationController@destroy                | web,auth.very_basic,admin                            |
 |        | GET|HEAD | info_header/edit              | info_header.edit       | App\Http\Controllers\Admin\InformationController@infoHeaderBodyEditForm | web,auth.very_basic,admin                            |
 |        | POST     | info_header/edit/{headerBody} | infomation_header.edit | App\Http\Controllers\Admin\InformationController@editInfoHeaderBody     | web,auth.very_basic,admin                            |
 |        | GET|HEAD | information                   | informations.index     | App\Http\Controllers\InformationController@index                        | web,auth.very_basic,auth                             |
 |        | GET|HEAD | information/{information}     | information.show       | App\Http\Controllers\InformationController@show                         | web,auth.very_basic,auth                             |
+|        | GET|HEAD | item/orders                   | item.orders            | App\Http\Controllers\Admin\OrderController@orders                       | web,auth.very_basic,admin                            |
 |        | DELETE   | item/{id}                     | items.destroy          | App\Http\Controllers\Admin\SellController@destroy                       | web,auth.very_basic,auth,admin                       |
 |        | GET|HEAD | items/index                   | items.index            | App\Http\Controllers\ItemsController@showItems                          | web,auth.very_basic,auth                             |
 |        | GET|HEAD | items/{item}                  | item                   | App\Http\Controllers\ItemsController@showItemDetail                     | web,auth.very_basic,auth                             |
@@ -51,6 +52,8 @@
 |        | GET|HEAD | mypage/bought-items           | mypage.bought-items    | App\Http\Controllers\MyPage\BoughtItemsController@showBoughtItems       | web,auth.very_basic,auth                             |
 |        | GET|HEAD | news                          | articles.index         | App\Http\Controllers\ArticleController@index                            | web,auth.very_basic,auth                             |
 |        | GET|HEAD | news/{category}/index         | news.category          | App\Http\Controllers\ArticleController@categoryNews                     | web,auth.very_basic,auth                             |
+|        | GET|HEAD | order/edit/{id}               | order.edit             | App\Http\Controllers\Admin\OrderController@orderEditForm                | web,auth.very_basic,admin                            |
+|        | POST     | order/edit/{order}            | edit.status            | App\Http\Controllers\Admin\OrderController@EditStatus                   | web,auth.very_basic,admin                            |
 |        | POST     | password/confirm              |                        | App\Http\Controllers\Auth\ConfirmPasswordController@confirm             | web,auth.very_basic,auth                             |
 |        | GET|HEAD | password/confirm              | password.confirm       | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm     | web,auth.very_basic,auth                             |
 |        | POST     | password/email                | password.email         | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail   | web,auth.very_basic                                  |
@@ -58,13 +61,13 @@
 |        | POST     | password/reset                | password.update        | App\Http\Controllers\Auth\ResetPasswordController@reset                 | web,auth.very_basic                                  |
 |        | GET|HEAD | password/reset/{token}        | password.reset         | App\Http\Controllers\Auth\ResetPasswordController@showResetForm         | web,auth.very_basic                                  |
 |        | POST     | process                       | process                | App\Http\Controllers\ContactController@process                          | web,auth.very_basic                                  |
-|        | GET|HEAD | register                      | register               | App\Http\Controllers\Auth\RegisterController@showRegistrationForm       | web,auth.very_basic,guest                            |
 |        | POST     | register                      |                        | App\Http\Controllers\Auth\RegisterController@register                   | web,auth.very_basic,guest                            |
+|        | GET|HEAD | register                      | register               | App\Http\Controllers\Auth\RegisterController@showRegistrationForm       | web,auth.very_basic,guest                            |
 |        | GET|HEAD | remove_from_cart/{id}         | remove.cart            | App\Http\Controllers\ItemsController@remove_from_cart                   | web,auth.very_basic,auth                             |
 |        | POST     | sell                          |                        | App\Http\Controllers\Admin\SellController@sellItem                      | web,auth.very_basic,auth,admin                       |
 |        | GET|HEAD | sell                          | sell                   | App\Http\Controllers\Admin\SellController@showSellForm                  | web,auth.very_basic,auth,admin                       |
-|        | GET|HEAD | small_image/edit/{smallImage} | small_image.edit       | App\Http\Controllers\Admin\InformationController@infoSmallImageForm     | web,auth.very_basic,admin                            |
 |        | POST     | small_image/edit/{smallImage} |                        | App\Http\Controllers\Admin\InformationController@editInfoSmallImage     | web,auth.very_basic,admin                            |
+|        | GET|HEAD | small_image/edit/{smallImage} | small_image.edit       | App\Http\Controllers\Admin\InformationController@infoSmallImageForm     | web,auth.very_basic,admin                            |
 |        | GET|HEAD | sold-items                    | sold-items             | App\Http\Controllers\Admin\SoldItemsController@showSoldItems            | web,auth.very_basic,auth,admin                       |
 |        | GET|HEAD | stripe/payment/{id}           | cashier.payment        | Laravel\Cashier\Http\Controllers\PaymentController@show                 | Laravel\Cashier\Http\Middleware\VerifyRedirectUrl    |
 |        | POST     | stripe/webhook                | cashier.webhook        | Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook        |                                                      |

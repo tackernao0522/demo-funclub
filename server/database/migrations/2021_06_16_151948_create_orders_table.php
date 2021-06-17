@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('phone_number');
             $table->mediumText('cart');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
