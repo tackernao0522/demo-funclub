@@ -29,6 +29,7 @@
         <li><a class="logout-hover" style="color: #0bd" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                        document.getElementById('logout-form').submit();">{{ __('ログアウト') }}</a></li>
         <li><a href="{{ route('admin') }}">{{ __('管理者用') }}</a></li>
+        <li><a href="{{ route('item.orders') }}">オーダリスト</a></li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
           @csrf
         </form>
