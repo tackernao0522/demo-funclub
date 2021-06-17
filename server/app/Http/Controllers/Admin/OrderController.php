@@ -95,6 +95,19 @@ class OrderController extends Controller
             ->with('status', '状態を更新しました。');
     }
 
+    public function destroy(Order $id)
+    {
+        if ($id->status == '2') {
+            $id->delete();
+
+            return redirect()->route('item.orders')
+                ->with('status', $id->name . 'さんのリストを削除しました。');
+        } else {
+            return redirect()->route('item.orders')
+                ->with('status', '未発送リストは削除できません。');
+        }
+    }
+
     private function escape(string $value)
     {
         return str_replace(

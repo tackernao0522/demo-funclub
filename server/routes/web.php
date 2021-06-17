@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   // オーダリスト編集フォーム
   Route::get('/order/edit/{id}', 'Admin\OrderController@orderEditForm')->name('order.edit');
   Route::post('/order/edit/{order}', 'Admin\OrderController@EditStatus')->name('edit.status');
+  // オーダーリスト(削除)
+  Route::delete('/order/list/{id}', 'Admin\OrderController@destroy')->name('order.destroy');
 
   // user
   Route::get('/', 'TopController@index')->name('top');
