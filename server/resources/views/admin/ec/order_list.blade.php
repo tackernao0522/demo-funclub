@@ -35,7 +35,7 @@
                         @else
                         <td scope="row"><span class="{{ $order->status_class }}">2:{{ $order->status_label }}</span></td>
                         @endif
-                        <td><a href="{{ route('order.edit', ['id' => $order]) }}" style="color: white">{{ $order->name }}</a></td>
+                        <td><a href="{{ route('order.edit', ['id' => $order]) }}" style="color: white">{{ $order->name . ' 様' }}</a></td>
                         <td>
                             <!-- Dropdown -->
                             <div class="card-text">
