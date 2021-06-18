@@ -34,6 +34,11 @@
 <img class="card-img-top" src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}">
 @if ( Auth::check() && Auth::user()->role === 'admin' )
 <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary sold_items"><i class="nav-icon fas fa-edit"></i></a>
+@if ( $item->status == 1 )
+<a href="{{ url('/unactivate_item/' . $item->id) }}" class="btn btn-success items_status">出品停止</a>
+@else
+<a href="{{ url('/activate_item/' . $item->id) }}" class="btn btn-warning items_status">出品開始</a>
+@endif
 <a href="#" id="delete" class="btn btn-danger sold_items" data-toggle="modal" data-target="#modal-delete-{{ $item->id }}"><i class="nav-icon fas fa-trash"></i></a>
 @include('admin.ec.modal')
 @endif

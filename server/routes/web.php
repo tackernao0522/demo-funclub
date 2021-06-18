@@ -88,6 +88,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/remove_from_cart/{id}', 'ItemsController@remove_from_cart')->name('remove.cart');
     // 販売商品一覧
     Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
+    // 販売開始処理
+    Route::get('/activate_item/{id}', 'Admin\SoldItemsController@activate_item');
+    // 販売停止処理
+    Route::get('/unactivate_item/{id}', 'Admin\SoldItemsController@unactivate_item');
     // 商品購入画面
     Route::get('/buy/items', 'ItemsController@showBuyItemForm')->name('items.buy');
     Route::post('/buy/items', 'ItemsController@buyItem');

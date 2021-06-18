@@ -66,6 +66,30 @@ class SoldItemsController extends Controller
             ->with('items', $items);
     }
 
+    public function activate_item($id)
+    {
+        $item = Item::find($id);
+
+        $item->status = 1;
+
+        $item->update();
+
+        return redirect()->route('sold-items')
+            ->with('status', $item->name . 'を出品開始しました。');
+    }
+
+    public function unactivate_item($id)
+    {
+        $item = Item::find($id);
+
+        $item->status = 0;
+
+        $item->update();
+
+        return redirect()->route('sold-items')
+            ->with('status', $item->name . 'を出品停止しました。');
+    }
+
     private function escape(string $value)
     {
         return str_replace(
