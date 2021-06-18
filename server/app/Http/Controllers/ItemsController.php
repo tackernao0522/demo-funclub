@@ -60,10 +60,13 @@ class ItemsController extends Controller
             'keyword'  => $request->input('keyword', ''),
         ];
 
-        $items = $query->orderByRaw("FIELD(state, '" . Item::STATE_SELLING . "', '" . Item::STATE_BOUGHT . "')")
+        // $items = $query->orderByRaw("FIELD(state, '" . Item::STATE_SELLING . "', '" . Item::STATE_BOUGHT . "')")
+        //     ->orderBy('id', 'DESC')
+        //     ->paginate(6);
+
+        $items = $query->where('status', 1)
             ->orderBy('id', 'DESC')
             ->paginate(6);
-
 
         return view('items.items')
             ->with('categories', $categories)
@@ -74,6 +77,11 @@ class ItemsController extends Controller
     public function showItemDetail(Item $item)
     {
         if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
+            if ($item->status == 0) {
+                return redirect()->route('items.index')
+                    ->with('status', $item->name . 'は販売していません。');
+            }
+
             return view('items.item_detail')
                 ->with('item', $item);
         } else {
@@ -86,13 +94,26 @@ class ItemsController extends Controller
     {
         if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
 
+            // $items = Item::all();
+
+            // foreach ($items as $item) {
+            //     $status = $item->status;
+            // }
+
+            // if ($status == 0) {
+            //     abort(404);
+            // }
+
             $item = Item::find($id);
+            if ($item->status == 0) {
+                return redirect()->route('items.index')
+                    ->with('status', $item->name . 'は販売していません。');
+            }
 
             $oldCart = Session::has('cart') ? Session::get('cart') : null;
             $cart = new Cart($oldCart);
             $cart->add($item, $id);
             Session::put('cart', $cart);
-            // dd(Session::get('cart'));
 
             return back()
                 ->with('status', $item->name . 'をカートに入れました。');
@@ -148,9 +169,6 @@ class ItemsController extends Controller
     public function showBuyItemForm()
     {
         if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
-            // if (!$item->isStateSelling) {
-            //     abort(404);
-            // }
 
             if (!Session::has('cart')) {
                 return redirect()->route('items.index')->with('status', 'カートの中身はありません。');
