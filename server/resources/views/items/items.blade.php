@@ -32,7 +32,7 @@ Online Shop
         <i class="fas fa-yen-sign"></i>
         <span class="ml-1">{{number_format($item->price)}}</span>
       </div>
-      @if ($item->isStateBought)
+      @if ($item->status == 0)
       <div class="position-absolute py-1 font-weight-bold d-flex justify-content-center align-items-end" style="left: 0; top: 0; color: white; background-color: #EA352C; transform: translate(-50%,-50%) rotate(-45deg); width: 125px; height: 125px; font-size: 20px;">
         <span>SOLD</span>
       </div>
@@ -40,7 +40,9 @@ Online Shop
     </div>
     @if (Auth::check() && Auth::user()->role === 'admin')
     <div class="cart-form item-cart">
+      @if ($item->status == 1)
       <a href="/addToCart/{{ $item->id }}" class="btn btn-primary" style="height: 35px !important; line-height: inherit">カートに入れる</a>
+      @endif
       <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
       <a href="#" id="delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $item->id }}"><i class="nav-icon fas fa-trash"></i></a>
       @include('admin.ec.modal')
@@ -48,7 +50,9 @@ Online Shop
     @endif
     @if (Auth::check() && Auth::user()->role === 'premium')
     <div class="heart d-flex justify-content-center align-items-center" style="margin-top: 5px">
+      @if ($item->status == 1)
       <a href="/addToCart/{{ $item->id }}" class="btn btn-primary col-md-7" style="height: 35px !important; line-height: inherit">カートに入れる</a>
+      @endif
     </div>
     @endif
     <h6 style="margin-left: 19px; margin-bottom: 20px; padding-top: 5px; color: fuchsia">在庫数：{{ $item->stock }}</h6>

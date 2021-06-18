@@ -33,10 +33,10 @@
 
     <div class="row">
       <div class="col-sm-12">
-        @if ($item->isStateSelling)
+        @if ($item->status == 1)
         <a href="/addToCart/{{ $item->id }}" class="btn btn-primary btn-block">カートに入れる</a>
         @else
-        <button class="btn btn-dark btn-block" disabled>売却済み</button>
+        <button class="btn btn-dark btn-block" disabled>売り切れ</button>
         @endif
       </div>
     </div>
