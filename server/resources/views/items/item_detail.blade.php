@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{$item->name}} | 商品詳細
+{{ $item->name }} | 商品詳細
 @endsection
 
 @section('content')
