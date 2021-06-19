@@ -42,6 +42,7 @@ class OrderController extends Controller
             return $order;
         });
 
+        // dd($orders);
         // $orders = $query->orderBy('created_at', 'desc')->get();
 
         return view('admin.ec.order_list')
@@ -51,7 +52,7 @@ class OrderController extends Controller
 
     public function orderEditForm($id)
     {
-        $session = Session::put('id', $id);
+        Session::put('id', $id);
 
         $orders = Order::where('id', Session::get('id'))->get();
 
@@ -69,8 +70,6 @@ class OrderController extends Controller
 
             return $order;
         });
-
-        // dd($orders);
 
         return view(
             'admin.ec.order_edit_form',
