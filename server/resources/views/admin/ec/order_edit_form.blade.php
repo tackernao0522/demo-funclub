@@ -70,7 +70,7 @@
                             @foreach($order->cart->items as $item)
                             <div class="mb-2" style="font-size: 1.5rem !important">
                                 {{ $increment . '：'}}
-                                {{ $item['item_name'] . ' ／ ' }} {{ '  数量 ' . '[' . $item['qty'] . ']  ／' }} {{ ' 単価 ' . '[¥' . number_format($item['item_price']) . '] ／ ' }} {{ ' 小計 ' . '[¥' . number_format($item['item_price'] * $item['qty']) . ']' }}</ol>
+                                {{ $item['item_name'] . ' ／ ' }} {{ '  数量 ' . '[' . $item['qty'] . ']  ／' }} {{ ' 単価 ' . '[¥' . number_format($item['item_price']) . '] ／ ' }} {{ ' 小計 ' . '[¥' . number_format($item['item_price'] * $item['qty']) . ']' }}
                                 <input type="hidden" name="item_name" value="{{ $item['item_name'] }}">
                                 <input type="hidden" name="qty" value="{{ $item['qty'] }}">
                                 <input type="hidden" name="item_price" value="{{ $item['item_price'] }}">
