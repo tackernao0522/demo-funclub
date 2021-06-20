@@ -60,13 +60,11 @@ class ItemsController extends Controller
             'keyword'  => $request->input('keyword', ''),
         ];
 
-        // $items = $query->orderByRaw("FIELD(state, '" . Item::STATE_SELLING . "', '" . Item::STATE_BOUGHT . "')")
+        $items = $query->orderBy('id', 'DESC')->paginate(6);
+
+        // $items = $query->where('status', 1)
         //     ->orderBy('id', 'DESC')
         //     ->paginate(6);
-
-        $items = $query->where('status', 1)
-            ->orderBy('id', 'DESC')
-            ->paginate(6);
 
         return view('items.items')
             ->with('categories', $categories)
@@ -77,10 +75,10 @@ class ItemsController extends Controller
     public function showItemDetail(Item $item)
     {
         if (Auth::check() && Auth::user()->role === 'admin' || Auth::check() && Auth::user()->role === 'premium') {
-            if ($item->status == 0) {
-                return redirect()->route('items.index')
-                    ->with('status', $item->name . 'は販売していません。');
-            }
+            // if ($item->status == 0) {
+            //     return redirect()->route('items.index')
+            //         ->with('status', $item->name . 'は販売していません。');
+            // }
 
             return view('items.item_detail')
                 ->with('item', $item);
@@ -107,7 +105,7 @@ class ItemsController extends Controller
             $item = Item::find($id);
             if ($item->status == 0) {
                 return redirect()->route('items.index')
-                    ->with('status', $item->name . 'は販売していません。');
+                    ->with('status', $item->name . 'は売れ切れです。');
             }
 
             $oldCart = Session::has('cart') ? Session::get('cart') : null;
