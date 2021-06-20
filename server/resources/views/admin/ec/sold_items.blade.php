@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-販売した商品一覧
+販売商品一覧
 @endsection
 
 @section('content')
@@ -55,7 +55,7 @@
 
       </div>
       @empty
-      <div class="text-center pb-3" style="color: deeppink">販売した商品はありません。</div>
+      <div class="text-center pb-3" style="color: deeppink">販売商品はありません。</div>
       @endforelse
     </div>
   </div>

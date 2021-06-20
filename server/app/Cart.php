@@ -29,6 +29,7 @@ class Cart extends Model
             'qty' => 0, 'item_id' => 0, 'item_name' => $item->name,
             'delivery_time_id' => $item->deliveryTime->name,
             'item_price' => $item->price, 'item_image_name' => $item->item_image_name, 'item' => $item,
+            'item_status' => $item->status
         ];
 
         if ($this->items) {
@@ -43,6 +44,7 @@ class Cart extends Model
         $storedItem['item_price'] = $item->price;
         $storedItem['item_image_name'] = $item->item_image_name;
         $storedItem['delivery_time_id'] = $item->deliveryTime->name;
+        $storedItem['item_status'] = $item->status;
         $this->totalQty++;
         $this->totalPrice += $item->price;
         $this->items[$item_id] = $storedItem;
