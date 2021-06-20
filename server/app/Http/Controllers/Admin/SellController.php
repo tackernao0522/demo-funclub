@@ -60,7 +60,8 @@ class SellController extends Controller
         $item->seller_id                = $user->id;
         $item->name                     = $request->input('name');
         $item->description              = $request->input('description');
-        $item->stock                    = $request->input('stock');
+        $item->sub_theme                = $request->input('sub_theme');
+        $item->size                     = $request->input('size');
         $item->secondary_ec_category_id = $request->input('ec_category');
         $item->item_condition_id        = $request->input('condition');
         $item->delivery_method_id       = $request->input('delivery');
@@ -109,7 +110,8 @@ class SellController extends Controller
 
         $item->name                     = $request->input('name');
         $item->description              = $request->input('description');
-        $item->stock                    = $request->input('stock');
+        $item->sub_theme                = $request->input('sub_theme');
+        $item->size                     = $request->input('size');
         $item->secondary_ec_category_id = $request->input('ec_category');
         $item->item_condition_id        = $request->input('condition');
         $item->delivery_method_id       = $request->input('delivery');

@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('title')
+プレミアム会員入会
+@endsection
+
 <link href="{{ asset('css/stripe.css') }}" rel="stylesheet">
 
 @section('content')

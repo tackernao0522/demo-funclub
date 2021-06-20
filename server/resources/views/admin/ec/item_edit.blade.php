@@ -43,10 +43,15 @@
                             <label class="article" for="description">商品の説明</label>
                             <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{ old('description', $item->description) }}</textarea>
                         </div>
-                        {{-- 在庫数 --}}
+                        {{-- サブテーマ --}}
                         <div class="form-group">
-                            <label class="article" for="stock">在庫数</label>
-                            <input type="text" class="form-control" name="stock" id="stock" value="{{ old('stock', $item->stock) }}" placeholder="半角数字で入力してください" />
+                            <label class="article" for="sub_theme">サブテーマ</label>
+                            <input type="text" class="form-control" name="sub_theme" id="sub_theme" value="{{ old('sub_theme', $item->sub_theme) }}" placeholder="50文字以内" />
+                        </div>
+                        {{-- サイズ --}}
+                        <div class="form-group">
+                            <label class="article" for="size">サイズ</label>
+                            <input type="text" class="form-control" name="size" id="size" value="{{ old('size', $item->size) }}" placeholder="50文字以内" />
                         </div>
                         {{-- カテゴリー --}}
                         <div class="form-group">

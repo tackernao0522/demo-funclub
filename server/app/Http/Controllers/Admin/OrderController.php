@@ -58,6 +58,7 @@ class OrderController extends Controller
 
         foreach ($orders as $order) {
             $payer_id = $order->payer_id;
+            $item_size = $order->item_size;
             $name = $order->name;
             $zip_code = $order->zip_code;
             $address = $order->address;
@@ -76,6 +77,7 @@ class OrderController extends Controller
             [
                 'payer_id' => $payer_id,
                 'date' => $date,
+                'item_size' => $item_size,
                 'name' => $name,
                 'orders' => $orders,
                 'zip_code' => $zip_code,

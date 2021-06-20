@@ -30,7 +30,7 @@ Online Shop
       <img class="card-img-top" src="{{ Storage::disk('s3')->url("item-images/{$item->item_image_name}") }}">
       <div class="position-absolute py-2 px-3" style="left: 0; bottom: 20px; color: white; background-color: rgba(0, 0, 0, 0.70)">
         <i class="fas fa-yen-sign"></i>
-        <span class="ml-1">{{number_format($item->price)}}</span>
+        <span class="ml-1">{{number_format($item->price)}}(税込)</span>
       </div>
       @if ($item->status == 0)
       <div class="position-absolute py-1 font-weight-bold d-flex justify-content-center align-items-end" style="left: 0; top: 0; color: white; background-color: #EA352C; transform: translate(-50%,-50%) rotate(-45deg); width: 125px; height: 125px; font-size: 20px;">
@@ -55,7 +55,10 @@ Online Shop
       @endif
     </div>
     @endif
-    <h6 style="margin-left: 19px; margin-bottom: 20px; padding-top: 5px; color: fuchsia">在庫数：{{ $item->stock }}</h6>
+    <h6 style="margin-left: 19px; margin-bottom: 20px; padding-top: 5px; color: fuchsia">{{ $item->sub_theme }}</h6>
+    @if($item->size)
+    <h6 style="margin-left: 19px; margin-bottom: 20px; color: red"><span style="color: blue">サイズ：</span>{{ $item->size }}</h6>
+    @endif
     <small class="text-muted" style="margin: -10px 0 0 -10px">{{$item->secondaryEcCategory->primaryEcCategory->name}} / {{$item->secondaryEcCategory->name}}</small>
     <div class="card-body">
       <a href="{{ route('item', [$item->id]) }}">

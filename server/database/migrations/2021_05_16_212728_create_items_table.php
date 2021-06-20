@@ -22,7 +22,8 @@ class CreateItemsTable extends Migration
             $table->bigInteger('shipping_fee_payer_id')->unsigned();
             $table->bigInteger('delivery_method_id')->unsigned();
             $table->bigInteger('delivery_time_id')->unsigned();
-            $table->bigInteger('stock');
+            $table->string('sub_theme');
+            $table->string('size')->nullable();
             $table->string('name');
             $table->string('item_image_name');
             $table->text('description');

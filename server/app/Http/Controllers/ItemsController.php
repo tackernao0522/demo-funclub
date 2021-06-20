@@ -173,8 +173,10 @@ class ItemsController extends Controller
             if (!Session::has('cart')) {
                 return redirect()->route('items.index')->with('status', 'カートの中身はありません。');
             }
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
 
-            return view('items.item_buy_form');
+            return view('items.item_buy_form', ['items' => $cart->items]);
         }
     }
 
@@ -187,6 +189,7 @@ class ItemsController extends Controller
             $payer_id = time();
 
             $order = new Order();
+            $order->item_size = $request->input('item_size');
             $order->name = $request->input('name');
             $order->zip_code = $request->input('zip_code');
             $order->address = $request->input('address');

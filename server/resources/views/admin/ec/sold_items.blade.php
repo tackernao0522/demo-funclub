@@ -38,8 +38,11 @@
               @endif
               <span>{{$item->secondaryEcCategory->primaryEcCategory->name}} / {{$item->secondaryEcCategory->name}}</span>
             </div>
+            <div class="card-title mt-2 font-weight-bold" style="font-size: 15px; color: fuchsia">{{$item->sub_theme}}</div>
             <div class="card-title mt-2 font-weight-bold" style="font-size: 20px">{{$item->name}}</div>
-            <div class="card-title mt-2 font-weight-bold" style="font-size: 15px">残在庫数：{{$item->stock}}</div>
+            @if ($item->size)
+            <div class="card-title mt-2 font-weight-bold" style="font-size: 15px; color: red"><span style="color: blue">サイズ：</span>{{ $item->size }}</div>
+            @endif
             <div>
               <i class="fas fa-yen-sign"></i>
               <span class="ml-1">{{number_format($item->price)}}(税込)</span>

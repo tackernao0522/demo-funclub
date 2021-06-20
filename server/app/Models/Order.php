@@ -18,6 +18,7 @@ class Order extends Model
         'name',
         'zip_code',
         'address',
+        'item_size',
         'status',
     ];
 

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+{{Form::hidden('', $increment = 1)}}
 <!-- start content -->
 <div class="hero-wrap hero-bread" style="background-image: url('/frontend/images/bg_1.jpg');">
     <div class="container">
@@ -50,55 +51,61 @@
                     <div class="row align-items-end">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="firstname">お名前(フルネーム)</label>
+                                <label for="firstname">希望サイズ(サイズのある商品の場合 200文字以内)</label>
+                                <input type="text" class="form-control" name="item_size" placeholder="例)TシャツBlack Sを1枚 Mを1枚" value="{{ old('item_size') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="firstname">お名前(フルネーム)<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="firstname">郵便番号</label>
+                                <label for="firstname">郵便番号<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" class="form-control" name="zip_code" placeholder="半角数字で入力してください" value="{{ old('zip_code') }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="lastname">お届け先住所</label>
+                                <label for="lastname">お届け先住所<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" class="form-control" name="address" value="{{ old('address') }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="lastname">電話番号</label>
+                                <label for="lastname">電話番号<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" class="form-control" name="phone_number" placeholder="半角数字で入力してください" value="{{ old('phone_number') }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="lastname">カード名義</label>
+                                <label for="lastname">カード名義<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" class="form-control" id="card-name" placeholder="英ローマ字" name="card_name">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="lastname">カード番号</label>
+                                <label for="lastname">カード番号<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" class="form-control" id="card-number" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lastname">有効月</label>
+                                <label for="lastname">有効月<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" id="card-expiry-month" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lastname">有効年</label>
+                                <label for="lastname">有効年<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" id="card-expiry-year" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="lastname">CVC</label>
+                                <label for="lastname">CVC<span style="margin-left: 5px; color: red">必須</span></label>
                                 <input type="text" id="card-cvc" class="form-control" required>
                             </div>
                         </div>
@@ -115,20 +122,33 @@
                 <div class="row mt-5 pt-3">
                     <div class="col-md-12 d-flex mb-5">
                         <div class="cart-detail cart-total p-3 p-md-4">
-                            <h3 class="billing-heading mb-4">お支払い合計</h3>
+                            @if (Session::has('cart'))
+                            @foreach($items as $item)
+                            <p class="d-flex">
+                                <span>商品：{{ $increment }}</span>
+                                <span>{{ $item['item_name'] }}</span>
+                            </p>
+                            <p class="d-flex">
+                                <span>単価</span>
+                                <span>¥{{ number_format($item['item_price']) }}</span>
+                            </p>
+                            <p class="d-flex">
+                                <span>数量</span>
+                                <span>{{ $item['qty'] }}点</span>
+                            </p>
                             <p class="d-flex">
                                 <span>小計</span>
-                                <span>¥{{ number_format(Session::has('cart') ? Session::get('cart')->totalPrice : 0) }}</span>
+                                <span>¥{{ number_format($item['qty'] * $item['item_price']) }}</span>
                             </p>
-                            <!-- <p class="d-flex">
-                                <span>Delivery</span>
-                                <span>$0.00</span>
-                            </p> -->
-                            <!-- <p class="d-flex">
-                                <span>Discount</span>
-                                <span>$3.00</span>
-                            </p> -->
                             <hr>
+                            {{Form::hidden('', $increment = $increment + 1)}}
+                            @endforeach
+                            @endif
+                            <!-- <h3 class="billing-heading mb-4">お支払い合計</h3> -->
+                            <!-- <p class="d-flex"> -->
+                            <!-- <span>小計</span> -->
+                            {{-- <span>¥{{ number_format(Session::has('cart') ? Session::get('cart')->totalPrice : 0) }}</span> --}}
+                            <!-- </p> -->
                             <p class="d-flex total-price">
                                 <span>合計金額(税込)</span>
                                 <span>¥{{ number_format(Session::has('cart') ? Session::get('cart')->totalPrice : 0) }}</span>
@@ -219,3 +239,4 @@
     });
 </script>
 @endsection
+
