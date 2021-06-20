@@ -92,7 +92,6 @@
                     </li>
                     @endif
                     @if (Auth::check())
-                    <li><a href="{{ route('mypage.bought-items') }}">購入した商品</a></li>
                     <li><a href="{{ route('contact.form') }}">Contact</a></li>
                     @endif
                 </ul>

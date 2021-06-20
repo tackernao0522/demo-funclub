@@ -159,6 +159,22 @@
                 </td>
             </tr>
 
+            @foreach($orders as $order)
+            @if ($order->item_size)
+            <tr class="heading">
+                <td>
+                    サイズ
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                    {{ $order->item_size }}
+                </td>
+            </tr>
+            @endif
+            @endforeach
+
             <table>
                 <tr class="heading">
                     <td>
@@ -180,7 +196,7 @@
                 <tr class="item">
                     <td>{{ $item['item_name'] }}</td>
                     <td>{{ $item['qty'] }}</td>
-                    <td>{{ number_format($item['item_price']) }}</td>
+                    <td>¥{{ number_format($item['item_price']) }}</td>
                     <td>
                         ¥{{ number_format($item['item_price'] * $item['qty']) }}
                     </td>

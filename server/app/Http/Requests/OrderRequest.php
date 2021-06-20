@@ -24,6 +24,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
+            'size' => ['string', 'nullable', 'max:200'],
             'name' => ['required', 'string', 'max:255'],
             'zip_code' => ['required', 'string'],
             'address' => ['required', 'string'],
@@ -35,6 +36,7 @@ class OrderRequest extends FormRequest
     public function attributes()
     {
         return [
+            'size' => 'サイズ',
             'name' => 'お名前(フルネーム)',
             'zip_code' => '郵便番号',
             'address' => 'お届け先住所',

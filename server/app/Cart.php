@@ -28,7 +28,7 @@ class Cart extends Model
         $storedItem = [
             'qty' => 0, 'item_id' => 0, 'item_name' => $item->name,
             'delivery_time_id' => $item->deliveryTime->name,
-            'item_price' => $item->price, 'item_image_name' => $item->item_image_name, 'item' => $item
+            'item_price' => $item->price, 'item_image_name' => $item->item_image_name, 'item' => $item,
         ];
 
         if ($this->items) {

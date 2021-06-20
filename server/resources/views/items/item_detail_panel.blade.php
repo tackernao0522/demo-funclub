@@ -6,10 +6,12 @@
       {{$item->seller->name}}
     </td>
   </tr>
+  @if($item->size)
   <tr>
-    <th>残在庫数</th>
-    <td>{{ $item->stock }}</td>
+    <th>サイズ</th>
+    <td>{{ $item->size }}</td>
   </tr>
+  @endif
   <tr>
     <th>カテゴリー</th>
     <td>{{$item->secondaryEcCategory->primaryEcCategory->name}} / {{$item->secondaryEcCategory->name}}</td>
@@ -44,5 +46,5 @@
 @endif
 <div class="font-weight-bold text-center pb-3 pt-3" style="font-size: 24px">
   <i class="fas fa-yen-sign"></i>
-  <span>{{number_format($item->price)}}</span>
+  <span>{{number_format($item->price)}}(税込)</span>
 </div>
