@@ -44,14 +44,6 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::post('small_image/edit/{smallImage}', 'Admin\InformationController@editInfoSmallImage');
   // Info削除
   Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('info.destroy');
-  // オーダーリスト
-  Route::get('/item/orders', 'Admin\OrderController@orders')->name('item.orders');
-  // オーダリスト編集フォーム
-  Route::get('/order/edit/{id}', 'Admin\OrderController@orderEditForm')->name('order.edit');
-  Route::post('/order/edit/{order}', 'Admin\OrderController@EditStatus')->name('edit.status');
-  // オーダーリスト(削除)
-  Route::delete('/order/list/{id}', 'Admin\OrderController@destroy')->name('order.destroy');
-
   // user
   Route::get('/', 'TopController@index')->name('top');
 
@@ -66,41 +58,6 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('main_info', 'InformationController@bigShow')->name('bigInfo.show');
     // Info詳細
     Route::resource('information', 'InformationController', ['only' => ['show']]);
-    // チケット以外の販売
-    Route::get('sell', 'Admin\SellController@showSellForm')->name('sell');
-    Route::post('sell', 'Admin\SellController@sellItem');
-    // 販売商品編集
-    Route::get('/edit_item/{item}', 'Admin\SellController@itemEditForm')->name('items.edit');
-    Route::post('/edit_item/{item}', 'Admin\SellController@editItem');
-    // 商品削除
-    Route::delete('item/{id}', 'Admin\SellController@destroy')->name('items.destroy');
-    // Online shop(商品一覧)
-    Route::get('/items/index', 'ItemsController@showItems')->name('items.index');
-    // Online shop(商品詳細)
-    Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
-    // カートに商品追加
-    Route::get('/addToCart/{id}', 'ItemsController@addToCart');
-    // カートの中身
-    Route::get('/cart', 'ItemsController@cart')->name('cart.index');
-    // カート商品数量変更
-    Route::post('/update_qty/{id}', 'ItemsController@update_qty')->name('update.qty');
-    // カート商品削除
-    Route::get('/remove_from_cart/{id}', 'ItemsController@remove_from_cart')->name('remove.cart');
-    // 販売商品一覧
-    Route::get('sold-items', 'Admin\SoldItemsController@showSoldItems')->name('sold-items');
-    // 販売開始処理
-    Route::get('/activate_item/{id}', 'Admin\SoldItemsController@activate_item');
-    // 販売停止処理
-    Route::get('/unactivate_item/{id}', 'Admin\SoldItemsController@unactivate_item');
-    // 商品購入画面
-    Route::get('/buy/items', 'ItemsController@showBuyItemForm')->name('items.buy');
-    Route::post('/buy/items', 'ItemsController@buyItem');
-    // 購入商品一覧
-    Route::prefix('mypage')
-      ->namespace('MyPage')
-      ->group(function () {
-        Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');
-      });
   });
 
   // Contactページ

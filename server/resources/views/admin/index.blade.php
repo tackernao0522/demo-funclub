@@ -11,9 +11,7 @@
     <ul>
       <li><a href="{{ route('articles.create') }}">News（新規投稿）</a></li>
       <li><a href="{{ route('information.create') }}">Infomation（新規投稿）</a></li>
-      <li><a href="{{ route('sell') }}">商品の出品（新規）</a></li>
-      <li><a href="{{ route('sold-items') }}">販売商品一覧</a></li>
-      <li><a href="{{ route('item.orders') }}">商品オーダーリスト</a></li>
+      <li><a href="#">ショップダッシュボード</a></li>
       <li><a href="{{ route('contact.list') }}">Contactリスト</a></li>
     </ul>
   </div>

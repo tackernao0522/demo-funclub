@@ -29,19 +29,12 @@
                 <li><a class="logout-hover" style="color: #0bd" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                        document.getElementById('logout-form').submit();">{{ __('ログアウト') }}</a></li>
                 <li><a href="{{ route('admin') }}">{{ __('管理者用') }}</a></li>
-                <li><a href="{{ route('item.orders') }}">オーダリスト</a></li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
                 <li><a href="/">TOP</a></li>
                 <li><a href="{{ route('posts.index') }}">News</a></li>
                 <li><a href="{{ route('info.index') }}">Info</a></li>
-                <li><a href="{{ route('items.index') }}">Online Shop</a></li>
-                <li>
-                    <a href="{{ route('cart.index') }}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>カートの中身を見る[{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}]
-                    </a>
-                </li>
                 @if (Auth::check())
                 <li><a href="{{ route('contact.form') }}">Contact</a></li>
                 @endif
