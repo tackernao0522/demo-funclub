@@ -47,7 +47,7 @@ $route = Route::current()->getName();
             $adminuserrole = (auth()->guard('admin')->user()->adminuserrole == 1);
             @endphp --}}
 
-           {{-- @if($brand == true) --}}
+            {{-- @if($brand == true) --}}
             <li class="treeview {{ ($prefix == '/brand') ? 'active' : '' }}">
                 <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="message-circle"></i>
@@ -77,7 +77,7 @@ $route = Route::current()->getName();
                     <li class="{{-- ($route == 'all.subSubCategory') ? 'active' : '' --}}"><a href="{{-- route('all.subSubCategory') --}}"><i class="ti-more"></i>孫カテゴリー一覧</a></li>
                 </ul>
             </li>
-           {{-- @else
+            {{-- @else
             @endif --}}
 
             {{-- @if($product == true) --}}
@@ -310,8 +310,11 @@ $route = Route::current()->getName();
         <!-- item-->
         <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
         <!-- item-->
-        <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
+        <a href="{{ route('contact.list') }}" class="link" data-toggle="tooltip" title="" data-original-title="お問い合わせリスト"><i class="ti-email"></i></a>
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
+        <a href="{{ route('logout') }}" class="link" data-toggle="tooltip" title="" data-original-title="ログアウト" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-lock"></i></a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
 </aside>
