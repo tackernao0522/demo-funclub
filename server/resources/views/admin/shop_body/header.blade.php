@@ -101,10 +101,10 @@
                     </ul>
                 </li>
 
-                {{-- @php
+                @php
                 $id = Auth::user()->id;
-                $adminData = App\Models\Admin::find($id);
-                @endphp --}}
+                $adminData = App\User::find($id);
+                @endphp
 
                 <!-- User Account-->
                 <li class="dropdown user user-menu">

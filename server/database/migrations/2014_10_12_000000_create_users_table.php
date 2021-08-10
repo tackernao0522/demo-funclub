@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone')->nullable();
+            $table->string('phone');
             $table->enum('role', ['member', 'premium', 'admin'])->default('member');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -25,9 +25,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        DB::table('users')->insert(['id' => 1, 'name' => 'Administrator', 'email' => 'admin@example.com', 'password' => bcrypt('password'), 'role' => 'admin']);
-        DB::table('users')->insert(['id' => 2, 'name' => 'Premium', 'email' => 'premium@example.com', 'password' => bcrypt('password'), 'role' => 'premium']);
-        DB::table('users')->insert(['id' => 3, 'name' => 'User', 'email' => 'takaki55730317@gmail.com', 'password' => bcrypt('password')]);
+        DB::table('users')->insert(['id' => 1, 'name' => 'Administrator', 'email' => 'admin@example.com', 'phone' => '090-1111-1234', 'password' => bcrypt('password'), 'role' => 'admin']);
+        DB::table('users')->insert(['id' => 2, 'name' => 'Premium', 'email' => 'premium@example.com', 'phone' => '090-2222-2345', 'password' => bcrypt('password'), 'role' => 'premium']);
+        DB::table('users')->insert(['id' => 3, 'name' => 'User', 'email' => 'takaki55730317@gmail.com', 'phone' => '090-3333-3456', 'password' => bcrypt('password')]);
     }
 
     /**

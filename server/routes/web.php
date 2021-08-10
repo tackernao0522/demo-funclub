@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::get('/admin/dashboard', 'Admin\ShopDashboardController@index')->name('dashboard');
   // Admin All Routes
   Route::get('/admin/profile', 'Admin\AdminProfileController@adminProfile')->name('admin.profile');
+  Route::get('/admin/profile/edit', 'Admin\AdminProfileController@adminProfileEdit')->name('admin.profile.edit');
+  Route::post('/admin/profile/store', 'Admin\AdminProfileController@adminProfileStore')->name('admin.profile.store');
   // user
   Route::get('/', 'TopController@index')->name('top');
 

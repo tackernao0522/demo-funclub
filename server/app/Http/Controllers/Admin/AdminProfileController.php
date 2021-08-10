@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -25,5 +26,70 @@ class AdminProfileController extends Controller
         $adminData = User::find($id);
 
         return view('admin.admin_profile_view', compact('adminData'));
+    }
+
+    public function adminProfileEdit()
+    {
+        $id = Auth::user()->id;
+        $editData = User::find($id);
+
+        return view('admin.admin_profile_edit', compact('editData'));
+    }
+
+    public function adminProfileStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required',
+            'phone' => 'required',
+            'profile_photo_path' => 'mimes:jpg,jpeg,png|nullable',
+        ], [
+            'name.required' => '名前は必須です。',
+            'email.required' => 'メールアドレスは必須です。',
+            'phone.required' => '電話番号は必須です。',
+            'profile_photo_path.mimes' => 'プロフィール画像にはjpg, jpeg, pngのうちいずれかの形式のファイルを指定してください。',
+        ]);
+
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->updated_at = Carbon::now();
+
+        if ($request->has('profile_photo_path')) {
+            Storage::disk('s3')->delete('/admin-profile/' . $data->profile_photo_path);
+            $data->delete();
+            $fileName = $this->saveImage($request->file('profile_photo_path'));
+            $data['profile_photo_path'] = $fileName;
+        }
+
+        $data->save();
+
+        $notification = array(
+            'message' => '管理者プロフィールを更新しました。',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.profile')->with($notification);
+    }
+
+    private function saveImage(UploadedFile $file): string
+    {
+        $tempPath = $this->makeTempPath();
+
+        Image::make($file)->resize(100, 100)->save($tempPath);
+
+        $filePath = Storage::disk('s3')
+            ->putFile('admin-profile', new File($tempPath));
+
+        return basename($filePath);
+    }
+
+    private function makeTempPath(): string
+    {
+        $tmp_fp = tmpfile();
+        $meta = stream_get_meta_data($tmp_fp);
+        return $meta["uri"];
     }
 }
