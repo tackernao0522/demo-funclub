@@ -74,6 +74,42 @@ class AdminProfileController extends Controller
         return redirect()->route('admin.profile')->with($notification);
     }
 
+    public function adminChangePassword()
+    {
+        return view('admin.admin_change_password');
+    }
+
+    public function adminUpdateChangePassword(Request $request)
+    {
+        $this->validate($request, [
+            'oldpassword' => 'required|string|min:8',
+            'password' => 'required|confirmed',
+        ]);
+
+        $hashedPassword = Auth::user()->password;
+
+        if (Hash::check($request->oldpassword, $hashedPassword)) {
+            $admin = User::find(Auth::id());
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+            Auth::logout();
+
+            $notification = array(
+                'message' => 'パスワードを更新しました。',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('login')->with($notification);
+        } else {
+            $notification = array(
+                'message' => '現在のパスワードが無効です。',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();

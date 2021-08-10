@@ -118,6 +118,8 @@ return [
 
   'attributes' => [
     'date' => '作成日',
+    'oldpassword' => '現在のパスワード',
+    'password' => 'パスワード',
   ],
 
 ];
