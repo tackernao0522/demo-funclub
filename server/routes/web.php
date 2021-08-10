@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('info.destroy');
   // Admin Online Shop Dashboard
   Route::get('/admin/dashboard', 'Admin\ShopDashboardController@index')->name('dashboard');
+  // Admin All Routes
+  Route::get('/admin/profile', 'Admin\AdminProfileController@adminProfile')->name('admin.profile');
   // user
   Route::get('/', 'TopController@index')->name('top');
 
