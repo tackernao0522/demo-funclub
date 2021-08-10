@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::post('small_image/edit/{smallImage}', 'Admin\InformationController@editInfoSmallImage');
   // Info削除
   Route::delete('info/post/{id}', 'Admin\InformationController@destroy')->name('info.destroy');
+  // Admin Online Shop Dashboard
+  Route::get('/admin/dashboard', 'Admin\ShopDashboardController@index')->name('dashboard');
   // user
   Route::get('/', 'TopController@index')->name('top');
 
