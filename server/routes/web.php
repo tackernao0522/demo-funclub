@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::get('/admin/profile', 'Admin\AdminProfileController@adminProfile')->name('admin.profile');
   Route::get('/admin/profile/edit', 'Admin\AdminProfileController@adminProfileEdit')->name('admin.profile.edit');
   Route::post('/admin/profile/store', 'Admin\AdminProfileController@adminProfileStore')->name('admin.profile.store');
+  Route::get('/admin/change/password', 'Admin\AdminProfileController@adminChangePassword')->name('admin.change.password');
+  Route::post('/admin/update/change/password', 'Admin\AdminProfileController@adminUpdateChangePassword')->name('update.change.password');
   // user
   Route::get('/', 'TopController@index')->name('top');
 
