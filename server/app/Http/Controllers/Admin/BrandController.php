@@ -92,6 +92,21 @@ class BrandController extends Controller
             ->with($notification);
     }
 
+    public function brandDelete($id)
+    {
+        $brand = Brand::findOrFail($id);
+        Storage::disk('s3')->delete('/brands/' . $brand->brand_image);
+        $brand->delete();
+
+        $notification = array(
+            'message' => 'ブランド: ' . $brand->brand_name . 'を削除しました。',
+            'alert-type' => 'error',
+        );
+
+        return redirect()->back()
+            ->with($notification);
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();

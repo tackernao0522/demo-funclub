@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/store', 'Admin\BrandController@brandStore')->name('brand.store');
     Route::get('/edit/{id}', 'Admin\BrandController@brandEdit')->name('brand.edit');
     Route::post('/update/{id}', 'Admin\BrandController@brandUpdate')->name('brand.update');
+    Route::get('/delete/{id}', 'Admin\BrandController@brandDelete')->name('brand.delete');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
