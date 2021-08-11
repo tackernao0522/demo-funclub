@@ -57,11 +57,11 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'all.brand') ? 'active' : '' --}}"><a href="{{-- route('all.brand') --}}"><i class="ti-more"></i>ブランド一覧 (All Brand)</a></li>
+                    <li class="{{ ($route == 'all.brand') ? 'active' : '' }}"><a href="{{ route('all.brand') }}"><i class="ti-more"></i>ブランド一覧</a></li>
                 </ul>
             </li>
-            {{-- @else --}}
-            {{-- @endif --}}
+            {{-- @else
+            @endif --}}
 
             {{-- @if($category == true) --}}
             <li class="treeview {{ ($prefix == '/category') ? 'active' : '' }}">
