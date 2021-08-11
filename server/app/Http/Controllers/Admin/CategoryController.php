@@ -50,4 +50,37 @@ class CategoryController extends Controller
         return redirect()->back()
             ->with($notification);
     }
+
+    public function categoryEdit($id)
+    {
+        $category = Category::findOrFail($id);
+
+        return view('admin.shop.category.category_edit', compact('category'));
+    }
+
+    public function categoryUpdate(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $validatedData = $request->validate([
+            'category_name' => 'required',
+            'category_icon' => 'required',
+        ], [
+            'category_name.required' => 'カテゴリー名は必須です。',
+            'category_icon.required' => 'カテゴリーアイコンは必須です。',
+        ]);
+
+        $category->category_name = $request->category_name;
+        $category->category_slug_name = str_replace(' ', '-', $request->category_name);
+        $category->category_icon = $request->category_icon;
+        $category->updated_at = Carbon::now();
+        $category->save();
+
+        $notification = array(
+            'message' => 'カテゴリーID：' . $category->id . 'を更新しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('all.category')
+            ->with($notification);
+    }
 }
