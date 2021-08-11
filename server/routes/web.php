@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/store', 'Admin\CategoryController@categoryStore')->name('categoy.store');
     Route::get('/edit/{id}', 'Admin\CategoryController@categoryEdit')->name('category.edit');
     Route::post('/update/{id}', 'Admin\CategoryController@categoryUpdate')->name('category.update');
+    Route::get('/delete/{id}', 'Admin\CategoryController@categoryDelete')->name('category.delete');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
