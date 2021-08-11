@@ -53,9 +53,11 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::get('/admin/change/password', 'Admin\AdminProfileController@adminChangePassword')->name('admin.change.password');
   Route::post('/admin/update/change/password', 'Admin\AdminProfileController@adminUpdateChangePassword')->name('update.change.password');
   // Admin Brand All Routes
-  Route::prefix('brand')->group(function() {
+  Route::prefix('brand')->group(function () {
     Route::get('/view', 'Admin\BrandController@brandView')->name('all.brand');
     Route::post('/store', 'Admin\BrandController@brandStore')->name('brand.store');
+    Route::get('/edit/{id}', 'Admin\BrandController@brandEdit')->name('brand.edit');
+    Route::post('/update/{id}', 'Admin\BrandController@brandUpdate')->name('brand.update');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');

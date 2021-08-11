@@ -53,6 +53,45 @@ class BrandController extends Controller
             ->with($notification);
     }
 
+    public function brandEdit($id)
+    {
+        $brand = Brand::findOrFail($id);
+
+        return view('admin.shop.brand.brand_edit', compact('brand'));
+    }
+
+    public function brandUpdate(Request $request, $id)
+    {
+        $brand = Brand::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'brand_name' => 'required',
+            'brand_image' => 'mimes:jpg,jpeg,png,svg',
+        ], [
+            'brand_image.mimes' => 'ブランドロゴにはjpg, jpeg, png, svgのうちいずれかの形式のファイルを指定してください。'
+        ]);
+
+        if ($request->has('brand_image')) {
+            Storage::disk('s3')->delete('/brands/' . $brand->brand_image);
+            $brand->delete();
+            $fileName = $this->saveImage($request->file('brand_image'));
+            $brand->brand_image = $fileName;
+        }
+
+        $brand->brand_name = $request->brand_name;
+        $brand->brand_slug_name = str_replace(' ', '-', $request->brand_name);
+        $brand->updated_at = Carbon::now();
+        $brand->save();
+
+        $notification = array(
+            'message' => 'ブランドID: ' . $brand->id . 'を更新しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('all.brand')
+            ->with($notification);
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();
