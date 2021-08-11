@@ -86,4 +86,22 @@ class SubCategoryController extends Controller
         return redirect()->route('all.subCategory')
             ->with($notification);
     }
+
+    public function subCategoryDelete($id)
+    {
+        $subCategory = SubCategory::findOrFail($id);
+        $subCategory->delete();
+        // if (SubSubCategory::where('subCategory_id', $subCategory->id)->first()) {
+        //     $subSubCategory = SubSubCategory::where('subCategory_id', $subCategory->id)->first();
+        //     $subSubCategory->delete();
+        // }
+
+        $notification = array(
+            'message' => 'サブカテゴリー：' . $subCategory->subCategory_name . 'を削除しました。',
+            'alert-type' => 'error',
+        );
+
+        return redirect()->back()
+            ->with($notification);
+    }
 }
