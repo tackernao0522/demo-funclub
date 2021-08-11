@@ -120,6 +120,7 @@ return [
     'date' => '作成日',
     'oldpassword' => '現在のパスワード',
     'password' => 'パスワード',
+    'brand_name' => 'ブランド名',
   ],
 
 ];

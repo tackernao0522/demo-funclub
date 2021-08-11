@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   // Admin Brand All Routes
   Route::prefix('brand')->group(function() {
     Route::get('/view', 'Admin\BrandController@brandView')->name('all.brand');
+    Route::post('/store', 'Admin\BrandController@brandStore')->name('brand.store');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
