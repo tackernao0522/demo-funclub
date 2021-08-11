@@ -30,7 +30,7 @@
                                         <td><img src="{{ Storage::disk('s3')->url("brands/{$item->brand_image}") }}" style="height:40px; width:70px"></td>
                                         <td>
                                             <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a href="{{-- route('brand.delete', $item->id) --}}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('brand.delete', $item->id) }}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
