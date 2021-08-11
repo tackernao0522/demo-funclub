@@ -104,4 +104,29 @@ class SubCategoryController extends Controller
         return redirect()->back()
             ->with($notification);
     }
+
+    // That for Sub-Sub->SubCategory
+    public function subSubCategoryView()
+    {
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $subSubCategories = SubSubCategory::latest()->get();
+
+        return view('admin.shop.category.sub_subCategory_view', compact('categories', 'subSubCategories'));
+    }
+
+    public function getSubCategory($category_id)
+    {
+        $subCat = SubCategory::where('category_id', $category_id)
+            ->orderBy('subCategory_name', 'ASC')->get();
+
+        return json_encode($subCat);
+    }
+
+    public function getSubSubCategory($subCategory_id)
+    {
+        $subSubCat = SubSubCategory::where('subCategory_id', $subCategory_id)
+            ->orderBy('subSubCategory_name', 'ASC')->get();
+
+        return json_encode($subSubCat);
+    }
 }
