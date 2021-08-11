@@ -66,7 +66,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <div class="form-group">
-                                                <h5>電話番号 <span class="text-danger">*</span></h5>
+                                                <h5>電話番号 <span class="text-danger">(任意)</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="phone" class="form-control" value="{{ old('phone', $editData->phone) }}">
                                                     @error('phone')
