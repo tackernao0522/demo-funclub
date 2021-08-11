@@ -51,4 +51,39 @@ class SubCategoryController extends Controller
         return redirect()->back()
             ->with($notification);
     }
+
+    public function subCategoryEdit($id)
+    {
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+
+        $subCategory = SubCategory::findOrFail($id);
+
+        return view('admin.shop.category.subCategory_edit', compact('categories', 'subCategory'));
+    }
+
+    public function subCategoryUpdate(Request $request, $id)
+    {
+        $subCategory = SubCategory::findOrFail($id);
+        $validatedData = $request->validate([
+            'category_id' => 'required',
+            'subCategory_name' => 'required',
+        ], [
+            'category_id.required' => 'メインカテゴリーを選択してください。',
+            'subCategory_name.required' => 'サブカテゴリー名は必須です。',
+        ]);
+
+        $subCategory->category_id = $request->category_id;
+        $subCategory->subCategory_name = $request->subCategory_name;
+        $subCategory->subCategory_slug_name = str_replace(' ', '-', $request->subCategory_name);
+        $subCategory->updated_at = Carbon::now();
+        $subCategory->save();
+
+        $notification = array(
+            'message' => 'サブカテゴリーID：' . $subCategory->id . 'を更新しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('all.subCategory')
+            ->with($notification);
+    }
 }
