@@ -60,6 +60,11 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/update/{id}', 'Admin\BrandController@brandUpdate')->name('brand.update');
     Route::get('/delete/{id}', 'Admin\BrandController@brandDelete')->name('brand.delete');
   });
+  // Admin Category(Shop) All Routes
+  Route::prefix('category')->group(function () {
+    Route::get('/view', 'Admin\CategoryController@categoryView')->name('all.category');
+    Route::post('/store', 'Admin\CategoryController@categoryStore')->name('categoy.store');
+  });
   // user
   Route::get('/', 'TopController@index')->name('top');
 
