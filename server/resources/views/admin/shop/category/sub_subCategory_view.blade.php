@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <h5>メインカテゴリー <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="category_id" class="form-control">
+                                        <select name="category_id" class="form-control" style="color: red">
                                             <option value="" selected="" disabled="">--メインカテゴリー名選択--</option>
                                             @foreach($categories as $category)
                                             <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected': '' }}>{{ $category->category_name }}</option>
@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <h5>サブカテゴリー <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="subCategory_id" class="form-control">
+                                        <select name="subCategory_id" class="form-control" style="color: red">
                                             <option value="" selected="" disabled="">--サブカテゴリー名選択--</option>
 
                                         </select>
