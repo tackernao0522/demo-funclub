@@ -41,12 +41,11 @@ class AdminProfileController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'required',
-            'phone' => 'required',
+            'phone' => 'string|nullable',
             'profile_photo_path' => 'mimes:jpg,jpeg,png|nullable',
         ], [
             'name.required' => '名前は必須です。',
             'email.required' => 'メールアドレスは必須です。',
-            'phone.required' => '電話番号は必須です。',
             'profile_photo_path.mimes' => 'プロフィール画像にはjpg, jpeg, pngのうちいずれかの形式のファイルを指定してください。',
         ]);
 
@@ -94,12 +93,7 @@ class AdminProfileController extends Controller
             $admin->save();
             Auth::logout();
 
-            $notification = array(
-                'message' => 'パスワードを更新しました。',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('login')->with($notification);
+            return redirect()->route('login')->with('status', 'パスワードを更新しました。');
         } else {
             $notification = array(
                 'message' => '現在のパスワードが無効です。',
