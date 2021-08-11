@@ -88,6 +88,10 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
+        if (SubCategory::where('category_id', $category->id)->first()) {
+            $subCategory = SubCategory::where('category_id', $category->id)->first();
+            $subCategory->delete();
+        }
 
         $notification = array(
             'message' => 'カテゴリー：' . $category->category_name . 'を削除しました。',
