@@ -19,7 +19,7 @@ class SubCategoryController extends Controller
     public function subCategoryView()
     {
         $categories = Category::orderBy('category_name', 'ASC')->get();
-        $subCategories = SubCategory::latest()->get();
+        $subCategories = SubCategory::with(['category'])->latest()->get();
 
         return view('admin.shop.category.subCategory_view', compact('categories', 'subCategories'));
     }
@@ -28,12 +28,11 @@ class SubCategoryController extends Controller
     {
         $validatedData = $request->validate([
             'category_id' => 'required',
-            'subCategory_name' => 'required|unique:sub_categories',
+            'subCategory_name' => 'required',
 
         ], [
             'category_id.required' => 'メインカテゴリーを選択してください。',
             'subCategory_name.required' => 'サブカテゴリー名は必須です。',
-            'subCategory_name.unique' => 'このサブカテゴリー名は既に登録されています。',
         ]);
 
         SubCategory::insert([
@@ -109,7 +108,7 @@ class SubCategoryController extends Controller
     public function subSubCategoryView()
     {
         $categories = Category::orderBy('category_name', 'ASC')->get();
-        $subSubCategories = SubSubCategory::latest()->get();
+        $subSubCategories = SubSubCategory::with(['category', 'subCategory'])->latest()->get();
 
         return view('admin.shop.category.sub_subCategory_view', compact('categories', 'subSubCategories'));
     }
@@ -128,5 +127,34 @@ class SubCategoryController extends Controller
             ->orderBy('subSubCategory_name', 'ASC')->get();
 
         return json_encode($subSubCat);
+    }
+
+    public function subSubCategoryStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'category_id' => 'required',
+            'subCategory_id' => 'required',
+            'subSubCategory_name' => 'required',
+        ], [
+            'category_id.required' => 'メインカテゴリーを選択してください。',
+            'subCategory_id.required' => 'サブカテゴリーを選択してください。',
+            'subSubCategory_name.required' => '孫カテゴリー名は必須です。',
+        ]);
+
+        SubSubCategory::insert([
+            'category_id' => $request->category_id,
+            'subCategory_id' => $request->subCategory_id,
+            'subSubCategory_name' => $request->subSubCategory_name,
+            'subSubCategory_slug_name' => str_replace(' ', '-', $request->subSubCategory_name),
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => '孫カテゴリーを作成しました。',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()
+            ->with($notification);
     }
 }
