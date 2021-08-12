@@ -78,6 +78,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/subCategory/ajax/{category_id}', 'Admin\SubCategoryController@getSubCategory');
     Route::get('/sub-subCategory/ajax/{subCategory_id}', 'Admin\SubCategoryController@getSubSubCategory');
     Route::post('/sub/sub/store', 'Admin\SubCategoryController@subSubCategoryStore')->name('subSubCategoy.store');
+    Route::get('/sub/sub/edit/{id}', 'Admin\SubCategoryController@subSubCategoryEdit')->name('subSubCategory.edit');
+    Route::post('/sub/sub/update/{id}', 'Admin\SubCategoryController@subSubCategoryUpdate')->name('subSubCategory.update');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');

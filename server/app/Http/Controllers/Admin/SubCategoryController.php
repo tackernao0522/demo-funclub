@@ -157,4 +157,41 @@ class SubCategoryController extends Controller
         return redirect()->back()
             ->with($notification);
     }
+
+    public function subSubCategoryEdit($id)
+    {
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $subCategories = SubCategory::orderBy('subCategory_name', 'ASC')->get();
+        $subSubCategory = SubSubCategory::findOrFail($id);
+
+        return view('admin.shop.category.subSubCategory_edit', compact('categories', 'subCategories', 'subSubCategory'));
+    }
+
+    public function subSubCategoryUpdate(Request $request, $id)
+    {
+        $subSubCategory = SubSubCategory::findOrFail($id);
+        $validatedData = $request->validate([
+            'category_id' => 'required',
+            'subCategory_id' => 'required',
+            'subSubCategory_name' => 'required',
+        ], [
+            'category_id.required' => 'メインカテゴリーを選択してください。',
+            'subCategory_id.required' => 'サブカテゴリーを選択してください。',
+            'subSubCategory_name.required' => '孫カテゴリー名は必須です。',
+        ]);
+
+        $subSubCategory->category_id = $request->category_id;
+        $subSubCategory->subCategory_id = $request->subCategory_id;
+        $subSubCategory->subSubCategory_name = $request->subSubCategory_name;
+        $subSubCategory->subSubCategory_slug_name = str_replace(' ', '-', $request->subSubCategory_name);
+        $subSubCategory->save();
+
+        $notification = array(
+            'message' => '孫カテゴリーID：' . $subSubCategory->id . 'を更新しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('all.subSubCategory')
+            ->with($notification);
+    }
 }
