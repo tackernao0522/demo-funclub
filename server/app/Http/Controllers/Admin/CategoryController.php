@@ -92,10 +92,10 @@ class CategoryController extends Controller
             $subCategory = SubCategory::where('category_id', $category->id)->first();
             $subCategory->delete();
         }
-        // if (SubSubCategory::where('category_id', $category->id)->first()) {
-        //     $subSubCategory = SubSubCategory::where('category_id', $category->id)->first();
-        //     $subSubCategory->delete();
-        // }
+        if (SubSubCategory::where('category_id', $category->id)->first()) {
+            $subSubCategory = SubSubCategory::where('category_id', $category->id)->first();
+            $subSubCategory->delete();
+        }
 
         $notification = array(
             'message' => 'カテゴリー：' . $category->category_name . 'を削除しました。',
