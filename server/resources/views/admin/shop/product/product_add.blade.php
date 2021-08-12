@@ -290,7 +290,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <fieldset>
-                                                        <input type="checkbox" id="checkbox_4" name="special_offer" value="1">
+                                                        <input type="checkbox" id="checkbox_4" name="spacial_offer" value="1">
                                                         <label for="checkbox_4">特別セール</label>
                                                     </fieldset>
                                                     <fieldset>
