@@ -58,7 +58,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="table-responsive">
-                            <form method="POST" action="{{-- route('subSubCategoy.store') --}}">
+                            <form method="POST" action="{{ route('subSubCategoy.store') }}">
                                 @csrf
                                 <div class="form-group">
                                     <h5>メインカテゴリー <span class="text-danger">*</span></h5>
