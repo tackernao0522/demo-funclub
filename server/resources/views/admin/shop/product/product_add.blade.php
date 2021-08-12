@@ -28,7 +28,7 @@
                                             <div class="form-group">
                                                 <h5>ブランド <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="brand_id" class="form-control">
+                                                    <select name="brand_id" class="form-control" style="color: red">
                                                         <option value="" selected="" disabled="">--ブランド選択--</option>
                                                         @foreach($brands as $brand)
                                                         <option value="{{ $brand->id }}" {{ old('brand_id') == $brand->id ? 'selected': '' }}>{{ $brand->brand_name }}</option>
@@ -46,7 +46,7 @@
                                             <div class="form-group">
                                                 <h5>メインカテゴリー <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="category_id" class="form-control">
+                                                    <select name="category_id" class="form-control" style="color: red">
                                                         <option value="" selected="" disabled="">--メインカテゴリー選択--</option>
                                                         @foreach($categories as $category)
                                                         <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected': '' }}>{{ $category->category_name }}</option>
@@ -64,7 +64,7 @@
                                             <div class="form-group">
                                                 <h5>サブカテゴリー選択 <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="subCategory_id" class="form-control">
+                                                    <select name="subCategory_id" class="form-control" style="color: red">
                                                         <option value="" selected="" disabled="">--サブカテゴリー選択--</option>
                                                     </select>
                                                     @error('subCategory_id')
@@ -81,7 +81,7 @@
                                             <div class="form-group">
                                                 <h5>孫カテゴリー <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="subSubCategory_id" class="form-control">
+                                                    <select name="subSubCategory_id" class="form-control" style="color: red">
                                                         <option value="" selected="" disabled="">--孫カテゴリー選択--</option>
                                                     </select>
                                                     @error('subSubCategory_id')
@@ -123,7 +123,7 @@
                                             <div class="form-group">
                                                 <h5>在庫数 <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="product_qty" class="form-control" value="{{ old('product_qty') }}" placeholder="半角数字">
+                                                    <input type="text" name="product_qty" class="form-control" value="{{ old('product_qty') }}" placeholder="半角数字を入力してください">
                                                     @error('product_qty')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -177,7 +177,7 @@
                                             <div class="form-group">
                                                 <h5>価格(税込) <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="selling_price" class="form-control" value="{{ old('selling_price') }}" placeholder="半角数字">
+                                                    <input type="text" name="selling_price" class="form-control" value="{{ old('selling_price') }}" placeholder="半角数字を入力してください">
                                                     @error('selling_price')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -189,7 +189,7 @@
                                             <div class="form-group">
                                                 <h5>割引価格(税込) <span class="text-danger"></span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="discount_price" class="form-control" value="{{ old('discount_price') }}" placeholder="半角数字">
+                                                    <input type="text" name="discount_price" class="form-control" value="{{ old('discount_price') }}" placeholder="半角数字を入力してください">
                                                     @error('discount_price')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
