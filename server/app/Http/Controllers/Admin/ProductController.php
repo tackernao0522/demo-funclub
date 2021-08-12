@@ -57,7 +57,7 @@ class ProductController extends Controller
             'product_thambnail' => $fileName,
             'hot_deals' => $request->hot_deals,
             'featured' => $request->featured,
-            'spacial_offer' => $request->spacial_offer,
+            'special_offer' => $request->special_offer,
             'special_deals' => $request->special_deals,
             // 'digital_file' => $digitalItem,
             'status' => 1,

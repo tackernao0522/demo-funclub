@@ -33,7 +33,7 @@ class CreateProductsTable extends Migration
             $table->string('product_thambnail');
             $table->bigInteger('hot_deals')->nullable()->unsigned();
             $table->bigInteger('featured')->nullable()->unsigned();
-            $table->bigInteger('spacial_offer')->nullable()->unsigned();
+            $table->bigInteger('special_offer')->nullable()->unsigned();
             $table->bigInteger('special_deals')->nullable()->unsigned();
             $table->string('digital_file')->nullable();
             $table->bigInteger('status')->unsigned()->default(0);
