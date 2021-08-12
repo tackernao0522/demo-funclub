@@ -17,7 +17,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col">
-                        <form method="POST" action="{{-- route('product-store') --}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('product-store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
@@ -29,7 +29,7 @@
                                                 <h5>ブランド <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <select name="brand_id" class="form-control">
-                                                        <option value="" selected="" disabled="">ブランド</option>
+                                                        <option value="" selected="" disabled="">--ブランド選択--</option>
                                                         @foreach($brands as $brand)
                                                         <option value="{{ $brand->id }}" {{ old('brand_id') == $brand->id ? 'selected': '' }}>{{ $brand->brand_name }}</option>
                                                         @endforeach
@@ -136,10 +136,10 @@
                                                 <h5>商品タグ <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="product_tags_name" class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput">
-                                                    @error('product_tags_name')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
                                                 </div>
+                                                @error('product_tags_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div> <!-- end col md 4 -->
 
@@ -148,10 +148,10 @@
                                                 <h5>サイズ <span class="text-danger"></span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="product_size" class="form-control" value="Small,Midium,Large" data-role="tagsinput">
-                                                    @error('product_size')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
                                                 </div>
+                                                @error('product_size')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div> <!-- end col md 4 -->
                                     </div> <!-- end 3RD row  -->
@@ -175,9 +175,9 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <h5>価格 <span class="text-danger">*</span></h5>
+                                                <h5>価格(税込) <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="selling_price" class="form-control" placeholder="半角数字">
+                                                    <input type="text" name="selling_price" class="form-control" value="{{ old('selling_price') }}" placeholder="半角数字">
                                                     @error('selling_price')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -187,9 +187,9 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <h5>割引価格 <span class="text-danger"></span></h5>
+                                                <h5>割引価格(税込) <span class="text-danger"></span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="discount_price" class="form-control" placeholder="半角数字">
+                                                    <input type="text" name="discount_price" class="form-control" value="{{ old('discount_price') }}" placeholder="半角数字">
                                                     @error('discount_price')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -216,9 +216,9 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <h5>マルチ画像 <span class="text-danger">*</span></h5>
+                                                <h5>マルチ画像 <span class="text-danger"></span></h5>
                                                 <div class="controls">
-                                                    <input type="file" name="multi_img[]" class="form-control" multiple="" id="multiImg">
+                                                    <input type="file" name="multi_img[]" class="form-control" accept="image/png,image/jpeg,image/gif" multiple="" id="multiImg">
                                                     @error('multi_img')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -254,7 +254,7 @@
                                             </div>
                                         </div> <!-- end col md 6 -->
 
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <h5>製品詳細 <span class="text-danger">pdf,xlx,csv</span></h5>
                                                 <div class="controls">
@@ -264,7 +264,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div> <!-- end col md 4 -->
+                                        </div> <!-- end col md 4 --> --}}
                                     </div> <!-- end 7th row  -->
 
                                     <hr>
