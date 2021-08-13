@@ -333,7 +333,7 @@
                     <div class="box-header">
                         <h4 class="box-title">サムネイル画像 <strong>更新</strong></h4>
                     </div>
-                    <form method="POST" action="{{-- route('update-product-thambnail', $product->id) --}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('update-product-thambnail', $product->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row row-sm mt-3 ml-3 mr-3">
                             <div class="col-md-3">
