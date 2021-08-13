@@ -114,8 +114,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($coupons == true) --}}
-            <li class="treeview {{-- ($prefix == '/coupons') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/coupons') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>クーポン</span>
                     <span class="pull-right-container">
@@ -123,7 +123,7 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'manage-coupon') ? 'active' : '' --}}"><a href="{{-- route('manage-coupon') --}}"><i class="ti-more"></i>クーポン管理</a></li>
+                    <li class="{{ ($route == 'manage-coupon') ? 'active' : '' }}"><a href="{{ route('manage-coupon') }}"><i class="ti-more"></i>クーポン管理</a></li>
                 </ul>
             </li>
             {{-- @else
