@@ -91,6 +91,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::post('/image/update', 'Admin\ProductController@multiImageUpdate')->name('update-product-image');
       Route::post('/thambnail/update/{id}', 'Admin\ProductController@thambnailImageUpdate')->name('update-product-thambnail');
       Route::get('/multiImg/delete/{id}', 'Admin\ProductController@multiImageDelete')->name('product.multiImg.delete');
+      Route::get('/inactive/{id}', 'Admin\ProductController@productInactive')->name('product.inactive');
+      Route::get('/active/{id}', 'Admin\ProductController@productActive')->name('product.active');
     });
   });
   // user
