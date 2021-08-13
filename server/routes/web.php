@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // Admin Slider All Routes
     Route::prefix('slider')->group(function () {
       Route::get('/view', 'Admin\SliderController@sliderView')->name('manage-slider');
+      Route::post('/store', 'Admin\SliderController@sliderStore')->name('slider.store');
     });
   });
   // user
