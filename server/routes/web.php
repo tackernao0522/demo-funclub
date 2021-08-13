@@ -93,6 +93,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::get('/multiImg/delete/{id}', 'Admin\ProductController@multiImageDelete')->name('product.multiImg.delete');
       Route::get('/inactive/{id}', 'Admin\ProductController@productInactive')->name('product.inactive');
       Route::get('/active/{id}', 'Admin\ProductController@productActive')->name('product.active');
+      Route::get('/delete/{id}', 'Admin\ProductController@productDelete')->name('product.delete');
     });
   });
   // user
