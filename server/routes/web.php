@@ -81,27 +81,28 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/sub/sub/edit/{id}', 'Admin\SubCategoryController@subSubCategoryEdit')->name('subSubCategory.edit');
     Route::post('/sub/sub/update/{id}', 'Admin\SubCategoryController@subSubCategoryUpdate')->name('subSubCategory.update');
     Route::get('/sub/sub/delete/{id}', 'Admin\SubCategoryController@subSubCategoryDelete')->name('subSubCategory.delete');
-    // Admin Products All Routes
-    Route::prefix('product')->group(function () {
-      Route::get('/add', 'Admin\ProductController@addProduct')->name('add-product');
-      Route::post('/store', 'Admin\ProductController@storeProduct')->name('product-store');
-      Route::get('/manage', 'Admin\ProductController@manegeProduct')->name('manage-product');
-      Route::get('/edit/{id}', 'Admin\ProductController@productEdit')->name('product.edit');
-      Route::post('/data/update', 'Admin\ProductController@productDataUpdate')->name('product-update');
-      Route::post('/image/update', 'Admin\ProductController@multiImageUpdate')->name('update-product-image');
-      Route::post('/thambnail/update/{id}', 'Admin\ProductController@thambnailImageUpdate')->name('update-product-thambnail');
-      Route::get('/multiImg/delete/{id}', 'Admin\ProductController@multiImageDelete')->name('product.multiImg.delete');
-      Route::get('/inactive/{id}', 'Admin\ProductController@productInactive')->name('product.inactive');
-      Route::get('/active/{id}', 'Admin\ProductController@productActive')->name('product.active');
-      Route::get('/delete/{id}', 'Admin\ProductController@productDelete')->name('product.delete');
-    });
-    // Admin Slider All Routes
-    Route::prefix('slider')->group(function () {
-      Route::get('/view', 'Admin\SliderController@sliderView')->name('manage-slider');
-      Route::post('/store', 'Admin\SliderController@sliderStore')->name('slider.store');
-      Route::get('/edit/{id}', 'Admin\SliderController@sliderEdit')->name('slider.edit');
-      Route::post('/update/{id}', 'Admin\SliderController@sliderUpdate')->name('slider.update');
-    });
+  });
+  // Admin Products All Routes
+  Route::prefix('product')->group(function () {
+    Route::get('/add', 'Admin\ProductController@addProduct')->name('add-product');
+    Route::post('/store', 'Admin\ProductController@storeProduct')->name('product-store');
+    Route::get('/manage', 'Admin\ProductController@manegeProduct')->name('manage-product');
+    Route::get('/edit/{id}', 'Admin\ProductController@productEdit')->name('product.edit');
+    Route::post('/data/update', 'Admin\ProductController@productDataUpdate')->name('product-update');
+    Route::post('/image/update', 'Admin\ProductController@multiImageUpdate')->name('update-product-image');
+    Route::post('/thambnail/update/{id}', 'Admin\ProductController@thambnailImageUpdate')->name('update-product-thambnail');
+    Route::get('/multiImg/delete/{id}', 'Admin\ProductController@multiImageDelete')->name('product.multiImg.delete');
+    Route::get('/inactive/{id}', 'Admin\ProductController@productInactive')->name('product.inactive');
+    Route::get('/active/{id}', 'Admin\ProductController@productActive')->name('product.active');
+    Route::get('/delete/{id}', 'Admin\ProductController@productDelete')->name('product.delete');
+  });
+  // Admin Slider All Routes
+  Route::prefix('slider')->group(function () {
+    Route::get('/view', 'Admin\SliderController@sliderView')->name('manage-slider');
+    Route::post('/store', 'Admin\SliderController@sliderStore')->name('slider.store');
+    Route::get('/edit/{id}', 'Admin\SliderController@sliderEdit')->name('slider.edit');
+    Route::post('/update/{id}', 'Admin\SliderController@sliderUpdate')->name('slider.update');
+    Route::get('/delete/{id}', 'Admin\SliderController@sliderDelete')->name('slider.delete');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
