@@ -20,6 +20,11 @@ use App\Models\MultiImg;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function addProduct()
     {
         $categories = Category::latest()->get();

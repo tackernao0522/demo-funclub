@@ -95,6 +95,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::get('/active/{id}', 'Admin\ProductController@productActive')->name('product.active');
       Route::get('/delete/{id}', 'Admin\ProductController@productDelete')->name('product.delete');
     });
+    // Admin Slider All Routes
+    Route::prefix('slider')->group(function () {
+      Route::get('/view', 'Admin\SliderController@sliderView')->name('manage-slider');
+    });
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
