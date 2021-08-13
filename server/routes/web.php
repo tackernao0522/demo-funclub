@@ -86,6 +86,9 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::get('/add', 'Admin\ProductController@addProduct')->name('add-product');
       Route::post('/store', 'Admin\ProductController@storeProduct')->name('product-store');
       Route::get('/manage', 'Admin\ProductController@manegeProduct')->name('manage-product');
+      Route::get('/edit/{id}', 'Admin\ProductController@productEdit')->name('product.edit');
+      Route::post('/data/update', 'Admin\ProductController@productDataUpdate')->name('product-update');
+      Route::post('/image/update', 'Admin\ProductController@multiImageUpdate')->name('update-product-image');
     });
   });
   // user
