@@ -106,6 +106,11 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/inactive/{id}', 'Admin\SliderController@sliderInactive')->name('slider.inactive');
     Route::get('/active/{id}', 'Admin\SliderController@sliderActive')->name('slider.active');
   });
+  // Admin Coupon All Routes
+  Route::prefix('coupons')->group(function () {
+    Route::get('/view', 'Admin\CouponController@couponView')->name('manage-coupon');
+    Route::post('/store', 'Admin\CouponController@couponStore')->name('coupon.store');
+  });
   // user
   Route::get('/', 'TopController@index')->name('top');
 
