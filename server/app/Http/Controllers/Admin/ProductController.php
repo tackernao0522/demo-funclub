@@ -65,22 +65,24 @@ class ProductController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        $images = $request->file('multi_img');
+        if ($request->file('multi_img')) {
+            $images = $request->file('multi_img');
 
-        foreach ($images as $img) {
-            $tempPath2 = $this->makeTempPath();
-            Image::make($img)->resize(917, 1000)->save($tempPath2);
+            foreach ($images as $img) {
+                $tempPath2 = $this->makeTempPath();
+                Image::make($img)->resize(917, 1000)->save($tempPath2);
 
-            $filePath2 = Storage::disk('s3')
-                ->putFile('products/multi-image', new File($tempPath2));
+                $filePath2 = Storage::disk('s3')
+                    ->putFile('products/multi-image', new File($tempPath2));
 
-            $multiImageName = basename($filePath2);
+                $multiImageName = basename($filePath2);
 
-            MultiImg::insert([
-                'product_id' => $product_id,
-                'photo_name' => $multiImageName,
-                'created_at' => Carbon::now(),
-            ]);
+                MultiImg::insert([
+                    'product_id' => $product_id,
+                    'photo_name' => $multiImageName,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
         }
 
         $notification = array(
@@ -247,6 +249,28 @@ class ProductController extends Controller
         $notification = array(
             'message' => '販売開始しました。',
             'alert-type' => 'success',
+        );
+
+        return redirect()->back()
+            ->with($notification);
+    }
+
+    public function productDelete($id)
+    {
+        $product = Product::findOrFail($id);
+        Storage::disk('s3')->delete('/products/thambnail/' . $product->product_thambnail);
+        // Storage::disk('s3')->delete('/products/pdf/' . $product->digital_file);
+        $product->delete();
+
+        $images = MultiImg::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            Storage::disk('s3')->delete('/products/multi-image/' . $image->photo_name);
+            MultiImg::where('product_id', $id)->delete();
+        }
+
+        $notification = array(
+            'message' => '商品を削除しました。',
+            'alert-type' => 'error',
         );
 
         return redirect()->back()
