@@ -110,6 +110,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::prefix('coupons')->group(function () {
     Route::get('/view', 'Admin\CouponController@couponView')->name('manage-coupon');
     Route::post('/store', 'Admin\CouponController@couponStore')->name('coupon.store');
+    Route::get('/edit/{id}', 'Admin\CouponController@couponEdit')->name('coupon.edit');
+    Route::post('/update/{id}', 'Admin\CouponController@couponUpdate')->name('coupon.update');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
