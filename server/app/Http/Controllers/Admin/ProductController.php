@@ -186,6 +186,32 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function thambnailImageUpdate(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $validatedData = $request->validate([
+            'product_thambnail' => 'mimes:jpg,jpeg,png',
+        ], [
+            'product_thambnail.mimes' => 'メインサムネイルにはjpg, jpeg, pngのうちいずれかの形式のファイルを指定してください。',
+        ]);
+
+        if ($request->has('product_thambnail')) {
+            Storage::disk('s3')->delete('/products/thambnail/' . $product->product_thambnail);
+            $product->delete();
+            $fileName = $this->saveImage($request->file('product_thambnail'));
+            $product->product_thambnail = $fileName;
+            $product->updated_at = Carbon::now();
+            $product->save();
+        }
+
+        $notification = array(
+            'message' => 'サムネイルを更新しました。',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();
