@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::prefix('product')->group(function () {
       Route::get('/add', 'Admin\ProductController@addProduct')->name('add-product');
       Route::post('/store', 'Admin\ProductController@storeProduct')->name('product-store');
+      Route::get('/manage', 'Admin\ProductController@manegeProduct')->name('manage-product');
     });
   });
   // user
