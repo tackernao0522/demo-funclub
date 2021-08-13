@@ -51,7 +51,7 @@
                                             @endif
                                         </td>
                                         <td width="30%">
-                                            <a href="{{-- route('slider.edit', $item->id) --}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{ route('slider.edit', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                             <a href="{{-- route('slider.delete', $item->id) --}}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
                                             @if($item->status == 1)
                                             <a href="{{-- route('slider.inactive', $item->id) --}}" class="btn btn-danger" title="非アクティブ"><i class="fa fa-arrow-down"></i></a>
