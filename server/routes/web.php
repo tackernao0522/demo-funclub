@@ -103,6 +103,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/edit/{id}', 'Admin\SliderController@sliderEdit')->name('slider.edit');
     Route::post('/update/{id}', 'Admin\SliderController@sliderUpdate')->name('slider.update');
     Route::get('/delete/{id}', 'Admin\SliderController@sliderDelete')->name('slider.delete');
+    Route::get('/inactive/{id}', 'Admin\SliderController@sliderInactive')->name('slider.inactive');
+    Route::get('/active/{id}', 'Admin\SliderController@sliderActive')->name('slider.active');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
