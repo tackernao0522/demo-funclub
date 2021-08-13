@@ -112,6 +112,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/store', 'Admin\CouponController@couponStore')->name('coupon.store');
     Route::get('/edit/{id}', 'Admin\CouponController@couponEdit')->name('coupon.edit');
     Route::post('/update/{id}', 'Admin\CouponController@couponUpdate')->name('coupon.update');
+    Route::get('/delete/{id}', 'Admin\CouponController@couponDelete')->name('coupon.delete');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
