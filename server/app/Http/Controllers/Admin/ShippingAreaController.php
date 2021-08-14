@@ -18,7 +18,7 @@ class ShippingAreaController extends Controller
 
     public function divisionView()
     {
-        $divisions = ShipDivision::orderBy('sort_no')->get();
+        $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
 
         return view('admin.shop.ship.division.view_division', compact('divisions'));
     }
@@ -83,6 +83,41 @@ class ShippingAreaController extends Controller
         $notification = array(
             'message' => '都道府県名：' . $division->division_name . 'を削除しました。',
             'alert-type' => 'error',
+        );
+
+        return redirect()->back()
+            ->with($notification);
+    }
+
+    public function districtView()
+    {
+        $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
+        $districts = ShipDistrict::with('division')->orderBy('sort_no', 'ASC')->get();
+
+        return view('admin.shop.ship.district.view_district', compact('divisions', 'districts'));
+    }
+
+    public function districtStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'division_id' => 'required',
+            'district_name' => 'required|unique:ship_districts',
+            'sort_no' => 'integer|nullable',
+        ], [
+            'division_id.required' => '都道府県名は必須です。',
+            'district_name.unique' => 'この市区町村は既に登録されています。',
+            'district_name.required' => '区市町村名は必須です。',
+        ]);
+
+        ShipDistrict::insert([
+            'division_id' => $request->division_id,
+            'district_name' => $request->district_name,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => '市区町村名を作成しました。',
+            'alert-type' => 'success',
         );
 
         return redirect()->back()
