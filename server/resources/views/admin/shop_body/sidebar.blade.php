@@ -130,8 +130,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($shipping == true) --}}
-            <li class="treeview {{-- ($prefix == '/shipping') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/shipping') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>配送エリア</span>
                     <span class="pull-right-container">
@@ -139,7 +139,7 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'manage-division') ? 'active' : '' --}}"><a href="{{-- route('manage-division') --}}"><i class="ti-more"></i>都道府県</a></li>
+                    <li class="{{ ($route == 'manage-division') ? 'active' : '' }}"><a href="{{ route('manage-division') }}"><i class="ti-more"></i>都道府県</a></li>
                     <li class="{{-- ($route == 'manage-district') ? 'active' : '' --}}"><a href="{{-- route('manage-district') --}}"><i class="ti-more"></i>区・市・町・村</a></li>
                     <li class="{{-- ($route == 'manage-town') ? 'active' : '' --}}"><a href="{{-- route('manage-town') --}}"><i class="ti-more"></i>町名</a></li>
                 </ul>
