@@ -106,7 +106,7 @@ class ShippingAreaController extends Controller
         ], [
             'division_id.required' => '都道府県名は必須です。',
             'district_name.unique' => 'この市区町村は既に登録されています。',
-            'district_name.required' => '区市町村名は必須です。',
+            'district_name.required' => '市区町村名は必須です。',
         ]);
 
         ShipDistrict::insert([
@@ -140,7 +140,7 @@ class ShippingAreaController extends Controller
             'district_name' => 'required',
         ], [
             'division_id.required' => '都道府県名は必須です。',
-            'district_name.required' => '区市町村名は必須です。',
+            'district_name.required' => '市区町村名は必須です。',
         ]);
 
         $district->division_id = $request->division_id;
@@ -149,11 +149,25 @@ class ShippingAreaController extends Controller
         $district->save();
 
         $notification = array(
-            'message' => '区市町村ID：' . $district->id . 'を更新しました。',
+            'message' => '市区町村ID：' . $district->id . 'を更新しました。',
             'alert-type' => 'info',
         );
 
         return redirect()->route('manage-district')
+            ->with($notification);
+    }
+
+    public function districtDelete($id)
+    {
+        $district = ShipDistrict::findOrFail($id);
+        $district->delete();
+
+        $notification = array(
+            'message' => '市区町村名：' . $district->district_name . 'を削除しました。',
+            'alert-type' => 'error',
+        );
+
+        return redirect()->back()
             ->with($notification);
     }
 }
