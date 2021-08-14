@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">都道府県名リスト</h3>
+                        <h3 class="box-title">都道府県名リスト <span class="badge badge-pill badge-danger">{{ count($divisions) }}</span></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -28,7 +28,7 @@
                                         <td>{{ $item->division_name }}</td>
                                         <td width="40%">
                                             <a href="{{ route('division.edit', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a href="{{-- route('division.delete', $item->id) --}}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('division.delete', $item->id) }}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
