@@ -143,6 +143,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('main_info', 'InformationController@bigShow')->name('bigInfo.show');
     // Info詳細
     Route::resource('information', 'InformationController', ['only' => ['show']]);
+    // User All Routes
+    Route::get('/user/shop/dashbord', 'User\IndexController@userDashboard')->name('user.dashboard');
   });
 
   // Contactページ
