@@ -123,4 +123,37 @@ class ShippingAreaController extends Controller
         return redirect()->back()
             ->with($notification);
     }
+
+    public function districtEdit($id)
+    {
+        $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
+        $district = ShipDistrict::findOrFail($id);
+
+        return view('admin.shop.ship.district.edit_district', compact('divisions', 'district'));
+    }
+
+    public function districtUpdate(Request $request, $id)
+    {
+        $district = ShipDistrict::findOrFail($id);
+        $validatedData = $request->validate([
+            'division_id' => 'required',
+            'district_name' => 'required',
+        ], [
+            'division_id.required' => '都道府県名は必須です。',
+            'district_name.required' => '区市町村名は必須です。',
+        ]);
+
+        $district->division_id = $request->division_id;
+        $district->district_name = $request->district_name;
+        $district->updated_at = Carbon::now();
+        $district->save();
+
+        $notification = array(
+            'message' => '区市町村ID：' . $district->id . 'を更新しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('manage-district')
+            ->with($notification);
+    }
 }

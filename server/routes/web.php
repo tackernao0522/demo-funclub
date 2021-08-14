@@ -125,6 +125,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // Ship District
     Route::get('/district/view', 'Admin\ShippingAreaController@districtView')->name('manage-district');
     Route::post('/district/store', 'Admin\ShippingAreaController@districtStore')->name('district.store');
+    Route::get('/district/edit/{id}', 'Admin\ShippingAreaController@districtEdit')->name('district.edit');
+    Route::post('/district/update/{id}', 'Admin\ShippingAreaController@districtUpdate')->name('district.update');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
