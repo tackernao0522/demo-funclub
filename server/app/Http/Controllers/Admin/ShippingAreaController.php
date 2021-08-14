@@ -74,4 +74,18 @@ class ShippingAreaController extends Controller
         return redirect()->route('manage-division')
             ->with($notification);
     }
+
+    public function divisionDelete($id)
+    {
+        $division = ShipDivision::findOrFail($id);
+        $division->delete();
+
+        $notification = array(
+            'message' => '都道府県名：' . $division->division_name . 'を削除しました。',
+            'alert-type' => 'error',
+        );
+
+        return redirect()->back()
+            ->with($notification);
+    }
 }
