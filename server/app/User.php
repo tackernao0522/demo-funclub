@@ -51,19 +51,4 @@ class User extends Authenticatable
     protected $guarded = [
         'role'
     ];
-
-    public function soldItems()
-    {
-        return $this->hasMany(Models\Item::class, 'seller_id');
-    }
-
-    public function boughtItems()
-    {
-        return $this->hasMany(Models\Item::class, 'buyer_id');
-    }
-
-    public function cartItems()
-    {
-        return $this->hasMany(Models\CartItem::calss, 'item_id');
-    }
 }
