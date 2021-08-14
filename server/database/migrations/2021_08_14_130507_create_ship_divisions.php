@@ -16,7 +16,7 @@ class CreateShipDivisions extends Migration
         Schema::create('ship_divisions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('division_name');
-            $table->integer('sort_no')->unsigned();
+            $table->integer('sort_no')->unsigned()->nullable();
             $table->timestamps();
         });
     }
