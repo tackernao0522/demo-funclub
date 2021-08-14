@@ -119,6 +119,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // Ship Division
     Route::get('/division/view', 'Admin\ShippingAreaController@divisionView')->name('manage-division');
     Route::post('/division/store', 'Admin\ShippingAreaController@divisionStore')->name('division.store');
+    Route::get('/division/edit/{id}', 'Admin\ShippingAreaController@divisionEdit')->name('division.edit');
+    Route::post('/division/update/{id}', 'Admin\ShippingAreaController@divisionUpdate')->name('division.update');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
