@@ -114,6 +114,12 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/update/{id}', 'Admin\CouponController@couponUpdate')->name('coupon.update');
     Route::get('/delete/{id}', 'Admin\CouponController@couponDelete')->name('coupon.delete');
   });
+  // Admin Shipping All Routes
+  Route::prefix('shipping')->group(function () {
+    // Ship Division
+    Route::get('/division/view', 'Admin\ShippingAreaController@divisionView')->name('manage-division');
+    Route::post('/division/store', 'Admin\ShippingAreaController@divisionStore')->name('division.store');
+  });
   // user
   Route::get('/', 'TopController@index')->name('top');
 
