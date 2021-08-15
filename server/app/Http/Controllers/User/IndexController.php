@@ -68,6 +68,44 @@ class IndexController extends Controller
         }
     }
 
+    public function userChangePassword(Request $request)
+    {
+        if (Auth::check() && Auth::user()->role === 'member' || Auth::check() && Auth::user()->role === 'premium') {
+            $id = Auth::user()->id;
+            $user = User::find($id);
+
+            return view('user.profile.change_password', compact('user'));
+        }
+    }
+
+    public function userPasswordUpdate(Request $request)
+    {
+        if (Auth::check() && Auth::user()->role === 'member' || Auth::check() && Auth::user()->role === 'premium') {
+            $this->validate($request, [
+                'oldpassword' => 'required|string|min:8',
+                'password' => 'required|confirmed',
+            ]);
+
+            $hashedPassword = Auth::user()->password;
+
+            if (Hash::check($request->oldpassword, $hashedPassword)) {
+                $user = User::find(Auth::id());
+                $user->password = Hash::make($request->password);
+                $user->save();
+                Auth::logout();
+
+                return redirect()->route('login')->with('status', 'パスワードを更新しました。');
+            } else {
+                $notification = array(
+                    'message' => '現在のパスワードが無効です。',
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->back()->with($notification);
+            }
+        }
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();
