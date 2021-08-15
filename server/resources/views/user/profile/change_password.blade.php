@@ -1,5 +1,9 @@
 @extends('shop.shop_master')
 
+@section('title')
+パスワード更新
+@endsection
+
 @section('content')
 <div class="body-content">
     <div class="container">
