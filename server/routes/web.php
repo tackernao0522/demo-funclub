@@ -147,6 +147,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/user/shop/dashbord', 'User\IndexController@userDashboard')->name('user.dashboard');
     Route::get('/user/profile', 'User\IndexController@userProfile')->name('user.profile');
     Route::post('/user/profile/store', 'User\IndexController@userProfileStore')->name('user.profile.store');
+    Route::get('/user/change/password', 'User\IndexController@userChangePassword')->name('change.password');
+    Route::post('/user/password/update', 'User\IndexController@userPasswordUpdate')->name('user.password.update');
   });
 
   // Contactページ
