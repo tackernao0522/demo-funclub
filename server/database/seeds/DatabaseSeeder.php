@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BigImagesTableSeeder::class);
         $this->call(TopTitlesTableSeeder::class);
         $this->call(ContactsTableSeeder::class);
+        $this->call(BrandsTableSeeder::class);
         $this->call(ShipDivisionsTableSeeder::class);
         $this->call(ShipDistrictsTableSeeder::class);
     }

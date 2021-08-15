@@ -1,6 +1,11 @@
 @extends('admin.admin_master')
 
 @section('admin')
+<style>
+    .col-sm-12.col-md-7 {
+        padding-left: 450px;
+    }
+</style>
 <div class="container-full">
     <!-- Content Header (Page header) -->
 

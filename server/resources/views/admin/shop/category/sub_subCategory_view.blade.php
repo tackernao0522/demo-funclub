@@ -1,6 +1,11 @@
 @extends('admin.admin_master')
 
 @section('admin')
+<style>
+    .col-sm-12.col-md-7 {
+        padding-left: 450px;
+    }
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
