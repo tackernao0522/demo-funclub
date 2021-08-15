@@ -145,6 +145,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::resource('information', 'InformationController', ['only' => ['show']]);
     // User All Routes
     Route::get('/user/shop/dashbord', 'User\IndexController@userDashboard')->name('user.dashboard');
+    Route::get('/user/profile', 'User\IndexController@userProfile')->name('user.profile');
+    Route::post('/user/profile/store', 'User\IndexController@userProfileStore')->name('user.profile.store');
   });
 
   // Contactページ
