@@ -1440,6 +1440,26 @@ class ShipDistrictsTableSeeder extends Seeder
             ['id' => '1395', 'division_id' => 30, 'district_name' => '東牟婁郡古座川町', 'sort_no' => 1395],
             ['id' => '1396', 'division_id' => 30, 'district_name' => '東牟婁郡北山村', 'sort_no' => 1396],
             ['id' => '1397', 'division_id' => 30, 'district_name' => '東牟婁郡串本町', 'sort_no' => 1397],
+            // 鳥取県
+            ['id' => '1398', 'division_id' => 31, 'district_name' => '鳥取市', 'sort_no' => 1398],
+            ['id' => '1399', 'division_id' => 31, 'district_name' => '米子市', 'sort_no' => 1399],
+            ['id' => '1400', 'division_id' => 31, 'district_name' => '倉吉市', 'sort_no' => 1400],
+            ['id' => '1401', 'division_id' => 31, 'district_name' => '境港市', 'sort_no' => 1401],
+            ['id' => '1402', 'division_id' => 31, 'district_name' => '岩美郡岩美町', 'sort_no' => 1402],
+            ['id' => '1403', 'division_id' => 31, 'district_name' => '八頭郡若桜町', 'sort_no' => 1403],
+            ['id' => '1404', 'division_id' => 31, 'district_name' => '八頭郡智頭町', 'sort_no' => 1404],
+            ['id' => '1405', 'division_id' => 31, 'district_name' => '八頭郡八頭町', 'sort_no' => 1405],
+            ['id' => '1406', 'division_id' => 31, 'district_name' => '東伯郡三朝町', 'sort_no' => 1406],
+            ['id' => '1407', 'division_id' => 31, 'district_name' => '東伯郡湯梨浜町', 'sort_no' => 1407],
+            ['id' => '1408', 'division_id' => 31, 'district_name' => '東伯郡琴浦町', 'sort_no' => 1408],
+            ['id' => '1409', 'division_id' => 31, 'district_name' => '東伯郡北栄町', 'sort_no' => 1409],
+            ['id' => '1410', 'division_id' => 31, 'district_name' => '西伯郡日吉津村', 'sort_no' => 1410],
+            ['id' => '1411', 'division_id' => 31, 'district_name' => '西伯郡大山町', 'sort_no' => 1411],
+            ['id' => '1412', 'division_id' => 31, 'district_name' => '西伯郡南部町', 'sort_no' => 1412],
+            ['id' => '1413', 'division_id' => 31, 'district_name' => '西伯郡伯耆町', 'sort_no' => 1413],
+            ['id' => '1414', 'division_id' => 31, 'district_name' => '日野郡日南町', 'sort_no' => 1414],
+            ['id' => '1415', 'division_id' => 31, 'district_name' => '日野郡日野町', 'sort_no' => 1415],
+            ['id' => '1416', 'division_id' => 31, 'district_name' => '日野郡江府町', 'sort_no' => 1416],
         ];
         DB::table('ship_districts')->insert($districts);
     }
