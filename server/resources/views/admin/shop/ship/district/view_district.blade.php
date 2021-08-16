@@ -53,7 +53,7 @@
             <div class="col-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">区・市・町・村 登録</h3>
+                        <h3 class="box-title">市・区・町・村 登録</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
