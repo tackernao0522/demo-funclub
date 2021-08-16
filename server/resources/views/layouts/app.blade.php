@@ -82,7 +82,7 @@
                     <li><a href="{{ route('articles.index') }}">News</a></li>
                     <li><a href="{{ route('informations.index') }}">Info</a></li>
                     @endif
-                    @if ( Auth::check() && Auth::user()->role === 'member' )
+                    @if ( Auth::check() && Auth::user()->role === 'member' || ( Auth::check() && Auth::user()->role === 'premium' ) )
                     <li><a href="{{ route('user.dashboard') }}">マイーページ</a></li>
                     @endif
                     @if (Auth::check())
