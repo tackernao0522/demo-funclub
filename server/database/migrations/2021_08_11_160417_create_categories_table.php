@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('category_name');
             $table->string('category_slug_name');
+            $table->bigInteger('sort_no')->unsigned()->nullable();
             $table->string('category_icon');
             $table->timestamps();
         });
