@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function categoryView()
     {
-        $categories = Category::latest()->get();
+        $categories = Category::orderBy('id', 'ASC')->get();
 
         return view('admin.shop.category.category_view', compact('categories'));
     }

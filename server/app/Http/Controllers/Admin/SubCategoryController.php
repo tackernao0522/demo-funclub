@@ -18,8 +18,8 @@ class SubCategoryController extends Controller
 
     public function subCategoryView()
     {
-        $categories = Category::orderBy('category_name', 'ASC')->get();
-        $subCategories = SubCategory::with(['category'])->latest()->get();
+        $categories = Category::orderBy('id', 'ASC')->get();
+        $subCategories = SubCategory::with(['category'])->orderBy('id', 'ASC')->get();
 
         return view('admin.shop.category.subCategory_view', compact('categories', 'subCategories'));
     }
@@ -107,8 +107,8 @@ class SubCategoryController extends Controller
     // That for Sub-Sub->SubCategory
     public function subSubCategoryView()
     {
-        $categories = Category::orderBy('category_name', 'ASC')->get();
-        $subSubCategories = SubSubCategory::with(['category', 'subCategory'])->latest()->get();
+        $categories = Category::orderBy('id', 'ASC')->get();
+        $subSubCategories = SubSubCategory::with(['category', 'subCategory'])->orderBy('id', 'ASC')->get();
 
         return view('admin.shop.category.sub_subCategory_view', compact('categories', 'subSubCategories'));
     }
@@ -116,7 +116,7 @@ class SubCategoryController extends Controller
     public function getSubCategory($category_id)
     {
         $subCat = SubCategory::where('category_id', $category_id)
-            ->orderBy('subCategory_name', 'ASC')->get();
+            ->orderBy('id', 'ASC')->get();
 
         return json_encode($subCat);
     }
@@ -124,7 +124,7 @@ class SubCategoryController extends Controller
     public function getSubSubCategory($subCategory_id)
     {
         $subSubCat = SubSubCategory::where('subCategory_id', $subCategory_id)
-            ->orderBy('subSubCategory_name', 'ASC')->get();
+            ->orderBy('id', 'ASC')->get();
 
         return json_encode($subSubCat);
     }
@@ -160,8 +160,8 @@ class SubCategoryController extends Controller
 
     public function subSubCategoryEdit($id)
     {
-        $categories = Category::orderBy('category_name', 'ASC')->get();
-        $subCategories = SubCategory::orderBy('subCategory_name', 'ASC')->get();
+        $categories = Category::orderBy('id', 'ASC')->get();
+        $subCategories = SubCategory::orderBy('id', 'ASC')->get();
         $subSubCategory = SubSubCategory::findOrFail($id);
 
         return view('admin.shop.category.subSubCategory_edit', compact('categories', 'subCategories', 'subSubCategory'));

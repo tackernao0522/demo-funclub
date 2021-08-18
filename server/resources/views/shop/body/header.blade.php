@@ -140,7 +140,7 @@
 
                                 <!-- Get Category Table Data -->
                                 @php
-                                $categories = App\Models\Category::orderBy('category_name','ASC')->get();
+                                $categories = App\Models\Category::orderBy('id','ASC')->get();
                                 @endphp
 
                                 @foreach($categories as $category)
@@ -151,7 +151,7 @@
                                                 <div class="row">
                                                     <!-- Get SubCategory Table Data -->
                                                     @php
-                                                    $subCategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subCategory_name','ASC')->get();
+                                                    $subCategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('id','ASC')->get();
                                                     @endphp
 
                                                     @foreach($subCategories as $subCategory)
@@ -162,7 +162,7 @@
 
                                                         <!-- Get SubSubCategory Table Data -->
                                                         @php
-                                                        $subSubCategories = App\Models\SubSubCategory::where('subCategory_id',$subCategory->id)->orderBy('subSubCategory_name','ASC')->get();
+                                                        $subSubCategories = App\Models\SubSubCategory::where('subCategory_id',$subCategory->id)->orderBy('id','ASC')->get();
                                                         @endphp
 
                                                         @foreach($subSubCategories as $subSubCategory)
