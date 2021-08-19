@@ -1089,6 +1089,57 @@ class SuSubCategoiesTableSeeder extends Seeder
             // スポーツ・レジャー/その他
             ['id' => '963', 'category_id' => '9', 'subCategory_id' => '112', 'subSubCategory_name' => '旅行用品', 'subSubCategory_slug_name' => '旅行用品', 'sort_no' => 963],
             ['id' => '964', 'category_id' => '9', 'subCategory_id' => '112', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 964],
+            // ハンドメイド/アクセサリー(女性用)
+            ['id' => '965', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'ピアス', 'subSubCategory_slug_name' => 'ピアス', 'sort_no' => 965],
+            ['id' => '966', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'イヤリング', 'subSubCategory_slug_name' => 'イヤリング', 'sort_no' => 966],
+            ['id' => '967', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'ネックレス', 'subSubCategory_slug_name' => 'ネックレス', 'sort_no' => 967],
+            ['id' => '968', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'ブレスレット', 'subSubCategory_slug_name' => 'ブレスレット', 'sort_no' => 968],
+            ['id' => '969', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'リング', 'subSubCategory_slug_name' => 'リング', 'sort_no' => 969],
+            ['id' => '970', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'チャーム', 'subSubCategory_slug_name' => 'チャーム', 'sort_no' => 970],
+            ['id' => '971', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'ヘアゴム', 'subSubCategory_slug_name' => 'ヘアゴム', 'sort_no' => 971],
+            ['id' => '972', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'アンクレット', 'subSubCategory_slug_name' => 'アンクレット', 'sort_no' => 972],
+            ['id' => '973', 'category_id' => '10', 'subCategory_id' => '113', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 973],
+            // ハンドメイド/ファッション/小物
+            ['id' => '974', 'category_id' => '10', 'subCategory_id' => '114', 'subSubCategory_name' => 'バッグ(女性用)', 'subSubCategory_slug_name' => 'バッグ(女性用)', 'sort_no' => 974],
+            ['id' => '975', 'category_id' => '10', 'subCategory_id' => '114', 'subSubCategory_name' => 'バッグ(男性用)', 'subSubCategory_slug_name' => 'バッグ(男性用)', 'sort_no' => 975],
+            ['id' => '976', 'category_id' => '10', 'subCategory_id' => '114', 'subSubCategory_name' => '財布(女性用)', 'subSubCategory_slug_name' => '財布(女性用)', 'sort_no' => 976],
+            ['id' => '977', 'category_id' => '10', 'subCategory_id' => '114', 'subSubCategory_name' => '財布(男性用)', 'subSubCategory_slug_name' => '財布(男性用)', 'sort_no' => 977],
+            ['id' => '978', 'category_id' => '10', 'subCategory_id' => '114', 'subSubCategory_name' => 'ファッション雑貨', 'subSubCategory_slug_name' => 'ファッション雑貨', 'sort_no' => 978],
+            ['id' => '979', 'category_id' => '10', 'subCategory_id' => '114', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 979],
+            // ハンドメイド/アクセサリー/時計
+            ['id' => '980', 'category_id' => '10', 'subCategory_id' => '115', 'subSubCategory_name' => 'アクセサリー(男性用)', 'subSubCategory_slug_name' => 'アクセサリー(男性用)', 'sort_no' => 980],
+            ['id' => '981', 'category_id' => '10', 'subCategory_id' => '115', 'subSubCategory_name' => '時計(女性用)', 'subSubCategory_slug_name' => '時計(女性用)', 'sort_no' => 981],
+            ['id' => '982', 'category_id' => '10', 'subCategory_id' => '115', 'subSubCategory_name' => '時計(男性用)', 'subSubCategory_slug_name' => '時計(男性用)', 'sort_no' => 982],
+            ['id' => '983', 'category_id' => '10', 'subCategory_id' => '115', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 983],
+            // ハンドメイド/日用品/インテリア
+            ['id' => '984', 'category_id' => '10', 'subCategory_id' => '116', 'subSubCategory_name' => 'キッチン用品', 'subSubCategory_slug_name' => 'キッチン用品', 'sort_no' => 984],
+            ['id' => '985', 'category_id' => '10', 'subCategory_id' => '116', 'subSubCategory_name' => '家具', 'subSubCategory_slug_name' => '家具', 'sort_no' => 985],
+            ['id' => '986', 'category_id' => '10', 'subCategory_id' => '116', 'subSubCategory_name' => '文房具', 'subSubCategory_slug_name' => '文房具', 'sort_no' => 986],
+            ['id' => '987', 'category_id' => '10', 'subCategory_id' => '116', 'subSubCategory_name' => 'アート/写真', 'subSubCategory_slug_name' => 'アート/写真', 'sort_no' => 987],
+            ['id' => '988', 'category_id' => '10', 'subCategory_id' => '116', 'subSubCategory_name' => 'アロマ/キャンドル', 'subSubCategory_slug_name' => 'アロマ/キャンドル', 'sort_no' => 988],
+            ['id' => '989', 'category_id' => '10', 'subCategory_id' => '116', 'subSubCategory_name' => 'フラワー/ガーデン', 'subSubCategory_slug_name' => 'フラワー/ガーデン', 'sort_no' => 989],
+            ['id' => '990', 'category_id' => '10', 'subCategory_id' => '116', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 990],
+            // ハンドメイド/趣味/おもちゃ
+            ['id' => '991', 'category_id' => '10', 'subCategory_id' => '117', 'subSubCategory_name' => 'クラフト/布製品', 'subSubCategory_slug_name' => 'クラフト/布製品', 'sort_no' => 991],
+            ['id' => '992', 'category_id' => '10', 'subCategory_id' => '117', 'subSubCategory_name' => 'おもちゃ/人形', 'subSubCategory_slug_name' => 'おもちゃ/人形', 'sort_no' => 992],
+            ['id' => '993', 'category_id' => '10', 'subCategory_id' => '117', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 993],
+            // ハンドメイド/キッズ/ベビー
+            ['id' => '994', 'category_id' => '10', 'subCategory_id' => '118', 'subSubCategory_name' => 'ファッション雑貨', 'subSubCategory_slug_name' => 'ファッション雑貨', 'sort_no' => 994],
+            ['id' => '995', 'category_id' => '10', 'subCategory_id' => '118', 'subSubCategory_name' => 'スタイ/よだれかけ', 'subSubCategory_slug_name' => 'スタイ/よだれかけ', 'sort_no' => 995],
+            ['id' => '996', 'category_id' => '10', 'subCategory_id' => '118', 'subSubCategory_name' => '外出用品', 'subSubCategory_slug_name' => '外出用品', 'sort_no' => 996],
+            ['id' => '997', 'category_id' => '10', 'subCategory_id' => '118', 'subSubCategory_name' => 'ネームタグ', 'subSubCategory_slug_name' => 'ネームタグ', 'sort_no' => 997],
+            ['id' => '998', 'category_id' => '10', 'subCategory_id' => '118', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 998],
+            // ハンドメイド/素材/材料
+            ['id' => '999', 'category_id' => '10', 'subCategory_id' => '119', 'subSubCategory_name' => '各種パーツ', 'subSubCategory_slug_name' => '各種パーツ', 'sort_no' => 999],
+            ['id' => '1000', 'category_id' => '10', 'subCategory_id' => '119', 'subSubCategory_name' => '生地/糸', 'subSubCategory_slug_name' => '生地/糸', 'sort_no' => 1000],
+            ['id' => '1001', 'category_id' => '10', 'subCategory_id' => '119', 'subSubCategory_name' => '型紙/パターン', 'subSubCategory_slug_name' => '型紙/パターン', 'sort_no' => 1001],
+            ['id' => '1002', 'category_id' => '10', 'subCategory_id' => '119', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1002],
+            // ハンドメイド/二次創作物
+            ['id' => '1003', 'category_id' => '10', 'subCategory_id' => '120', 'subSubCategory_name' => 'Ingress', 'subSubCategory_slug_name' => 'Ingress', 'sort_no' => 1003],
+            ['id' => '1004', 'category_id' => '10', 'subCategory_id' => '120', 'subSubCategory_name' => 'クリエイターズ宇宙兄弟', 'subSubCategory_slug_name' => 'クリエイターズ宇宙兄弟', 'sort_no' => 1004],
+            // ハンドメイド/その他
+            ['id' => '1005', 'category_id' => '10', 'subCategory_id' => '121', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1005],
+
         ];
         DB::table('sub_sub_categories')->insert($subSubCategories);
     }
