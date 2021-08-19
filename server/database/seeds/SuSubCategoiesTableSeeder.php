@@ -1139,7 +1139,65 @@ class SuSubCategoiesTableSeeder extends Seeder
             ['id' => '1004', 'category_id' => '10', 'subCategory_id' => '120', 'subSubCategory_name' => 'クリエイターズ宇宙兄弟', 'subSubCategory_slug_name' => 'クリエイターズ宇宙兄弟', 'sort_no' => 1004],
             // ハンドメイド/その他
             ['id' => '1005', 'category_id' => '10', 'subCategory_id' => '121', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1005],
-
+            // チケット/音楽
+            ['id' => '1006', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => '男性アイドル', 'subSubCategory_slug_name' => '男性アイドル', 'sort_no' => 1006],
+            ['id' => '1007', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => '女性アイドル', 'subSubCategory_slug_name' => '女性アイドル', 'sort_no' => 1007],
+            ['id' => '1008', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => '韓流', 'subSubCategory_slug_name' => '韓流', 'sort_no' => 1008],
+            ['id' => '1009', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => '国内アーティスト', 'subSubCategory_slug_name' => '国内アーティスト', 'sort_no' => 1009],
+            ['id' => '1010', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => '海外アーティスト', 'subSubCategory_slug_name' => '海外アーティスト', 'sort_no' => 1010],
+            ['id' => '1011', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => '音楽フェス', 'subSubCategory_slug_name' => '音楽フェス', 'sort_no' => 1011],
+            ['id' => '1012', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => '声優/アニメ', 'subSubCategory_slug_name' => '声優/アニメ', 'sort_no' => 1012],
+            ['id' => '1013', 'category_id' => '11', 'subCategory_id' => '122', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1013],
+            // チケット/スポーツ
+            ['id' => '1014', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'サッカー', 'subSubCategory_slug_name' => 'サッカー', 'sort_no' => 1014],
+            ['id' => '1015', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => '野球', 'subSubCategory_slug_name' => '野球', 'sort_no' => 1015],
+            ['id' => '1016', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'テニス', 'subSubCategory_slug_name' => 'テニス', 'sort_no' => 1016],
+            ['id' => '1017', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => '格闘技/プロレス', 'subSubCategory_slug_name' => '格闘技/プロレス', 'sort_no' => 1017],
+            ['id' => '1018', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => '相撲/武道', 'subSubCategory_slug_name' => '相撲/武道', 'sort_no' => 1018],
+            ['id' => '1019', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'ゴルフ', 'subSubCategory_slug_name' => 'ゴルフ', 'sort_no' => 1019],
+            ['id' => '1020', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'バレーボール', 'subSubCategory_slug_name' => 'バレーボール', 'sort_no' => 1020],
+            ['id' => '1021', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'バスケットボール', 'subSubCategory_slug_name' => 'バスケットボール', 'sort_no' => 1021],
+            ['id' => '1022', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'モータースポーツ', 'subSubCategory_slug_name' => 'モータースポーツ', 'sort_no' => 1022],
+            ['id' => '1023', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'ウィンタースポーツ', 'subSubCategory_slug_name' => 'ウィンタースポーツ', 'sort_no' => 1023],
+            ['id' => '1024', 'category_id' => '11', 'subCategory_id' => '123', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1024],
+            // チケット/演劇/芸能
+            ['id' => '1025', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => 'ミュージカル', 'subSubCategory_slug_name' => 'ミュージカル', 'sort_no' => 1025],
+            ['id' => '1026', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => '演劇', 'subSubCategory_slug_name' => '演劇', 'sort_no' => 1026],
+            ['id' => '1027', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => '伝統芸能', 'subSubCategory_slug_name' => '伝統芸能', 'sort_no' => 1027],
+            ['id' => '1028', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => '落語', 'subSubCategory_slug_name' => '落語', 'sort_no' => 1028],
+            ['id' => '1029', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => 'お笑い', 'subSubCategory_slug_name' => 'お笑い', 'sort_no' => 1029],
+            ['id' => '1030', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => 'オペラ', 'subSubCategory_slug_name' => 'オペラ', 'sort_no' => 1030],
+            ['id' => '1031', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => 'サーカス', 'subSubCategory_slug_name' => 'サーカス', 'sort_no' => 1031],
+            ['id' => '1032', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => 'バレエ', 'subSubCategory_slug_name' => 'バレエ', 'sort_no' => 1032],
+            ['id' => '1033', 'category_id' => '11', 'subCategory_id' => '124', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1033],
+            // チケット/イベント
+            ['id' => '1034', 'category_id' => '11', 'subCategory_id' => '125', 'subSubCategory_name' => '声優/アニメ', 'subSubCategory_slug_name' => '声優/アニメ', 'sort_no' => 1034],
+            ['id' => '1035', 'category_id' => '11', 'subCategory_id' => '125', 'subSubCategory_name' => 'キッズ/ファミリー', 'subSubCategory_slug_name' => 'キッズ/ファミリー', 'sort_no' => 1035],
+            ['id' => '1036', 'category_id' => '11', 'subCategory_id' => '125', 'subSubCategory_name' => 'トークショー/講演会', 'subSubCategory_slug_name' => 'トークショー/講演会', 'sort_no' => 1036],
+            ['id' => '1037', 'category_id' => '11', 'subCategory_id' => '125', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1037],
+            // チケット/映画
+            ['id' => '1038', 'category_id' => '11', 'subCategory_id' => '126', 'subSubCategory_name' => '邦画', 'subSubCategory_slug_name' => '邦画', 'sort_no' => 1038],
+            ['id' => '1039', 'category_id' => '11', 'subCategory_id' => '126', 'subSubCategory_name' => '洋画', 'subSubCategory_slug_name' => '洋画', 'sort_no' => 1039],
+            ['id' => '1040', 'category_id' => '11', 'subCategory_id' => '126', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1040],
+            // チケット/施設利用券
+            ['id' => '1041', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => '遊園地/テーマパーク', 'subSubCategory_slug_name' => '遊園地/テーマパーク', 'sort_no' => 1041],
+            ['id' => '1042', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => '美術館/博物館', 'subSubCategory_slug_name' => '美術館/博物館', 'sort_no' => 1042],
+            ['id' => '1043', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => 'スキー場', 'subSubCategory_slug_name' => 'スキー場', 'sort_no' => 1043],
+            ['id' => '1044', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => 'ゴルフ場', 'subSubCategory_slug_name' => 'ゴルフ場', 'sort_no' => 1044],
+            ['id' => '1045', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => 'フィットネスクラブ', 'subSubCategory_slug_name' => 'フィットネスクラブ', 'sort_no' => 1045],
+            ['id' => '1046', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => 'プール', 'subSubCategory_slug_name' => 'プール', 'sort_no' => 1046],
+            ['id' => '1047', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => 'ボウリング場', 'subSubCategory_slug_name' => 'ボウリング場', 'sort_no' => 1047],
+            ['id' => '1048', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => '水族館', 'subSubCategory_slug_name' => '水族館', 'sort_no' => 1048],
+            ['id' => '1049', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => '動物園', 'subSubCategory_slug_name' => '動物園', 'sort_no' => 1049],
+            ['id' => '1050', 'category_id' => '11', 'subCategory_id' => '127', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1050],
+            // チケット/優待券/割引券
+            ['id' => '1051', 'category_id' => '11', 'subCategory_id' => '128', 'subSubCategory_name' => 'ショッピング', 'subSubCategory_slug_name' => 'ショッピング', 'sort_no' => 1051],
+            ['id' => '1052', 'category_id' => '11', 'subCategory_id' => '128', 'subSubCategory_name' => 'レストラン/食事券', 'subSubCategory_slug_name' => 'レストラン/食事券', 'sort_no' => 1052],
+            ['id' => '1053', 'category_id' => '11', 'subCategory_id' => '128', 'subSubCategory_name' => 'フード/ドリンク券', 'subSubCategory_slug_name' => 'フード/ドリンク券', 'sort_no' => 1053],
+            ['id' => '1054', 'category_id' => '11', 'subCategory_id' => '128', 'subSubCategory_name' => '宿泊券', 'subSubCategory_slug_name' => '宿泊券', 'sort_no' => 1054],
+            ['id' => '1055', 'category_id' => '11', 'subCategory_id' => '128', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1055],
+            // チケット/その他
+            ['id' => '1056', 'category_id' => '11', 'subCategory_id' => '129', 'subSubCategory_name' => 'その他', 'subSubCategory_slug_name' => 'その他', 'sort_no' => 1056],
         ];
         DB::table('sub_sub_categories')->insert($subSubCategories);
     }
