@@ -126,13 +126,13 @@ $seo = App\Models\Seo::find(1);
 
                         <div class="col-md-4">
                             <ul class="list-group">
-                                <li class="list-group-item">@if(session()->get('language') == 'english') Product Price: @else 商品価格: @endif <strong class="text-danger">¥<span id="pprice"></span></strong>
+                                <li class="list-group-item">商品価格: <strong class="text-danger">¥<span id="pprice"></span></strong>
                                     <del id="oldprice">¥</del>
                                 </li>
-                                <li class="list-group-item">@if(session()->get('language') == 'english') Product Code: @else 商品番号: @endif <strong id="pcode"></strong></li>
-                                <li class="list-group-item">@if(session()->get('language') == 'english') Category: @else カテゴリー: @endif <strong id="pcategory"></strong></li>
-                                <li class="list-group-item">@if(session()->get('language') == 'english') Brand: @else ブランド: @endif <strong id="pbrand"></strong></li>
-                                <li class="list-group-item">@if(session()->get('language') == 'english') Stock: @else 在庫: @endif <span class="badge badge-pill badge-success" id="aviable" style="background: green; color: white;"></span>
+                                <li class="list-group-item">商品番号: <strong id="pcode"></strong></li>
+                                <li class="list-group-item">カテゴリー: <strong id="pcategory"></strong></li>
+                                <li class="list-group-item">ブランド: <strong id="pbrand"></strong></li>
+                                <li class="list-group-item">在庫: <span class="badge badge-pill badge-success" id="aviable" style="background: green; color: white;"></span>
                                     <span class="badge badge-pill badge-danger" id="stockout" style="background: red; color: white;"></span>
                                 </li>
                             </ul>
@@ -140,25 +140,25 @@ $seo = App\Models\Seo::find(1);
 
                         <div class="col-md-4">
                             <div class="form-group" id="sizeColor">
-                                <label for="color">@if(session()->get('language') == 'english') Choose Color @else カラー選択 @endif</label>
+                                <label for="color">カラー選択</label>
                                 <select class="form-control" id="color" name="color">
 
                                 </select>
                             </div> <!-- end form group -->
 
                             <div class="form-group" id="sizeArea">
-                                <label for="size">@if(session()->get('language') == 'english') Choose Size @else サイズ選択 @endif</label>
+                                <label for="size">サイズ選択</label>
                                 <select class="form-control" id="size" name="size">
 
                                 </select>
                             </div> <!-- end form group -->
 
                             <div class="form-group">
-                                <label for="qty">@if(session()->get('language') == 'english') Quantity @else 数量 @endif</label>
+                                <label for="qty">数量</label>
                                 <input type="number" class="form-control" id="qty" value="1" min="1">
                             </div> <!-- end form group composer require bumbummen99/shoppingcart "after" php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config" -->
                             <input type="hidden" id="product_id">
-                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">@if(session()->get('language') == 'english') Add to Cart @else カートに入れる @endif</button>
+                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">カートに入れる</button>
                         </div> <!-- end col md -->
                     </div> <!-- end row -->
                 </div> <!-- end modal Body -->
@@ -181,11 +181,11 @@ $seo = App\Models\Seo::find(1);
                 url: '/product/view/modal/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    $('#pname').text(data.product.product_name_ja);
+                    $('#pname').text(data.product.product_name);
                     $('#price').text(data.product.selling_price);
                     $('#pcode').text(data.product.product_code);
-                    $('#pcategory').text(data.product.category.category_name_ja);
-                    $('#pbrand').text(data.product.brand.brand_name_ja);
+                    $('#pcategory').text(data.product.category.category_name);
+                    $('#pbrand').text(data.product.brand.brand_name);
                     $('#pimage').attr('src', 'https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/' + data.product.product_thambnail);
 
                     $('#product_id').val(id);
@@ -405,7 +405,7 @@ $seo = App\Models\Seo::find(1);
                         rows += `<tr>
                                     <td class="col-md-2"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.product.product_thambnail}"></td>
                                     <td class="col-md-7">
-                                        <div class="product-name"><a href="#">@if(session()->get('language') == 'english') ${value.product.product_name_en} @else ${value.product.product_name_ja} @endif</a></div>
+                                        <div class="product-name"><a href="#">${value.product.product_name_ja}</a></div>
                                         <div class="price">
                                         ${value.product.discount_price == null
                                             ? `${'¥' + value.product.selling_price}`
@@ -415,7 +415,7 @@ $seo = App\Models\Seo::find(1);
                                         </div>
                                     </td>
                                     <td class="col-md-2">
-                                        <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)">@if(session()->get('language') == 'english') Add to cart @else カートに入れる @endif</button>
+                                        <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)">カートに入れる</button>
                                     </td>
                                     <td class="col-md-1 close-btn">
                                         <button type="submit" class="" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
@@ -647,10 +647,10 @@ $seo = App\Models\Seo::find(1);
                             `<tr>
                                 <th>
                                     <div class="cart-sub-total">
-                                        @if(session()->get('language') == 'english')Subtotal @else 小計 @endif<span class="inner-left-md">¥ ${data.total}</span>
+                                        小計<span class="inner-left-md">¥ ${data.total}</span>
                                     </div>
                                     <div class="cart-grand-total">
-                                        @if(session()->get('language') == 'english')Grand Total @else 合計 @endif<span class="inner-left-md">¥ ${data.total}</span>
+                                        合計<span class="inner-left-md">¥ ${data.total}</span>
                                     </div>
                                 </th>
                             </tr>`
@@ -660,20 +660,20 @@ $seo = App\Models\Seo::find(1);
                             `<tr>
                                 <th>
                                     <div class="cart-sub-total" style="text-align: left">
-                                        @if(session()->get('language') == 'english')Subtotal @else 小計 @endif<span class="inner-left-md" style="margin-left: 10px">¥ ${data.subtotal}(税込)</span>
+                                        小計<span class="inner-left-md" style="margin-left: 10px">¥ ${data.subtotal}(税込)</span>
                                     </div>
 
                                     <div class="cart-sub-total" style="text-align: left">
-                                    @if(session()->get('language') == 'english')Coupon @else クーポン @endif<span class="inner-left-md" style="margin-left: -50px"> ${data.coupon_name}</span>
+                                        クーポン<span class="inner-left-md" style="margin-left: -50px"> ${data.coupon_name}</span>
                                     <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
                                     </div>
 
                                     <div class="cart-sub-total" style="text-align: left">
-                                        @if(session()->get('language') == 'english')Discount Amount @else 割引価格 @endif<span class="inner-left-md" style="margin-left: -18px">¥ ${data.discount_amount}</span>
+                                        割引価格<span class="inner-left-md" style="margin-left: -18px">¥ ${data.discount_amount}</span>
                                     </div>
 
                                     <div class="cart-grand-total" style="text-align: left">
-                                        @if(session()->get('language') == 'english')Grand Total @else 合計 @endif<span class="inner-left-md" style="margin-left: 10px">¥ ${data.total_amount}</span>
+                                        合計<span class="inner-left-md" style="margin-left: 10px">¥ ${data.total_amount}</span>
                                     </div>
                                 </th>
                             </tr>`
