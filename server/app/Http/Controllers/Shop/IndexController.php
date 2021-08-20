@@ -76,4 +76,29 @@ class IndexController extends Controller
             // 'blogPosts',
         ));
     }
+
+    public function productDetails($id, $slug)
+    {
+        $product = Product::findOrFail($id);
+
+        $color_name = $product->product_color;
+        $product_color = explode(',', $color_name);
+
+        $size_name = $product->product_size;
+        $product_size = explode(',', $size_name);
+
+        $multiImage = MultiImg::where('product_id', $id)->get();
+
+        $cat_id = $product->category_id;
+        $relatedProduct = Product::where('category_id', $cat_id)
+            ->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
+
+        return view('shop.product_details', compact(
+            'product',
+            'multiImage',
+            'product_color',
+            'product_size',
+            'relatedProduct',
+        ));
+    }
 }
