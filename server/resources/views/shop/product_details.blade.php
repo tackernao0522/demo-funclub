@@ -505,13 +505,13 @@
                             @if ($product->discount_price == NULL)
                             <div class="product-price">
                                 <span class="price">
-                                    ¥ {{ $product->selling_price }} </span>
+                                    ¥ {{ number_format($product->selling_price) }} </span>
                             </div><!-- /.product-price -->
                             @else
                             <div class="product-price">
                                 <span class="price">
-                                    ¥ {{ $product->discount_price }} </span>
-                                <span class="price-before-discount">¥ {{ $product->selling_price }}</span>
+                                    ¥ {{ number_format($product->discount_price) }} </span>
+                                <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span>
                             </div><!-- /.product-price -->
                             @endif
                         </div><!-- /.product-info -->
