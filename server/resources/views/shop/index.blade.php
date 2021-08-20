@@ -43,7 +43,7 @@ Home Easy Online Shop
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span> </div>
+                                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                         <!-- /.product-price -->
                                                     </div>
                                                 </div>
@@ -90,7 +90,7 @@ Home Easy Online Shop
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span> </div>
+                                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                         <!-- /.product-price -->
                                                     </div>
                                                 </div>
@@ -260,9 +260,9 @@ Home Easy Online Shop
                                                     <div class="description"></div>
 
                                                     @if ($product->discount_price == NULL)
-                                                    <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span></div>
+                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
                                                     @else
-                                                    <div class="product-price"> <span class="price">¥ {{ $product->discount_price }}</span> <span class="price-before-discount">¥ {{ $product->selling_price }}</span> </div>
+                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                     @endif
                                                     <!-- /.product-price -->
 
@@ -334,9 +334,9 @@ Home Easy Online Shop
                                                     <div class="description"></div>
 
                                                     @if ($product->discount_price == NULL)
-                                                    <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span></span></div>
+                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
                                                     @else
-                                                    <div class="product-price"> <span class="price">¥ {{ $product->discount_price }}</span> <span class="price-before-discount">¥ {{ $product->selling_price }}</span> </div>
+                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                     @endif
                                                     <!-- /.product-price -->
 
@@ -436,9 +436,9 @@ Home Easy Online Shop
                                         <div class="description"></div>
 
                                         @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span></span></div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
                                         @else
-                                        <div class="product-price"> <span class="price">¥ {{ $product->discount_price }}</span> <span class="price-before-discount">¥ {{ $product->selling_price }}</span> </div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                                         @endif
                                         <!-- /.product-price -->
                                     </div>
@@ -503,9 +503,9 @@ Home Easy Online Shop
                                         <div class="description"></div>
 
                                         @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span></span></div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
                                         @else
-                                        <div class="product-price"> <span class="price">¥ {{ $product->discount_price }}</span> <span class="price-before-discount">¥ {{ $product->selling_price }}</span> </div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                                         @endif
                                         <!-- /.product-price -->
                                     </div>
@@ -570,9 +570,9 @@ Home Easy Online Shop
                                         <div class="description"></div>
 
                                         @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span></span></div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
                                         @else
-                                        <div class="product-price"> <span class="price">¥ {{ $product->discount_price }}</span> <span class="price-before-discount">¥ {{ $product->selling_price }}</span> </div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                                         @endif
                                         <!-- /.product-price -->
                                     </div>
@@ -664,9 +664,9 @@ Home Easy Online Shop
                                         <div class="description"></div>
 
                                         @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span></span></div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
                                         @else
-                                        <div class="product-price"> <span class="price">¥ {{ $product->discount_price }}</span> <span class="price-before-discount">¥ {{ $product->selling_price }}</span> </div>
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                                         @endif
                                         <!-- /.product-price -->
                                     </div>
