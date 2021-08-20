@@ -41,7 +41,7 @@ Home Easy Online Shop
                                                 <!-- /.col -->
                                                 <div class="col col-xs-7">
                                                     <div class="product-info">
-                                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_ja) }}">{{ $product->product_name }}</a></h3>
+                                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span> </div>
                                                         <!-- /.product-price -->
@@ -88,7 +88,7 @@ Home Easy Online Shop
                                                 <!-- /.col -->
                                                 <div class="col col-xs-7">
                                                     <div class="product-info">
-                                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_ja) }}">{{ $product->product_name }}</a></h3>
+                                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span> </div>
                                                         <!-- /.product-price -->
@@ -659,7 +659,7 @@ Home Easy Online Shop
                                     <!-- /.product-image -->
 
                                     <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_ja) }}">{{ $product->product_name }}</a></h3>
+                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                         <div class="rating rateit-small"></div>
                                         <div class="description"></div>
 

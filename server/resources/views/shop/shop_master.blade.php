@@ -405,7 +405,7 @@ $seo = App\Models\Seo::find(1);
                         rows += `<tr>
                                     <td class="col-md-2"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.product.product_thambnail}"></td>
                                     <td class="col-md-7">
-                                        <div class="product-name"><a href="#">${value.product.product_name_ja}</a></div>
+                                        <div class="product-name"><a href="#">${value.product.product_name}</a></div>
                                         <div class="price">
                                         ${value.product.discount_price == null
                                             ? `${'¥' + value.product.selling_price}`
