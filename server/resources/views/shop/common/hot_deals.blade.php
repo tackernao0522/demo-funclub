@@ -4,7 +4,7 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)
 ->orderBy('id', 'DESC')->limit(3)->get();
 @endphp
 <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
-    <h3 class="section-title">@if(session()->get('language') == 'english') hot deals @else お買い得品 @endif</h3>
+    <h3 class="section-title">お買い得品</h3>
     <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
         @foreach($hot_deals as $product)
         <div class="item">
@@ -18,7 +18,7 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)
                     @endphp
 
                     @if ($product->discount_price == NULL)
-                    <div class="sale-offer-tag"><span>@if(session()->get('language') == 'english') new @else 新着 @endif<br>@if(session()->get('language') == 'english') HOT!! @else 注目! @endif</span></div>
+                    <div class="sale-offer-tag"><span>新着<br>注目!</span></div>
                     @else
                     <div class="sale-offer-tag"><span>{{ round($discount) }}%<br>
                             off</span></div>
@@ -41,11 +41,7 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)
                 <!-- /.hot-deal-wrapper -->
 
                 <div class="product-info text-left m-t-20">
-                    @if(session()->get('language') == 'japanese')
-                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_ja) }}">{{ $product->product_name_ja }}</a></h3>
-                    @else
-                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">{{ $product->product_name_en }}</a></h3>
-                    @endif
+                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                     <div class="rating rateit-small"></div>
                     @if ($product->discount_price == NULL)
                     <div class="product-price"> <span class="price">¥ {{ $product->selling_price }}</span> </div>
@@ -61,7 +57,7 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)
                     <div class="action">
                         <div class="add-cart-button btn-group">
                             <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                            <button class="btn btn-primary cart-btn" type="button">@if(session()->get('language') == 'english') Add to cart @else カートに入れる @endif</button>
+                            <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
                         </div>
                     </div>
                     <!-- /.action -->
