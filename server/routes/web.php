@@ -153,6 +153,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/shop/index', 'Shop\IndexController@index')->name('shop.index');
     // Online Shop Product Details Page url
     Route::get('/product/details/{id}/{slug}', 'Shop\IndexController@productDetails')->name('product.details');
+    // Online Shop Product Tags Page
+    Route::get('/product/tag/{tag}', 'Shop\IndexController@tagWiseProduct')->name('tags.page');
   });
 
   // Contactページ

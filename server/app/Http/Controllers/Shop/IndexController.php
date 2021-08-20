@@ -101,4 +101,15 @@ class IndexController extends Controller
             'relatedProduct',
         ));
     }
+
+    public function tagWiseProduct($tag)
+    {
+        $products = Product::where('status', 1)
+            ->where('product_tags_name', $tag)
+            ->orderBy('id', 'DESC')->paginate(3);
+
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+
+        return view('shop.tags.tags_view', compact('products', 'categories'));
+    }
 }
