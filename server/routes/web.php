@@ -151,6 +151,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/user/password/update', 'User\IndexController@userPasswordUpdate')->name('user.password.update');
     // Online Shop Index Page
     Route::get('/shop/index', 'Shop\IndexController@index')->name('shop.index');
+    // Online Shop Product Details Page url
+    Route::get('/product/details/{id}/{slug}', 'Shop\IndexController@productDetails')->name('product.details');
   });
 
   // Contactページ
