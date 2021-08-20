@@ -82,6 +82,9 @@
                     <li><a href="{{ route('articles.index') }}">News</a></li>
                     <li><a href="{{ route('informations.index') }}">Info</a></li>
                     @endif
+                    @auth
+                    <li><a href="{{ route('shop.index') }}">Online Shop</a></li>
+                    @endauth
                     @if ( Auth::check() && Auth::user()->role === 'member' || ( Auth::check() && Auth::user()->role === 'premium' ) )
                     <li><a href="{{ route('user.dashboard') }}">マイーページ</a></li>
                     @endif
