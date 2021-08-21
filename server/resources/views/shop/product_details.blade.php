@@ -10,6 +10,16 @@
     .checked {
         color: orange;
     }
+    img.tags_page_list {
+        width: 189px !important;
+        height: 206px !important;
+    }
+    @media (max-width: 600px) {
+        img.tags_page_list {
+            width: 307px !important;
+            height: 335px !important;
+        }
+    }
 </style>
 <!-- ===== ======== HEADER : END ============================================== -->
 <div class="breadcrumb">
@@ -491,7 +501,7 @@
                     <div class="product">
                         <div class="product-image">
                             <div class="image">
-                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a>
+                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="tags_page_list" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a>
                             </div><!-- /.image -->
 
                             <div class="tag sale"><span>sale</span></div>
@@ -499,7 +509,7 @@
 
 
                         <div class="product-info text-left">
-                            <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
+                            <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
                             <div class="rating rateit-small"></div>
                             <div class="description"></div>
                             @if ($product->discount_price == NULL)

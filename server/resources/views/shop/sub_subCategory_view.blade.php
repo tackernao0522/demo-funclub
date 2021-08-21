@@ -7,6 +7,28 @@
 @endsection
 
 @section('content')
+<style>
+    img.grid_view_product {
+        width: 249px;
+        height: 249px;
+    }
+    img.list_view_product {
+        width: 249px;
+        height: 249px;
+    }
+
+    @media (max-width: 600px) {
+        img.grid_view_product {
+            width: 305px !important;
+            height: 332px !important;
+        }
+        img.list_view_product {
+            width: 305px !important;
+            height: 332px !important;
+        }
+    }
+</style>
+
 <div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
@@ -262,7 +284,7 @@
                                         <div class="products">
                                             <div class="product">
                                                 <div class="product-image">
-                                                    <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 249px; height: 249px"></a> </div>
+                                                    <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="grid_view_product" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                                                     <!-- /.image -->
 
                                                     @php
@@ -331,7 +353,7 @@
                                             <div class="row product-list-row">
                                                 <div class="col col-sm-4 col-lg-4">
                                                     <div class="product-image">
-                                                        <div class="image"> <img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 249px; height: 249px"> </div>
+                                                        <div class="image"> <img class="grid_view_product" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></div>
                                                     </div>
                                                     <!-- /.product-image -->
                                                 </div>

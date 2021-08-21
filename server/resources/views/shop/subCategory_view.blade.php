@@ -7,6 +7,26 @@
 @endsection
 
 @section('content')
+<style>
+    img.grid_view_product {
+        width: 249px;
+        height: 249px;
+    }
+    img.list_view_product {
+        width: 249px;
+        height: 249px;
+    }
+    @media (max-width: 600px) {
+        img.grid_view_product {
+            width: 305px !important;
+            height: 332px !important;
+        }
+        img.list_view_product {
+            width: 305px !important;
+            height: 332px !important;
+        }
+    }
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

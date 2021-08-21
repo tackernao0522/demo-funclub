@@ -3,7 +3,7 @@
     <div class="products">
         <div class="product">
             <div class="product-image">
-                <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 249px; height: 249px"></a> </div>
+                <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="grid_view_product" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                 <!-- /.image -->
 
                 @php
@@ -22,7 +22,7 @@
             <!-- /.product-image -->
 
             <div class="product-info text-left">
-                <h3 class="name"><a href="{{ url('product/details/' . $product->id) }}">{!! Str::limit($product->product_name, 30) !!}</a></h3>
+                <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 30) !!}</a></h3>
                 <div class="rating rateit-small"></div>
                 <div class="description"></div>
                 @if ($product->discount_price == NULL)
