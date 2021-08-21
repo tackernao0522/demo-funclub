@@ -108,8 +108,58 @@ class IndexController extends Controller
             ->where('product_tags_name', $tag)
             ->orderBy('id', 'DESC')->paginate(3);
 
-        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $categories = Category::orderBy('id', 'ASC')->get();
 
         return view('shop.tags.tags_view', compact('products', 'categories'));
+    }
+
+    public function subCatWiseProduct(Request $request, $subCat_id)
+    {
+        $products = Product::where('status',1)->where('subcategory_id', $subCat_id)->orderBy('id','ASC')->paginate(3);
+
+        $categories = Category::orderBy('id', 'ASC')->get();
+
+        $breadSubCat = SubCategory::with(['category'])->where('id', $subCat_id)->get();
+        // dd($products, $categories, $breadSubCat);
+
+        // Load More Product with Ajax
+        if ($request->ajax()) {
+            $grid_view = view('shop.grid_view_product', compact('products'))->render();
+
+            $list_view = view('shop.list_view_product', compact('products'))->render();
+
+            return response()->json(['grid_view' => $grid_view, 'list_view', $list_view]);
+        }
+        // End Load More Product with Ajax
+
+        return view('shop.subCategory_view', compact('products', 'categories', 'breadSubCat'));
+    }
+
+    public function subSubCatWiseProduct($subSubCat_id)
+    {
+        $products = Product::where('status', 1)->where('subSubCategory_id', $subSubCat_id)->orderBy('id', 'DESC')->paginate(6);
+
+        $categories = Category::orderBy('id', 'ASC')->get();
+
+        $breadSubSubCat = SubSubCategory::with(['category', 'subCategory'])->where('id', $subSubCat_id)->get();
+
+        return view('shop.sub_subCategory_view', compact('products', 'categories', 'breadSubSubCat'));
+    }
+
+    public function productViewAjax($id)
+    {
+        $product = Product::with('category', 'brand')->findOrFail($id);
+
+        $color = $product->product_color;
+        $product_color = explode(',', $color);
+
+        $size = $product->product_size;
+        $product_size = explode(',', $size);
+
+        return response()->json(array(
+            'product' => $product,
+            'color' => $product_color,
+            'size' => $product_size,
+        ));
     }
 }

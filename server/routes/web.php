@@ -155,6 +155,12 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/product/details/{id}/{slug}', 'Shop\IndexController@productDetails')->name('product.details');
     // Online Shop Product Tags Page
     Route::get('/product/tag/{tag}', 'Shop\IndexController@tagWiseProduct')->name('tags.page');
+    // Shop SubCategory Wise Data
+    Route::get('/subCategory/product/{subCat_id}', 'Shop\IndexController@subCatWiseProduct');
+    // Shop SubSubCategory Wise Data
+    Route::get('/subSubCategory/product/{subSubCat_id}', 'Shop\IndexController@subSubCatWiseProduct');
+    // Shop Product View Modal with Ajax
+    Route::get('/product/view/modal/{id}', 'Shop\IndexController@productViewAjax');
   });
 
   // Contactページ
