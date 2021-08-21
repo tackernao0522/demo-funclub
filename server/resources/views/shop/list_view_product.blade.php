@@ -5,7 +5,7 @@
             <div class="row product-list-row">
                 <div class="col col-sm-4 col-lg-4">
                     <div class="product-image">
-                        <div class="image"> <img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 249px; height: 249px"> </div>
+                        <div class="image"> <img class="list_view_product" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""> </div>
                     </div>
                     <!-- /.product-image -->
                 </div>

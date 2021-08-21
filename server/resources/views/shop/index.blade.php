@@ -5,6 +5,18 @@ Home Easy Online Shop
 @endsection
 
 @section('content')
+<style>
+    img.product_index {
+        width: 189px;
+        height: 206px;
+    }
+    @media (max-width: 600px) {
+        img.product_index {
+            width: 307px;
+            height: 307px;
+        }
+    }
+</style>
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
     <div class="container">
         <div class="row">
@@ -236,7 +248,7 @@ Home Easy Online Shop
                                         <div class="products">
                                             <div class="product">
                                                 <div class="product-image">
-                                                    <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 189px; height: 206px"></a> </div>
+                                                    <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                                                     <!-- /.image -->
 
                                                     @php
@@ -310,7 +322,7 @@ Home Easy Online Shop
                                         <div class="products">
                                             <div class="product">
                                                 <div class="product-image">
-                                                    <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 189px; height: 206px"></a> </div>
+                                                    <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                                                     <!-- /.image -->
 
                                                     @php
@@ -412,7 +424,7 @@ Home Easy Online Shop
                             <div class="products">
                                 <div class="product">
                                     <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 189px; height: 206px"></a> </div>
+                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                                         <!-- /.image -->
 
                                         @php
@@ -479,7 +491,7 @@ Home Easy Online Shop
                             <div class="products">
                                 <div class="product">
                                     <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 189px; height: 206px"></a> </div>
+                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                                         <!-- /.image -->
 
                                         @php
@@ -546,7 +558,7 @@ Home Easy Online Shop
                             <div class="products">
                                 <div class="product">
                                     <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt="" style="width: 189px; height: 206px"></a> </div>
+                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                                         <!-- /.image -->
 
                                         @php
@@ -640,7 +652,7 @@ Home Easy Online Shop
                             <div class="products">
                                 <div class="product">
                                     <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
                                         <!-- /.image -->
 
                                         @php
