@@ -163,6 +163,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/product/view/modal/{id}', 'Shop\IndexController@productViewAjax');
     // Shop Product Add to Cart Store Data
     Route::post('/cart/data/store/{id}', 'Shop\CartController@addToCart');
+    // Get Data from mini cart
+    Route::get('/product/mini/cart', 'Shop\CartController@addMiniCart');
+    // Remove mini cart
+    Route::get('/minicart/product-remove/{rowId}', 'Shop\CartController@removeMiniCart');
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
   });
