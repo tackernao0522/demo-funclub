@@ -75,4 +75,27 @@ class CartController extends Controller
 
         return response()->json(['success' => 'カート内商品を削除しました。']);
     }
+
+    public function AddToWishlist(Reqeust $reqeust, $product_id)
+    {
+        if (Auth::check()) {
+            $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product_id)->first();
+
+            if (!$exists) {
+                Wishlist::insert([
+                    'user_id' => Auth::id(),
+                    'product_id' => $product_id,
+                    'created_at' => Carbon::now(),
+                ]);
+
+                return response()->json(['success' => 'ウイッシュリストに追加しました。']);
+            } else {
+
+                return response()->json(['error' => 'この商品は既にウイッシュリストに入っています。']);
+            }
+        } else {
+
+            return response()->json(['error' => 'ログインしてください。']);
+        }
+    }
 }
