@@ -6,12 +6,12 @@
 
 @section('content')
 <style>
-@media (max-width: 600px) {
-    .body-content .my-wishlist-page img {
-        width: 123px;
-        height: 123px;
+    @media (max-width: 600px) {
+        .body-content .my-wishlist-page img {
+            width: 123px;
+            height: 123px;
+        }
     }
-}
 </style>
 
 <div class="breadcrumb">

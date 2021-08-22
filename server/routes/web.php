@@ -177,6 +177,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     });
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
+    Route::get('/user/get-cart-product', 'User\CartPageController@getCartProduct');
+    Route::get('/user/cart-remove/{rowId}', 'User\CartPageController@removeCartProduct');
+    Route::get('/cart-increment/{rowId}', 'User\CartPageController@cartIncrement');
+    Route::get('/cart-decrement/{rowId}', 'User\CartPageController@cartDecrement');
   });
 
   // Contactページ
