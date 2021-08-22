@@ -76,7 +76,7 @@ class CartController extends Controller
         return response()->json(['success' => 'カート内商品を削除しました。']);
     }
 
-    public function AddToWishlist(Reqeust $reqeust, $product_id)
+    public function AddToWishlist(Request $request, $product_id)
     {
         if (Auth::check()) {
             $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product_id)->first();
