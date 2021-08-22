@@ -163,10 +163,14 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/product/view/modal/{id}', 'Shop\IndexController@productViewAjax');
     // Shop Product Add to Cart Store Data
     Route::post('/cart/data/store/{id}', 'Shop\CartController@addToCart');
-    // Get Data from mini cart
+    // Get Data from Shop mini cart
     Route::get('/product/mini/cart', 'Shop\CartController@addMiniCart');
-    // Remove mini cart
+    // Remove Shop mini cart
     Route::get('/minicart/product-remove/{rowId}', 'Shop\CartController@removeMiniCart');
+    // Add to Wishlist
+    Route::post('/add-to-wishlist/{product_id}', 'Shop\CartController@AddToWishlist');
+    // Shop Wishlist Page
+    Route::get('/whishlist', 'User\WishlistController@viewWishlist')->name('wishlist');
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
   });
