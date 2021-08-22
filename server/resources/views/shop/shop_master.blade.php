@@ -487,7 +487,11 @@ $seo = App\Models\Seo::find(1);
                         </div>
                     </td>
             <td class="col-md-2">
-                <strong>${value.options.color} </strong>
+                ${value.options.color == null
+                    ? `<span> .... </span>`
+                    :
+                `<strong>${value.options.color} </strong>`
+                    }
                 </td>
                 <td class="col-md-2">
                 ${value.options.size == null
