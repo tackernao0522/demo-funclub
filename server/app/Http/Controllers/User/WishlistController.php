@@ -14,4 +14,18 @@ class WishlistController extends Controller
     {
         return view('shop.wishlist.view_wishlist');
     }
+
+    public function getWishlistProduct()
+    {
+        $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+
+        return response()->json($wishlist);
+    }
+
+    public function removeWishlistProduct($id)
+    {
+        Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
+
+        return response()->json(['success' => 'ウィッシュリストから商品を削除しました。']);
+    }
 }

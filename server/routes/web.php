@@ -170,7 +170,11 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // Add to Wishlist
     Route::post('/add-to-wishlist/{product_id}', 'Shop\CartController@AddToWishlist');
     // Shop Wishlist Page
-    Route::get('/whishlist', 'User\WishlistController@viewWishlist')->name('wishlist');
+    Route::prefix('user')->group(function() {
+      Route::get('/whishlist', 'User\WishlistController@viewWishlist')->name('wishlist');
+      Route::get('/get-wishlist-product', 'User\WishlistController@getWishlistProduct');
+      Route::get('/wishlist-remove/{id}', 'User\WishlistController@removeWishlistProduct');
+    });
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
   });
