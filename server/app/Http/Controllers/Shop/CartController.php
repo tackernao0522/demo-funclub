@@ -27,7 +27,7 @@ class CartController extends Controller
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
-                'qty' => $request->queantity,
+                'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
                 'options' => [
@@ -42,7 +42,8 @@ class CartController extends Controller
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
-                'qty' => $product->discount_price,
+                'qty' => $request->quantity,
+                'price' => $product->discount_price,
                 'weight' => 1,
                 'options' => [
                     'image' => $product->product_thambnail,
@@ -53,5 +54,25 @@ class CartController extends Controller
 
             return response()->json(['success' => 'カートに追加しました。']);
         }
+    }
+
+    public function addMiniCart()
+    {
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal,
+        ));
+    }
+
+    public function removeMiniCart($rowId)
+    {
+        Cart::remove($rowId);
+
+        return response()->json(['success' => 'カート内商品を削除しました。']);
     }
 }
