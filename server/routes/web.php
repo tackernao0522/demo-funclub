@@ -161,6 +161,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/subSubCategory/product/{subSubCat_id}', 'Shop\IndexController@subSubCatWiseProduct');
     // Shop Product View Modal with Ajax
     Route::get('/product/view/modal/{id}', 'Shop\IndexController@productViewAjax');
+    // Shop Product Add to Cart Store Data
+    Route::post('/cart/data/store/{id}', 'Shop\CartController@addToCart');
+    // Shop My Cart Page All Routes
+    Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
   });
 
   // Contactページ
