@@ -170,7 +170,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // Add to Wishlist
     Route::post('/add-to-wishlist/{product_id}', 'Shop\CartController@AddToWishlist');
     // Shop Wishlist Page
-    Route::prefix('user')->group(function() {
+    Route::prefix('user')->group(function () {
       Route::get('/whishlist', 'User\WishlistController@viewWishlist')->name('wishlist');
       Route::get('/get-wishlist-product', 'User\WishlistController@getWishlistProduct');
       Route::get('/wishlist-remove/{id}', 'User\WishlistController@removeWishlistProduct');
@@ -181,6 +181,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/user/cart-remove/{rowId}', 'User\CartPageController@removeCartProduct');
     Route::get('/cart-increment/{rowId}', 'User\CartPageController@cartIncrement');
     Route::get('/cart-decrement/{rowId}', 'User\CartPageController@cartDecrement');
+    // Shop Coupon Option
+    Route::post('/coupon-apply', 'Shop\CartController@couponApply');
+    Route::get('/coupon-calculation', 'Shop\CartController@couponCalculation');
+    Route::get('/coupon-remove', 'Shop\CartController@couponRemove');
   });
 
   // Contactページ

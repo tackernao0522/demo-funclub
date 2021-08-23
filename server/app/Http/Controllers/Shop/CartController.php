@@ -62,11 +62,21 @@ class CartController extends Controller
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
 
-        return response()->json(array(
-            'carts' => $carts,
-            'cartQty' => $cartQty,
-            'cartTotal' => $cartTotal,
-        ));
+        if (Session::has('coupon')) {
+
+            return response()->json(array(
+                'carts' => $carts,
+                'cartQty' => $cartQty,
+                'cartTotal' => session()->get('coupon')['total_amount'],
+            ));
+        } else {
+
+            return response()->json(array(
+                'carts' => $carts,
+                'cartQty' => $cartQty,
+                'cartTotal' => $cartTotal,
+            ));
+        }
     }
 
     public function removeMiniCart($rowId)
@@ -97,5 +107,54 @@ class CartController extends Controller
 
             return response()->json(['error' => 'ログインしてください。']);
         }
+    }
+
+    public function couponApply(Request $request)
+    {
+        $coupon = Coupon::where('coupon_name', $request->coupon_name)
+            ->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))
+            ->first();
+
+        if ($coupon) {
+            Session::put('coupon', [
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => floor((int) Cart::total() * (int) $coupon->coupon_discount / 100),
+                'total_amount' => ceil((int) Cart::total() - (int) Cart::total() * (int) $coupon->coupon_discount / 100),
+            ]);
+
+            return response()->json(array(
+                'validity' => true,
+                'success' => 'クーポンが適用されました。',
+            ));
+        } else {
+            return response()->json(['error' => '無効なクーポンです。']);
+        }
+    }
+
+    public function couponCalculation()
+    {
+        if (Session::has('coupon')) {
+
+            return response()->json(array(
+                'subtotal' => Cart::total(),
+                'coupon_name' => session()->get('coupon')['coupon_name'],
+                'coupon_discount' => session()->get('coupon')['coupon_discount'],
+                'discount_amount' => session()->get('coupon')['discount_amount'],
+                'total_amount' => session()->get('coupon')['total_amount'],
+            ));
+        } else {
+
+            return response()->json(array(
+                'total' => Cart::total(),
+            ));
+        }
+    }
+
+    public function couponRemove()
+    {
+        Session::forget('coupon');
+
+        return response()->json(['error' => 'クーポンを削除しました。']);
     }
 }
