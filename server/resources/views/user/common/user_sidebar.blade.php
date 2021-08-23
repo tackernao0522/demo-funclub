@@ -9,7 +9,7 @@ $adminData = App\User::find($id);
     <img class="card-img-top" style="border-radius: 50%" src="{{ (!empty($user->profile_photo_path)) ? Storage::disk('s3')->url("user-profile/{$user->profile_photo_path}") : url('upload/no_image.jpg') }}" alt="プロフィール画像" height="100%" width="100%"><br><br>
     @endif
     <ul class="list-group list-group-flush">
-        <a href="{{ url('/') }}" class="btn btn-primary btn-sm btn-block">Home</a>
+        <a href="{{ route('shop.index') }}" class="btn btn-primary btn-sm btn-block">ショップホーム</a>
         @if ( Auth::user()->role === 'admin' )
         <a href="{{ route('admin.profile.edit') }}" class="btn btn-primary btn-sm btn-block">プロフィール更新</a>
         <a href="{{ route('admin.change.password') }}" class="btn btn-primary btn-sm btn-block">パスワード変更</a>
