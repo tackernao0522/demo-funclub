@@ -185,6 +185,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/coupon-apply', 'Shop\CartController@couponApply');
     Route::get('/coupon-calculation', 'Shop\CartController@couponCalculation');
     Route::get('/coupon-remove', 'Shop\CartController@couponRemove');
+    // Shop Checkout Routes
+    Route::get('/checkout', 'Shop\CartController@checkoutCreate')->name('checkout');
+    Route::get('/district-get/ajax/{division_id}', 'User\CheckoutController@districtGetAjax');
+    Route::post('/checkout/store', 'User\CheckoutController@checkoutStore')->name('checkout.store');
   });
 
   // Contactページ

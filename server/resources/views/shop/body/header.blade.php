@@ -12,7 +12,7 @@
                         <li><a href="#"><i class="icon fa fa-user"></i>マイアカウント</a></li>
                         <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>ウイッシュリスト</a></li>
                         <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>マイカート</a></li>
-                        <li><a href="{{-- route('checkout') --}}"><i class="icon fa fa-check"></i>チェックアウト</a></li>
+                        <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>チェックアウト</a></li>
                         <li><a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordertracking"><i class="icon fa fa-check" style="margin-top: 5px"></i>オーダー追跡</a></li>
                         @auth
                         <li><a href="{{ route('user.dashboard') }}"><i class="icon fa fa-user"></i>ユーザープロフィール</a></li>
@@ -103,7 +103,7 @@
                                         <span class='price' id="cartSubTotal"> </span>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">チェックアウト</a>
+                                    <a href="{{ route('checkout') }}" class="btn btn-upper btn-primary btn-block m-t-20">チェックアウト</a>
                                 </div>
                                 <!-- /.cart-total-->
 
@@ -143,7 +143,7 @@
                                         <span class='price' id="cartSubTotal"> </span>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">チェックアウト</a>
+                                    <a href="{{ route('checkout') }}" class="btn btn-upper btn-primary btn-block m-t-20">チェックアウト</a>
                                 </div>
                                 <!-- /.cart-total-->
 

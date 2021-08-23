@@ -157,4 +157,32 @@ class CartController extends Controller
 
         return response()->json(['error' => 'クーポンを削除しました。']);
     }
+
+    public function checkoutCreate()
+    {
+        if (Auth::check()) {
+            if (Cart::total() > 0) {
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                $cartTotal = Cart::total();
+                $divisions = ShipDivision::orderBy('id', 'ASC')->get();
+
+                return view('shop.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal', 'divisions'));
+            } else {
+                $notification = array(
+                    'message' => 'カートに商品は入っていません。',
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->route('shop.index')->with($notification);
+            }
+        } else {
+            $notification = array(
+                'message' => 'ログインしてください。',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('login')->with($notification);
+        }
+    }
 }
