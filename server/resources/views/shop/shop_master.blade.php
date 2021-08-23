@@ -609,6 +609,7 @@ $seo = App\Models\Seo::find(1);
                 },
                 url: "{{ url('/coupon-apply') }}",
                 success: function(data) {
+                    miniCart();
                     couponCalculation();
                     if (data.validity == true) {
                         $('#couponField').hide();
@@ -677,7 +678,7 @@ $seo = App\Models\Seo::find(1);
                                     </div>
 
                                     <div class="cart-grand-total" style="text-align: left">
-                                        合計<span class="inner-left-md" style="margin-left: 10px">¥ ${data.total_amount}</span>
+                                        合計<span class="inner-left-md" style="margin-left: 10px">¥ ${data.total_amount}(税込)</span>
                                     </div>
                                 </th>
                             </tr>`
@@ -699,6 +700,7 @@ $seo = App\Models\Seo::find(1);
                 dataType: 'json',
                 success: function(data) {
                     couponCalculation();
+                    miniCart();
                     $('#couponField').show();
                     $('#coupon_name').val('');
 

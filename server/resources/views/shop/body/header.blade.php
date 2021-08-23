@@ -6,9 +6,9 @@
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                    @if ( Auth::check() && Auth::user()->role === 'admin' )
-                    <li><a href="{{ route('dashboard') }}"><i class="fa fa-cog"></i>ショップダッシュボード</a></li>
-                    @endif
+                        @if ( Auth::check() && Auth::user()->role === 'admin' )
+                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-cog"></i>ショップダッシュボード</a></li>
+                        @endif
                         <li><a href="#"><i class="icon fa fa-user"></i>マイアカウント</a></li>
                         <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>ウイッシュリスト</a></li>
                         <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>マイカート</a></li>
@@ -76,7 +76,7 @@
                     <!-- ============================================================= SEARCH AREA : END ============================================================= -->
                 </div>
                 <!-- /.top-search-holder -->
-
+                @if (Session::has('coupon'))
                 <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
                     <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
@@ -86,7 +86,8 @@
                                 <div class="basket-item-count"><span class="count" id="cartQty"> </span></div>
                                 <div class="total-price-basket"> <span class="lbl">カート -</span>
                                     <span class="total-price"> <span class="sign"></span>
-                                        <span class="value" id="cartSubTotal"> </span> </span>
+                                        <span class="value" id="cartSubTotal"> </span>
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -115,6 +116,48 @@
                     <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
                 </div>
                 <!-- /.top-cart-row -->
+                @else
+                <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
+                    <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+
+                    <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+                            <div class="items-cart-inner">
+                                <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
+                                <div class="basket-item-count"><span class="count" id="cartQty"> </span></div>
+                                <div class="total-price-basket"> <span class="lbl">カート -</span>
+                                    <span class="total-price"> <span class="sign"></span>
+                                        <span class="value" id="cartSubTotal"> </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <!-- Mini Cart Start with Ajax -->
+                                <div id="miniCart">
+
+                                </div>
+                                <!-- End Mini Cart Start with Ajax -->
+                                <div class="clearfix cart-total">
+                                    <div class="pull-right"> <span class="text">合計 :</span>
+                                        <span class='price' id="cartSubTotal"> </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">チェックアウト</a>
+                                </div>
+                                <!-- /.cart-total-->
+
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-menu-->
+                    </div>
+                    <!-- /.dropdown-cart -->
+
+                    <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
+                </div>
+                <!-- /.top-cart-row -->
+                @endif
+
             </div>
             <!-- /.row -->
 
