@@ -9,6 +9,12 @@
     input[type="text"] {
         color: black;
     }
+
+    @media (max-width: 600px) {
+        input[type="text"] {
+            color: black;
+        }
+    }
 </style>
 
 <div class="breadcrumb">

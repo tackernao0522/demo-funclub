@@ -193,7 +193,7 @@
                                     </div> <!-- end col-md-4 -->
                                 </div> <!-- end row -->
                                 <hr>
-                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">決済する</button>
+                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">決済へ進む</button>
                             </div>
                         </div>
                     </div>
