@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+<style>
+    input[type="text"] {
+        color: black;
+    }
+</style>
+
 <div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
@@ -83,7 +89,7 @@
                             <tr>
                                 <td>
                                     <div class="cart-checkout-btn pull-right">
-                                        <a href="{{-- route('checkout') --}}" type="submit" class="btn btn-primary checkout-btn">チェックアウトに進む</a>
+                                        <a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">チェックアウトに進む</a>
                                     </div>
                                 </td>
                             </tr>
