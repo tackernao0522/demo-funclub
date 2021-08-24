@@ -257,8 +257,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($reports == true) --}}
-            <li class="treeview {{-- ($prefix == '/reports') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/reports') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>レポート</span>
                     <span class="pull-right-container">
@@ -266,7 +266,7 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'all-reports') ? 'active' : '' --}}"><a href="{{-- route('all-reports') --}}"><i class="ti-more"></i>レポート一覧</a></li>
+                    <li class="{{ ($route == 'all-reports') ? 'active' : '' }}"><a href="{{ route('all-reports') }}"><i class="ti-more"></i>レポート一覧</a></li>
                 </ul>
             </li>
             {{-- @else
