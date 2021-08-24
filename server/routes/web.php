@@ -132,6 +132,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   // Admin Orders All Routes
   Route::prefix('orders')->group(function () {
     Route::get('/pending/orders', 'Admin\OrderController@pendingOrders')->name('pending-orders');
+    Route::get('/pending/orders/details/{order_id}', 'Admin\OrderController@pendingOrdersDetails')->name('pending.order.details');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
