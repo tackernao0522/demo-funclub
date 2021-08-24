@@ -23,4 +23,15 @@ class AllUserController extends Controller
 
         return view('user.order.order_view', compact('orders'));
     }
+
+    public function orderDetails($order_id)
+    {
+        $order = Order::with('division', 'district', 'user')
+            ->where('user_id', Auth::id())->first();
+        $orderItems = OrderItem::with('product')
+            ->where('id', $order_id)
+            ->orderBy('id', 'DESC')->get();
+
+        return view('user.order.order_details', compact('order', 'orderItems'));
+    }
 }
