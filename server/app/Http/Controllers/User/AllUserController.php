@@ -38,4 +38,22 @@ class AllUserController extends Controller
 
         return view('user.order.order_details', compact('order', 'orderItems'));
     }
+
+    public function invoiceDownload($order_id)
+    {
+        $order = Order::with('division', 'district', 'user')->where('id', $order_id)
+            ->where('user_id', Auth::id())
+            ->first();
+
+        $orderItems = OrderItem::with('product')->where('order_id', $order_id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $pdf = PDF::loadView('user.order.order_invoice',  compact(
+            'order',
+            'orderItems',
+        ))->setPaper('a4');
+
+        return $pdf->download('invoice.pdf');
+    }
 }
