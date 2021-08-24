@@ -56,4 +56,47 @@ class AllUserController extends Controller
 
         return $pdf->download('invoice.pdf');
     }
+
+    public function returnOrder(Request $request, $order_id)
+    {
+        $validatedData = $request->validate([
+            'return_reason' => 'required',
+        ], [
+            'return_reason.required' => '返品理由を記入してください。',
+        ]);
+
+        Order::findOrFail($order_id)->update([
+            'return_date' => Carbon::now()->format('Y年n月j日'),
+            'return_reason' => $request->return_reason,
+            'return_order' => 1,
+        ]);
+
+        $notification = array(
+            'message' => '返品手続きが完了しました。',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('my.orders')
+            ->with($notification);
+    }
+
+    public function returnOrderList()
+    {
+        $orders = Order::where('user_id', Auth::id())
+            ->where('return_reason', '!=', NULL)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('user.order.return_order_view', compact('orders'));
+    }
+
+    public function cancelOrders()
+    {
+        $orders = Order::where('user_id', Auth::id())
+            ->where('status', 'キャンセル')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('user.order.cancel_order_view', compact('orders'));
+    }
 }
