@@ -139,6 +139,12 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/shipped/orders', 'Admin\OrderController@shippedOrders')->name('shipped-orders');
     Route::get('/delivered/orders', 'Admin\OrderController@deliveredOrders')->name('delivered-orders');
     Route::get('/cancel/orders', 'Admin\OrderController@cancelOrders')->name('cancel-orders');
+    Route::get('/pending/confirm/{order_id}', 'Admin\OrderController@pendingToConfirm')->name('pending-confirm');
+    Route::get('/confirm/processing/{order_id}', 'Admin\OrderController@confirmToProcessing')->name('confirm.processing');
+    Route::get('/processing/picked/{order_id}', 'Admin\OrderController@processingToPicked')->name('processing.picked');
+    Route::get('/picked/shipped/{order_id}', 'Admin\OrderController@pickedToShipped')->name('picked.shippied');
+    Route::get('/shipped/deliverd/{order_id}', 'Admin\OrderController@shippedToDelivered')->name('shipped.delivered');
+    Route::get('/invoice/download/{order_id}', 'Admin\OrderController@adminInvoiceDownload')->name('invoice.download');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
