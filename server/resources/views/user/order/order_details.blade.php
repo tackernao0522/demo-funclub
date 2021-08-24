@@ -222,6 +222,9 @@
                     <div class="form-group" align="left">
                         <label for="">返品理由:</label>
                         <textarea name="return_reason" id="" class="form-control" cols="30" rows="05" placeholder="返品理由入力"></textarea>
+                        @error('return_reason')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div align="left" style="margin-bottom: 10px">
                         <button type="submit" class="btn btn-danger">返品依頼</button>

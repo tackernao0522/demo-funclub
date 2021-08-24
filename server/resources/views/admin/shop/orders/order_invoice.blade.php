@@ -125,7 +125,7 @@
                 <td align="center">
                     <img src="{{ Storage::disk('s3')->url("products/thambnail/{$item->product->product_thambnail}") }}" height="50px" width="50px" height="60px;" width="60px;" alt="">
                 </td>
-                <td align="center" style="font-size: 10px">{!! nl2br(e( $item->product->product_name_ja )) !!}</td>
+                <td align="center" style="font-size: 10px">{!! nl2br(e( $item->product->product_name )) !!}</td>
                 <td align="center" style="font-size: 10px">
                     @if($item->size == NULL)
                     ---
