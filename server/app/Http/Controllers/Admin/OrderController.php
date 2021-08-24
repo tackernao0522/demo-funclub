@@ -43,4 +43,58 @@ class OrderController extends Controller
             'orderItems',
         ));
     }
+
+    public function confirmedOrders()
+    {
+        $orders = Order::where('status', 'confirm')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('admin.shop.orders.confirmed_orders', compact('orders'));
+    }
+
+    public function processingOrders()
+    {
+        $orders = Order::where('status', 'processing')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('admin.shop.orders.processing_orders', compact('orders'));
+    }
+
+    public function pickedOrders()
+    {
+        $orders = Order::where('status', 'picked')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('admin.shop.orders.picked_orders', compact('orders'));
+    }
+
+    public function shippedOrders()
+    {
+        $orders = Order::where('status', 'shipped')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('admin.shop.orders.shipped_orders', compact('orders'));
+    }
+
+    public function deliveredOrders()
+    {
+        $orders = Order::where('status', 'delivered')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('admin.shop.orders.delivered_orders', compact('orders'));
+    }
+
+    public function cancelOrders()
+    {
+        $orders = Order::where('status', 'cancel')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('admin.shop.orders.cancel_orders', compact('orders'));
+    }
 }
