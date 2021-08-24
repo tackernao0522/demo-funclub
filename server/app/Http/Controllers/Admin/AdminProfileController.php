@@ -104,6 +104,13 @@ class AdminProfileController extends Controller
         }
     }
 
+    public function allUsers()
+    {
+        $users = User::latest()->get();
+
+        return view('admin.user.all_user', compact('users'));
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();
