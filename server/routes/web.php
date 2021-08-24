@@ -146,6 +146,14 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/shipped/deliverd/{order_id}', 'Admin\OrderController@shippedToDelivered')->name('shipped.delivered');
     Route::get('/invoice/download/{order_id}', 'Admin\OrderController@adminInvoiceDownload')->name('invoice.download');
   });
+  // Admin Reports Routes
+  Route::prefix('reports')->group(function () {
+    Route::get('/view', 'Admin\ReportController@reportView')->name('all-reports');
+    Route::post('/search/by/date', 'Admin\ReportController@reportByDate')->name('search-by-date');
+    Route::post('/search/by/month', 'Admin\ReportController@reportByMonth')->name('search-by-month');
+    Route::post('/search/by/year', 'Admin\ReportController@reportByYear')->name('search-by-year');
+  });
+
   // user
   Route::get('/', 'TopController@index')->name('top');
 
