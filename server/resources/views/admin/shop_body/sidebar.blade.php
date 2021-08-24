@@ -219,8 +219,8 @@ $route = Route::current()->getName();
             <li class="header nav-small-cap">User Interface</li>
 
             {{-- @if($orders == true) --}}
-            <li class="treeview {{-- ($prefix == '/orders') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/orders') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>オーダー</span>
                     <span class="pull-right-container">
@@ -228,7 +228,7 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'pending-orders') ? 'active' : '' --}}"><a href="{{-- route('pending-orders') --}}"><i class="ti-more"></i>保留中オーダーリスト</a></li>
+                    <li class="{{ ($route == 'pending-orders') ? 'active' : '' }}"><a href="{{ route('pending-orders') }}"><i class="ti-more"></i>保留中オーダーリスト</a></li>
                     <li class="{{-- ($route == 'confirmed-orders') ? 'active' : '' --}}"><a href="{{-- route('confirmed-orders') --}}"><i class="ti-more"></i>オーダー確認済リスト</a></li>
                     <li class="{{-- ($route == 'processing-orders') ? 'active' : '' --}}"><a href="{{-- route('processing-orders') --}}"><i class="ti-more"></i>オーダー対応中リスト</a></li>
                     <li class="{{-- ($route == 'picked-orders') ? 'active' : '' --}}"><a href="{{-- route('picked-orders') --}}"><i class="ti-more"></i>発送可能リスト</a></li>

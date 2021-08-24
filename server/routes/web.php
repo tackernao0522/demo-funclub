@@ -129,6 +129,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/district/update/{id}', 'Admin\ShippingAreaController@districtUpdate')->name('district.update');
     Route::get('/district/delete/{id}', 'Admin\ShippingAreaController@districtDelete')->name('district.delete');
   });
+  // Admin Orders All Routes
+  Route::prefix('orders')->group(function () {
+    Route::get('/pending/orders', 'Admin\OrderController@pendingOrders')->name('pending-orders');
+  });
   // user
   Route::get('/', 'TopController@index')->name('top');
 
