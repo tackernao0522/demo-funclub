@@ -133,6 +133,12 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::prefix('orders')->group(function () {
     Route::get('/pending/orders', 'Admin\OrderController@pendingOrders')->name('pending-orders');
     Route::get('/pending/orders/details/{order_id}', 'Admin\OrderController@pendingOrdersDetails')->name('pending.order.details');
+    Route::get('/confirmed/orders', 'Admin\OrderController@confirmedOrders')->name('confirmed-orders');
+    Route::get('/processing/orders', 'Admin\OrderController@processingOrders')->name('processing-orders');
+    Route::get('/picked/orders', 'Admin\OrderController@pickedOrders')->name('picked-orders');
+    Route::get('/shipped/orders', 'Admin\OrderController@shippedOrders')->name('shipped-orders');
+    Route::get('/delivered/orders', 'Admin\OrderController@deliveredOrders')->name('delivered-orders');
+    Route::get('/cancel/orders', 'Admin\OrderController@cancelOrders')->name('cancel-orders');
   });
   // user
   Route::get('/', 'TopController@index')->name('top');
