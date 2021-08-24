@@ -273,8 +273,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($alluser == true) --}}
-            <li class="treeview {{-- ($prefix == '/alluser') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/alluser') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>会員リスト</span>
                     <span class="pull-right-container">
@@ -282,7 +282,7 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'all-users') ? 'active' : '' --}}"><a href="{{-- route('all-users') --}}"><i class="ti-more"></i>会員リスト</a></li>
+                    <li class="{{ ($route == 'all-users') ? 'active' : '' }}"><a href="{{ route('all-users') }}"><i class="ti-more"></i>会員リスト</a></li>
                 </ul>
             </li>
             {{-- @else

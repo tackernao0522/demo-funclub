@@ -153,6 +153,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/search/by/month', 'Admin\ReportController@reportByMonth')->name('search-by-month');
     Route::post('/search/by/year', 'Admin\ReportController@reportByYear')->name('search-by-year');
   });
+  // Admin Get All User Routes
+  Route::prefix('alluser')->group(function () {
+    Route::get('/admin/change/password', 'Admin\AdminProfileController@allUsers')->name('all-users');
+  });
 
   // user
   Route::get('/', 'TopController@index')->name('top');
