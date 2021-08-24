@@ -178,6 +178,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::post('/cash/order', 'User\CashController@cashOrder')->name('cash.order');
       Route::get('/my/orders', 'User\AllUserController@myOrders')->name('my.orders');
       Route::get('/order_details/{order_id}', 'User\AllUserController@orderDetails');
+      Route::get('/invoice_download/{order_id}', 'User\AllUserController@invoiceDownload');
     });
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
