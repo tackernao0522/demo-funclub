@@ -176,6 +176,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::get('/wishlist-remove/{id}', 'User\WishlistController@removeWishlistProduct');
       Route::post('/strip/order', 'User\StripeController@stripeOrder')->name('stripe.order');
       Route::post('/cash/order', 'User\CashController@cashOrder')->name('cash.order');
+      Route::get('/my/orders', 'User\AllUserController@myOrders')->name('my.orders');
     });
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
