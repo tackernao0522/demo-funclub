@@ -4,20 +4,12 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\File;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\MultiImg;
 use App\Models\Brand;
-use App\Models\Blog\BlogPostCategory;
-// use App\Models\BlogPost;
+use App\Models\BlogPost;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 
@@ -54,7 +46,7 @@ class IndexController extends Controller
         $skip_brand_product_9 = Product::where('status', 1)
             ->where('brand_id', $skip_brand_9->id)
             ->orderBy('id', 'DESC')->get();
-        // $blogPosts = BlogPost::latest()->get();
+        $blogPosts = BlogPost::latest()->get();
 
         // return $skip_category->id;
         // die();
@@ -73,7 +65,7 @@ class IndexController extends Controller
             'skip_product_1',
             'skip_brand_9',
             'skip_brand_product_9',
-            // 'blogPosts',
+            'blogPosts',
         ));
     }
 
