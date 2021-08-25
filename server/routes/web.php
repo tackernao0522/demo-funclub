@@ -164,11 +164,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/category/edit/{id}', 'Admin\BlogController@blogCategoryEdit')->name('blog.category.edit');
     Route::post('/category/update/{id}', 'Admin\BlogController@blogCategoryUpdate')->name('blogCategory.update');
     Route::get('/delete/{id}', 'Admin\BlogController@categoryDelete')->name('blogCategory.delete');
-
     // Admin View Blog Post Routes
-    // Route::get('/list/post', [BlogController::class, 'listBlogPost'])->name('list.post');
-    // Route::get('/add/post', [BlogController::class, 'addBlogPost'])->name('add.post');
-    // Route::post('/post/store', [BlogController::class, 'blogPostStore'])->name('post-store');
+    Route::get('/list/post', 'Admin\BlogController@listBlogPost')->name('list.post');
+    Route::get('/add/post', 'Admin\BlogController@addBlogPost')->name('add.post');
+    Route::post('/post/store', 'Admin\BlogController@blogPostStore')->name('post-store');
   });
 
   // user

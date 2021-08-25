@@ -89,4 +89,75 @@ class BlogController extends Controller
         return redirect()->back()
             ->with($notification);
     }
+
+    public function listBlogPost()
+    {
+        $blogPosts = BlogPost::with('category')->latest()->get();
+
+        return view('admin.shop.blog.post.post_list', compact('blogPosts'));
+    }
+
+    public function addBlogPost()
+    {
+        $blogCategories = BlogPostCategory::latest()->get();
+        $blogPosts =  BlogPost::latest()->get();
+
+        return view('admin.shop.blog.post.post_add', compact('blogPosts', 'blogCategories'));
+    }
+
+    public function blogPostStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'post_blog_title' => 'required|unique:blog_posts',
+            'category_id' => 'required',
+            'post_blog_image' => 'required|mimes:jpg,jpeg,png',
+            'post_blog_details' => 'required|unique:blog_posts',
+        ], [
+            'post_blog_title.required' => 'ブログタイトルは必須です。',
+            'post_blog_title.unique' => 'このブログタイトルは既に登録されています。',
+            'category_id.required' => 'カテゴリーを選択してください。',
+            'post_blog_image.required' => 'ブログ画像は必須です。',
+            'post_blog_image.mimes' => 'ブログ画像にはjpg, jpeg, pngのうちいずれかの形式のファイルを指定してください。',
+            'post_blog_details.required' => 'ブログ内容は必須です。',
+            'post_blog_details.unique' => 'このブログ内容は既に投稿されています。',
+        ]);
+
+        $fileName = $this->saveImage($request->file('post_blog_image'));
+
+        BlogPost::insert([
+            'category_id' => $request->category_id,
+            'post_blog_title' => $request->post_blog_title,
+            'post_blog_slug' => str_replace(' ', '-', $request->post_blog_title),
+            'post_blog_image' => $fileName,
+            'post_blog_details' => $request->post_blog_details,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'ブログを作成しました。',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('list.post')
+            ->with($notification);
+    }
+
+    private function saveImage(UploadedFile $file): string
+    {
+        $tempPath = $this->makeTempPath();
+
+        Image::make($file)->fit(780, 433)->save($tempPath);
+
+        $filePath = Storage::disk('s3')
+            ->putFile('blogs', new File($tempPath));
+
+        return basename($filePath);
+    }
+
+    private function makeTempPath(): string
+    {
+        $tmp_fp = tmpfile();
+        $meta = stream_get_meta_data($tmp_fp);
+        return $meta["uri"];
+    }
 }
