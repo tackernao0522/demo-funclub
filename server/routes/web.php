@@ -157,6 +157,19 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::prefix('alluser')->group(function () {
     Route::get('/view', 'Admin\AdminProfileController@allUsers')->name('all-users');
   });
+  // Admin Shop Get All Blog Routes
+  Route::prefix('blog')->group(function () {
+    Route::get('/category', 'Admin\BlogController@blogCategory')->name('blog.category');
+    Route::post('/store', 'Admin\BlogController@blogCategoryStore')->name('blogCategoy.store');
+    Route::get('/category/edit/{id}', 'Admin\BlogController@blogCategoryEdit')->name('blog.category.edit');
+    Route::post('/category/update/{id}', 'Admin\BlogController@blogCategoryUpdate')->name('blogCategory.update');
+    Route::get('/delete/{id}', 'Admin\BlogController@categoryDelete')->name('blogCategory.delete');
+
+    // Admin View Blog Post Routes
+    // Route::get('/list/post', [BlogController::class, 'listBlogPost'])->name('list.post');
+    // Route::get('/add/post', [BlogController::class, 'addBlogPost'])->name('add.post');
+    // Route::post('/post/store', [BlogController::class, 'blogPostStore'])->name('post-store');
+  });
 
   // user
   Route::get('/', 'TopController@index')->name('top');

@@ -148,8 +148,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($blog == true) --}}
-            <li class="treeview {{-- ($prefix == '/blog') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/blog') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>ブログ管理</span>
                     <span class="pull-right-container">
@@ -157,7 +157,7 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'blog.category') ? 'active' : '' --}}"><a href="{{-- route('blog.category') --}}"><i class="ti-more"></i>ブログカテゴリー</a></li>
+                    <li class="{{ ($route == 'blog.category') ? 'active' : '' }}"><a href="{{ route('blog.category') }}"><i class="ti-more"></i>ブログカテゴリー</a></li>
                     <li class="{{-- ($route == 'list.post') ? 'active' : '' --}}"><a href="{{-- route('list.post') --}}"><i class="ti-more"></i>ブログ一覧</a></li>
                     <li class="{{-- ($route == 'add.post') ? 'active' : '' --}}"><a href="{{-- route('add.post') --}}"><i class="ti-more"></i>ブログ作成</a></li>
                 </ul>

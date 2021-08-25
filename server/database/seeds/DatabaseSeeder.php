@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ShipDistrictsTableSeeder::class);
         $this->call(SlidersTableSeeder::class);
         $this->call(CouponsTableSeeder::class);
+        $this->call(BlogPostCategoriesTableSeeder::class);
     }
 }
