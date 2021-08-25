@@ -1,7 +1,7 @@
 @extends('shop.shop_master')
 
 @section('title')
-ブログページ
+ブログカテゴリー
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="{{ route('shop.index') }}">Home</a></li>
-                <li class='active'>ブログ</li>
+                <li class='active'>ブログカテゴリー</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->

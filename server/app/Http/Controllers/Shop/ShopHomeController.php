@@ -16,4 +16,22 @@ class ShopHomeController extends Controller
 
         return view('shop.blog.blog_list', compact('blogCategories', 'blogPosts'));
     }
+
+    public function detailsBlogPost($id)
+    {
+        $blogCategories = BlogPostCategory::latest()->get();
+        $blogPost = BlogPost::findOrFail($id);
+
+        return view('shop.blog.blog_details', compact('blogPost', 'blogCategories'));
+    }
+
+    public function shopHomeBlogCatPost($category_id)
+    {
+        $blogCategories = BlogPostCategory::latest()->get();
+        $blogPosts = BlogPost::where('category_id', $category_id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('shop.blog.blog_cat_list', compact('blogCategories', 'blogPosts'));
+    }
 }
