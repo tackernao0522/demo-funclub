@@ -14,6 +14,11 @@ use App\Models\BlogPost;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function blogCategory()
     {
         $blogCategories = BlogPostCategory::orderBy('id', 'ASC')->get();

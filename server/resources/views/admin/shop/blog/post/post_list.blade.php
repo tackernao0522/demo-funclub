@@ -32,7 +32,7 @@
                                     <tr>
                                         <td>{{ $item->category->blog_category_name }}</td>
                                         <td width="15%"><img src="{{ Storage::disk('s3')->url("blogs/{$item->post_blog_image}") }}" alt="" style="width: 60px; height: 60px"></td>
-                                        <td>{!! nl2br(e(Str::limit($item->post_blog_title, 20))) !!}</td>
+                                        <td>{!! nl2br(e(Str::limit($item->post_blog_title, 40))) !!}</td>
                                         <td width="15%">
                                             <a href="{{-- route('blog.category.edit', $item->id) --}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                             <a href="{{-- route('category.delete', $item->id) --}}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>

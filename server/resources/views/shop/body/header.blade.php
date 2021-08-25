@@ -230,7 +230,7 @@
                                 <!-- end Category Foreach -->
                                 <li> <a href="{{-- route('shop.page') --}}">ショップ</a> </li>
                                 <!-- <li class="dropdown  navbar-right special-menu"> <a href="#">今日の特別セール</a> </li> -->
-                                <li class="dropdown  navbar-right special-menu"> <a href="{{-- route('home.blog') --}}">ブログ</a> </li>
+                                <li class="dropdown  navbar-right special-menu"> <a href="{{ route('shopHome.blog') }}">ブログ</a> </li>
                             </ul>
                             <!-- /.navbar-nav -->
                             <div class="clearfix"></div>
