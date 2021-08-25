@@ -238,6 +238,11 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/checkout', 'Shop\CartController@checkoutCreate')->name('checkout');
     Route::get('/district-get/ajax/{division_id}', 'User\CheckoutController@districtGetAjax');
     Route::post('/checkout/store', 'User\CheckoutController@checkoutStore')->name('checkout.store');
+    // Shop Blog Show Routes
+    Route::get('/shop/blog', 'Shop\ShopHomeController@addBlogPost')->name('shopHome.blog');
+    // Route::get('/blog', [HomeBlogController::class, 'AddBlogPost'])->name('home.blog');
+    // Route::get('/post/details/{id}', [HomeBlogController::class, 'detailsBlogPost'])->name('post.details');
+    // Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'homeBlogCatPost']);
   });
 
   // Contactページ
