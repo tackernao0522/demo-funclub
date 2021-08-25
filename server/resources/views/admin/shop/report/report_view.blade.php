@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <h5>年選択 <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="year_name" class="form-control">
+                                        <select name="year_name" class="form-control" style="color: red">
                                             <option label="年選択"></option>
                                             <option value="2021年">2021年</option>
                                             <option value="2022年">2022年</option>
@@ -76,7 +76,7 @@
                                 <div class="form-group">
                                     <h5>月選択 <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="month" class="form-control">
+                                        <select name="month" class="form-control" style="color: red">
                                             <option label="月選択"></option>
                                             <option value="1月">1月</option>
                                             <option value="2月">2月</option>
@@ -121,7 +121,7 @@
                                 <div class="form-group">
                                     <h5>年別検索 <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="year" class="form-control">
+                                        <select name="year" class="form-control" style="color: red">
                                             <option label="年選択"></option>
                                             <option value="2021年">2021年</option>
                                             <option value="2022年">2022年</option>
