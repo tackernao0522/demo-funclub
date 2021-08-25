@@ -155,7 +155,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   });
   // Admin Get All User Routes
   Route::prefix('alluser')->group(function () {
-    Route::get('/admin/change/password', 'Admin\AdminProfileController@allUsers')->name('all-users');
+    Route::get('/view', 'Admin\AdminProfileController@allUsers')->name('all-users');
   });
 
   // user
