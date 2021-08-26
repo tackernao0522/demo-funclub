@@ -200,8 +200,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($review == true) --}}
-            <li class="treeview {{-- ($prefix == '/review') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/review') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>商品レビュー管理</span>
                     <span class="pull-right-container">
@@ -209,8 +209,8 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'pending.review') ? 'active' : '' --}}"><a href="{{-- route('pending.review') --}}"><i class="ti-more"></i>保留中商品レビュー</a></li>
-                    <li class="{{-- ($route == 'publish.review') ? 'active' : '' --}}"><a href="{{-- route('publish.review') --}}"><i class="ti-more"></i>公開中商品レビュー</a></li>
+                    <li class="{{ ($route == 'pending.review') ? 'active' : '' }}"><a href="{{ route('pending.review') }}"><i class="ti-more"></i>保留中商品レビュー</a></li>
+                    <li class="{{ ($route == 'publish.review') ? 'active' : '' }}"><a href="{{ route('publish.review') }}"><i class="ti-more"></i>公開中商品レビュー</a></li>
                 </ul>
             </li>
             {{-- @else

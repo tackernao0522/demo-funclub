@@ -126,10 +126,10 @@
                             </div><!-- /.single-product-gallery -->
                         </div><!-- /.gallery-holder -->
 
-                        {{-- @php
+                        @php
                         $reviewCount = App\Models\Review::where('product_id', $product->id)->where('status', 1)->latest()->get();
                         $avarage = App\Models\Review::where('product_id', $product->id)->where('status', 1)->avg('rating');
-                        @endphp --}}
+                        @endphp
 
                         <div class='col-sm-6 col-md-7 product-info-block'>
                             <div class="product-info">
@@ -138,7 +138,7 @@
                                 <div class="rating-reviews m-t-20">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            {{-- @if($avarage == 0)
+                                            @if($avarage == 0)
                                             評価はまだありません。
                                             @elseif($avarage == 1 || $avarage < 2)
                                                 <span class="fa fa-star checked"></span>
@@ -170,11 +170,11 @@
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
-                                            @endif --}}
+                                            @endif
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="reviews">
-                                                <a href="#" class="lnk">(レビュー数: {{-- count($reviewCount) --}})</a>
+                                                <a href="#" class="lnk">(レビュー数: {{ count($reviewCount) }})</a>
                                             </div>
                                         </div>
                                     </div><!-- /.row -->
