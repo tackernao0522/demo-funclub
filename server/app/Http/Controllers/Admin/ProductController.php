@@ -282,6 +282,13 @@ class ProductController extends Controller
             ->with($notification);
     }
 
+    public function productStock()
+    {
+        $products = Product::latest()->get();
+
+        return view('admin.shop.product.product_stock', compact('products'));
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();

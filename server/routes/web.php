@@ -189,6 +189,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/publish', 'User\ReviewController@publishReview')->name('publish.review');
     Route::get('/delete/{id}', 'User\ReviewController@deleteReview')->name('delete.review');
   });
+  // Admin Manage Stock Routes
+  Route::prefix('stock')->group(function () {
+    Route::get('/product', 'Admin\ProductController@productStock')->name('product.stock');
+});
 
   // user
   Route::get('/', 'TopController@index')->name('top');
