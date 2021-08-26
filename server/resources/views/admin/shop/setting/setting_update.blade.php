@@ -38,7 +38,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <h5>電話番号1 <span class="text-danger"></span></h5>
+                                                <h5>電話番号 <span class="text-danger"></span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="phone_one" class="form-control" value="{{ old('phone_one', $setting->phone_one) }}">
                                                     @error('phone_one')

@@ -65,7 +65,42 @@ class SiteSettingController extends Controller
         $setting->save();
 
         $notification = array(
-            'message' => 'サイトセッティングを更新しました(Site Setting Updated Successfully)。',
+            'message' => 'サイトセッティングを更新しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->back()
+            ->with($notification);
+    }
+
+    public function seoSetting()
+    {
+        $seo = Seo::find(1);
+
+        return view('admin.shop.setting.seo_update', compact('seo'));
+    }
+
+    public function seoSettingUpdate(Request $request)
+    {
+        $seo = Seo::findOrFail(1);
+        $validatedData = $request->validate([
+            'meta_title' => 'nullable',
+            'meta_author' => 'nullable',
+            'meta_keyword' => 'nullable',
+            'meta_description' => 'nullable',
+            'google_analytics' => 'nullable',
+        ]);
+
+        $seo->meta_title = $request->meta_title;
+        $seo->meta_author = $request->meta_author;
+        $seo->meta_keyword = $request->meta_keyword;
+        $seo->meta_description = $request->meta_description;
+        $seo->google_analytics = $request->google_analytics;
+        $seo->updated_at = Carbon::now();
+        $seo->save();
+
+        $notification = array(
+            'message' => 'SEOを更新しました。',
             'alert-type' => 'info',
         );
 
