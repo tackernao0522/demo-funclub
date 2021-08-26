@@ -169,6 +169,13 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/add/post', 'Admin\BlogController@addBlogPost')->name('add.post');
     Route::post('/post/store', 'Admin\BlogController@blogPostStore')->name('post-store');
   });
+  // Admin Shop Site Setting Routes
+  Route::prefix('setting')->group(function () {
+    Route::get('/site', 'Admin\SiteSettingController@siteSetting')->name('site.setting');
+    Route::post('/site/update', 'Admin\SiteSettingController@siteSettingUpdate')->name('update.siteSetting');
+    // Route::get('/seo', [SiteSettingController::class, 'seoSetting'])->name('seo.setting');
+    // Route::post('/seo/update', [SiteSettingController::class, 'seoSettingUpdate'])->name('update.seoSetting');
+  });
 
   // user
   Route::get('/', 'TopController@index')->name('top');

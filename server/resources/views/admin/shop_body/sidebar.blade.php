@@ -166,8 +166,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($setting == true) --}}
-            <li class="treeview {{-- ($prefix == '/setting') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/setting') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>セッティング</span>
                     <span class="pull-right-container">
@@ -175,7 +175,7 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'site.setting') ? 'active' : '' --}}"><a href="{{-- route('site.setting') --}}"><i class="ti-more"></i>サイトセッティング</a></li>
+                    <li class="{{ ($route == 'site.setting') ? 'active' : '' }}"><a href="{{ route('site.setting') }}"><i class="ti-more"></i>サイトセッティング</a></li>
                     <li class="{{-- ($route == 'seo.setting') ? 'active' : '' --}}"><a href="{{-- route('seo.setting') --}}"><i class="ti-more"></i>SEOセッティング</a></li>
                 </ul>
             </li>

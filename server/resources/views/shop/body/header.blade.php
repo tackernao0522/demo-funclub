@@ -38,11 +38,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
-                    {{-- @php
+                    @php
                     $setting = App\Models\SiteSetting::find(1);
-                    @endphp --}}
+                    @endphp
                     <!-- ============================================================= LOGO ============================================================= -->
-                    <div class="logo"> <a href="{{ url('/') }}"> <img src="{{-- Storage::disk('s3')->url("siteLogo/{$setting->logo}") --}}" alt="logo"> </a> </div>
+                    <div class="logo"> <a href="{{ route('shop.index') }}"> <img style="background: white" src="{{ Storage::disk('s3')->url("siteLogo/{$setting->logo}") }}" alt="logo"> </a> </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
                 </div>
