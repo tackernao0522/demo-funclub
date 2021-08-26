@@ -52,7 +52,7 @@ Home Easy Online Shop
                                                 </div>
                                                 <!-- /.col -->
                                                 <div class="col col-xs-7">
-                                                    <div class="product-info">
+                                                    <div class="product-info" style="margin-right: 10px">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
@@ -99,7 +99,7 @@ Home Easy Online Shop
                                                 </div>
                                                 <!-- /.col -->
                                                 <div class="col col-xs-7">
-                                                    <div class="product-info">
+                                                    <div class="product-info" style="margin-right: 10px">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
