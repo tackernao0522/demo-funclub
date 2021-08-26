@@ -183,8 +183,8 @@ $route = Route::current()->getName();
             @endif --}}
 
             {{-- @if($returnorder == true) --}}
-            <li class="treeview {{-- ($prefix == '/return') ? 'active' : '' --}}">
-                <a href="{{-- url('admin/dashboard') --}}">
+            <li class="treeview {{ ($prefix == '/return') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}">
                     <i data-feather="file"></i>
                     <span>返品依頼商品</span>
                     <span class="pull-right-container">
@@ -192,8 +192,8 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{-- ($route == 'return.request') ? 'active' : '' --}}"><a href="{{-- route('return.request') --}}"><i class="ti-more"></i>返品未対応リスト</a></li>
-                    <li class="{{-- ($route == 'all.request') ? 'active' : '' --}}"><a href="{{-- route('all.request') --}}"><i class="ti-more"></i>返品対応完了リスト</a></li>
+                    <li class="{{ ($route == 'return.request') ? 'active' : '' }}"><a href="{{ route('return.request') }}"><i class="ti-more"></i>返品未対応リスト</a></li>
+                    <li class="{{ ($route == 'all.request') ? 'active' : '' }}"><a href="{{ route('all.request') }}"><i class="ti-more"></i>返品対応完了リスト</a></li>
                 </ul>
             </li>
             {{-- @else
