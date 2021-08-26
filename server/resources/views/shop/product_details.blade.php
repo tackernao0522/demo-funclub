@@ -10,10 +10,12 @@
     .checked {
         color: orange;
     }
+
     img.tags_page_list {
         width: 189px !important;
         height: 206px !important;
     }
+
     @media (max-width: 600px) {
         img.tags_page_list {
             width: 307px !important;
@@ -325,244 +327,248 @@
                                         <div class="product-reviews">
                                             <h4 class="title">お客様レビュー</h4>
 
-                                            {{-- @php
+                                            @php
                                             $reviews = App\Models\Review::where('product_id', $product->id)->latest()->limit(5)->get();
-                                            @endphp --}}
+                                            @endphp
 
                                             <div class="reviews">
-                                                {{-- @foreach($reviews as $item)
+                                                @foreach($reviews as $item)
                                                 @if($item->status == 0)
                                                 @else
                                                 <div class="review">
                                                     <div class="row">
                                                         <div class="col-md-6">
+                                                            @if ($item->user->role === 'admin')
+                                                            <img style="border-radius: 50%" src="{{ (!empty($item->user->profile_photo_path)) ? Storage::disk('s3')->url("admin-profile/{$item->user->profile_photo_path}") : url('upload/no_image.jpg') }}" alt="" width="40px" height="40px"><b>{{ $item->user->name }}</b>
+                                                            @else
                                                             <img style="border-radius: 50%" src="{{ (!empty($item->user->profile_photo_path)) ? Storage::disk('s3')->url("user-profile/{$item->user->profile_photo_path}") : url('upload/no_image.jpg') }}" alt="" width="40px" height="40px"><b>{{ $item->user->name }}</b>
+                                                            @endif
 
-                                                @if ($item->rating == NULL)
-                                                @elseif($item->rating == 1)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                @elseif($item->rating == 2)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                @elseif($item->rating == 3)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                @elseif($item->rating == 4)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                @elseif($item->rating == 5)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
+                                                            @if ($item->rating == NULL)
+                                                            @elseif($item->rating == 1)
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            @elseif($item->rating == 2)
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            @elseif($item->rating == 3)
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            @elseif($item->rating == 4)
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            @elseif($item->rating == 5)
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                        </div>
+                                                    </div> <!-- end row -->
+
+                                                    <div class="review-title"><span class="summary">{{ $item->summary }}</span><span class="date"><i class="fa fa-calendar"></i><span>{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span></span></div>
+                                                    <div class="text">"{!! nl2br(e($item->comment)) !!}"</div>
+                                                </div>
                                                 @endif
-                                            </div>
-                                            <div class="col-md-6">
+                                                @endforeach
+                                            </div><!-- /.reviews -->
+                                        </div><!-- /.product-reviews -->
 
-                                            </div>
-                                        </div> <!-- end row -->
+                                        <div class="product-add-review">
+                                            <h4 class="title">レビューを投稿する</h4>
+                                            <div class="review-table">
 
-                                        <div class="review-title"><span class="summary">{{ $item->summary }}</span><span class="date"><i class="fa fa-calendar"></i><span>{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span></span></div>
-                                        <div class="text">"{!! nl2br(e($item->comment)) !!}"</div>
-                                    </div>
-                                    @endif
-                                    @endforeach --}}
-                                </div><!-- /.reviews -->
-                            </div><!-- /.product-reviews -->
+                                            </div><!-- /.review-table -->
 
-                            <div class="product-add-review">
-                                <h4 class="title">レビューを投稿する</h4>
-                                <div class="review-table">
+                                            <div class="review-form">
+                                                @guest
+                                                <p><b>製品レビューを投稿するには、ログインする必要があります。<a href="{{ route('login') }}">ログインはこちら</a></b></p>
+                                                @else
+                                                <div class="form-container">
+                                                    <form role="form" class="cnt-form" method="POST" action="{{ route('review.store', $product->id) }}">
+                                                        @csrf
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cell-label">&nbsp;</th>
+                                                                    <th>1 star</th>
+                                                                    <th>2 stars</th>
+                                                                    <th>3 stars</th>
+                                                                    <th>4 stars</th>
+                                                                    <th>5 stars</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="cell-label">評価</td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="1"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="2"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="3"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="4"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="5"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table><!-- /.table .table-bordered -->
 
-                                </div><!-- /.review-table -->
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
 
-                                <div class="review-form">
-                                    @guest
-                                    <p><b>製品レビューを投稿するには、ログインする必要があります。<a href="{{ route('login') }}">ログインはこちら</a></b></p>
-                                    @else
-                                    <div class="form-container">
-                                        <form role="form" class="cnt-form" method="POST" action="{{-- route('review.store', $product->id) --}}">
-                                            @csrf
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="cell-label">&nbsp;</th>
-                                                        <th>1 star</th>
-                                                        <th>2 stars</th>
-                                                        <th>3 stars</th>
-                                                        <th>4 stars</th>
-                                                        <th>5 stars</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="cell-label">評価</td>
-                                                        <td><input type="radio" name="quality" class="radio" value="1"></td>
-                                                        <td><input type="radio" name="quality" class="radio" value="2"></td>
-                                                        <td><input type="radio" name="quality" class="radio" value="3"></td>
-                                                        <td><input type="radio" name="quality" class="radio" value="4"></td>
-                                                        <td><input type="radio" name="quality" class="radio" value="5"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table><!-- /.table .table-bordered -->
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputSummary">概要<span class="astk">*</span></label>
+                                                                    <input type="text" name="summary" class="form-control txt" id="exampleInputSummary" placeholder="" value="{{ old('summary') }}">
+                                                                    @error('summary')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div><!-- /.form-group -->
+                                                            </div>
 
-                                            <div class="row">
-                                                <div class="col-sm-6">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputReview">レビュー<span class="astk">*</span></label>
+                                                                    <textarea class="form-control txt txt-review" name="comment" id="exampleInputReview" rows="4" placeholder="">{{ old('comment') }}</textarea>
+                                                                    @error('comment')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div><!-- /.form-group -->
+                                                            </div>
+                                                        </div><!-- /.row -->
 
-                                                    <div class="form-group">
-                                                        <label for="exampleInputSummary">概要<span class="astk">*</span></label>
-                                                        <input type="text" name="summary" class="form-control txt" id="exampleInputSummary" placeholder="" value="{{ old('summary') }}">
-                                                        @error('summary')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div><!-- /.form-group -->
+                                                        <div class="action text-right">
+                                                            <button type="submit" class="btn btn-primary btn-upper">レビューを投稿</button>
+                                                        </div><!-- /.action -->
+
+                                                    </form><!-- /.cnt-form -->
+                                                </div><!-- /.form-container -->
+                                                @endguest
+                                            </div><!-- /.review-form -->
+
+                                        </div><!-- /.product-add-review -->
+
+                                    </div><!-- /.product-tab -->
+                                </div><!-- /.tab-pane -->
+
+                                <div id="tags" class="tab-pane">
+                                    <div class="product-tag">
+
+                                        <h4 class="title">Product Tags</h4>
+                                        <form role="form" class="form-inline form-cnt">
+                                            <div class="form-container">
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputTag">Add Your Tags: </label>
+                                                    <input type="email" id="exampleInputTag" class="form-control txt">
+
+
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputReview">レビュー<span class="astk">*</span></label>
-                                                        <textarea class="form-control txt txt-review" name="comment" id="exampleInputReview" rows="4" placeholder="">{{ old('comment') }}</textarea>
-                                                        @error('comment')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div><!-- /.form-group -->
-                                                </div>
-                                            </div><!-- /.row -->
+                                                <button class="btn btn-upper btn-primary" type="submit">ADD TAGS</button>
+                                            </div><!-- /.form-container -->
+                                        </form><!-- /.form-cnt -->
 
-                                            <div class="action text-right">
-                                                <button type="submit" class="btn btn-primary btn-upper">レビューを投稿</button>
-                                            </div><!-- /.action -->
+                                        <form role="form" class="form-inline form-cnt">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label>
+                                                <span class="text col-md-offset-3">Use spaces to separate tags. Use single quotes (') for phrases.</span>
+                                            </div>
+                                        </form><!-- /.form-cnt -->
 
-                                        </form><!-- /.cnt-form -->
-                                    </div><!-- /.form-container -->
-                                    @endguest
-                                </div><!-- /.review-form -->
+                                    </div><!-- /.product-tab -->
+                                </div><!-- /.tab-pane -->
 
-                            </div><!-- /.product-add-review -->
+                            </div><!-- /.tab-content -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.product-tabs -->
 
-                        </div><!-- /.product-tab -->
-                    </div><!-- /.tab-pane -->
+                <!-- ============================================== UPSELL PRODUCTS ============================================== -->
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">関連商品</h3>
+                    <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
+                        @foreach($relatedProduct as $product)
+                        <div class="item item-carousel">
+                            <div class="products">
 
-                    <div id="tags" class="tab-pane">
-                        <div class="product-tag">
+                                <div class="product">
+                                    <div class="product-image">
+                                        <div class="image">
+                                            <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="tags_page_list" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a>
+                                        </div><!-- /.image -->
 
-                            <h4 class="title">Product Tags</h4>
-                            <form role="form" class="form-inline form-cnt">
-                                <div class="form-container">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputTag">Add Your Tags: </label>
-                                        <input type="email" id="exampleInputTag" class="form-control txt">
+                                        <div class="tag sale"><span>sale</span></div>
+                                    </div><!-- /.product-image -->
 
 
-                                    </div>
+                                    <div class="product-info text-left">
+                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                                        <div class="rating rateit-small"></div>
+                                        <div class="description"></div>
+                                        @if ($product->discount_price == NULL)
+                                        <div class="product-price">
+                                            <span class="price">
+                                                ¥ {{ number_format($product->selling_price) }} </span>
+                                        </div><!-- /.product-price -->
+                                        @else
+                                        <div class="product-price">
+                                            <span class="price">
+                                                ¥ {{ number_format($product->discount_price) }} </span>
+                                            <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span>
+                                        </div><!-- /.product-price -->
+                                        @endif
+                                    </div><!-- /.product-info -->
+                                    <div class="cart clearfix animate-effect">
+                                        <div class="action">
+                                            <ul class="list-unstyled">
+                                                <li class="add-cart-button btn-group">
+                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </button>
+                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
 
-                                    <button class="btn btn-upper btn-primary" type="submit">ADD TAGS</button>
-                                </div><!-- /.form-container -->
-                            </form><!-- /.form-cnt -->
+                                                </li>
 
-                            <form role="form" class="form-inline form-cnt">
-                                <div class="form-group">
-                                    <label>&nbsp;</label>
-                                    <span class="text col-md-offset-3">Use spaces to separate tags. Use single quotes (') for phrases.</span>
-                                </div>
-                            </form><!-- /.form-cnt -->
+                                                <li class="lnk wishlist">
+                                                    <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                                        <i class="icon fa fa-heart"></i>
+                                                    </a>
+                                                </li>
 
-                        </div><!-- /.product-tab -->
-                    </div><!-- /.tab-pane -->
+                                                <li class="lnk">
+                                                    <a class="add-to-cart" href="detail.html" title="Compare">
+                                                        <i class="fa fa-signal"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div><!-- /.action -->
+                                    </div><!-- /.cart -->
+                                </div><!-- /.product -->
 
-                </div><!-- /.tab-content -->
+                            </div><!-- /.products -->
+                        </div><!-- /.item -->
+                        @endforeach
+                    </div><!-- /.home-owl-carousel -->
+                </section><!-- /.section -->
+                <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
+
             </div><!-- /.col -->
+            <div class="clearfix"></div>
         </div><!-- /.row -->
-    </div><!-- /.product-tabs -->
-
-    <!-- ============================================== UPSELL PRODUCTS ============================================== -->
-    <section class="section featured-product wow fadeInUp">
-        <h3 class="section-title">関連商品</h3>
-        <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
-            @foreach($relatedProduct as $product)
-            <div class="item item-carousel">
-                <div class="products">
-
-                    <div class="product">
-                        <div class="product-image">
-                            <div class="image">
-                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="tags_page_list" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a>
-                            </div><!-- /.image -->
-
-                            <div class="tag sale"><span>sale</span></div>
-                        </div><!-- /.product-image -->
-
-
-                        <div class="product-info text-left">
-                            <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="description"></div>
-                            @if ($product->discount_price == NULL)
-                            <div class="product-price">
-                                <span class="price">
-                                    ¥ {{ number_format($product->selling_price) }} </span>
-                            </div><!-- /.product-price -->
-                            @else
-                            <div class="product-price">
-                                <span class="price">
-                                    ¥ {{ number_format($product->discount_price) }} </span>
-                                <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span>
-                            </div><!-- /.product-price -->
-                            @endif
-                        </div><!-- /.product-info -->
-                        <div class="cart clearfix animate-effect">
-                            <div class="action">
-                                <ul class="list-unstyled">
-                                    <li class="add-cart-button btn-group">
-                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </button>
-                                        <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-
-                                    </li>
-
-                                    <li class="lnk wishlist">
-                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                            <i class="icon fa fa-heart"></i>
-                                        </a>
-                                    </li>
-
-                                    <li class="lnk">
-                                        <a class="add-to-cart" href="detail.html" title="Compare">
-                                            <i class="fa fa-signal"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div><!-- /.action -->
-                        </div><!-- /.cart -->
-                    </div><!-- /.product -->
-
-                </div><!-- /.products -->
-            </div><!-- /.item -->
-            @endforeach
-        </div><!-- /.home-owl-carousel -->
-    </section><!-- /.section -->
-    <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
-
-</div><!-- /.col -->
-<div class="clearfix"></div>
-</div><!-- /.row -->
-</div>
+    </div>
 </div>
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
