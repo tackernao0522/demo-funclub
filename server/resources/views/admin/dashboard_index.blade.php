@@ -2,7 +2,7 @@
 
 @section('admin')
 
-{{-- @php
+@php
 $date = date('Y年n月j日');
 $today = App\Models\Order::where('order_date', $date)->sum('amount');
 
@@ -13,7 +13,7 @@ $year = date('Y年');
 $year = App\Models\Order::where('order_year', $year)->sum('amount');
 
 $pendings = App\Models\Order::where('status', 'pending')->get();
-@endphp --}}
+@endphp
 
 <style>
     @media (max-width: 600px) {
@@ -40,7 +40,7 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">本日の売上げ</p>
-                            <h3 class="text-white mb-0 font-weight-500">¥ {{-- number_format($today) --}} <small class="text-success"><i class="fa fa-caret-up"></i> JPY</small></h3>
+                            <h3 class="text-white mb-0 font-weight-500">¥ {{ number_format($today) }} <small class="text-success"><i class="fa fa-caret-up"></i> JPY</small></h3>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">今月売上げ</p>
-                            <h3 class="text-white mb-0 font-weight-500">¥ {{-- number_format($month) --}} <small class="text-success"><i class="fa fa-caret-up"></i> JPY</small></h3>
+                            <h3 class="text-white mb-0 font-weight-500">¥ {{ number_format($month) }} <small class="text-success"><i class="fa fa-caret-up"></i> JPY</small></h3>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">本年度売上げ</p>
-                            <h3 class="text-white mb-0 font-weight-500">¥ {{-- number_format($year) --}} <small class="text-danger"><i class="fa fa-caret-down"></i> JPY</small></h3>
+                            <h3 class="text-white mb-0 font-weight-500">¥ {{ number_format($year) }} <small class="text-danger"><i class="fa fa-caret-down"></i> JPY</small></h3>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">未対応オーダー</p>
-                            <h3 class="text-white mb-0 font-weight-500">{{-- count($pendings) --}}件 <small class="text-danger"><i class="fa fa-caret-up"></i> オーダー</small></h3>
+                            <h3 class="text-white mb-0 font-weight-500">{{ count($pendings) }}件 <small class="text-danger"><i class="fa fa-caret-up"></i> オーダー</small></h3>
                         </div>
                     </div>
                 </div>
@@ -92,9 +92,9 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                         </h4>
                     </div>
 
-                    {{-- @php
+                    @php
                     $orders = App\Models\Order::where('status', 'pending')->orderBy('id', 'DESC')->get();
-                    @endphp --}}
+                    @endphp
 
                     <div class="box-body">
                         <div class="table-responsive">
@@ -110,39 +110,39 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach($orders as $item) --}}
+                                    @foreach($orders as $item)
                                     <tr>
                                         <td class="pl-0 py-8">
                                             <span class="text-white font-weight-600 d-block font-size-16">
-                                                {{-- $item->order_date --}}
+                                                {{ $item->order_date }}
                                             </span>
                                         </td>
                                         <td>
                                             <span class="text-white font-weight-600 d-block font-size-16">
-                                                {{-- $item->invoice_no --}}
+                                                {{ $item->invoice_no }}
                                             </span>
                                         </td>
                                         <td>
                                             <span class="text-fade font-weight-600 d-block font-size-16">
-                                                ¥ {{-- number_format($item->amount) --}}(税込)
+                                                ¥ {{ number_format($item->amount) }}(税込)
                                             </span>
                                         </td>
                                         <td>
                                             <span class="text-white font-weight-600 d-block font-size-16">
-                                                {{-- $item->payment_method --}}
+                                                {{ $item->payment_method }}
                                             </span>
                                         </td>
                                         <td>
-                                            {{-- @if($item->status == 'pending') --}}
+                                            @if($item->status == 'pending')
                                             <span class="badge badge-primary-light badge-lg">未対応</span>
-                                            {{-- @endif --}}
+                                            @endif
                                         </td>
                                         <td class="text-left">
                                             <a href="#" class="waves-effect waves-light btn btn-info btn-circle mx-5"><span class="mdi mdi-bookmark-plus"></span></a>
                                             <a href="#" class="waves-effect waves-light btn btn-info btn-circle mx-5"><span class="mdi mdi-arrow-right"></span></a>
                                         </td>
                                     </tr>
-                                   {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
