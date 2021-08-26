@@ -176,6 +176,12 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/seo', 'Admin\SiteSettingController@seoSetting')->name('seo.setting');
     Route::post('/seo/update', 'Admin\SiteSettingController@seoSettingUpdate')->name('update.seoSetting');
   });
+  // Admin Return Order Routes
+  Route::prefix('return')->group(function () {
+    Route::get('/admin/request', 'Admin\ReturnController@returnRequest')->name('return.request');
+    Route::get('/admin/return/approve/{order_id}', 'Admin\ReturnController@returnRequestApprove')->name('return.approve');
+    Route::get('/admin/all/request', 'Admin\ReturnController@returnAllRequest')->name('all.request');
+  });
 
   // user
   Route::get('/', 'TopController@index')->name('top');
