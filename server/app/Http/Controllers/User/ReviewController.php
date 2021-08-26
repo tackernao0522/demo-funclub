@@ -38,4 +38,85 @@ class ReviewController extends Controller
         return redirect()->back()
             ->with($notification);
     }
+
+    public function pendingReview()
+    {
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            $reviews = Review::where('status', 0)->orderBy('id', 'DESC')->get();
+
+            return view('admin.shop.review.pending_review', compact('reviews'));
+        } else {
+            $notification = array(
+                'message' => '管理者のみアクセスできるページです。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function reviewApprove($id)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            Review::where('id', $id)->update(['status' => 1]);
+
+            $notification = array(
+                'message' => 'レビューを承認しました。',
+                'alert-type' => 'success',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '管理者のみアクセスできるページです。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function publishReview()
+    {
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            $reviews = Review::where('status', 1)->orderBy('id', 'DESC')->get();
+
+            return view('admin.shop.review.publish_review', compact('reviews'));
+        } else {
+            $notification = array(
+                'message' => '管理者のみアクセスできるページです。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function deleteReview($id)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            $review = Review::findOrFail($id);
+            $review->delete();
+
+            $notification = array(
+                'message' => 'レビューID：' . $review->id . 'を削除しました。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '管理者のみアクセスできるページです。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
 }

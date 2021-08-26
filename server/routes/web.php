@@ -182,6 +182,13 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/admin/return/approve/{order_id}', 'Admin\ReturnController@returnRequestApprove')->name('return.approve');
     Route::get('/admin/all/request', 'Admin\ReturnController@returnAllRequest')->name('all.request');
   });
+  // Admin Manage Review Routes
+  Route::prefix('review')->group(function () {
+    Route::get('/pending', 'User\ReviewController@pendingReview')->name('pending.review');
+    Route::get('/admin/approve/{id}', 'User\ReviewController@reviewApprove')->name('review.approve');
+    Route::get('/publish', 'User\ReviewController@publishReview')->name('publish.review');
+    Route::get('/delete/{id}', 'User\ReviewController@deleteReview')->name('delete.review');
+  });
 
   // user
   Route::get('/', 'TopController@index')->name('top');
