@@ -255,6 +255,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/shop/blog', 'Shop\ShopHomeController@addBlogPost')->name('shopHome.blog');
     Route::get('/shop/blog/details/{id}', 'Shop\ShopHomeController@detailsBlogPost')->name('blogPost.details');
     Route::get('/shop/blog/category/post/{category_id}', 'Shop\ShopHomeController@shopHomeBlogCatPost');
+    // Shop Product Review Routes
+    Route::post('/review/store/{id}', 'User\ReviewController@reviewStore')->name('review.store');
   });
 
   // Contactページ
