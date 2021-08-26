@@ -173,8 +173,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   Route::prefix('setting')->group(function () {
     Route::get('/site', 'Admin\SiteSettingController@siteSetting')->name('site.setting');
     Route::post('/site/update', 'Admin\SiteSettingController@siteSettingUpdate')->name('update.siteSetting');
-    // Route::get('/seo', [SiteSettingController::class, 'seoSetting'])->name('seo.setting');
-    // Route::post('/seo/update', [SiteSettingController::class, 'seoSettingUpdate'])->name('update.seoSetting');
+    Route::get('/seo', 'Admin\SiteSettingController@seoSetting')->name('seo.setting');
+    Route::post('/seo/update', 'Admin\SiteSettingController@seoSettingUpdate')->name('update.seoSetting');
   });
 
   // user
