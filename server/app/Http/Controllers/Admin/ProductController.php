@@ -27,10 +27,20 @@ class ProductController extends Controller
 
     public function addProduct()
     {
-        $categories = Category::latest()->get();
-        $brands = Brand::latest()->get();
+        if (auth()->user()->product == 1) {
+            $categories = Category::latest()->get();
+            $brands = Brand::latest()->get();
 
-        return view('admin.shop.product.product_add', compact('categories', 'brands'));
+            return view('admin.shop.product.product_add', compact('categories', 'brands'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function storeProduct(AddProductRequest $request)
@@ -101,28 +111,48 @@ class ProductController extends Controller
 
     public function manegeProduct()
     {
-        $products = Product::latest()->get();
+        if (auth()->user()->product == 1) {
+            $products = Product::latest()->get();
 
-        return view('admin.shop.product.product_view', compact('products'));
+            return view('admin.shop.product.product_view', compact('products'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function productEdit($id)
     {
-        $multiImgs = MultiImg::where('product_id', $id)->get();
-        $categories = Category::latest()->get();
-        $brands = Brand::latest()->get();
-        $subCategories = SubCategory::latest()->get();
-        $subSubCategories = SubSubCategory::latest()->get();
-        $product = Product::findOrFail($id);
+        if (auth()->user()->product == 1) {
+            $multiImgs = MultiImg::where('product_id', $id)->get();
+            $categories = Category::latest()->get();
+            $brands = Brand::latest()->get();
+            $subCategories = SubCategory::latest()->get();
+            $subSubCategories = SubSubCategory::latest()->get();
+            $product = Product::findOrFail($id);
 
-        return view('admin.shop.product.product_edit', compact(
-            'multiImgs',
-            'categories',
-            'brands',
-            'subCategories',
-            'subSubCategories',
-            'product'
-        ));
+            return view('admin.shop.product.product_edit', compact(
+                'multiImgs',
+                'categories',
+                'brands',
+                'subCategories',
+                'subSubCategories',
+                'product'
+            ));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function productDataUpdate(EditProductRequest $request)
@@ -221,72 +251,122 @@ class ProductController extends Controller
 
     public function multiImageDelete($id)
     {
-        $multiImg = MultiImg::findOrFail($id);
-        Storage::disk('s3')->delete('/products/multi-image/' . $multiImg->photo_name);
-        $multiImg->delete();
+        if (auth()->user()->product == 1) {
+            $multiImg = MultiImg::findOrFail($id);
+            Storage::disk('s3')->delete('/products/multi-image/' . $multiImg->photo_name);
+            $multiImg->delete();
 
-        $notification = array(
-            'message' => 'マルチ画像ID：' . $multiImg->id . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => 'マルチ画像ID：' . $multiImg->id . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function productInactive($id)
     {
-        Product::findOrFail($id)->update(['status' => 0]);
+        if (auth()->user()->product == 1) {
+            Product::findOrFail($id)->update(['status' => 0]);
 
-        $notification = array(
-            'message' => '販売停止しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => '販売停止しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function productActive($id)
     {
-        Product::findOrFail($id)->update(['status' => 1]);
+        if (auth()->user()->product == 1) {
+            Product::findOrFail($id)->update(['status' => 1]);
 
-        $notification = array(
-            'message' => '販売開始しました。',
-            'alert-type' => 'success',
-        );
+            $notification = array(
+                'message' => '販売開始しました。',
+                'alert-type' => 'success',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function productDelete($id)
     {
-        $product = Product::findOrFail($id);
-        Storage::disk('s3')->delete('/products/thambnail/' . $product->product_thambnail);
-        // Storage::disk('s3')->delete('/products/pdf/' . $product->digital_file);
-        $product->delete();
+        if (auth()->user()->product == 1) {
+            $product = Product::findOrFail($id);
+            Storage::disk('s3')->delete('/products/thambnail/' . $product->product_thambnail);
+            // Storage::disk('s3')->delete('/products/pdf/' . $product->digital_file);
+            $product->delete();
 
-        $images = MultiImg::where('product_id', $id)->get();
-        foreach ($images as $image) {
-            Storage::disk('s3')->delete('/products/multi-image/' . $image->photo_name);
-            MultiImg::where('product_id', $id)->delete();
+            $images = MultiImg::where('product_id', $id)->get();
+            foreach ($images as $image) {
+                Storage::disk('s3')->delete('/products/multi-image/' . $image->photo_name);
+                MultiImg::where('product_id', $id)->delete();
+            }
+
+            $notification = array(
+                'message' => '商品を削除しました。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
         }
-
-        $notification = array(
-            'message' => '商品を削除しました。',
-            'alert-type' => 'error',
-        );
-
-        return redirect()->back()
-            ->with($notification);
     }
 
     public function productStock()
     {
-        $products = Product::latest()->get();
+        if (auth()->user()->stock == 1) {
+            $products = Product::latest()->get();
 
-        return view('admin.shop.product.product_stock', compact('products'));
+            return view('admin.shop.product.product_stock', compact('products'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     private function saveImage(UploadedFile $file): string

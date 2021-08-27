@@ -21,9 +21,19 @@ class SiteSettingController extends Controller
 
     public function siteSetting()
     {
-        $setting = SiteSetting::find(1);
+        if (auth()->user()->setting == 1) {
+            $setting = SiteSetting::find(1);
 
-        return view('admin.shop.setting.setting_update', compact('setting'));
+            return view('admin.shop.setting.setting_update', compact('setting'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function siteSettingUpdate(Request $request)
@@ -75,9 +85,19 @@ class SiteSettingController extends Controller
 
     public function seoSetting()
     {
-        $seo = Seo::find(1);
+        if (auth()->user()->setting == 1) {
+            $seo = Seo::find(1);
 
-        return view('admin.shop.setting.seo_update', compact('seo'));
+            return view('admin.shop.setting.seo_update', compact('seo'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function seoSettingUpdate(Request $request)

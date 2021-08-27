@@ -106,9 +106,19 @@ class AdminProfileController extends Controller
 
     public function allUsers()
     {
-        $users = User::latest()->get();
+        if (auth()->user()->alluser == 1) {
+            $users = User::latest()->get();
 
-        return view('admin.user.all_user', compact('users'));
+            return view('admin.user.all_user', compact('users'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     private function saveImage(UploadedFile $file): string

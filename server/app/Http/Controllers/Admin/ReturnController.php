@@ -15,28 +15,58 @@ class ReturnController extends Controller
 
     public function returnRequest()
     {
-        $orders = Order::where('return_order', 1)->orderBy('id', 'DESC')->get();
+        if (auth()->user()->returnorder == 1) {
+            $orders = Order::where('return_order', 1)->orderBy('id', 'DESC')->get();
 
-        return view('admin.shop.return_order.return_request', compact('orders'));
+            return view('admin.shop.return_order.return_request', compact('orders'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function returnRequestApprove($order_id)
     {
-        Order::where('id', $order_id)->update(['return_order' => 2]);
+        if (auth()->user()->returnorder == 1) {
+            Order::where('id', $order_id)->update(['return_order' => 2]);
 
-        $notification = array(
-            'message' => '返品手続きを承認しました。',
-            'alert-type' => 'success',
-        );
+            $notification = array(
+                'message' => '返品手続きを承認しました。',
+                'alert-type' => 'success',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function returnAllRequest()
     {
-        $orders = Order::where('return_order', 2)->orderBy('id', 'DESC')->get();
+        if (auth()->user()->returnorder == 1) {
+            $orders = Order::where('return_order', 2)->orderBy('id', 'DESC')->get();
 
-        return view('admin.shop.return_order.all_return_request', compact('orders'));
+            return view('admin.shop.return_order.all_return_request', compact('orders'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 }

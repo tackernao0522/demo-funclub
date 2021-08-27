@@ -21,9 +21,19 @@ class SliderController extends Controller
 
     public function sliderView()
     {
-        $sliders = Slider::latest()->get();
+        if (auth()->user()->slider == 1) {
+            $sliders = Slider::latest()->get();
 
-        return view('admin.shop.slider.slider_view', compact('sliders'));
+            return view('admin.shop.slider.slider_view', compact('sliders'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function sliderStore(AddSliderRequest $request)
@@ -49,9 +59,19 @@ class SliderController extends Controller
 
     public function sliderEdit($id)
     {
-        $slider = Slider::findOrFail($id);
+        if (auth()->user()->slider == 1) {
+            $slider = Slider::findOrFail($id);
 
-        return view('admin.shop.slider.slider_edit', compact('slider'));
+            return view('admin.shop.slider.slider_edit', compact('slider'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function sliderUpdate(Request $request, $id)
@@ -86,43 +106,73 @@ class SliderController extends Controller
 
     public function sliderDelete($id)
     {
-        $slider = Slider::findOrFail($id);
-        Storage::disk('s3')->delete('/sliders/' . $slider->slider_img);
-        $slider->delete();
+        if (auth()->user()->slider == 1) {
+            $slider = Slider::findOrFail($id);
+            Storage::disk('s3')->delete('/sliders/' . $slider->slider_img);
+            $slider->delete();
 
-        $notification = array(
-            'message' => 'スライダーID：' . $slider->id . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => 'スライダーID：' . $slider->id . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function sliderInactive($id)
     {
-        Slider::findOrFail($id)->update(['status' => 0]);
+        if (auth()->user()->slider == 1) {
+            Slider::findOrFail($id)->update(['status' => 0]);
 
-        $notification = array(
-            'message' => '非アクティブにしました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => '非アクティブにしました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function sliderActive($id)
     {
-        Slider::findOrFail($id)->update(['status' => 1]);
+        if (auth()->user()->slider == 1) {
+            Slider::findOrFail($id)->update(['status' => 1]);
 
-        $notification = array(
-            'message' => 'アクティブにしました。',
-            'alert-type' => 'success',
-        );
+            $notification = array(
+                'message' => 'アクティブにしました。',
+                'alert-type' => 'success',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     private function saveImage(UploadedFile $file): string

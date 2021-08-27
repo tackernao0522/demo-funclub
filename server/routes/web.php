@@ -192,7 +192,16 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   // Admin Manage Stock Routes
   Route::prefix('stock')->group(function () {
     Route::get('/product', 'Admin\ProductController@productStock')->name('product.stock');
-});
+  });
+  // Admin User Role Routes
+  Route::prefix('adminuserrole')->group(function () {
+    Route::get('/all', 'Admin\AdminUserController@allAdminRole')->name('all.admin.user');
+    Route::get('/add', 'Admin\AdminUserController@addAdminRole')->name('add.admin');
+    Route::post('/store', 'Admin\AdminUserController@storeAdminRole')->name('admin.user.store');
+    Route::get('/edit/{id}', 'Admin\AdminUserController@editAdminRole')->name('edit.admin.user');
+    Route::post('/update/{id}', 'Admin\AdminUserController@updateAdminRole')->name('admin.user.update');
+    Route::get('/delete/{id}', 'Admin\AdminUserController@deleteAdminRole')->name('delete.admin.user');
+  });
 
   // user
   Route::get('/', 'TopController@index')->name('top');
