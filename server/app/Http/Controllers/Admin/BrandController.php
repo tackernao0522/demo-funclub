@@ -20,9 +20,19 @@ class BrandController extends Controller
 
     public function brandView()
     {
-        $brands = Brand::latest()->get();
+        if (auth()->user()->brand == 1) {
+            $brands = Brand::latest()->get();
 
-        return view('admin.shop.brand.brand_view', compact('brands'));
+            return view('admin.shop.brand.brand_view', compact('brands'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function brandStore(Request $request)
@@ -55,9 +65,19 @@ class BrandController extends Controller
 
     public function brandEdit($id)
     {
-        $brand = Brand::findOrFail($id);
+        if (auth()->user()->brand == 1) {
+            $brand = Brand::findOrFail($id);
 
-        return view('admin.shop.brand.brand_edit', compact('brand'));
+            return view('admin.shop.brand.brand_edit', compact('brand'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function brandUpdate(Request $request, $id)
@@ -94,17 +114,27 @@ class BrandController extends Controller
 
     public function brandDelete($id)
     {
-        $brand = Brand::findOrFail($id);
-        Storage::disk('s3')->delete('/brands/' . $brand->brand_image);
-        $brand->delete();
+        if (auth()->user()->brand == 1) {
+            $brand = Brand::findOrFail($id);
+            Storage::disk('s3')->delete('/brands/' . $brand->brand_image);
+            $brand->delete();
 
-        $notification = array(
-            'message' => 'ブランド: ' . $brand->brand_name . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => 'ブランド: ' . $brand->brand_name . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     private function saveImage(UploadedFile $file): string

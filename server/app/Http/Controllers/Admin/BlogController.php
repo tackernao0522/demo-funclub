@@ -21,9 +21,19 @@ class BlogController extends Controller
 
     public function blogCategory()
     {
-        $blogCategories = BlogPostCategory::orderBy('id', 'ASC')->get();
+        if (auth()->user()->blog == 1) {
+            $blogCategories = BlogPostCategory::orderBy('id', 'ASC')->get();
 
-        return view('admin.shop.blog.category.category_view', compact('blogCategories'));
+            return view('admin.shop.blog.category.category_view', compact('blogCategories'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function blogCategoryStore(Request $request)
@@ -52,9 +62,19 @@ class BlogController extends Controller
 
     public function blogCategoryEdit($id)
     {
-        $blogCategory = BlogPostCategory::findOrFail($id);
+        if (auth()->user()->blog == 1) {
+            $blogCategory = BlogPostCategory::findOrFail($id);
 
-        return view('admin.shop.blog.category.category_edit', compact('blogCategory'));
+            return view('admin.shop.blog.category.category_edit', compact('blogCategory'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function blogCategoryUpdate(Request $request, $id)
@@ -82,32 +102,62 @@ class BlogController extends Controller
 
     public function categoryDelete($id)
     {
-        $blogCategory = BlogPostCategory::findOrFail($id);
+        if (auth()->user()->blog == 1) {
+            $blogCategory = BlogPostCategory::findOrFail($id);
 
-        $blogCategory->delete();
+            $blogCategory->delete();
 
-        $notification = array(
-            'message' => 'ブログカテゴリー: ' . $blogCategory->blog_category_name  . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => 'ブログカテゴリー: ' . $blogCategory->blog_category_name  . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function listBlogPost()
     {
-        $blogPosts = BlogPost::with('category')->latest()->get();
+        if (auth()->user()->blog == 1) {
+            $blogPosts = BlogPost::with('category')->latest()->get();
 
-        return view('admin.shop.blog.post.post_list', compact('blogPosts'));
+            return view('admin.shop.blog.post.post_list', compact('blogPosts'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function addBlogPost()
     {
-        $blogCategories = BlogPostCategory::latest()->get();
-        $blogPosts =  BlogPost::latest()->get();
+        if (auth()->user()->blog == 1) {
+            $blogCategories = BlogPostCategory::latest()->get();
+            $blogPosts =  BlogPost::latest()->get();
 
-        return view('admin.shop.blog.post.post_add', compact('blogPosts', 'blogCategories'));
+            return view('admin.shop.blog.post.post_add', compact('blogPosts', 'blogCategories'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function blogPostStore(Request $request)

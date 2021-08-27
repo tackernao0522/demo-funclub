@@ -41,13 +41,13 @@ class ReviewController extends Controller
 
     public function pendingReview()
     {
-        if (Auth::check() && Auth::user()->role === 'admin') {
+        if (Auth::check() && Auth::user()->role === 'admin' && Auth::check() && Auth::user()->review === '1') {
             $reviews = Review::where('status', 0)->orderBy('id', 'DESC')->get();
 
             return view('admin.shop.review.pending_review', compact('reviews'));
         } else {
             $notification = array(
-                'message' => '管理者のみアクセスできるページです。',
+                'message' => '権限がありません。',
                 'alert-type' => 'error',
             );
 
@@ -58,7 +58,7 @@ class ReviewController extends Controller
 
     public function reviewApprove($id)
     {
-        if (Auth::check() && Auth::user()->role === 'admin') {
+        if (Auth::check() && Auth::user()->role === 'admin' && Auth::check() && Auth::user()->review === '1') {
             Review::where('id', $id)->update(['status' => 1]);
 
             $notification = array(
@@ -70,7 +70,7 @@ class ReviewController extends Controller
                 ->with($notification);
         } else {
             $notification = array(
-                'message' => '管理者のみアクセスできるページです。',
+                'message' => '権限がありません。',
                 'alert-type' => 'error',
             );
 
@@ -81,13 +81,13 @@ class ReviewController extends Controller
 
     public function publishReview()
     {
-        if (Auth::check() && Auth::user()->role === 'admin') {
+        if (Auth::check() && Auth::user()->role === 'admin' && Auth::check() && Auth::user()->review === '1') {
             $reviews = Review::where('status', 1)->orderBy('id', 'DESC')->get();
 
             return view('admin.shop.review.publish_review', compact('reviews'));
         } else {
             $notification = array(
-                'message' => '管理者のみアクセスできるページです。',
+                'message' => '権限がありません。',
                 'alert-type' => 'error',
             );
 
@@ -98,7 +98,7 @@ class ReviewController extends Controller
 
     public function deleteReview($id)
     {
-        if (Auth::check() && Auth::user()->role === 'admin') {
+        if (Auth::check() && Auth::user()->role === 'admin' && Auth::check() && Auth::user()->review === '1') {
             $review = Review::findOrFail($id);
             $review->delete();
 
@@ -111,7 +111,7 @@ class ReviewController extends Controller
                 ->with($notification);
         } else {
             $notification = array(
-                'message' => '管理者のみアクセスできるページです。',
+                'message' => '権限がありません。',
                 'alert-type' => 'error',
             );
 

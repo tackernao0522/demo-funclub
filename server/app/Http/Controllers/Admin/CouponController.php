@@ -16,9 +16,19 @@ class CouponController extends Controller
 
     public function couponView()
     {
-        $coupons = Coupon::orderBy('id', 'DESC')->get();
+        if (auth()->user()->coupons == 1) {
+            $coupons = Coupon::orderBy('id', 'DESC')->get();
 
-        return view('admin.shop.coupon.view_coupon', compact('coupons'));
+            return view('admin.shop.coupon.view_coupon', compact('coupons'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function couponStore(Request $request)
@@ -52,9 +62,19 @@ class CouponController extends Controller
 
     public function couponEdit($id)
     {
-        $coupon = Coupon::findOrFail($id);
+        if (auth()->user()->coupons == 1) {
+            $coupon = Coupon::findOrFail($id);
 
-        return view('admin.shop.coupon.edit_coupon', compact('coupon'));
+            return view('admin.shop.coupon.edit_coupon', compact('coupon'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function couponUpdate(Request $request, $id)
@@ -86,15 +106,25 @@ class CouponController extends Controller
 
     public function couponDelete($id)
     {
-        $coupon = Coupon::findOrFail($id);
-        $coupon->delete();
+        if (auth()->user()->coupons == 1) {
+            $coupon = Coupon::findOrFail($id);
+            $coupon->delete();
 
-        $notification = array(
-            'message' => 'クーポン：' . $coupon->coupon_name . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => 'クーポン：' . $coupon->coupon_name . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 }

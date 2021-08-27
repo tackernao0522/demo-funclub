@@ -18,9 +18,19 @@ class CategoryController extends Controller
 
     public function categoryView()
     {
-        $categories = Category::orderBy('id', 'ASC')->get();
+        if (auth()->user()->category == 1) {
+            $categories = Category::orderBy('id', 'ASC')->get();
 
-        return view('admin.shop.category.category_view', compact('categories'));
+            return view('admin.shop.category.category_view', compact('categories'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function categoryStore(Request $request)
@@ -53,9 +63,19 @@ class CategoryController extends Controller
 
     public function categoryEdit($id)
     {
-        $category = Category::findOrFail($id);
+        if (auth()->user()->category == 1) {
+            $category = Category::findOrFail($id);
 
-        return view('admin.shop.category.category_edit', compact('category'));
+            return view('admin.shop.category.category_edit', compact('category'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function categoryUpdate(Request $request, $id)
@@ -86,23 +106,33 @@ class CategoryController extends Controller
 
     public function categoryDelete($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-        if (SubCategory::where('category_id', $category->id)->first()) {
-            $subCategory = SubCategory::where('category_id', $category->id)->first();
-            $subCategory->delete();
-        }
-        if (SubSubCategory::where('category_id', $category->id)->first()) {
-            $subSubCategory = SubSubCategory::where('category_id', $category->id)->first();
-            $subSubCategory->delete();
-        }
+        if (auth()->user()->category == 1) {
+            $category = Category::findOrFail($id);
+            $category->delete();
+            if (SubCategory::where('category_id', $category->id)->first()) {
+                $subCategory = SubCategory::where('category_id', $category->id)->first();
+                $subCategory->delete();
+            }
+            if (SubSubCategory::where('category_id', $category->id)->first()) {
+                $subSubCategory = SubSubCategory::where('category_id', $category->id)->first();
+                $subSubCategory->delete();
+            }
 
-        $notification = array(
-            'message' => 'カテゴリー：' . $category->category_name . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => 'カテゴリー：' . $category->category_name . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 }

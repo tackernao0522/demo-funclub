@@ -18,10 +18,20 @@ class SubCategoryController extends Controller
 
     public function subCategoryView()
     {
-        $categories = Category::orderBy('id', 'ASC')->get();
-        $subCategories = SubCategory::with(['category'])->orderBy('id', 'ASC')->get();
+        if (auth()->user()->category == 1) {
+            $categories = Category::orderBy('id', 'ASC')->get();
+            $subCategories = SubCategory::with(['category'])->orderBy('id', 'ASC')->get();
 
-        return view('admin.shop.category.subCategory_view', compact('categories', 'subCategories'));
+            return view('admin.shop.category.subCategory_view', compact('categories', 'subCategories'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function subCategoryStore(Request $request)
@@ -53,11 +63,21 @@ class SubCategoryController extends Controller
 
     public function subCategoryEdit($id)
     {
-        $categories = Category::orderBy('category_name', 'ASC')->get();
+        if (auth()->user()->category == 1) {
+            $categories = Category::orderBy('category_name', 'ASC')->get();
 
-        $subCategory = SubCategory::findOrFail($id);
+            $subCategory = SubCategory::findOrFail($id);
 
-        return view('admin.shop.category.subCategory_edit', compact('categories', 'subCategory'));
+            return view('admin.shop.category.subCategory_edit', compact('categories', 'subCategory'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function subCategoryUpdate(Request $request, $id)
@@ -88,29 +108,49 @@ class SubCategoryController extends Controller
 
     public function subCategoryDelete($id)
     {
-        $subCategory = SubCategory::findOrFail($id);
-        $subCategory->delete();
-        if (SubSubCategory::where('subCategory_id', $subCategory->id)->first()) {
-            $subSubCategory = SubSubCategory::where('subCategory_id', $subCategory->id)->first();
-            $subSubCategory->delete();
+        if (auth()->user()->category == 1) {
+            $subCategory = SubCategory::findOrFail($id);
+            $subCategory->delete();
+            if (SubSubCategory::where('subCategory_id', $subCategory->id)->first()) {
+                $subSubCategory = SubSubCategory::where('subCategory_id', $subCategory->id)->first();
+                $subSubCategory->delete();
+            }
+
+            $notification = array(
+                'message' => 'サブカテゴリー：' . $subCategory->subCategory_name . 'を削除しました。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
         }
-
-        $notification = array(
-            'message' => 'サブカテゴリー：' . $subCategory->subCategory_name . 'を削除しました。',
-            'alert-type' => 'error',
-        );
-
-        return redirect()->back()
-            ->with($notification);
     }
 
     // That for Sub-Sub->SubCategory
     public function subSubCategoryView()
     {
-        $categories = Category::orderBy('id', 'ASC')->get();
-        $subSubCategories = SubSubCategory::with(['category', 'subCategory'])->orderBy('id', 'ASC')->get();
+        if (auth()->user()->category == 1) {
+            $categories = Category::orderBy('id', 'ASC')->get();
+            $subSubCategories = SubSubCategory::with(['category', 'subCategory'])->orderBy('id', 'ASC')->get();
 
-        return view('admin.shop.category.sub_subCategory_view', compact('categories', 'subSubCategories'));
+            return view('admin.shop.category.sub_subCategory_view', compact('categories', 'subSubCategories'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function getSubCategory($category_id)
@@ -160,11 +200,21 @@ class SubCategoryController extends Controller
 
     public function subSubCategoryEdit($id)
     {
-        $categories = Category::orderBy('id', 'ASC')->get();
-        $subCategories = SubCategory::orderBy('id', 'ASC')->get();
-        $subSubCategory = SubSubCategory::findOrFail($id);
+        if (auth()->user()->category == 1) {
+            $categories = Category::orderBy('id', 'ASC')->get();
+            $subCategories = SubCategory::orderBy('id', 'ASC')->get();
+            $subSubCategory = SubSubCategory::findOrFail($id);
 
-        return view('admin.shop.category.subSubCategory_edit', compact('categories', 'subCategories', 'subSubCategory'));
+            return view('admin.shop.category.subSubCategory_edit', compact('categories', 'subCategories', 'subSubCategory'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function subSubCategoryUpdate(Request $request, $id)
@@ -197,15 +247,25 @@ class SubCategoryController extends Controller
 
     public function subSubCategoryDelete($id)
     {
-        $subSubCategory = SubSubCategory::findOrFail($id);
-        $subSubCategory->delete();
+        if (auth()->user()->category == 1) {
+            $subSubCategory = SubSubCategory::findOrFail($id);
+            $subSubCategory->delete();
 
-        $notification = array(
-            'message' => '孫カテゴリー：' . $subSubCategory->subSubCategory_name . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => '孫カテゴリー：' . $subSubCategory->subSubCategory_name . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 }

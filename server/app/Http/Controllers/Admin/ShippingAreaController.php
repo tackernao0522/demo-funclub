@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\ShipDivision;
 use App\Models\ShipDistrict;
-use App\Models\ShipTown;
 
 class ShippingAreaController extends Controller
 {
@@ -18,9 +17,19 @@ class ShippingAreaController extends Controller
 
     public function divisionView()
     {
-        $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
+        if (auth()->user()->shipping == 1) {
+            $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
 
-        return view('admin.shop.ship.division.view_division', compact('divisions'));
+            return view('admin.shop.ship.division.view_division', compact('divisions'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function divisionStore(Request $request)
@@ -48,9 +57,19 @@ class ShippingAreaController extends Controller
 
     public function divisionEdit($id)
     {
-        $division = ShipDivision::findOrFail($id);
+        if (auth()->user()->shipping == 1) {
+            $division = ShipDivision::findOrFail($id);
 
-        return view('admin.shop.ship.division.edit_division', compact('division'));
+            return view('admin.shop.ship.division.edit_division', compact('division'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function divisionUpdate(Request $request, $id)
@@ -77,24 +96,44 @@ class ShippingAreaController extends Controller
 
     public function divisionDelete($id)
     {
-        $division = ShipDivision::findOrFail($id);
-        $division->delete();
+        if (auth()->user()->shipping == 1) {
+            $division = ShipDivision::findOrFail($id);
+            $division->delete();
 
-        $notification = array(
-            'message' => '都道府県名：' . $division->division_name . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => '都道府県名：' . $division->division_name . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function districtView()
     {
-        $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
-        $districts = ShipDistrict::with('division')->orderBy('sort_no', 'ASC')->get();
+        if (auth()->user()->shipping == 1) {
+            $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
+            $districts = ShipDistrict::with('division')->orderBy('sort_no', 'ASC')->get();
 
-        return view('admin.shop.ship.district.view_district', compact('divisions', 'districts'));
+            return view('admin.shop.ship.district.view_district', compact('divisions', 'districts'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function districtStore(Request $request)
@@ -126,10 +165,20 @@ class ShippingAreaController extends Controller
 
     public function districtEdit($id)
     {
-        $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
-        $district = ShipDistrict::findOrFail($id);
+        if (auth()->user()->shipping == 1) {
+            $divisions = ShipDivision::orderBy('sort_no', 'ASC')->get();
+            $district = ShipDistrict::findOrFail($id);
 
-        return view('admin.shop.ship.district.edit_district', compact('divisions', 'district'));
+            return view('admin.shop.ship.district.edit_district', compact('divisions', 'district'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 
     public function districtUpdate(Request $request, $id)
@@ -159,15 +208,25 @@ class ShippingAreaController extends Controller
 
     public function districtDelete($id)
     {
-        $district = ShipDistrict::findOrFail($id);
-        $district->delete();
+        if (auth()->user()->shipping == 1) {
+            $district = ShipDistrict::findOrFail($id);
+            $district->delete();
 
-        $notification = array(
-            'message' => '市区町村名：' . $district->district_name . 'を削除しました。',
-            'alert-type' => 'error',
-        );
+            $notification = array(
+                'message' => '市区町村名：' . $district->district_name . 'を削除しました。',
+                'alert-type' => 'error',
+            );
 
-        return redirect()->back()
-            ->with($notification);
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
     }
 }
