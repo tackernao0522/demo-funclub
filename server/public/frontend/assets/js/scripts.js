@@ -332,7 +332,7 @@ jQuery(document).ready(function () {
     /*===================================================================================*/
     jQuery("[data-toggle='tooltip']").tooltip();
 
-    const site_url = "https://localhost/";
+    const site_url = "https://taka-project.work/";
 
     $("body").on("keyup", "#search", function () {
 
