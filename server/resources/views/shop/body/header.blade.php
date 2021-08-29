@@ -261,11 +261,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{-- route('order.tracking') --}}">
+                    <form method="POST" action="{{ route('order.tracking') }}">
                         @csrf
                         <div class="modal-body">
                             <label for="">請求番号</label>
-                            <input type="text" name="code" required="" class="form-control" placeholder="オーダー追跡したい請求番号入力" value="{{-- old('code') --}}">
+                            <input type="text" name="code" required="" class="form-control" placeholder="オーダー追跡したい請求番号入力" value="{{ old('code') }}">
                         </div>
 
                         <button type="submit" class="btn btn-danger" style="margin-left: 15px">追跡する</button>
