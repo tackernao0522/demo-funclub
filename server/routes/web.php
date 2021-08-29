@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Shop\ShopHomeController;
+
 Route::group(['middleware' => 'auth.very_basic'], function () {
   // administrator
   Route::get('admin', 'AdminController@index')->name('admin');
@@ -283,6 +285,9 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/search', 'Shop\IndexController@productSearch')->name('product.search');
     // Shop Advance Search Routes
     Route::post('/search-product', 'Shop\IndexController@searchProduct');
+    // Shop Page Route
+    Route::get('/shop', 'Shop\ShopController@shopPage')->name('shop.page');
+    Route::post('/shop/filter', 'Shop\ShopController@shopFilter')->name('shop.filter');
   });
 
   // Contactページ
