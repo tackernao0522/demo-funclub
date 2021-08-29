@@ -52,7 +52,7 @@
                     <!-- /.contact-row -->
                     <!-- ============================================================= SEARCH AREA ============================================================= -->
                     <div class="search-area">
-                        <form method="POST" action="{{-- route('product.search') --}}">
+                        <form method="POST" action="{{ route('product.search') }}">
                             @csrf
                             <div class="control-group">
                                 <ul class="categories-filter animate-dropdown">
@@ -66,7 +66,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Search here..." />
+                                <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()"　name="search" id="search" placeholder="Search here..." />
                                 <button class="search-button" type="submit"></button>
                             </div>
                         </form>

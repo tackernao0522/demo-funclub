@@ -133,7 +133,13 @@
                     {{ $item->size }}
                     @endif
                 </td>
-                <td align="center" style="font-size: 10px">{{ $item->color }}</td>
+                <td align="center" style="font-size: 10px">
+                    @if($item->color == NULL)
+                    ---
+                    @else
+                    {{ $item->color }}
+                    @endif
+                </td>
                 <td align="center" style="font-size: 10px">{{ $item->product->product_code }}</td>
                 <td align="center" style="font-size: 10px">{{ $item->qty }}</td>
                 <td align="center" style="font-size: 10px; width: 10%">¥ {{ number_format($item->price) }}(税込)</td>
