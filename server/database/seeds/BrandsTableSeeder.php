@@ -23,7 +23,7 @@ class BrandsTableSeeder extends Seeder
             ['id' => '8', 'brand_name' => 'Supereme', 'sort_no' => 8, 'brand_slug_name' => 'Supereme', 'brand_image' => 'supereme.jpg'],
             ['id' => '9', 'brand_name' => 'VIVO', 'sort_no' => 9, 'brand_slug_name' => 'VIVO', 'brand_image' => 'vivo.png'],
             ['id' => '10', 'brand_name' => 'E HYPHEN WORLD GALLERY', 'sort_no' => 10, 'brand_slug_name' => 'E-HYPHEN-WORLD-GALLERY', 'brand_image' => 'e_hypen_world_gallery.jpeg'],
-            ['id' => '11', 'brand_name' => 'LOCOSTE', 'sort_no' => 11, 'brand_slug_name' => 'LOCOSTE', 'brand_image' => 'lacoste_logo.png'],
+            ['id' => '11', 'brand_name' => 'LACOSTE', 'sort_no' => 11, 'brand_slug_name' => 'LACOSTE', 'brand_image' => 'lacoste_logo.png'],
             ['id' => '12', 'brand_name' => 'ZARA', 'sort_no' => 12, 'brand_slug_name' => 'ZARA', 'brand_image' => 'zara_logo.jpg'],
             ['id' => '13', 'brand_name' => 'ニアコンド', 'sort_no' => 13, 'brand_slug_name' => 'ニアコンド', 'brand_image' => 'niko_and_logo.jpg'],
         ];
