@@ -120,6 +120,7 @@
                                 <!-- /.sidebar-widget-body -->
                                 <!-- /.sidebar-widget -->
                             </div>
+                            @include('shop.common.product_tags')
                             <!-- /.sidebar-widget -->
                             <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
                         </div>
