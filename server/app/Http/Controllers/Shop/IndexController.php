@@ -100,19 +100,20 @@ class IndexController extends Controller
             ->where('product_tags_name', $tag)
             ->orderBy('id', 'DESC')->paginate(3);
 
+        $breadTag = Product::where('product_tags_name', $tag)->first();
+
         $categories = Category::orderBy('id', 'ASC')->get();
 
-        return view('shop.tags.tags_view', compact('products', 'categories'));
+        return view('shop.tags.tags_view', compact('products', 'breadTag', 'categories'));
     }
 
     public function subCatWiseProduct(Request $request, $subCat_id)
     {
-        $products = Product::where('status',1)->where('subcategory_id', $subCat_id)->orderBy('id','ASC')->paginate(3);
+        $products = Product::where('status', 1)->where('subcategory_id', $subCat_id)->orderBy('id', 'ASC')->paginate(3);
 
         $categories = Category::orderBy('id', 'ASC')->get();
 
         $breadSubCat = SubCategory::with(['category'])->where('id', $subCat_id)->get();
-        // dd($products, $categories, $breadSubCat);
 
         // Load More Product with Ajax
         if ($request->ajax()) {
