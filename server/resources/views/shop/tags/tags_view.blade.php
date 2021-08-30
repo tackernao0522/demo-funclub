@@ -10,7 +10,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
-                <li class='active'>Handbags</li>
+                <li class='active'>{{ $breadTag->product_tags_name }}</li>
             </ul>
         </div>
         <!-- /.breadcrumb-inner -->
