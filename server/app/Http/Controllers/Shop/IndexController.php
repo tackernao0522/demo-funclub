@@ -46,6 +46,10 @@ class IndexController extends Controller
         $skip_brand_product_9 = Product::where('status', 1)
             ->where('brand_id', $skip_brand_9->id)
             ->orderBy('id', 'DESC')->get();
+        $skip_category_10 = Category::skip(10)->first();
+        $skip_product_10 = Product::where('status', 1)
+            ->where('category_id', $skip_category_10->id)
+            ->orderBy('id', 'DESC')->get();
         $blogPosts = BlogPost::latest()->get();
 
         // return $skip_category->id;
@@ -65,6 +69,8 @@ class IndexController extends Controller
             'skip_product_1',
             'skip_brand_9',
             'skip_brand_product_9',
+            'skip_category_10',
+            'skip_product_10',
             'blogPosts',
         ));
     }
