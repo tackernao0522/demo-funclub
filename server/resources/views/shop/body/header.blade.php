@@ -55,7 +55,7 @@
                         <form method="POST" action="{{ route('product.search') }}">
                             @csrf
                             <div class="control-group">
-                                <ul class="categories-filter animate-dropdown">
+                                <!-- <ul class="categories-filter animate-dropdown">
                                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">カテゴリー<b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <li class="menu-header">Computer</li>
@@ -65,7 +65,7 @@
                                             <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
                                         </ul>
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()"　name="search" id="search" placeholder="Search here..." />
                                 <button class="search-button" type="submit"></button>
                             </div>

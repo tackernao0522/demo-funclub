@@ -10,6 +10,11 @@ Home Easy Online Shop
         width: 189px;
         height: 206px;
     }
+
+    .checked {
+        color: orange;
+    }
+
     @media (max-width: 600px) {
         img.product_index {
             width: 307px;
@@ -54,7 +59,7 @@ Home Easy Online Shop
                                                 <div class="col col-xs-7">
                                                     <div class="product-info" style="margin-right: 10px">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
-                                                        <div class="rating rateit-small"></div>
+                                                        @include('shop.review.review_rating')
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                         <!-- /.product-price -->
                                                     </div>
@@ -101,7 +106,7 @@ Home Easy Online Shop
                                                 <div class="col col-xs-7">
                                                     <div class="product-info" style="margin-right: 10px">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
-                                                        <div class="rating rateit-small"></div>
+                                                        @include('shop.review.review_rating')
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                         <!-- /.product-price -->
                                                     </div>
@@ -143,8 +148,6 @@ Home Easy Online Shop
                 <!-- ============================================== Testimonials============================================== -->
                 @include('shop.common.testimonials')
                 <!-- ============================================== Testimonials: END ============================================== -->
-
-                <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div>
             </div>
             <!-- /.sidemenu-holder -->
             <!-- ============================================== SIDEBAR : END ============================================== -->
@@ -265,11 +268,11 @@ Home Easy Online Shop
                                                     </div>
                                                 </div>
                                                 <!-- /.product-image -->
-
                                                 <div class="product-info text-left">
                                                     <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                                    <div class="rating rateit-small"></div>
-                                                    <div class="description"></div>
+
+                                                    @include('shop.review.review_rating')
+                                                    <!-- <div class="description"></div> -->
 
                                                     @if ($product->discount_price == NULL)
                                                     <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
@@ -288,7 +291,6 @@ Home Easy Online Shop
                                                                 <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                                         </ul>
                                                     </div>
                                                     <!-- /.action -->
@@ -341,9 +343,9 @@ Home Easy Online Shop
                                                 <!-- /.product-image -->
 
                                                 <div class="product-info text-left">
-                                                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
-                                                    <div class="rating rateit-small"></div>
-                                                    <div class="description"></div>
+                                                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                                                    @include('shop.review.review_rating')
+                                                    <!-- <div class="description"></div> -->
 
                                                     @if ($product->discount_price == NULL)
                                                     <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
@@ -362,7 +364,6 @@ Home Easy Online Shop
                                                                 <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                                         </ul>
                                                     </div>
                                                     <!-- /.action -->
@@ -444,8 +445,8 @@ Home Easy Online Shop
 
                                     <div class="product-info text-left">
                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
+                                        @include('shop.review.review_rating')
+                                        <!-- <div class="description"></div> -->
 
                                         @if ($product->discount_price == NULL)
                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
@@ -463,7 +464,6 @@ Home Easy Online Shop
                                                     <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
                                                 </li>
                                                 <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                             </ul>
                                         </div>
                                         <!-- /.action -->
@@ -511,8 +511,8 @@ Home Easy Online Shop
 
                                     <div class="product-info text-left">
                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
+                                        @include('shop.review.review_rating')
+                                        <!-- <div class="description"></div> -->
 
                                         @if ($product->discount_price == NULL)
                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
@@ -530,7 +530,6 @@ Home Easy Online Shop
                                                     <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
                                                 </li>
                                                 <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                             </ul>
                                         </div>
                                         <!-- /.action -->
@@ -578,8 +577,8 @@ Home Easy Online Shop
 
                                     <div class="product-info text-left">
                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
+                                        @include('shop.review.review_rating')
+                                        <!-- <div class="description"></div> -->
 
                                         @if ($product->discount_price == NULL)
                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
@@ -597,7 +596,6 @@ Home Easy Online Shop
                                                     <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
                                                 </li>
                                                 <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                             </ul>
                                         </div>
                                         <!-- /.action -->
@@ -672,8 +670,8 @@ Home Easy Online Shop
 
                                     <div class="product-info text-left">
                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
+                                        @include('shop.review.review_rating')
+                                        <!-- <div class="description"></div> -->
 
                                         @if ($product->discount_price == NULL)
                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
@@ -691,7 +689,6 @@ Home Easy Online Shop
                                                     <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
                                                 </li>
                                                 <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                             </ul>
                                         </div>
                                         <!-- /.action -->
@@ -712,254 +709,68 @@ Home Easy Online Shop
 
                 <!-- ============================================== BEST SELLER ============================================== -->
 
-                <div class="best-deal wow fadeInUp outer-bottom-xs">
-                    <h3 class="section-title">Best seller</h3>
-                    <div class="sidebar-widget-body outer-top-xs">
-                        <div class="owl-carousel best-seller custom-carousel owl-theme outer-top-xs">
-                            <div class="item">
-                                <div class="products best-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p20.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">{{ $skip_category_10->category_name }}</h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                        @foreach($skip_product_10 as $product)
+                        <div class="item item-carousel">
+                            <div class="products">
+                                <div class="product">
+                                    <div class="product-image">
+                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                                        <!-- /.image -->
 
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
+                                        @php
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($amount / $product->selling_price) * 100;
+                                        @endphp
 
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
+                                        <div>
+                                            @if ($product->discount_price == NULL)
+                                            <div class="tag new"><span>新着 </span></div>
+                                            @else
+                                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                                            @endif
                                         </div>
-                                        <!-- /.product-micro -->
-
                                     </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p21.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
+                                    <!-- /.product-image -->
 
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
+                                    <div class="product-info text-left">
+                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
+                                        @include('shop.review.review_rating')
+                                        <!-- <div class="description"></div> -->
 
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
+                                        @if ($product->discount_price == NULL)
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
+                                        @else
+                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                                        @endif
+                                        <!-- /.product-price -->
+                                    </div>
+                                    <!-- /.product-info -->
+                                    <div class="cart clearfix animate-effect">
+                                        <div class="action">
+                                            <ul class="list-unstyled">
+                                                <li class="add-cart-button btn-group">
+                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                                                </li>
+                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                                            </ul>
                                         </div>
-                                        <!-- /.product-micro -->
-
+                                        <!-- /.action -->
                                     </div>
+                                    <!-- /.cart -->
                                 </div>
+                                <!-- /.product -->
                             </div>
-                            <div class="item">
-                                <div class="products best-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p22.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p23.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="products best-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p24.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p25.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="products best-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p26.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img src="{{ asset('frontend/assets/images/products/p27.jpg') }}" alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col2 col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99 </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- /.products -->
                         </div>
+                        <!-- /.item -->
+                        @endforeach
                     </div>
-                    <!-- /.sidebar-widget-body -->
-                </div>
+                    <!-- /.home-owl-carousel -->
+                </section>
                 <!-- /.sidebar-widget -->
                 <!-- ============================================== BEST SELLER : END ============================================== -->
 
