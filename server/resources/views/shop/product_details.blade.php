@@ -16,6 +16,20 @@
         height: 206px !important;
     }
 
+    .single-product .product-info .quantity-container .cart-quantity .quant-input input {
+        background: none repeat scroll 0 0 #fff;
+        border: 1px solid #f2f2f2;
+        box-sizing: border-box;
+        font-size: 15px;
+        height: 35px;
+        left: 0;
+        padding: 0 10px 0 10px;
+        position: absolute;
+        top: 0;
+        width: 70px;
+        z-index: 1;
+    }
+
     @media (max-width: 600px) {
         img.tags_page_list {
             width: 307px !important;
@@ -29,8 +43,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="{{ route('shop.index') }}">Home</a></li>
-                <li><a href="#">Clothing</a></li>
-                <li class='active'>Floral Print Buttoned</li>
+                <li class='active'>{{ $product->product_name }}</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
@@ -40,10 +53,6 @@
         <div class='row single-product'>
             <div class='col-md-3 sidebar'>
                 <div class="sidebar-module-container">
-                    <div class="home-banner outer-top-n">
-                        <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
-                    </div>
-
                     <!-- ============================================== HOT DEALS ============================================== -->
                     @include('shop.common.hot_deals')
                     <!-- ============================================== HOT DEALS: END ============================================== -->
@@ -140,37 +149,32 @@
                                         <div class="col-sm-3">
                                             @if($avarage == 0)
                                             評価はまだありません。
-                                            @elseif($avarage == 1 || $avarage < 2)
-                                                <span class="fa fa-star checked"></span>
+                                            @elseif($avarage == 1 || $avarage < 2) <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
-                                            @elseif($avarage == 2 || $avarage < 3)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                            @elseif($avarage == 3 || $avarage < 4)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                            @elseif($avarage == 4 || $avarage < 5)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                @elseif($avarage == 5 || $avarage < 5)
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            @endif
+                                                @elseif($avarage == 2 || $avarage < 3) <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    @elseif($avarage == 3 || $avarage < 4) <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        @elseif($avarage == 4 || $avarage < 5) <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 5 || $avarage < 5) <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                @endif
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="reviews">
@@ -214,15 +218,9 @@
 
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
+                                                <button class="btn btn-primary" type="button" id="{{ $product->id }}" onclick="addToWishList(this.id)" data-placement="right" title="Wishlist">
                                                     <i class="fa fa-heart"></i>
-                                                </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
-                                                    <i class="fa fa-signal"></i>
-                                                </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
-                                                    <i class="fa fa-envelope"></i>
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
                                     </div><!-- /.row -->
@@ -273,11 +271,7 @@
                                         <div class="col-sm-2">
                                             <div class="cart-quantity">
                                                 <div class="quant-input">
-                                                    <div class="arrows">
-                                                        <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                        <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                                                    </div>
-                                                    <input type="text" id="qty" value="1" min="1">
+                                                    <input type="number" id="qty" value="1" min="1">
                                                 </div>
                                             </div>
                                         </div>
@@ -306,7 +300,6 @@
                             <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
                                 <li class="active"><a data-toggle="tab" href="#description">詳細説明</a></li>
                                 <li><a data-toggle="tab" href="#review">レビュー</a></li>
-                                <li><a data-toggle="tab" href="#tags">TAGS</a></li>
                             </ul><!-- /.nav-tabs #product-tabs -->
                         </div>
                         <div class="col-sm-9">
@@ -462,35 +455,6 @@
 
                                     </div><!-- /.product-tab -->
                                 </div><!-- /.tab-pane -->
-
-                                <div id="tags" class="tab-pane">
-                                    <div class="product-tag">
-
-                                        <h4 class="title">Product Tags</h4>
-                                        <form role="form" class="form-inline form-cnt">
-                                            <div class="form-container">
-
-                                                <div class="form-group">
-                                                    <label for="exampleInputTag">Add Your Tags: </label>
-                                                    <input type="email" id="exampleInputTag" class="form-control txt">
-
-
-                                                </div>
-
-                                                <button class="btn btn-upper btn-primary" type="submit">ADD TAGS</button>
-                                            </div><!-- /.form-container -->
-                                        </form><!-- /.form-cnt -->
-
-                                        <form role="form" class="form-inline form-cnt">
-                                            <div class="form-group">
-                                                <label>&nbsp;</label>
-                                                <span class="text col-md-offset-3">Use spaces to separate tags. Use single quotes (') for phrases.</span>
-                                            </div>
-                                        </form><!-- /.form-cnt -->
-
-                                    </div><!-- /.product-tab -->
-                                </div><!-- /.tab-pane -->
-
                             </div><!-- /.tab-content -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -516,8 +480,8 @@
 
                                     <div class="product-info text-left">
                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
+                                        @include('shop.review.review_rating')
+                                        <!-- <div class="description"></div> -->
                                         @if ($product->discount_price == NULL)
                                         <div class="product-price">
                                             <span class="price">
@@ -535,24 +499,10 @@
                                         <div class="action">
                                             <ul class="list-unstyled">
                                                 <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </button>
+                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
                                                     <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-
                                                 </li>
-
-                                                <li class="lnk wishlist">
-                                                    <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                        <i class="icon fa fa-heart"></i>
-                                                    </a>
-                                                </li>
-
-                                                <li class="lnk">
-                                                    <a class="add-to-cart" href="detail.html" title="Compare">
-                                                        <i class="fa fa-signal"></i>
-                                                    </a>
-                                                </li>
+                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
                                             </ul>
                                         </div><!-- /.action -->
                                     </div><!-- /.cart -->

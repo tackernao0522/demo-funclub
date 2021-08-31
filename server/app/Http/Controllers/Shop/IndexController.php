@@ -51,6 +51,10 @@ class IndexController extends Controller
             ->where('category_id', $skip_category_10->id)
             ->orderBy('id', 'DESC')->get();
         $blogPosts = BlogPost::latest()->get();
+        $skip_brand_4 = Brand::skip(4)->first();
+        $skip_brand_product_4 = Product::where('status', 1)
+            ->where('brand_id', $skip_brand_4->id)
+            ->orderBy('id', 'DESC')->get();
 
         // return $skip_category->id;
         // die();
@@ -72,12 +76,16 @@ class IndexController extends Controller
             'skip_category_10',
             'skip_product_10',
             'blogPosts',
+            'skip_brand_4',
+            'skip_brand_product_4',
         ));
     }
 
     public function productDetails($id, $slug)
     {
         $product = Product::findOrFail($id);
+
+        // $breadProductDetail = Product::findOrFail($id);
 
         $color_name = $product->product_color;
         $product_color = explode(',', $color_name);
