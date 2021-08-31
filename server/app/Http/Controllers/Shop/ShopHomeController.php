@@ -30,7 +30,7 @@ class ShopHomeController extends Controller
         $blogCategories = BlogPostCategory::latest()->get();
         $blogPosts = BlogPost::where('category_id', $category_id)
             ->orderBy('id', 'DESC')
-            ->get();
+            ->paginate(3);
 
         return view('shop.blog.blog_cat_list', compact('blogCategories', 'blogPosts'));
     }
