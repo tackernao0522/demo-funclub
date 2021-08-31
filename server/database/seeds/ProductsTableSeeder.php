@@ -51,6 +51,20 @@ class ProductsTableSeeder extends Seeder
             切り替えとヘムラインがアクセントになり、さらっと一枚で着こなせます。
             カラーによってプリントに変化を付けたアソートデザインの4色展開。
             モデル身長：171cm 着用サイズ：M(03)。', 'product_thambnail' => 'niko_and_main.jpg', 'status' => 1],
+            ['id' => '17', 'brand_id' => '5', 'category_id' => 2, 'subCategory_id' => 20, 'subSubCategory_id' => 179, 'product_name' => 'ナイキ スポーツウェア 半袖 メンズ AR5005-010 NIKE', 'product_slug_name' => 'ナイキ スポーツウェア 半袖 メンズ AR5005-010 NIKE', 'product_code' => 'N-T-2-989034', 'product_qty' => 200, 'product_tags_name' => 'NIKE', 'selling_price' => 4000, 'short_descp' => '定番コットンの快適な着心地。', 'long_descp' => '定番コットンの快適な着心地。
+            胸に定番ロゴをあしらったナイキ スポーツウェア Tシャツは、柔らかいコットンジャージー素材を使用しています。
+            ■カラー：010 ( ブラック/ホワイト )
+            ■サイズ：S、M、L、XL、2XL
+            ■素材：コットン100％
+            ■原産国：スリランカ、中国
+            ※原産国をお選びいただくことはできません予めご了承ください
+            ■特徴：
+            洗濯機洗い可能
+            ゆったりと楽に着用できるスタンダードフィット
+            ※商品画像はサンプルのため、若干の仕様変更がある場合がございます。予めご了承下さい。
+            
+            
+            検索ワード：スポーツウェア Tシャツ 半袖シャツ 半そで 機能Tシャツ', 'product_thambnail' => 'nike_t_shirt_main.jpg', 'status' => 1],
         ];
         DB::table('products')->insert($products);
     }

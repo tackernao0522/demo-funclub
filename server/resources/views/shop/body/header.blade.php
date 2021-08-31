@@ -179,7 +179,7 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">トップ</a> </li>
+                                <li class="active dropdown yamm-fw"> <a href="{{ route('top') }}">トップ</a> </li>
 
                                 <!-- Get Category Table Data -->
                                 @php

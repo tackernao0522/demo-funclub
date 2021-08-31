@@ -51,6 +51,11 @@ class MultiImgsTableSeeder extends Seeder
             ['id' => '34', 'product_id' => 16, 'photo_name' => 'niko_and_01.jpg'],
             ['id' => '35', 'product_id' => 16, 'photo_name' => 'niko_and_02.jpg'],
             ['id' => '36', 'product_id' => 16, 'photo_name' => 'niko_and_03.jpg'],
+            ['id' => '37', 'product_id' => 17, 'photo_name' => 'nike_t_shirt_01.jpg'],
+            ['id' => '38', 'product_id' => 17, 'photo_name' => 'nike_t_shirt_02.jpg'],
+            ['id' => '39', 'product_id' => 17, 'photo_name' => 'nike_t_shirt_03.jpg'],
+            ['id' => '40', 'product_id' => 17, 'photo_name' => 'nike_t_shirt_04.jpg'],
+            ['id' => '41', 'product_id' => 17, 'photo_name' => 'nike_t_shirt_05.jpg'],
         ];
         DB::table('multi_imgs')->insert($multiImgs);
     }

@@ -1,6 +1,13 @@
 @php
 $brands = App\Models\Brand::latest()->get();
 @endphp
+
+<style>
+    .logo-slider-inner {
+        margin-top: 50px;
+    }
+</style>
+
 <div id="brands-carousel" class="logo-slider wow fadeInUp"></div>
 <div class="logo-slider-inner">
     <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
