@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class BlogPostsTableSeeder extends Seeder
 {
@@ -87,7 +88,8 @@ class BlogPostsTableSeeder extends Seeder
                 <li>Meticulous Scanner</li>
             </ul>
             
-            <p>Of course, the recommendation for Andriod users is to check if they have any of these apps installed on their smartphone and delete them immediately, since the fact that they are deleted from the Google Play Store does not imply automatic uninstallation from the computers where they were downloaded.</p>'],
+            <p>Of course, the recommendation for Andriod users is to check if they have any of these apps installed on their smartphone and delete them immediately, since the fact that they are deleted from the Google Play Store does not imply automatic uninstallation from the computers where they were downloaded.</p>',
+            'created_at' => Carbon::now(),],
             ['id' => '2', 'category_id' => '2', 'post_blog_title' => '24歳でビジネスを売ることがこの起業家に幸福と成功について教えたこと', 'post_blog_slug' => '24歳でビジネスを売ることがこの起業家に幸福と成功について教えたこと', 'post_blog_image' => 'blog_02.png', 'post_blog_details' => '<p>人間は常に階層を作成し、さまざまな要因に基づいて人口を分割することに熱心でした。これらの指標は何年にもわたって変化しており、それでも世界中で大きく異なりますが、その1つはどこに行っても普遍的であり、成功です。</p>
 
             <p>しかし、どうすれば成功を測定し、比較的正確な結果を期待できますか？何千年にもわたってまったく同じ基準を使用してきたため、答えは単純なようですが、ますます多くの人々が反対し始めています。興味深いことに、それに反対する人々はピラミッドの頂上から話し、私たちがどれほど間違っていたかを私たちに話します。</p>
@@ -119,7 +121,8 @@ class BlogPostsTableSeeder extends Seeder
             <p>バランスを見つける<br />
             しかし、これは幸福と何の関係があるのでしょうか？結局のところ、それらの人々は世界をより良い場所にするためにたゆまぬ努力をしていて、彼らは自分たちのためにこのキャリアを選んだので、どちらかといえば、それは幸せの定義であるべきです。しかし、それは本当にですか？</p>
             
-            <p>幸せな生活を送るための3つの主な貢献者は、友人や家族と話したり、音楽を聴いたり、祈りや瞑想をしたりしているようです。 CEOが直面する時間の不足は、仕事をやめてその瞬間を楽しむことを要求する活動にふけることを効果的に妨げます。</p>'],
+            <p>幸せな生活を送るための3つの主な貢献者は、友人や家族と話したり、音楽を聴いたり、祈りや瞑想をしたりしているようです。 CEOが直面する時間の不足は、仕事をやめてその瞬間を楽しむことを要求する活動にふけることを効果的に妨げます。</p>',
+            'created_at' => Carbon::now(),],
             ['id' => '3', 'category_id' => '3', 'post_blog_title' => 'コンサルティング事業を始める方法', 'post_blog_slug' => 'コンサルティング事業を始める方法', 'post_blog_image' => 'blog_03.jpg', 'post_blog_details' => '<p>編集者注：この記事は、起業家書店から入手できるコンサルティングビジネスのスタートアップガイドから抜粋したものです。</p>
 
             <p>辞書では、コンサルタントを「会社または別の個人のアドバイザーとして働く特定の分野の専門家」と定義しています。かなり曖昧に聞こえますね。しかし、過去10年間昏睡状態に陥っていない限り、コンサルタントとは何かを知っていると思います。</p>
@@ -134,7 +137,7 @@ class BlogPostsTableSeeder extends Seeder
             
             <p>ほら、この時代では、誰でもコンサルタントになることができます。あなたが発見する必要があるのはあなたの特定の贈り物が何であるかだけです。たとえば、コンピュータの操作に非常に慣れていますか？ほぼ毎日変化しているように見える最新のソフトウェアとハ​​ードウェアの情報についていくのですか？そして、あなたはあなたが得たその知識を取り、誰かがお金を払っても構わないと思っているであろう資源にそれを変えることができますか？そうすれば、コンピュータコンサルタントとして問題なく働くことができます。</p>
             
-            <p>それともあなたは資金調達分野の専門家ですか？多分あなたは資金調達、マーケティング、広報または販売の分野で非営利団体で働いていて、何年にもわたってあなたはお金を集める方法を発見しました。資金調達の10年の成功を儲かるコンサルティングビジネスに変えた人として、私は資金調達コンサルティングが確かに成長している産業であるとあなたに言うことができます。</p>'],
+            <p>それともあなたは資金調達分野の専門家ですか？多分あなたは資金調達、マーケティング、広報または販売の分野で非営利団体で働いていて、何年にもわたってあなたはお金を集める方法を発見しました。資金調達の10年の成功を儲かるコンサルティングビジネスに変えた人として、私は資金調達コンサルティングが確かに成長している産業であるとあなたに言うことができます。</p>', 'created_at' => Carbon::now(),],
             ['id' => '4', 'category_id' => '4', 'post_blog_title' => '10,000ドル未満で開始する63の企業', 'post_blog_slug' => '10,000ドル未満で開始する63の企業', 'post_blog_image' => 'blog_04.jpg', 'post_blog_details' => '<p>あなたはあなたがあなた自身のために何かを始めたいと思っていることを知っています。あなたはただあなたの野心と時間を追加の現金を稼ぎ、あなたを誇りに思い、そしておそらくフルタイムのベンチャーにつながるアイデアに注ぎ込む必要があります。あなたが「私はやめた！」と言うとき、あなたがその驚くべき瞬間を得るならば、さらに良いでしょう。上司に。しかし、どのような素晴らしいアイデアを始めるべきですか？</p>
 
             <p>育児、修理サービス、パーティーの計画から、ビジネスコンサルティング、職人の製造、履歴書の作成まで、10,000ドル未満で開始できるアイデアのリストには、あらゆるスキルレベル、関心、予算に対応するビジネスがあります。ここにリストされているいくつかのアイデアは、2,000ドル未満で始めることもできます！<br />
@@ -173,7 +176,7 @@ class BlogPostsTableSeeder extends Seeder
             
             <p>MartinYateによるKnock&#39;em Dead Resume Templates（Adams Media、2014）</p>
             
-            <p>目立つ履歴書！ L.ザビエルカノ（チェスター出版、2014年）</p>'],
+            <p>目立つ履歴書！ L.ザビエルカノ（チェスター出版、2014年）</p>', 'created_at' => Carbon::now(),],
         ];
         DB::table('blog_posts')->insert($blogPosts);
     }
