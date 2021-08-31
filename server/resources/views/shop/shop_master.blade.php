@@ -306,7 +306,7 @@ $seo = App\Models\Seo::find(1);
                         <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
                         <div class="price"> ${'¥' + value.price} x ${value.qty} </div>
                     </div>
-                    <div class="col-xs-1 action"> <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)">x</button> </div>
+                    <div class="col-xs-1 action"> <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
                     </div>
                 </div>
                 <!-- /.cart-item -->

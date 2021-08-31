@@ -177,7 +177,7 @@
                         <!-- End Product Grid View -->
 
                         <!-- Product List View Start -->
-                        <div class="tab-pane " id="list-container">
+                        <div class="tab-pane" id="list-container">
                             <div class="category-product" id="list_view_product">
                                 @include('shop.list_view_product')
                             </div>

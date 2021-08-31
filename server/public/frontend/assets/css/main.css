@@ -1745,11 +1745,12 @@ header {
     font-weight: 700;
 }
 .top-cart-row .dropdown-cart .dropdown-menu .cart-item.product-summary .action {
-    padding: 0;
+    /* padding: 0; */
     position: relative;
     font-size: 15px;
     right: 8px;
     top: 8px;
+    margin-left: 10px;
 }
 .top-cart-row
     .dropdown-cart
