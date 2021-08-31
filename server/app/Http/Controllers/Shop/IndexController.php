@@ -135,7 +135,7 @@ class IndexController extends Controller
 
             $list_view = view('shop.list_view_product', compact('products'))->render();
 
-            return response()->json(['grid_view' => $grid_view, 'list_view', $list_view]);
+            return response()->json(['grid_view' => $grid_view, 'list_view' => $list_view, 'list_view', $list_view]);
         }
         // End Load More Product with Ajax
 

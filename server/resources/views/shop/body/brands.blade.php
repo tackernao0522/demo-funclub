@@ -4,7 +4,7 @@ $brands = App\Models\Brand::latest()->get();
 
 <style>
     .logo-slider-inner {
-        margin-top: 50px;
+        margin-top: 100px;
     }
 </style>
 
