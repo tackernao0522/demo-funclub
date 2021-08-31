@@ -16,6 +16,10 @@
         height: 249px !important;
     }
 
+    .checked {
+        color: orange;
+    }
+
     @media (max-width: 600px) {
         img.grid_view_product {
             width: 305px !important;
@@ -195,8 +199,46 @@
 
                                                     <div class="product-info text-left">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 30) !!}</a></h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="description"></div>
+                                                        @php
+                                                        $reviewCount = App\Models\Review::where('product_id', $product->id)->where('status', 1)->latest()->get();
+                                                        $avarage = App\Models\Review::where('product_id', $product->id)->where('status', 1)->avg('rating');
+                                                        @endphp
+                                                        <div class="rating">
+                                                            @if($avarage == 0)
+                                                            評価はまだありません。
+                                                            @elseif($avarage == 1 || $avarage < 2)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 2 || $avarage < 3)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 3 || $avarage < 4)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 4 || $avarage < 5)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 5 || $avarage < 5)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                            @endif
+                                                        </div>
+                                                        <!-- <div class="description"></div> -->
                                                         @if ($product->discount_price == NULL)
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
                                                         @else
@@ -251,7 +293,45 @@
                                                     <div class="col col-sm-8 col-lg-8">
                                                         <div class="product-info">
                                                             <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! nl2br(e(Str::limit($product->product_name, 50))) !!}</a></h3>
-                                                            <div class="rating rateit-small"></div>
+                                                            @php
+                                                            $reviewCount = App\Models\Review::where('product_id', $product->id)->where('status', 1)->latest()->get();
+                                                            $avarage = App\Models\Review::where('product_id', $product->id)->where('status', 1)->avg('rating');
+                                                            @endphp
+                                                            <div class="rating">
+                                                                @if($avarage == 0)
+                                                                評価はまだありません。
+                                                                @elseif($avarage == 1 || $avarage < 2)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 2 || $avarage < 3)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 3 || $avarage < 4)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 4 || $avarage < 5)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 5 || $avarage < 5)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                @endif
+                                                            </div>
                                                             @if ($product->discount_price == NULL)
                                                             <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
                                                             @else

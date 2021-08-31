@@ -218,7 +218,7 @@
 
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
-                                                <button class="btn btn-primary" type="button" id="{{ $product->id }}" onclick="addToWishList(this.id)" data-placement="right" title="Wishlist">
+                                                <button class="btn btn-primary" type="button" id="{{ $product->id }}" onclick="addToWishList(this.id)" data-placement="right" title="Wishlist" style="background: #108bea">
                                                     <i class="fa fa-heart"></i>
                                                 </button>
                                             </div>
