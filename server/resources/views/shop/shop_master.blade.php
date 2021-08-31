@@ -329,6 +329,7 @@ $seo = App\Models\Seo::find(1);
                 success: function(data) {
                     miniCart();
                     cart();
+                    couponRemove();
 
                     // Start Message
                     const Toast = Swal.mixin({

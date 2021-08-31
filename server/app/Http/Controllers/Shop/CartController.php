@@ -82,6 +82,7 @@ class CartController extends Controller
     public function removeMiniCart($rowId)
     {
         Cart::remove($rowId);
+        Session::forget('coupon');
 
         return response()->json(['success' => 'カート内商品を削除しました。']);
     }
