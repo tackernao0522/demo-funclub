@@ -12,7 +12,7 @@ class ShopHomeController extends Controller
     public function addBlogPost()
     {
         $blogCategories = BlogPostCategory::latest()->get();
-        $blogPosts = BlogPost::latest()->get();
+        $blogPosts = BlogPost::latest()->paginate(3);
 
         return view('shop.blog.blog_list', compact('blogCategories', 'blogPosts'));
     }
