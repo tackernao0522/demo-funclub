@@ -19,6 +19,9 @@ class ReviewController extends Controller
         $validatedData = $request->validate([
             'summary' => 'required',
             'comment' => 'required',
+        ], [
+            'summary.required' => '概要は必須です。',
+            'comment.required' => 'レビュー内容は必須です。',
         ]);
 
         Review::insert([
