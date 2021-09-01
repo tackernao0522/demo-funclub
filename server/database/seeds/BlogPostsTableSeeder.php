@@ -14,81 +14,30 @@ class BlogPostsTableSeeder extends Seeder
     {
         DB::table('blog_posts')->delete();
         $blogPosts = [
-            ['id' => '1', 'category_id' => '1', 'post_blog_title' => 'スペイン語の起業家', 'post_blog_slug' => 'スペイン語の起業家', 'post_blog_image' => 'blog_01.jpg', 'post_blog_details' => '<p>The Belgian Police warned about the&nbsp;<strong>return of the &#39;Joker&#39; virus</strong>&nbsp;, which attacks&nbsp;<strong>Android devices</strong>&nbsp;and hides itself in various&nbsp;<strong>applications</strong>&nbsp;on the&nbsp;<strong>Google Play Store</strong>&nbsp;. This&nbsp;<strong>malware</strong>&nbsp;is capable of subscribing the user to payment services without their authorization and&nbsp;<strong>emptying their bank accounts</strong>&nbsp;without them noticing.</p>
+            ['id' => '1', 'category_id' => '1', 'post_blog_title' => 'スペイン語の起業家', 'post_blog_slug' => 'スペイン語の起業家', 'post_blog_image' => 'blog_01.jpg', 'post_blog_details' => '<p>特定のニュース日に、大企業に対する最新のサイバーセキュリティ攻撃の詳細を示す見出しを見つけることができます。しかし、ママとポップの店はこの脅威をウォール街の大物と同じくらい真剣に受け止めるべきでしょうか？答えは議論の余地のない「はい」です。</p>
 
-            <p><em>&quot;This malicious program has been detected in eight Play Store applications that Google has suppressed,&quot;</em>&nbsp;say the Belgian authorities in a&nbsp;<a href="https://www.police.be/5998/fr/actualites/attention-le-virus-joker-est-de-retour-dans-lenvironnement-android" rel="follow">statement</a>&nbsp;published this Friday on their website.</p>
+            <p>ハッカーはもはや大企業だけに焦点を合わせているわけではありません。個人の電子メールが危険にさらされたことがある場合は、これを直接目にしたことがあります。オンラインの敵対者は、ターゲットが自分自身を十分に保護していないことを知っているため、今や強気なビジネスになっています。これらの犯罪者は、新興企業が攻撃から立ち直り、その恐れを利用してお金を搾り出すのは難しいことを認識しています。</p>
             
-            <ul>
-                <li><strong>It may interest you:&nbsp;<a href="https://www.entrepreneur.com/article/379782" rel="follow" target="_self">Did you get a free ebook for Kindle from Amazon? This new hacking method can access your bank details</a></strong></li>
-            </ul>
+            <p>将来悪者を阻止するために、現在は積極的に行動してください。</p>
             
-            <p>The&nbsp;<strong>&#39;Joker&#39;&nbsp;<em>malware</em></strong>&nbsp;became famous in 2017 for infecting and robbing its victims by hiding in different applications. Since then, the&nbsp;<strong>Google Play Store</strong>&nbsp;defense systems have removed around&nbsp;<strong>1,700 apps with the &#39;Joker&#39; malware</strong>&nbsp;before they were downloaded by users.</p>
+            <p>関連：中小企業を保護するサイバーセキュリティ慣行</p>
             
-            <p>In September 2020, the&nbsp;<strong>&#39;Joker&#39; virus</strong>&nbsp;was found in&nbsp;<strong>24 Android applications</strong>&nbsp;that registered more than&nbsp;<strong>500 thousand downloads</strong>&nbsp;before being removed. It is estimated that that time it affected more than 30 countries including the United States, Brazil and Spain. Through unauthorized subscriptions,&nbsp;<strong>hackers</strong>&nbsp;could steal&nbsp;<strong>up to $ 7</strong>&nbsp;(about 140 Mexican pesos) per subscription weekly, a figure that has most likely increased in recent months.</p>
+            <p>1.ドメイン名を管理する<br />
+            独自にWebサイトをセットアップできるほとんどのサードパーティプロバイダー（GoDaddyなど）には、ハッカーがデータを盗むのを困難にするオプションを選択できます。追加の保護料金を支払う必要がありますが、料金はリーズナブルで、他の方法よりもはるかに安価です。プロバイダーは通常、あなたが自分で持っているよりも優れたサイバーセキュリティリソースを持っています。</p>
             
-            <h2><strong>How does the Joker virus work in Android apps?</strong></h2>
+            <p>2.会社の電子メールを使用する</p>
             
-            <p>The&nbsp;<strong>&#39;Joker&#39; Trojan virus</strong>&nbsp;belongs to a family of&nbsp;<strong><em>malware</em></strong>&nbsp;known as&nbsp;<strong>Bread</strong>&nbsp;, whose objective is to&nbsp;<strong>hack cell phone bills</strong>&nbsp;and&nbsp;<strong>authorize operations without</strong>&nbsp;the user&#39;s consent.</p>
+            <p>従業員が仕事に個人の電子メールを使用することを許可すると、彼らが何をしているかを追跡することはほとんど不可能であるため、全員に会社のアドレス（ &quot;WorkerName@YourBusiness.comなど）を使用させる方が安全です。アカウントをロックダウンします。他の構成やツールを使用して、メッセージを暗号化したり、メッセージが送信されたかどうかを確認したりすることもできます。</p>
             
-            <p>Researchers from the cybersecurity company Quick Heal Security Lab, cited in the statement, explain that this virus can&nbsp;<strong>enter text messages</strong>&nbsp;,&nbsp;<strong>contacts</strong>&nbsp;and&nbsp;<strong>other information on the</strong>&nbsp;infected smartphone.</p>
+            <p>3.関連するパスワードや指紋IDを使用します<br />
+            ビジネスに複数のワークステーションがある場合、従業員は自分の資格情報でログインせずに1台のマシンから別のマシンにポップすることはできず、設定された分数の間使用されていない場合は自動的にロックする必要があります。そうでなければ、部下は単に最後の訪問者の資格情報を使用して情報を変更する可能性があります。アフィリエイトパスワードにより、従業員は表示が許可されているものだけを表示できます。</p>
             
-            <ul>
-                <li><strong>Also read:&nbsp;<a href="https://www.entrepreneur.com/article/368263" rel="follow" target="_self">So you can detect and delete spy apps on your Smartphone</a></strong></li>
-            </ul>
+            <p>入力に使用するのとまったく同じ数字を、チームに割り当てるパスワードの代わりに、またはパスワードの上に使用することもできます。組み込みの指紋認識テクノロジーは、タブレット、ラップトップ、電話などのデバイスでより標準的になっているため、この追加の手段を導入するために必ずしも他のものを購入する必要はありません。</p>
             
-            <p>What makes this malware more dangerous is its ability to&nbsp;<strong>subscribe the affected Android user to paid services</strong>&nbsp;, usually Premium or the most expensive version, without their prior authorization.</p>
+            <p>4.外部から誰かを雇う<br />
+            ITセキュリティ会社は、サーバーのファイアウォールの設定、ウイルスブロッカーのインストール、スパムのブロックなどを行うことができます。ウェブホストがこれらのサービスを提供していない場合は、スペシャリストからサービスを購入し、メンテナンス費用として償却する価値があります。</p>
             
-            <p>In the beginning, apps infected with&nbsp;<strong>&#39;Joker&#39;</strong>&nbsp;or another<strong>&nbsp;</strong><strong><em>Malware</em></strong>&nbsp;from this family carried out&nbsp;<strong>fraud via SMS</strong>&nbsp;, but then began to attack&nbsp;<strong>online payments</strong>&nbsp;. These two techniques take advantage of the integration of telephone operators with vendors, to facilitate the&nbsp;<strong>payment of services with the mobile bill</strong>&nbsp;. Both require verification of the device, but not the user, thus they manage to automate payments without requiring any user interaction.</p>
-            
-            <p><em>&quot;You risk a big surprise at the end of the month in your bank account or on your credit card,&quot;</em>&nbsp;said the Belgian police, referring to the&nbsp;<strong>unknown charges</strong>&nbsp;that the victim will see at the end of the month.</p>
-            
-            <p>In fact, it is very common for those affected by&nbsp;<strong>&#39;Joker&#39; to</strong>&nbsp;become aware of the theft until they review their account statement in detail. This is because the bank does not suspect an apparently &#39;normal&#39; subscription and, generally, the charges are so small that they are not detected as unusual movements, so they do not even send a usage alert to the account holder.</p>
-            
-            <h2><strong>In which Android apps could the &#39;Joker virus be?</strong></h2>
-            
-            <p><iframe frameborder="0" height="90" id="google_ads_iframe_/6280/Entrepreneur-in/article_3" name="google_ads_iframe_/6280/Entrepreneur-in/article_3" scrolling="no" title="3rd party ad content" width="728"></iframe></p>
-            
-            <p>On this occasion, the harmful applications that the&nbsp;<strong>Google Play Store</strong>&nbsp;eliminated after detecting that they contained the&nbsp;<strong>&#39;Joker&#39; virus</strong>&nbsp;are:</p>
-            
-            <ul>
-                <li>Auxiliary Message</li>
-                <li>Element Scanner</li>
-                <li>Fast Magic SMS</li>
-                <li>Free CamScanner</li>
-                <li>Go Messages</li>
-                <li>Super Message</li>
-                <li>Super SMS</li>
-                <li>Travel Wallpapers</li>
-            </ul>
-            
-            <p>However, other specialists warn that more&nbsp;<strong>apps are affected</strong>&nbsp;and, therefore, millions of users who do not know that they are already victims of this cyber fraud.</p>
-            
-            <ul>
-                <li><strong>We recommend:&nbsp;<a href="https://www.entrepreneur.com/article/373297" rel="follow" target="_self">Uber, Facebook, Instagram and other apps that are slowly killing your smartphone</a></strong></li>
-            </ul>
-            
-            <p>The cybersecurity company Zscaler, cited by&nbsp;<a href="https://www.larazon.es/tecnologia/20210823/vrx2gosazzactbgp2a2tem6qmm.html" rel="follow">La Raz&oacute;n</a>&nbsp;, made public the names of 16 other apps that, according to their analysis, also contain this malicious code:</p>
-            
-            <ul>
-                <li>Private SMS</li>
-                <li>Hummingbird PDF Converter - Photo to PDF</li>
-                <li>Style Photo Collage</li>
-                <li>Talent Photo Editor - Blur focus</li>
-                <li>Paper Doc Scanner</li>
-                <li>All Good PDF Scanner</li>
-                <li>Care Message</li>
-                <li>Part Message</li>
-                <li>Blue Scanner</li>
-                <li>Direct Messenger</li>
-                <li>One Sentence Translator - Multifunctional Translator</li>
-                <li>Mint Leaf Message-Your Private Message</li>
-                <li>Unique Keyboard - Fancy Fonts &amp; Free Emoticons</li>
-                <li>Tangram App Lock</li>
-                <li>Desire Translate</li>
-                <li>Meticulous Scanner</li>
-            </ul>
-            
-            <p>Of course, the recommendation for Andriod users is to check if they have any of these apps installed on their smartphone and delete them immediately, since the fact that they are deleted from the Google Play Store does not imply automatic uninstallation from the computers where they were downloaded.</p>',
+            <p>あなたが非常に精通していない限り、外部の会社にネットワークとプライバシーを基本的なレベルで処理させることで、セキュリティの死角を大幅に減らすことができます。彼らがやって来てあなたのセットアップを批評することは、すべてを機能させ続けるためにあなたのエネルギーを費やす必要なしにあなたの状況について安心を得る簡単な方法です。あなたはおそらくすでに会社の成長に全力を注いでいるので、技術の一部を委任できることは大きな違いを生む可能性があります。</p>',
             'created_at' => Carbon::now(),],
             ['id' => '2', 'category_id' => '2', 'post_blog_title' => '24歳でビジネスを売ることがこの起業家に幸福と成功について教えたこと', 'post_blog_slug' => '24歳でビジネスを売ることがこの起業家に幸福と成功について教えたこと', 'post_blog_image' => 'blog_02.png', 'post_blog_details' => '<p>人間は常に階層を作成し、さまざまな要因に基づいて人口を分割することに熱心でした。これらの指標は何年にもわたって変化しており、それでも世界中で大きく異なりますが、その1つはどこに行っても普遍的であり、成功です。</p>
 

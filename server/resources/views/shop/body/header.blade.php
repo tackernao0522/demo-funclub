@@ -9,7 +9,7 @@
                         @if ( Auth::check() && Auth::user()->role === 'admin' )
                         <li><a href="{{ route('dashboard') }}"><i class="fa fa-cog"></i>ショップダッシュボード</a></li>
                         @endif
-                        <li><a href="#"><i class="icon fa fa-user"></i>マイアカウント</a></li>
+                        <!-- <li><a href="#"><i class="icon fa fa-user"></i>マイアカウント</a></li> -->
                         <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>ウイッシュリスト</a></li>
                         <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>マイカート</a></li>
                         <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>チェックアウト</a></li>

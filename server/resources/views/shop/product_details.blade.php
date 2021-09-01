@@ -396,7 +396,7 @@
                                                 <div class="form-container">
                                                     <form role="form" class="cnt-form" method="POST" action="{{ route('review.store', $product->id) }}">
                                                         @csrf
-                                                        <table class="table">
+                                                        <table class="table" style="display: block; overflow-x: scroll; white-space: nowrap; -webkit-overflow-scrolling: touch">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="cell-label">&nbsp;</th>
