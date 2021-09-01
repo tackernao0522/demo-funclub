@@ -19,7 +19,7 @@ class ShopController extends Controller
                 ->whereIn('category_slug_name', $slugs)
                 ->pluck('id')
                 ->toArray();
-            $products = $products->whereIn('category_id', $catIds)->paginate(3);
+            $products = $products->whereIn('category_id', $catIds)->paginate(6);
         }
         if (!empty($_GET['brand'])) {
             $slugs = explode(',', $_GET['brand']);
@@ -27,9 +27,9 @@ class ShopController extends Controller
                 ->whereIn('brand_slug_name', $slugs)
                 ->pluck('id')
                 ->toArray();
-            $products = $products->whereIn('brand_id', $brandIds)->paginate(3);
+            $products = $products->whereIn('brand_id', $brandIds)->paginate(6);
         } else {
-            $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(3);
+            $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(6);
         }
 
         $brands = Brand::orderBy('id', 'ASC')->get();

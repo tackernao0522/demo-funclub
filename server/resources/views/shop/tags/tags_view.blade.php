@@ -117,7 +117,6 @@
                         </div>
                     </div>
 
-
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">
                             <div class="col col-sm-6 col-md-2">
