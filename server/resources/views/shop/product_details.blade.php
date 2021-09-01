@@ -235,7 +235,7 @@
                                             @else
                                             <label class="info-title control-label">カラー選択<span></span></label>
                                             <select class="form-control unicase-form-control selectpicker" style="display: none;" id="color">
-                                                <option selected="" disabled="">--カラー選択--</option>
+                                                <!-- <option selected="" disabled="">--カラー選択--</option> -->
                                                 @foreach($product_color as $color)
                                                 <option value="{{ $color }}">{{ ucwords($color) }}</option>
                                                 @endforeach
@@ -250,7 +250,7 @@
                                             @else
                                             <label class="info-title control-label">サイズ選択<span></span></label>
                                             <select class="form-control unicase-form-control selectpicker" style="display: none;" id="size">
-                                                <option selected="" disabled="">--サイズ選択--</option>
+                                                <!-- <option selected="" disabled="">--サイズ選択--</option> -->
                                                 @foreach($product_size as $size)
                                                 <option value="{{ $size }}">{{ ucwords($size) }}</option>
                                                 @endforeach
