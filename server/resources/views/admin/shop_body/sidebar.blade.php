@@ -307,7 +307,7 @@ $route = Route::current()->getName();
 
     <div class="sidebar-footer">
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+        <!-- <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a> -->
         <!-- item-->
         <a href="{{ route('contact.list') }}" class="link" data-toggle="tooltip" title="" data-original-title="お問い合わせリスト"><i class="ti-email"></i></a>
         <!-- item-->
