@@ -51,7 +51,7 @@
     <!-- /.container -->
 </div>
 <!-- /.breadcrumb -->
-<div class="body-content outer-top-xs">
+<div class="body-content outer-top-xs" style="margin: 20px auto 0 auto !important">
     <div class='container'>
         <div class='row'>
             <div class='col-md-3 sidebar'>
