@@ -112,7 +112,7 @@ class IndexController extends Controller
     {
         $products = Product::where('status', 1)
             ->where('product_tags_name', $tag)
-            ->orderBy('id', 'DESC')->paginate(3);
+            ->orderBy('id', 'DESC')->paginate(6);
 
         $breadTag = Product::where('product_tags_name', $tag)->first();
 
