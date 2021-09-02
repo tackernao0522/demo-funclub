@@ -197,6 +197,89 @@ class BlogController extends Controller
             ->with($notification);
     }
 
+    public function editBlogPost($id)
+    {
+        if (auth()->user()->blog == 1) {
+            $blogCategories = BlogPostCategory::orderBy('id', 'ASC')->get();
+
+            $blogPost = BlogPost::findOrFail($id);
+
+            return view('admin.shop.blog.post.post_edit', compact('blogCategories', 'blogPost'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function blogPostUpdate(Request $request, $id)
+    {
+        $blogPost = BlogPost::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'post_blog_title' => 'required',
+            'category_id' => 'required',
+            'post_blog_image' => 'mimes:jpg,jpeg,png',
+            'post_blog_details' => 'required',
+        ], [
+            'post_blog_title.required' => 'ブログタイトルは必須です。',
+            'category_id.required' => 'カテゴリーを選択してください。',
+            'post_blog_image.mimes' => 'ブログ画像にはjpg, jpeg, pngのうちいずれかの形式のファイルを指定してください。',
+            'post_blog_details.required' => 'ブログ内容は必須です。',
+        ]);
+
+        if ($request->has('post_blog_image')) {
+            Storage::disk('s3')->delete('/blogs/' . $blogPost->post_blog_image);
+            $blogPost->delete();
+            $fileName = $this->saveImage($request->file('post_blog_image'));
+            $blogPost->post_blog_image = $fileName;
+        }
+
+        $blogPost->post_blog_title = $request->post_blog_title;
+        $blogPost->category_id = $request->category_id;
+        $blogPost->post_blog_slug = str_replace(' ', '-', $request->post_blog_title);
+        $blogPost->post_blog_details = $request->post_blog_details;
+        $blogPost->updated_at = Carbon::now();
+        $blogPost->save();
+
+        $notification = array(
+            'message' => 'ブログID: ' . $blogPost->id . 'を更新しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('list.post')
+            ->with($notification);
+    }
+
+    public function blogPostDelete($id)
+    {
+        if (auth()->user()->blog == 1) {
+            $blogPost = BlogPost::findOrFail($id);
+            Storage::disk('s3')->delete('/blogs/' . $blogPost->post_blog_image);
+            $blogPost->delete();
+
+            $notification = array(
+                'message' => 'ブログタイトル: ' . $blogPost->post_blog_title . 'を削除しました。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();

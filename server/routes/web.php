@@ -158,6 +158,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   // Admin Get All User Routes
   Route::prefix('alluser')->group(function () {
     Route::get('/view', 'Admin\AdminProfileController@allUsers')->name('all-users');
+    Route::get('/delete/{id}', 'Admin\AdminProfileController@allUserDelete')->name('allUser.delete');
   });
   // Admin Shop Get All Blog Routes
   Route::prefix('blog')->group(function () {
@@ -170,6 +171,9 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/list/post', 'Admin\BlogController@listBlogPost')->name('list.post');
     Route::get('/add/post', 'Admin\BlogController@addBlogPost')->name('add.post');
     Route::post('/post/store', 'Admin\BlogController@blogPostStore')->name('post-store');
+    Route::get('/edit/post/{id}', 'Admin\BlogController@editBlogPost')->name('blog.post.edit');
+    Route::post('/post/update/{id}', 'Admin\BlogController@blogPostUpdate')->name('blog.post.update');
+    Route::get('/delete/{id}', 'Admin\BlogController@blogPostDelete')->name('blog.post.delete');
   });
   // Admin Shop Site Setting Routes
   Route::prefix('setting')->group(function () {

@@ -1,7 +1,9 @@
 @extends('shop.shop_master')
 
 @section('title')
-ブログカテゴリー
+@foreach($blogPosts as $item)
+{{ $item->category->blog_category_name }}
+@endforeach
 @endsection
 
 @section('content')
@@ -10,7 +12,9 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="{{ route('shop.index') }}">Home</a></li>
-                <li class='active'>ブログカテゴリー</li>
+                @foreach($blogPosts as $item)
+                <li class='active'>{{ $item->category->blog_category_name }}</li>
+                @endforeach
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
