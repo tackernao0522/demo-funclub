@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\User;
+use App\User;
 use PDF;
 
 class AllUserController extends Controller
