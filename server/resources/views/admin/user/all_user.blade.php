@@ -23,7 +23,7 @@
                                         <th>メールアドレス</th>
                                         <th>電話番号</th>
                                         <th>ステータス</th>
-                                        <th>編集／削除</th>
+                                        <th>削除</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,8 +45,11 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a href="" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
+                                            <!-- <a href="" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a> -->
+                                            @if ($user->type === 1)
+                                            @else
+                                            <a href="{{ route('allUser.delete', $user->id) }}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

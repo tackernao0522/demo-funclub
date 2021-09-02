@@ -15,7 +15,7 @@
                         <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>チェックアウト</a></li>
                         <li><a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordertracking"><i class="icon fa fa-check" style="margin-top: 5px"></i>オーダー追跡</a></li>
                         @auth
-                        <li><a href="{{ route('user.dashboard') }}"><i class="icon fa fa-user"></i>ユーザープロフィール</a></li>
+                        <li><a href="{{ route('user.dashboard') }}"><i class="icon fa fa-user"></i>マイページ</a></li>
                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="icon fa fa-lock"></i>ログアウト</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

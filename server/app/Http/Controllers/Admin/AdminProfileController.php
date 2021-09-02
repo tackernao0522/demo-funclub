@@ -121,6 +121,44 @@ class AdminProfileController extends Controller
         }
     }
 
+    public function allUserDelete($id)
+    {
+        if (Auth::check() && Auth::user()->role === 'admin' && Auth::check() && Auth::user()->type === 1) {
+            $user = User::findorFail($id);
+            if ($user->role === 'premium' || $user->role === 'member') {
+                Storage::disk('s3')->delete('/user-profile/' . $user->profile_photo_path);
+                $user->delete();
+
+                $notification = array(
+                    'message' => 'ユーザー: ' . $user->name . 'を削除しました。',
+                    'alert-type' => 'error',
+                );
+
+                return redirect()->back()
+                    ->with($notification);
+            } elseif ($user->type === 2) {
+                Storage::disk('s3')->delete('/admin-profile/' . $user->profile_photo_path);
+                $user->delete();
+
+                $notification = array(
+                    'message' => 'ユーザー: ' . $user->name . 'を削除しました。',
+                    'alert-type' => 'error',
+                );
+
+                return redirect()->back()
+                    ->with($notification);
+            }
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
     private function saveImage(UploadedFile $file): string
     {
         $tempPath = $this->makeTempPath();
