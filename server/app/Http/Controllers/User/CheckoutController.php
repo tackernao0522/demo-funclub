@@ -32,12 +32,9 @@ class CheckoutController extends Controller
         $data['notes'] = $request->notes;
         $cartTotal = Cart::total();
 
-        if ($request->payment_method == 'stripe') {
+        if ($request->payment_method == 'card') {
 
             return view('shop.payment.stripe', compact('data', 'cartTotal'));
-        } elseif ($request->payment_method == 'card') {
-
-            return 'card';
         } else {
 
             return view('shop.payment.cash', compact('data', 'cartTotal'));

@@ -29,7 +29,7 @@
                                         <th>在庫数</th>
                                         <th>割引率</th>
                                         <th>状態</th>
-                                        <th>詳細／編集／削除</th>
+                                        <th>編集／削除</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,7 +60,6 @@
                                             @endif
                                         </td>
                                         <td width="30%">
-                                            <a href="{{-- route('product.edit', $item->id) --}}" class="btn btn-primary" title="Product Details Data"><i class="fa fa-eye"></i></a>
                                             <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                             <a href="{{ route('product.delete', $item->id) }}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
                                             @if($item->status == 1)

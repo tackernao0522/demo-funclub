@@ -1,7 +1,4 @@
 <?php
-
-use App\Http\Controllers\Shop\ShopHomeController;
-
 Route::group(['middleware' => 'auth.very_basic'], function () {
   // administrator
   Route::get('admin', 'AdminController@index')->name('admin');

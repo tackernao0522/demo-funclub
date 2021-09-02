@@ -175,19 +175,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="">Stripe</label>
-                                        <img src="{{ asset('frontend/assets/images/payments/4.png') }}" alt="">
-                                        <input type="radio" name="payment_method" value="stripe">
-                                    </div> <!-- end col-md-4 -->
-
-                                    <div class="col-md-4">
                                         <label for="">カード</label>
-                                        <img src="{{ asset('frontend/assets/images/payments/3.png') }}" alt="">
+                                        <img src="{{ asset('frontend/assets/images/payments/4.png') }}" alt="">
                                         <input type="radio" name="payment_method" value="card">
                                     </div> <!-- end col-md-4 -->
 
                                     <div class="col-md-4">
-                                        <label for="">キャッシュ</label>
+                                        <label for="">代引き配送</label>
                                         <img src="{{ asset('frontend/assets/images/payments/6.png') }}" alt="">
                                         <input type="radio" name="payment_method" value="cash">
                                     </div> <!-- end col-md-4 -->
