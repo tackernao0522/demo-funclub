@@ -2,12 +2,13 @@
     <h3 class="section-title">ニュースレター</h3>
     <div class="sidebar-widget-body outer-top-xs">
         <p>ショップニュース会員登録</p>
-        <form>
+        <form action="{{-- route('store.newsletter') --}}" method="POST">
+            @csrf
             <div class="form-group">
-                <label class="sr-only" for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="メールアドレス入力">
+                <label class="sr-only" for="exampleInputEmail1">メールアドレス</label>
+                <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="メールアドレス入力">
             </div>
-            <button class="btn btn-primary">申し込む</button>
+            <button type="submit" class="btn btn-primary">申し込む</button>
         </form>
     </div>
     <!-- /.sidebar-widget-body -->
