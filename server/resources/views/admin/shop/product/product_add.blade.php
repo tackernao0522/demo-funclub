@@ -258,7 +258,7 @@
                                             <div class="form-group">
                                                 <h5>製品詳細 <span class="text-danger">pdf,xlx,csv</span></h5>
                                                 <div class="controls">
-                                                    <input type="file" name="file" class="form-control">
+                                                    <input type="file" name="digital_file" class="form-control">
                                                     @error('file')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror

@@ -40,7 +40,7 @@ class AddProductRequest extends FormRequest
             'short_descp' => 'required|string|max:3000',
             'long_descp' => 'required|string',
             'product_thambnail' => 'required|mimes:jpg,jpeg,png,svg',
-            // 'file' => 'nullable|mimes:jpeg,png,jpg,svg,zip,pdf,xlx,csv|max:2048',
+            // 'digital_file' => 'nullable|mimes:jpeg,png,jpg,svg,zip,pdf,xlx,csv|max:2048',
         ];
     }
 
@@ -62,7 +62,7 @@ class AddProductRequest extends FormRequest
             'short_descp' => '商品説明(小見出し)',
             'long_descp' => '商品説明(メイン) ',
             'product_thambnail' => 'メインサムネイル画像 ',
-            // 'file' => '製品詳細',
+            // 'digital_file' => '製品詳細',
         ];
     }
 }

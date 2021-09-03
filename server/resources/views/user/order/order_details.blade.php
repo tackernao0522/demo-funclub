@@ -157,9 +157,9 @@
                                     <label for="">価格</label>
                                 </td>
 
-                                <td class="col-md-1">
+                                {{-- <td class="col-md-1">
                                     <label for="">ダウンロード</label>
-                                </td>
+                                </td> --}}
 
                                 @foreach($orderItems as $item)
                             <tr>
@@ -195,7 +195,7 @@
                                 $file = App\Models\Product::where('id', $item->product_id)->first();
                                 @endphp
 
-                                <td class="col-md-1">
+                                {{-- <td class="col-md-1">
                                     @if($order->status == 'pending' || !($file->digital_file))
                                     <strong>
                                         <span class="badge badge-pill badge-success" style="background: #418DB9;"> No File</span> </strong>
@@ -206,6 +206,7 @@
                                         <strong>
                                             <span class="badge badge-pill badge-success" style="background: #FF0000;"> ダウンロードする</span> </strong> </a>
                                     @endif
+                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>

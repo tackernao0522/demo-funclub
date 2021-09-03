@@ -45,11 +45,11 @@ class ProductController extends Controller
 
     public function storeProduct(AddProductRequest $request)
     {
-        // if ($files = $request->file('file')) {
+        // if ($files = $request->file('digital_file')) {
         //     $destinationPath = 'products/pdf';
         //     $digitalItem = date('YmdHis') . "." . $files->getClientOriginalExtension();
         //     $file_store_disk = 's3';  // local または public または s3
-        //     $digital_file_name = $request->file('file')->storeAs($destinationPath, $digitalItem, $file_store_disk);      // ディレクトリ, ファイル名, ディスク
+        //     $digital_file_name = $request->file('digital_file')->storeAs($destinationPath, $digitalItem, $file_store_disk);      // ディレクトリ, ファイル名, ディスク
         // }
 
         $fileName = $this->saveImage($request->file('product_thambnail'));
