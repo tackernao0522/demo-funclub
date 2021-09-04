@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Coupon;
+use App\Models\ShopNewsletter;
 
 class CouponController extends Controller
 {
@@ -118,6 +119,48 @@ class CouponController extends Controller
             return redirect()->back()
                 ->with($notification);
         } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function newsletterMembers()
+    {
+        if (auth()->user()->coupons == 1) {
+            $newsletterMembers = ShopNewsletter::orderBy('id', 'DESC')->get();
+
+            return view('admin.shop.coupon.newsletter_members', compact('newsletterMembers'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function newsletterMemberDelete($id)
+    {
+        if (auth()->user()->coupons == 1) {
+            $newsletterMember = ShopNewsletter::findOrFail($id);
+            $newsletterMember->delete();
+
+            $notification = array(
+                'message' => $newsletterMember->email . 'を削除しました。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        } else {
+
             $notification = array(
                 'message' => '権限がありません。',
                 'alert-type' => 'error',

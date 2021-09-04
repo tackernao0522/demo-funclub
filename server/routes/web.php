@@ -112,6 +112,9 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::get('/edit/{id}', 'Admin\CouponController@couponEdit')->name('coupon.edit');
     Route::post('/update/{id}', 'Admin\CouponController@couponUpdate')->name('coupon.update');
     Route::get('/delete/{id}', 'Admin\CouponController@couponDelete')->name('coupon.delete');
+    // Admin Newsletter Routes
+    Route::get('/newsletter/members', 'Admin\CouponController@newsletterMembers')->name('manage-newsletter');
+    Route::get('/newsletter/member/delete/{id}', 'Admin\CouponController@newsletterMemberDelete')->name('newsletterMember.delete');
   });
   // Admin Shipping All Routes
   Route::prefix('shipping')->group(function () {
@@ -289,6 +292,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     // Shop Page Route
     Route::get('/shop', 'Shop\ShopController@shopPage')->name('shop.page');
     Route::post('/shop/filter', 'Shop\ShopController@shopFilter')->name('shop.filter');
+    // Shop Newsletter Route
+    Route::post('/shop/newsletter/store', 'Shop\NewsletterController@store')->name('store.newsletter');
   });
 
   // Contactページ

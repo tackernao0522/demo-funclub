@@ -49,7 +49,7 @@
                     <div class="module-body">
                         <ul class='list-unstyled'>
                             <li class="first"><a href="{{ route('user.dashboard') }}" title="Contact us">マイーページ</a></li>
-                            <li><a href="{{ route('my.orders') }}" title="About us">オーダー履歴</a></li>
+                            <li><a href="{{ route('my.orders') }}" title="About us">購入リスト</a></li>
                             <li><a href="#" title="faq">FAQ</a></li>
                             <li><a href="#" title="Popular Searches">Specials</a></li>
                             <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
