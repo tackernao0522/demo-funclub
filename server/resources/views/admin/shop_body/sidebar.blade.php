@@ -124,6 +124,7 @@ $route = Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ ($route == 'manage-coupon') ? 'active' : '' }}"><a href="{{ route('manage-coupon') }}"><i class="ti-more"></i>クーポン管理</a></li>
+                    <li class="{{ ($route == 'manage-newsletter') ? 'active' : '' }}"><a href="{{ route('manage-newsletter') }}"><i class="ti-more"></i>メールマガジン会員</a></li>
                 </ul>
             </li>
             @else
@@ -233,75 +234,76 @@ $route = Route::current()->getName();
                     <li class="{{ ($route == 'picked-orders') ? 'active' : '' }}"><a href="{{ route('picked-orders') }}"><i class="ti-more"></i>発送可能リスト</a></li>
                     <li class="{{ ($route == 'shipped-orders') ? 'active' : '' }}"><a href="{{ route('shipped-orders') }}"><i class="ti-more"></i>発送済リスト</a></li>
                     <li class="{{ ($route == 'delivered-orders')? 'active':'' }}"><a href="{{ route('delivered-orders') }}"><i class="ti-more"></i>配達完了リスト</a></li>
-                    {{-- <li class="{{ ($route == 'cancel-orders') ? 'active' : '' }}"><a href="{{ route('cancel-orders') }}"><i class="ti-more"></i>キャンセルオーダーリスト</a></li> --}}
-                </ul>
-            </li>
-            @else
-            @endif
+                    {{-- <li class="{{ ($route == 'cancel-orders') ? 'active' : '' }}"><a href="{{ route('cancel-orders') }}"><i class="ti-more"></i>キャンセルオーダーリスト</a>
+            </li> --}}
+        </ul>
+        </li>
+        @else
+        @endif
 
-            @if($stock == true)
-            <li class="treeview {{ ($prefix == '/stock') ? 'active' : '' }}">
-                <a href="{{ url('admin/dashboard') }}">
-                    <i data-feather="file"></i>
-                    <span>商品在庫管理</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ ($route == 'product.stock') ? 'active' : '' }}"><a href="{{ route('product.stock') }}"><i class="ti-more"></i>商品在庫リスト</a></li>
-                </ul>
-            </li>
-            @else
-            @endif
+        @if($stock == true)
+        <li class="treeview {{ ($prefix == '/stock') ? 'active' : '' }}">
+            <a href="{{ url('admin/dashboard') }}">
+                <i data-feather="file"></i>
+                <span>商品在庫管理</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-right pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ ($route == 'product.stock') ? 'active' : '' }}"><a href="{{ route('product.stock') }}"><i class="ti-more"></i>商品在庫リスト</a></li>
+            </ul>
+        </li>
+        @else
+        @endif
 
-            @if($reports == true)
-            <li class="treeview {{ ($prefix == '/reports') ? 'active' : '' }}">
-                <a href="{{ url('admin/dashboard') }}">
-                    <i data-feather="file"></i>
-                    <span>レポート</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ ($route == 'all-reports') ? 'active' : '' }}"><a href="{{ route('all-reports') }}"><i class="ti-more"></i>レポート一覧</a></li>
-                </ul>
-            </li>
-            @else
-            @endif
+        @if($reports == true)
+        <li class="treeview {{ ($prefix == '/reports') ? 'active' : '' }}">
+            <a href="{{ url('admin/dashboard') }}">
+                <i data-feather="file"></i>
+                <span>レポート</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-right pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ ($route == 'all-reports') ? 'active' : '' }}"><a href="{{ route('all-reports') }}"><i class="ti-more"></i>レポート一覧</a></li>
+            </ul>
+        </li>
+        @else
+        @endif
 
-            @if($alluser == true)
-            <li class="treeview {{ ($prefix == '/alluser') ? 'active' : '' }}">
-                <a href="{{ url('admin/dashboard') }}">
-                    <i data-feather="file"></i>
-                    <span>会員リスト</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ ($route == 'all-users') ? 'active' : '' }}"><a href="{{ route('all-users') }}"><i class="ti-more"></i>会員リスト</a></li>
-                </ul>
-            </li>
-            @else
-            @endif
+        @if($alluser == true)
+        <li class="treeview {{ ($prefix == '/alluser') ? 'active' : '' }}">
+            <a href="{{ url('admin/dashboard') }}">
+                <i data-feather="file"></i>
+                <span>会員リスト</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-right pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ ($route == 'all-users') ? 'active' : '' }}"><a href="{{ route('all-users') }}"><i class="ti-more"></i>会員リスト</a></li>
+            </ul>
+        </li>
+        @else
+        @endif
 
-            @if($adminuserrole == true)
-            <li class="treeview {{ ($prefix == '/adminuserrole') ? 'active' : '' }}">
-                <a href="{{ url('admin/dashboard') }}">
-                    <i data-feather="file"></i>
-                    <span>管理者</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ ($route == 'all.admin.user') ? 'active' : '' }}"><a href="{{ route('all.admin.user') }}"><i class="ti-more"></i>管理者リスト</a></li>
-                </ul>
-            </li>
-            @else
-            @endif
+        @if($adminuserrole == true)
+        <li class="treeview {{ ($prefix == '/adminuserrole') ? 'active' : '' }}">
+            <a href="{{ url('admin/dashboard') }}">
+                <i data-feather="file"></i>
+                <span>管理者</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-right pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ ($route == 'all.admin.user') ? 'active' : '' }}"><a href="{{ route('all.admin.user') }}"><i class="ti-more"></i>管理者リスト</a></li>
+            </ul>
+        </li>
+        @else
+        @endif
         </ul>
     </section>
 
