@@ -106,7 +106,7 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                                         <th style="min-width: 150px"><span class="text-fade">合計金額</span></th>
                                         <th style="min-width: 150px"><span class="text-fade">支払い方法</span></th>
                                         <th style="min-width: 130px"><span class="text-fade">ステータス</span></th>
-                                        <th style="min-width: 120px"><span class="text-fade">プロセス</span></th>
+                                        <th style="min-width: 120px"><span class="text-fade">詳細</span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,8 +138,7 @@ $pendings = App\Models\Order::where('status', 'pending')->get();
                                             @endif
                                         </td>
                                         <td class="text-left">
-                                            <a href="#" class="waves-effect waves-light btn btn-info btn-circle mx-5"><span class="mdi mdi-bookmark-plus"></span></a>
-                                            <a href="#" class="waves-effect waves-light btn btn-info btn-circle mx-5"><span class="mdi mdi-arrow-right"></span></a>
+                                            <a href="{{ route('pending.order.details', $item->id) }}" class="waves-effect waves-light btn btn-info btn-circle mx-5"><span><i class="fa fa-eye"></i></span></a>
                                         </td>
                                     </tr>
                                     @endforeach
