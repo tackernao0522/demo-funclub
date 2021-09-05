@@ -25,7 +25,7 @@
             <div class="col-md-12 col-12">
                 <div class="box box-bordered border-primary">
                     <div class="box-header with-border">
-                        <h4 class="box-title"><strong>返品未対応詳細</strong></h4>
+                        <h4 class="box-title"><strong>返品未対応詳細</strong> <span class="badge badge-pill badge-danger">{{ count($orders) }}</span></h4>
                     </div>
                     @foreach($orders as $key => $item)
                     <table class="table" style="display: block; overflow-x: scroll; white-space: nowrap; -webkit-overflow-scrolling: touch">
