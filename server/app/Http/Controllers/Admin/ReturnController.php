@@ -16,7 +16,7 @@ class ReturnController extends Controller
     public function returnRequest()
     {
         if (auth()->user()->returnorder == 1) {
-            $orders = Order::where('return_order', 1)->orderBy('id', 'DESC')->get();
+            $orders = Order::where('return_order', 1)->orderBy('id', 'ASC')->get();
 
             return view('admin.shop.return_order.return_request', compact('orders'));
         } else {
@@ -28,6 +28,28 @@ class ReturnController extends Controller
             return redirect()->back()
                 ->with($notification);
         }
+    }
+
+    public function refundAmount(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $validatedData = $request->validate([
+            'refund_amount' => 'required|integer',
+        ], [
+            'refund_amount.required' => '返金額は必須です。',
+            'refund_amount.integer' => '返金額には整数を入力してください。',
+        ]);
+
+        $order->refund_amount = $request->refund_amount;
+        $order->save();
+
+        $notification = array(
+            'message' => '返金額を決定しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->back()
+            ->with($notification);
     }
 
     public function returnRequestApprove($order_id)
@@ -56,7 +78,7 @@ class ReturnController extends Controller
     public function returnAllRequest()
     {
         if (auth()->user()->returnorder == 1) {
-            $orders = Order::where('return_order', 2)->orderBy('id', 'DESC')->get();
+            $orders = Order::where('return_order', 2)->orderBy('id', 'ASC')->get();
 
             return view('admin.shop.return_order.all_return_request', compact('orders'));
         } else {

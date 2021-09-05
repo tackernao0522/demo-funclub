@@ -60,13 +60,19 @@ class AllUserController extends Controller
     public function returnOrder(Request $request, $order_id)
     {
         $validatedData = $request->validate([
+            'return_product_name' => 'required',
+            'return_product_no' => 'required',
             'return_reason' => 'required',
         ], [
+            'return_product_name.required' => '商品名を入力してください。',
+            'return_product_no.required' => '商品番号を入力してください。',
             'return_reason.required' => '返品理由を記入してください。',
         ]);
 
         Order::findOrFail($order_id)->update([
             'return_date' => Carbon::now()->format('Y年n月j日'),
+            'return_product_name' => $request->return_product_name,
+            'return_product_no' => $request->return_product_no,
             'return_reason' => $request->return_reason,
             'return_order' => 1,
         ]);
