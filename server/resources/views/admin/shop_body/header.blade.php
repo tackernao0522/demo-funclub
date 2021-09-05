@@ -116,7 +116,7 @@
                             <a class="dropdown-item" href="/"><i class="fa fa-home text-muted mr-2"></i> Demofun Top</a>
                             <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ti-user text-muted mr-2"></i> プロフィール</a>
                             <a class="dropdown-item" href="{{ route('admin.change.password') }}"><i class="fa fa-lock text-muted mr-2"></i> パスワード(変更)</a>
-                            <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i> Settings</a>
+                            {{-- <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i> Settings</a> --}}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-lock text-muted mr-2"></i> ログアウト</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
