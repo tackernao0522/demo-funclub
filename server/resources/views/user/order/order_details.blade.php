@@ -203,9 +203,9 @@
                                     @elseif($order->status == 'confirm')
 
                                     <a target="_blank" href="{{ Storage::disk('s3')->url("products/pdf/{$file->digital_file}") }}">
-                                        <strong>
-                                            <span class="badge badge-pill badge-success" style="background: #FF0000;"> ダウンロードする</span> </strong> </a>
-                                    @endif
+                                <strong>
+                                    <span class="badge badge-pill badge-success" style="background: #FF0000;"> ダウンロードする</span> </strong> </a>
+                                @endif
                                 </td> --}}
                             </tr>
                             @endforeach
@@ -220,6 +220,20 @@
                 @if($order)
                 <form action="{{ route('return.order', $order->id) }}" method="POST">
                     @csrf
+                    <div class="form-group" align="left">
+                        <label for="">返品商品名:</label>
+                        <input type="text" name="return_product_name" class="form-control" value="{{ old('return_product_name') }}" placeholder="複数ある場合はカンマ等で区切ってください。">
+                        @error('return_product_name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group" align="left">
+                        <label for="">商品番号:</label>
+                        <input type="text" name="return_product_no" class="form-control" value="{{ old('return_product_no') }}" placeholder="複数ある場合はカンマ等で区切ってください。">
+                        @error('return_product_no')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="form-group" align="left">
                         <label for="">返品理由:</label>
                         <textarea name="return_reason" id="" class="form-control" cols="30" rows="05" placeholder="返品理由入力"></textarea>

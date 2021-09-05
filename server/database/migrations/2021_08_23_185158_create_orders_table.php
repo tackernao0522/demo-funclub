@@ -41,7 +41,10 @@ class CreateOrdersTable extends Migration
             $table->string('cancel_date')->nullable();
             $table->string('return_date')->nullable();
             $table->string('return_order')->default(0)->nullable();
+            $table->string('return_product_name')->nullable();
+            $table->string('return_product_no')->nullable();
             $table->string('return_reason')->nullable();
+            $table->integer('refund_amount')->default(0);
             $table->string('status');
             $table->timestamps();
         });
