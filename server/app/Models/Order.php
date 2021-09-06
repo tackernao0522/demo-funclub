@@ -23,4 +23,9 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function returnOrderProductMethod()
+    {
+        return $this->belongsTo(ReturnOrderMethod::class, 'return_order_method_name_id', 'id');
+    }
 }

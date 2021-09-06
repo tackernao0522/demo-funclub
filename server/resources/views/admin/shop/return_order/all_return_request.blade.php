@@ -69,10 +69,19 @@
                             <th>{{ $item->payment_method }}</th>
                         </tr>
 
+                        @if($item->return_order_method_name_id === 1)
                         <tr>
                             <th style="border: solid 1px red">返金額 : </th>
-                            <th>¥ {{ number_format($item->refund_amount) }}(税込)</th>
+                            <th><span class="badge badge-pill badge-success">¥ {{ number_format($item->refund_amount) }}(税込)</span></th>
                         </tr>
+                        @endif
+
+                        @if($item->return_order_method_name_id === 2)
+                        <tr>
+                            <th>対応方法 : </th>
+                            <th><span class="badge badge-pill badge-success">商品交換</span></th>
+                        </tr>
+                        @endif
 
                         <tr>
                             <th>ステータス : </th>
