@@ -78,7 +78,32 @@
                             @endif
                         </tr>
 
-                        @if($item->refund_amount === 0)
+                        @if($item->return_order_method_name_id === NULL)
+                        <form action="{{ route('return-method', $item->id) }}" method="POST">
+                            @csrf
+                            <tr>
+                                <th>対応方法 : </th>
+                                <th>
+                                    <div class="controles">
+                                        <select name="return_order_method_name_id" class="form-control" style="color: red">
+                                            <option value="" selected="" disabled="">--対応方法選択--</option>
+                                            @foreach($returnOrderProductMethods as $returnOrderMethod)
+                                            <option value="{{ $returnOrderMethod->id }}" {{ old('return_order_method_name_id') == $returnOrderMethod->id ? 'selected': '' }}>{{ $returnOrderMethod-> return_order_method_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('return_order_method_name_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="text-xs-right mt-3">
+                                        <input type="submit" class="btn btn-rounded btn-danger mb-5" value="決定">
+                                    </div>
+                                </th>
+                            </tr>
+                        </form>
+                        @endif
+
+                        @if($item->return_order_method_name_id === 1 && $item->refund_amount === NULL)
                         <tr>
                             <th>返金額入力 : </th>
                             <th>
@@ -96,21 +121,38 @@
                         </tr>
                         @endif
 
+                        @if($item->refund_amount === NULL)
+                        @else
                         <tr>
-                            @if($item->refund_amount != 0)
                             <th>返金額 : </th>
-                            <th>¥ {{ number_format($item->refund_amount) }}(税込)</th>
-                            @endif
+                            <th><span class="badge badge-pill badge-success">¥ {{ number_format($item->refund_amount) }}(税込)</span></th>
                         </tr>
+                        @endif
 
+                        @if($item->return_order_method_name_id === 2)
+                        <tr>
+                            <th>対応方法 : </th>
+                            <th><span class="badge badge-pill badge-success">商品交換</span></th>
+                        </tr>
+                        @endif
+
+                        @if($item->return_order_method_name_id === 1 && $item->refund_amount === NULL)
                         <tr>
                             <th>承認の可否 : </th>
-                            @if($item->refund_amount === 0)
-                            <th><span class="text-danger">返金額を決定すると承認ボタンが表示されます</span></th>
-                            @else
-                            <th><a href="{{ route('return.approve', $item->id) }}" class="btn btn-danger">承認する</a></th>
-                            @endif
+                            <th><span class="text-danger">返金額を決定してください</span></th>
                         </tr>
+                        @elseif($item->return_order_method_name_id === NULL && $item->refund_amount === NULL)
+                        <tr>
+                            <th>承認の可否 : </th>
+                            <th><span class="text-danger">返金額の決定又は商品交換の決定をしてください</span></th>
+                        </tr>
+                        @else
+                        <tr>
+                            <th>承認の可否 : </th>
+                            <th><a href="{{ route('return.approve', $item->id) }}" class="btn btn-danger">承認する</a></th>
+                        </tr>
+                        @endif
+
                         @php
                         $count = 1;
                         $orderItems = App\Models\OrderItem::with('product')->where('order_id', $item->id)

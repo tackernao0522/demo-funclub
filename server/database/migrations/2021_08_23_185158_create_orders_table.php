@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('division_id')->unsigned();
             $table->bigInteger('district_id')->unsigned();
+            $table->bigInteger('return_order_method_name_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('phone');
@@ -44,7 +45,7 @@ class CreateOrdersTable extends Migration
             $table->string('return_product_name')->nullable();
             $table->string('return_product_no')->nullable();
             $table->string('return_reason')->nullable();
-            $table->integer('refund_amount')->default(0);
+            $table->integer('refund_amount')->nullable()->unsigned();
             $table->string('status');
             $table->timestamps();
         });

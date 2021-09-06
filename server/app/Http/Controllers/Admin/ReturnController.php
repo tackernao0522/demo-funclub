@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ReturnOrderMethod;
 use App\Models\Order;
 
 class ReturnController extends Controller
@@ -16,9 +17,10 @@ class ReturnController extends Controller
     public function returnRequest()
     {
         if (auth()->user()->returnorder == 1) {
+            $returnOrderProductMethods = ReturnOrderMethod::orderBy('sort_no', 'ASC')->get();
             $orders = Order::where('return_order', 1)->orderBy('id', 'ASC')->get();
 
-            return view('admin.shop.return_order.return_request', compact('orders'));
+            return view('admin.shop.return_order.return_request', compact('orders', 'returnOrderProductMethods'));
         } else {
             $notification = array(
                 'message' => '権限がありません。',
@@ -28,6 +30,27 @@ class ReturnController extends Controller
             return redirect()->back()
                 ->with($notification);
         }
+    }
+
+    public function returnMethod(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $validatedData = $request->validate([
+            'return_order_method_name_id' => 'required',
+        ], [
+            'return_order_method_name_id.required' => '対応方法を選択してください。',
+        ]);
+
+        $order->return_order_method_name_id = $request->return_order_method_name_id;
+        $order->save();
+
+        $notification = array(
+            'message' => '対応方法を選択しました。',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->back()
+            ->with($notification);
     }
 
     public function refundAmount(Request $request, $id)
