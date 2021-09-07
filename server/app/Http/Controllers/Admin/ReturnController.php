@@ -17,10 +17,27 @@ class ReturnController extends Controller
     public function returnRequest()
     {
         if (auth()->user()->returnorder == 1) {
-            $returnOrderProductMethods = ReturnOrderMethod::orderBy('sort_no', 'ASC')->get();
             $orders = Order::where('return_order', 1)->orderBy('id', 'ASC')->get();
 
-            return view('admin.shop.return_order.return_request', compact('orders', 'returnOrderProductMethods'));
+            return view('admin.shop.return_order.return_request', compact('orders'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function returnRequestDetails($id)
+    {
+        if (auth()->user()->returnorder == 1) {
+            $returnOrderProductMethods = ReturnOrderMethod::orderBy('sort_no', 'ASC')->get();
+            $order = Order::findOrFail($id);
+
+            return view('admin.shop.return_order.return_request_details', compact('returnOrderProductMethods', 'order'));
         } else {
             $notification = array(
                 'message' => '権限がありません。',
@@ -85,7 +102,7 @@ class ReturnController extends Controller
                 'alert-type' => 'success',
             );
 
-            return redirect()->back()
+            return redirect()->route('return.request')
                 ->with($notification);
         } else {
             $notification = array(
@@ -104,6 +121,24 @@ class ReturnController extends Controller
             $orders = Order::where('return_order', 2)->orderBy('id', 'ASC')->get();
 
             return view('admin.shop.return_order.all_return_request', compact('orders'));
+        } else {
+            $notification = array(
+                'message' => '権限がありません。',
+                'alert-type' => 'error',
+            );
+
+            return redirect()->back()
+                ->with($notification);
+        }
+    }
+
+    public function returnAllRequestDetails($id)
+    {
+        if (auth()->user()->returnorder == 1) {
+            // $returnOrderProductMethods = ReturnOrderMethod::orderBy('sort_no', 'ASC')->get();
+            $order = Order::findOrFail($id);
+
+            return view('admin.shop.return_order.return_all_request_details', compact('order'));
         } else {
             $notification = array(
                 'message' => '権限がありません。',
