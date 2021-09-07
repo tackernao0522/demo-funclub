@@ -185,10 +185,12 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
   // Admin Return Order Routes
   Route::prefix('return')->group(function () {
     Route::get('/admin/request', 'Admin\ReturnController@returnRequest')->name('return.request');
+    Route::get('/request/details/{id}', 'Admin\ReturnController@returnRequestDetails')->name('return.request.details');
     Route::post('/admin/return/method/{id}', 'Admin\ReturnController@returnMethod')->name('return-method');
     Route::post('/admin/refund/{id}', 'Admin\ReturnController@refundAmount')->name('refund.amount');
     Route::get('/admin/return/approve/{order_id}', 'Admin\ReturnController@returnRequestApprove')->name('return.approve');
     Route::get('/admin/all/request', 'Admin\ReturnController@returnAllRequest')->name('all.request');
+    Route::get('/admin/all/request/details/{id}', 'Admin\ReturnController@returnAllRequestDetails')->name('return.all.request.details');
   });
   // Admin Manage Review Routes
   Route::prefix('review')->group(function () {
