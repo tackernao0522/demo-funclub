@@ -10,9 +10,11 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 
 class StripeController extends Controller
 {
@@ -92,10 +94,17 @@ class StripeController extends Controller
 
         Cart::destroy();
 
+        $products = OrderItem::where('order_id', $order_id)->get();
+        foreach ($products as $item) {
+            Product::where('id', $item->product_id)
+                ->update(['product_qty' => DB::raw('product_qty-' . $item->qty)]);
+        }
+
         $notification = array(
             'message' => 'ご注文が完了しました。',
             'alert-type' => 'success',
         );
+
 
         return redirect()->route('user.dashboard')
             ->with($notification);
