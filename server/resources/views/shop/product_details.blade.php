@@ -174,16 +174,29 @@
 
                                 <div class="stock-container info-container m-t-10">
                                     <div class="row">
+                                        @if($product->product_qty === 0)
                                         <div class="col-sm-2">
                                             <div class="stock-box">
-                                                <span class="label">Availability :</span>
+                                                <span class="label">残在庫 :</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="stock-box">
-                                                <span class="value">In Stock</span>
+                                                <span class="value">売り切れ</span>
                                             </div>
                                         </div>
+                                        @else
+                                        <div class="col-sm-2">
+                                            <div class="stock-box">
+                                                <span class="label">残在庫 :</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="stock-box">
+                                                <span class="value">{{ $product->product_qty }}点あり</span>
+                                            </div>
+                                        </div>
+                                        @endif
                                     </div><!-- /.row -->
                                 </div><!-- /.stock-container -->
 
@@ -204,6 +217,8 @@
                                             </div>
                                         </div>
 
+                                        @if ($product->product_qty === 0)
+                                        @else
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
                                                 <button class="btn btn-primary" type="button" id="{{ $product->id }}" onclick="addToWishList(this.id)" data-placement="right" title="Wishlist" style="background: #108bea">
@@ -211,10 +226,13 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        @endif
                                     </div><!-- /.row -->
                                 </div><!-- /.price-container -->
 
                                 <!-- Add Product Color And Size -->
+                                @if($product->product_qty === 0)
+                                @else
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -273,6 +291,7 @@
 
                                     </div><!-- /.row -->
                                 </div><!-- /.quantity-container -->
+                                @endif
 
                                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                 <div class="addthis_inline_share_toolbox"></div>
@@ -470,6 +489,15 @@
                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
                                         @include('shop.review.review_rating')
                                         <!-- <div class="description"></div> -->
+                                        @if ($product->product_qty === 0)
+                                        <div class="product-price">
+                                            <span class="price" style="color: red"> 売り切れ </span>
+                                        </div>
+                                        @else
+                                        <div class="product-price">
+                                            <span class="price" style="color: red">残在庫 {{ $product->product_qty }}点あり</span>
+                                        </div>
+                                        @endif
                                         @if ($product->discount_price == NULL)
                                         <div class="product-price">
                                             <span class="price">
@@ -483,6 +511,8 @@
                                         </div><!-- /.product-price -->
                                         @endif
                                     </div><!-- /.product-info -->
+                                    @if ($product->product_qty === 0)
+                                    @else
                                     <div class="cart clearfix animate-effect">
                                         <div class="action">
                                             <ul class="list-unstyled">
@@ -494,6 +524,7 @@
                                             </ul>
                                         </div><!-- /.action -->
                                     </div><!-- /.cart -->
+                                    @endif
                                 </div><!-- /.product -->
 
                             </div><!-- /.products -->

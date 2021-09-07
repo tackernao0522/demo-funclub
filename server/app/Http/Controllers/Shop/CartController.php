@@ -23,7 +23,14 @@ class CartController extends Controller
 
         $product = Product::findOrFail($id);
 
+        if ($product->product_qty === 0) {
+            return response()->json(['error' => '売り切れです。']);
+        }
+
         if ($product->discount_price == NULL) {
+            if ($product->product_qty - $request->quantity < 0) {
+                return response()->json(['success' => '在庫が' . abs($product->product_qty - $request->quantity ) . '点足りません。']);
+            }
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,

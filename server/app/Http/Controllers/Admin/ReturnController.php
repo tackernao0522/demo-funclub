@@ -135,7 +135,6 @@ class ReturnController extends Controller
     public function returnAllRequestDetails($id)
     {
         if (auth()->user()->returnorder == 1) {
-            // $returnOrderProductMethods = ReturnOrderMethod::orderBy('sort_no', 'ASC')->get();
             $order = Order::findOrFail($id);
 
             return view('admin.shop.return_order.return_all_request_details', compact('order'));

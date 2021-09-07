@@ -216,7 +216,7 @@ class ProductController extends Controller
         }
 
         $notification = array(
-            'message' => '画像を更新しました。(Product Image Updated Successfully)',
+            'message' => '画像を更新しました。',
             'alert-type' => 'info'
         );
 
