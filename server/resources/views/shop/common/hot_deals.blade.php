@@ -29,16 +29,27 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)
                 <div class="product-info text-left m-t-20">
                     <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                     @include('shop.review.review_rating')
-                    @if ($product->discount_price == NULL)
-                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
+                    @if ($product->product_qty <= 0)
+                        <div class="product-price">
+                            <span class="price" style="color: red"> 売り切れ </span>
+                        </div>
                     @else
-                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                        <div class="product-price">
+                            <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                        </div>
+                    @endif
+                    @if ($product->discount_price == NULL)
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span>(税込) </div>
+                    @else
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}(税込) </span><span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                     @endif
                     <!-- /.product-price -->
 
                 </div>
                 <!-- /.product-info -->
 
+                @if ($product->product_qty <= 0)
+                @else
                 <div class="cart clearfix animate-effect">
                     <div class="action">
                         <div class="add-cart-button btn-group">
@@ -49,6 +60,7 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)
                     <!-- /.action -->
                 </div>
                 <!-- /.cart -->
+                @endif
             </div>
         </div>
         @endforeach

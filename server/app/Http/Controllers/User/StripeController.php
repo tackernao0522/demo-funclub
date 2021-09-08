@@ -20,6 +20,15 @@ class StripeController extends Controller
 {
     public function stripeOrder(Request $request)
     {
+        if (Cart::total() <= 0) {
+            $notification = array(
+                'message' => 'カートに商品は入っていません。',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('shop.index')->with($notification);
+        }
+
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
         } else {

@@ -62,6 +62,16 @@
                         <span class="fa fa-star checked"></span>
                     @endif
                 </div>
+                @if ($product->product_qty <= 0)
+                    <div class="product-price">
+                        <span class="price" style="color: red"> 売り切れ </span>
+                    </div>
+                @else
+                    <div class="product-price">
+                        <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                    </div>
+                @endif
+
                 @if ($product->discount_price == NULL)
                 <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
                 @else
@@ -70,6 +80,8 @@
                 <!-- /.product-price -->
             </div>
             <!-- /.product-info -->
+            @if ($product->product_qty <= 0)
+            @else
             <div class="cart clearfix animate-effect">
                 <div class="action">
                     <ul class="list-unstyled">
@@ -83,6 +95,7 @@
                 <!-- /.action -->
             </div>
             <!-- /.cart -->
+            @endif
         </div>
         <!-- /.product -->
     </div>

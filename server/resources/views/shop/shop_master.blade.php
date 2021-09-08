@@ -189,7 +189,7 @@ $seo = App\Models\Seo::find(1);
                     $('#pimage').attr('src', 'https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/' + data.product.product_thambnail);
 
                     $('#product_id').val(id);
-                    $('#qty').val(1);
+                    $('#qty').val();
 
                     // Product Price
                     if (data.product.discount_price == null) {
@@ -252,7 +252,7 @@ $seo = App\Models\Seo::find(1);
                     color: color,
                     size: size,
                     quantity: quantity,
-                    product_name: product_name
+                    product_name: product_name,
                 },
                 url: "/cart/data/store/" + id,
                 success: function(data) {
@@ -300,10 +300,10 @@ $seo = App\Models\Seo::find(1);
                         miniCart += `<div class="cart-item product-summary">
                     <div class="row">
                     <div class="col-xs-4">
-                        <div class="image"> <a href="detail.html"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.options.image}" alt=""></a> </div>
+                        <div class="image"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.options.image}" alt=""></div>
                     </div>
                     <div class="col-xs-7">
-                        <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                        <h3 class="name">${value.name}</h3>
                         <div class="price"> ${'¥' + value.price} x ${value.qty} </div>
                     </div>
                     <div class="col-xs-1 action"> <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
@@ -481,7 +481,7 @@ $seo = App\Models\Seo::find(1);
         <td class="col-md-2"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.options.image}" alt="imga" style="width:60px; height:60px;"></td>
 
         <td class="col-md-2">
-            <div class="product-name"><a href="#">${value.name}</a></div>
+            <div class="product-name"><a href="product/details/${value.id}/${value.name}">${value.name}</a></div>
 
             <div class="price">
                             ¥${value.price}
