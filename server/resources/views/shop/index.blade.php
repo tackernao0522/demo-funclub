@@ -60,6 +60,16 @@ Home Easy Online Shop
                                                     <div class="product-info" style="margin-right: 10px">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         @include('shop.review.review_rating')
+                                                        @if ($product->product_qty <= 0)
+                                                            <div class="product-price">
+                                                                <span class="price" style="color: red"> 売り切れ </span>
+                                                            </div>
+                                                        @else
+                                                        <div class="product-price">
+                                                            <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                                                        </div>
+                                                        @endif
+
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                         <!-- /.product-price -->
                                                     </div>
@@ -107,6 +117,16 @@ Home Easy Online Shop
                                                     <div class="product-info" style="margin-right: 10px">
                                                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
                                                         @include('shop.review.review_rating')
+                                                        @if ($product->product_qty <= 0)
+                                                            <div class="product-price">
+                                                                <span class="price" style="color: red"> 売り切れ </span>
+                                                            </div>
+                                                        @else
+                                                            <div class="product-price">
+                                                                <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                                                            </div>
+                                                        @endif
+
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span> </div>
                                                         <!-- /.product-price -->
                                                     </div>
@@ -258,571 +278,98 @@ Home Easy Online Shop
 
                                                     @include('shop.review.review_rating')
                                                     <!-- <div class="description"></div> -->
-
-                                                    @if ($product->discount_price == NULL)
-                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
-                                                    @else
-                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
-                                                    @endif
-                                                    <!-- /.product-price -->
-
+                                                    @if ($product->product_qty <= 0) <div class="product-price">
+                                                        <span class="price" style="color: red"> 売り切れ </span>
                                                 </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                                <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                            </li>
-                                                            <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
+                                                @else
+                                                <div class="product-price">
+                                                    <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
                                                 </div>
-                                                <!-- /.cart -->
+                                                @endif
+
+                                                @if ($product->discount_price == NULL)
+                                                <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
+                                                @else
+                                                <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                                                @endif
+                                                <!-- /.product-price -->
+
                                             </div>
-                                            <!-- /.product -->
-
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    @endforeach
-                                    <!-- end all product foreach -->
-                                </div>
-                                <!-- /.home-owl-carousel -->
-                            </div>
-                            <!-- /.product-slider -->
-                        </div>
-                        <!-- /.tab-pane -->
-
-                        @foreach($categories as $category)
-                        <div class="tab-pane" id="category{{ $category->id }}">
-                            <div class="product-slider">
-                                <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
-                                    @php
-                                    $catwiseProduct = App\Models\Product::where('category_id', $category->id)->orderBy('id', 'DESC')->get();
-                                    @endphp
-                                    @forelse($catwiseProduct as $product)
-                                    <div class="item item-carousel">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
-                                                    <!-- /.image -->
-
-                                                    @php
-                                                    $amount = $product->selling_price - $product->discount_price;
-                                                    $discount = ($amount / $product->selling_price) * 100;
-                                                    @endphp
-
-                                                    <div>
-                                                        @if ($product->discount_price == NULL)
-                                                        <div class="tag new"><span>新着</span></div>
-                                                        @else
-                                                        <div class="tag hot"><span>{{ round($discount) }}%</span></div>
-                                                        @endif
-                                                    </div>
+                                            <!-- /.product-info -->
+                                            @if ($product->product_qty <= 0) @else
+                                            <div class="cart clearfix animate-effect">
+                                                <div class="action">
+                                                    <ul class="list-unstyled">
+                                                        <li class="add-cart-button btn-group">
+                                                            <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                                            <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                                                        </li>
+                                                        <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                                                    </ul>
                                                 </div>
-                                                <!-- /.product-image -->
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                                    @include('shop.review.review_rating')
-                                                    <!-- <div class="description"></div> -->
-
-                                                    @if ($product->discount_price == NULL)
-                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
-                                                    @else
-                                                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
-                                                    @endif
-                                                    <!-- /.product-price -->
-
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                                <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                            </li>
-                                                            <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
+                                                <!-- /.action -->
                                             </div>
-                                            <!-- /.product -->
-
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    @empty
-                                    <h5 class="text-danger">商品はありません。</h5>
-                                    @endforelse
-                                    <!-- end all product foreach -->
-                                </div>
-                                <!-- /.home-owl-carousel -->
-                            </div>
-                            <!-- /.product-slider -->
-                        </div>
-                        <!-- /.tab-pane -->
-                        @endforeach
-                        <!-- end category foreach -->
-                    </div>
-                    <!-- /.tab-content -->
-                </div>
-                <!-- /.scroll-tabs -->
-                <!-- ============================================== SCROLL TABS : END ============================================== -->
-                <!-- ============================================== WIDE PRODUCTS ============================================== -->
-                <div class="wide-banners wow fadeInUp outer-bottom-xs">
-                    <div class="row">
-                        <div class="col-md-7 col-sm-7">
-                            <div class="wide-banner cnt-strip">
-                                <div class="image"> <img class="img-responsive" src="{{ asset('/frontend/assets/images/banners/home-banner1.jpg') }}" alt=""> </div>
-                            </div>
-                            <!-- /.wide-banner -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-5 col-sm-5">
-                            <div class="wide-banner cnt-strip">
-                                <div class="image"> <img class="img-responsive" src="{{ asset('/frontend/assets/images/banners/home-banner2.jpg') }}" alt=""> </div>
-                            </div>
-                            <!-- /.wide-banner -->
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.wide-banners -->
-
-                <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
-                <!-- ============================================== FEATURED PRODUCTS ============================================== -->
-                <section class="section featured-product wow fadeInUp">
-                    <h3 class="section-title">おすすめ商品</h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                        @foreach($featured as $product)
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
-                                        <!-- /.image -->
-
-                                        @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($amount / $product->selling_price) * 100;
-                                        @endphp
-
-                                        <div>
-                                            @if ($product->discount_price == NULL)
-                                            <div class="tag new"><span>新着</span></div>
-                                            @else
-                                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                                        <!-- /.cart -->
                                             @endif
-                                        </div>
                                     </div>
-                                    <!-- /.product-image -->
+                                    <!-- /.product -->
 
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        @include('shop.review.review_rating')
-                                        <!-- <div class="description"></div> -->
-
-                                        @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
-                                        @else
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
-                                        @endif
-                                        <!-- /.product-price -->
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                </li>
-                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
                                 </div>
-                                <!-- /.product -->
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-                        @endforeach
-                    </div>
-                    <!-- /.home-owl-carousel -->
-                </section>
-                <!-- /.section -->
-                <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
-
-                <!-- ============================================== skip_product_0 PRODUCTS ============================================== -->
-                <section class="section featured-product wow fadeInUp">
-                    <h3 class="section-title">{{ $skip_category_0->category_name }}</h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                        @foreach($skip_product_0 as $product)
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
-                                        <!-- /.image -->
-
-                                        @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($amount / $product->selling_price) * 100;
-                                        @endphp
-
-                                        <div>
-                                            @if ($product->discount_price == NULL)
-                                            <div class="tag new"><span>新着</span></div>
-                                            @else
-                                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        @include('shop.review.review_rating')
-                                        <!-- <div class="description"></div> -->
-
-                                        @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
-                                        @else
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
-                                        @endif
-                                        <!-- /.product-price -->
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                </li>
-                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-                        @endforeach
-                    </div>
-                    <!-- /.home-owl-carousel -->
-                </section>
-                <!-- /.section -->
-                <!-- ============================================== skip_product_0 PRODUCTS : END ============================================== -->
-
-                <!-- ============================================== skip_product_1 PRODUCTS ============================================== -->
-                <section class="section featured-product wow fadeInUp">
-                    <h3 class="section-title">{{ $skip_category_1->category_name }}</h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                        @foreach($skip_product_1 as $product)
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
-                                        <!-- /.image -->
-
-                                        @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($amount / $product->selling_price) * 100;
-                                        @endphp
-
-                                        <div>
-                                            @if ($product->discount_price == NULL)
-                                            <div class="tag new"><span>新着</span></div>
-                                            @else
-                                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        @include('shop.review.review_rating')
-                                        <!-- <div class="description"></div> -->
-
-                                        @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
-                                        @else
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
-                                        @endif
-                                        <!-- /.product-price -->
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                </li>
-                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-                        @endforeach
-                    </div>
-                    <!-- /.home-owl-carousel -->
-                </section>
-                <!-- /.section -->
-                <!-- ============================================== skip_product_1 PRODUCTS : END ============================================== -->
-
-                <!-- ============================================== WIDE PRODUCTS ============================================== -->
-                <div class="wide-banners wow fadeInUp outer-bottom-xs">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="wide-banner cnt-strip">
-                                <div class="image"> <img class="img-responsive" src="{{ asset('frontend/assets/images/banners/home-banner.jpg') }}" alt=""> </div>
-                                <div class="strip strip-text">
-                                    <div class="strip-inner">
-                                        <h2 class="text-right">New Mens Fashion<br>
-                                            <span class="shopping-needs">Save up to 40% off</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                                <div class="new-label">
-                                    <div class="text">新着</div>
-                                </div>
-                                <!-- /.new-label -->
-                            </div>
-                            <!-- /.wide-banner -->
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.wide-banners -->
-                <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
-
-                <!-- ============================================== skip_brand_product_1 PRODUCTS ============================================== -->
-                <section class="section featured-product wow fadeInUp">
-                    <h3 class="section-title">{{ $skip_brand_9->brand_name }}</h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                        @foreach($skip_brand_product_9 as $product)
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
-                                        <!-- /.image -->
-
-                                        @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($amount / $product->selling_price) * 100;
-                                        @endphp
-
-                                        <div>
-                                            @if ($product->discount_price == NULL)
-                                            <div class="tag new"><span>新着 </span></div>
-                                            @else
-                                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        @include('shop.review.review_rating')
-                                        <!-- <div class="description"></div> -->
-
-                                        @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
-                                        @else
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
-                                        @endif
-                                        <!-- /.product-price -->
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                </li>
-                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-                        @endforeach
-                    </div>
-                    <!-- /.home-owl-carousel -->
-                </section>
-                <!-- /.section -->
-                <!-- ============================================== skip_brand_product_1 PRODUCTS : END ============================================== -->
-
-                <!-- ============================================== BEST SELLER ============================================== -->
-
-                <section class="section featured-product wow fadeInUp">
-                    <h3 class="section-title">{{ $skip_category_10->category_name }}</h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                        @foreach($skip_product_10 as $product)
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
-                                        <!-- /.image -->
-
-                                        @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($amount / $product->selling_price) * 100;
-                                        @endphp
-
-                                        <div>
-                                            @if ($product->discount_price == NULL)
-                                            <div class="tag new"><span>新着 </span></div>
-                                            @else
-                                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
-                                        @include('shop.review.review_rating')
-                                        <!-- <div class="description"></div> -->
-
-                                        @if ($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
-                                        @else
-                                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
-                                        @endif
-                                        <!-- /.product-price -->
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                </li>
-                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-                        @endforeach
-                    </div>
-                    <!-- /.home-owl-carousel -->
-                </section>
-                <!-- /.sidebar-widget -->
-                <!-- ============================================== BEST SELLER : END ============================================== -->
-
-                <!-- ============================================== BLOG SLIDER ============================================== -->
-                <section class="section latest-blog outer-bottom-vs wow fadeInUp">
-                    <h3 class="section-title">ホームブログ</h3>
-                    <div class="blog-slider-container outer-top-xs">
-                        <div class="owl-carousel blog-slider custom-carousel">
-                            @foreach($blogPosts as $blog)
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img src="{{ Storage::disk('s3')->url("blogs/{$blog->post_blog_image}") }}" alt=""></a> </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">{{ $blog->post_blog_title }}</a></h3>
-                                        <span class="info">{{ Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}</span>
-                                        <p class="text">{!! Str::limit($blog->post_blog_details, 100) !!}</p>
-                                        <a href="{{ route('blogPost.details', $blog->id) }}" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-                                </div>
-                                <!-- /.blog-post -->
+                                <!-- /.products -->
                             </div>
                             <!-- /.item -->
                             @endforeach
+                            <!-- end all product foreach -->
                         </div>
-                        <!-- /.owl-carousel -->
+                        <!-- /.home-owl-carousel -->
                     </div>
-                    <!-- /.blog-slider-container -->
-                </section>
-                <!-- /.section -->
-                <!-- ============================================== BLOG SLIDER : END ============================================== -->
+                    <!-- /.product-slider -->
+                </div>
+                <!-- /.tab-pane -->
 
-                <!-- ============================================== FEATURED PRODUCTS ============================================== -->
-                <section class="section featured-product wow fadeInUp">
-                    <h3 class="section-title">{{ $skip_brand_4->brand_name }}</h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                        @foreach($skip_brand_product_4 as $product)
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
-                                        <!-- /.image -->
+                @foreach($categories as $category)
+                <div class="tab-pane" id="category{{ $category->id }}">
+                    <div class="product-slider">
+                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
+                            @php
+                            $catwiseProduct = App\Models\Product::where('category_id', $category->id)->orderBy('id', 'DESC')->get();
+                            @endphp
+                            @forelse($catwiseProduct as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                                            <!-- /.image -->
 
-                                        @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($amount / $product->selling_price) * 100;
-                                        @endphp
+                                            @php
+                                            $amount = $product->selling_price - $product->discount_price;
+                                            $discount = ($amount / $product->selling_price) * 100;
+                                            @endphp
 
-                                        <div>
-                                            @if ($product->discount_price == NULL)
-                                            <div class="tag new"><span>新着 </span></div>
-                                            @else
-                                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
-                                            @endif
+                                            <div>
+                                                @if ($product->discount_price == NULL)
+                                                <div class="tag new"><span>新着</span></div>
+                                                @else
+                                                <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- /.product-image -->
+                                        <!-- /.product-image -->
 
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        @include('shop.review.review_rating')
-                                        <!-- <div class="description"></div> -->
+                                        <div class="product-info text-left">
+                                            <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                                            @include('shop.review.review_rating')
+                                            <!-- <div class="description"></div> -->
+                                            @if ($product->product_qty <= 0)
+                                            <div class="product-price">
+                                            <span class="price" style="color: red"> 売り切れ </span>
+                                        </div>
+                                        @else
+                                        <div class="product-price">
+                                            <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                                        </div>
+                                        @endif
 
                                         @if ($product->discount_price == NULL)
                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
@@ -830,8 +377,11 @@ Home Easy Online Shop
                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
                                         @endif
                                         <!-- /.product-price -->
+
                                     </div>
                                     <!-- /.product-info -->
+                                    @if ($product->product_qty <= 0)
+                                    @else
                                     <div class="cart clearfix animate-effect">
                                         <div class="action">
                                             <ul class="list-unstyled">
@@ -844,32 +394,593 @@ Home Easy Online Shop
                                         </div>
                                         <!-- /.action -->
                                     </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
+                                <!-- /.cart -->
+                                    @endif
                             </div>
-                            <!-- /.products -->
+                            <!-- /.product -->
+
                         </div>
-                        <!-- /.item -->
-                        @endforeach
+                        <!-- /.products -->
                     </div>
-                    <!-- /.home-owl-carousel -->
-                </section>
-                <!-- /.section -->
-                <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
-
+                    <!-- /.item -->
+                    @empty
+                    <h5 class="text-danger">商品はありません。</h5>
+                    @endforelse
+                    <!-- end all product foreach -->
+                </div>
+                <!-- /.home-owl-carousel -->
             </div>
-            <!-- /.homebanner-holder -->
-            <!-- ============================================== CONTENT : END ============================================== -->
+            <!-- /.product-slider -->
         </div>
-        <!-- /.row -->
-        <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-
-        @include('shop.body.brands')
-
-        <!-- /.logo-slider -->
-        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+        <!-- /.tab-pane -->
+        @endforeach
+        <!-- end category foreach -->
     </div>
-    <!-- /.container -->
+    <!-- /.tab-content -->
+</div>
+<!-- /.scroll-tabs -->
+<!-- ============================================== SCROLL TABS : END ============================================== -->
+<!-- ============================================== WIDE PRODUCTS ============================================== -->
+<div class="wide-banners wow fadeInUp outer-bottom-xs">
+    <div class="row">
+        <div class="col-md-7 col-sm-7">
+            <div class="wide-banner cnt-strip">
+                <div class="image"> <img class="img-responsive" src="{{ asset('/frontend/assets/images/banners/home-banner1.jpg') }}" alt=""> </div>
+            </div>
+            <!-- /.wide-banner -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-5 col-sm-5">
+            <div class="wide-banner cnt-strip">
+                <div class="image"> <img class="img-responsive" src="{{ asset('/frontend/assets/images/banners/home-banner2.jpg') }}" alt=""> </div>
+            </div>
+            <!-- /.wide-banner -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.wide-banners -->
+
+<!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+<!-- ============================================== FEATURED PRODUCTS ============================================== -->
+<section class="section featured-product wow fadeInUp">
+    <h3 class="section-title">おすすめ商品</h3>
+    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+        @foreach($featured as $product)
+        <div class="item item-carousel">
+            <div class="products">
+                <div class="product">
+                    <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                        <!-- /.image -->
+
+                        @php
+                        $amount = $product->selling_price - $product->discount_price;
+                        $discount = ($amount / $product->selling_price) * 100;
+                        @endphp
+
+                        <div>
+                            @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>新着</span></div>
+                            @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- /.product-image -->
+
+                    <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                    @include('shop.review.review_rating')
+                        <!-- <div class="description"></div> -->
+                    @if ($product->product_qty <= 0)
+                        <div class="product-price">
+                        <span class="price" style="color: red"> 売り切れ </span>
+                    </div>
+                    @else
+                    <div class="product-price">
+                        <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                    </div>
+                    @endif
+
+                    @if ($product->discount_price == NULL)
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
+                    @else
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span><span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                    @endif
+                    <!-- /.product-price -->
+                </div>
+                <!-- /.product-info -->
+                @if ($product->product_qty <= 0)
+                @else
+                <div class="cart clearfix animate-effect">
+                <div class="action">
+                    <ul class="list-unstyled">
+                        <li class="add-cart-button btn-group">
+                            <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                            <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                        </li>
+                        <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                    </ul>
+                </div>
+                <!-- /.action -->
+            </div>
+            <!-- /.cart -->
+            @endif
+        </div>
+        <!-- /.product -->
+    </div>
+    <!-- /.products -->
+    </div>
+    <!-- /.item -->
+    @endforeach
+    </div>
+    <!-- /.home-owl-carousel -->
+</section>
+<!-- /.section -->
+<!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+
+<!-- ============================================== skip_product_0 PRODUCTS ============================================== -->
+<section class="section featured-product wow fadeInUp">
+    <h3 class="section-title">{{ $skip_category_0->category_name }}</h3>
+    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+        @foreach($skip_product_0 as $product)
+        <div class="item item-carousel">
+            <div class="products">
+                <div class="product">
+                    <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                        <!-- /.image -->
+
+                        @php
+                        $amount = $product->selling_price - $product->discount_price;
+                        $discount = ($amount / $product->selling_price) * 100;
+                        @endphp
+
+                        <div>
+                            @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>新着</span></div>
+                            @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- /.product-image -->
+
+                    <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                        @include('shop.review.review_rating')
+                        <!-- <div class="description"></div> -->
+                        @if ($product->product_qty <= 0)
+                        <div class="product-price">
+                        <span class="price" style="color: red"> 売り切れ </span>
+                    </div>
+                    @else
+                    <div class="product-price">
+                        <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                    </div>
+                    @endif
+
+                    @if ($product->discount_price == NULL)
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
+                    @else
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                    @endif
+                    <!-- /.product-price -->
+                </div>
+                <!-- /.product-info -->
+                @if ($product->product_qty <= 0)
+                @else
+                <div class="cart clearfix animate-effect">
+                    <div class="action">
+                        <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                                <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                            </li>
+                            <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                        </ul>
+                    </div>
+                    <!-- /.action -->
+                </div>
+            <!-- /.cart -->
+                @endif
+        </div>
+        <!-- /.product -->
+    </div>
+    <!-- /.products -->
+    </div>
+    <!-- /.item -->
+    @endforeach
+    </div>
+    <!-- /.home-owl-carousel -->
+</section>
+<!-- /.section -->
+<!-- ============================================== skip_product_0 PRODUCTS : END ============================================== -->
+
+<!-- ============================================== skip_product_1 PRODUCTS ============================================== -->
+<section class="section featured-product wow fadeInUp">
+    <h3 class="section-title">{{ $skip_category_1->category_name }}</h3>
+    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+        @foreach($skip_product_1 as $product)
+        <div class="item item-carousel">
+            <div class="products">
+                <div class="product">
+                    <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                        <!-- /.image -->
+
+                        @php
+                        $amount = $product->selling_price - $product->discount_price;
+                        $discount = ($amount / $product->selling_price) * 100;
+                        @endphp
+
+                        <div>
+                            @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>新着</span></div>
+                            @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- /.product-image -->
+
+                    <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                        @include('shop.review.review_rating')
+                        <!-- <div class="description"></div> -->
+                        @if ($product->product_qty <= 0)
+                        <div class="product-price">
+                        <span class="price" style="color: red"> 売り切れ </span>
+                    </div>
+                    @else
+                    <div class="product-price">
+                        <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                    </div>
+                    @endif
+                    @if ($product->discount_price == NULL)
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
+                    @else
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                    @endif
+                    <!-- /.product-price -->
+                </div>
+                <!-- /.product-info -->
+                @if ($product->product_qty <= 0)
+                @else
+                <div class="cart clearfix animate-effect">
+                    <div class="action">
+                        <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                                <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                            </li>
+                            <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                        </ul>
+                    </div>
+                    <!-- /.action -->
+                </div>
+            <!-- /.cart -->
+            @endif
+        </div>
+        <!-- /.product -->
+    </div>
+    <!-- /.products -->
+    </div>
+    <!-- /.item -->
+    @endforeach
+    </div>
+    <!-- /.home-owl-carousel -->
+</section>
+<!-- /.section -->
+<!-- ============================================== skip_product_1 PRODUCTS : END ============================================== -->
+
+<!-- ============================================== WIDE PRODUCTS ============================================== -->
+<div class="wide-banners wow fadeInUp outer-bottom-xs">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wide-banner cnt-strip">
+                <div class="image"> <img class="img-responsive" src="{{ asset('frontend/assets/images/banners/home-banner.jpg') }}" alt=""> </div>
+                <div class="strip strip-text">
+                    <div class="strip-inner">
+                        <h2 class="text-right">New Mens Fashion<br>
+                            <span class="shopping-needs">Save up to 40% off</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="new-label">
+                    <div class="text">新着</div>
+                </div>
+                <!-- /.new-label -->
+            </div>
+            <!-- /.wide-banner -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.wide-banners -->
+<!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+
+<!-- ============================================== skip_brand_product_1 PRODUCTS ============================================== -->
+<section class="section featured-product wow fadeInUp">
+    <h3 class="section-title">{{ $skip_brand_9->brand_name }}</h3>
+    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+        @foreach($skip_brand_product_9 as $product)
+        <div class="item item-carousel">
+            <div class="products">
+                <div class="product">
+                    <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                        <!-- /.image -->
+
+                        @php
+                        $amount = $product->selling_price - $product->discount_price;
+                        $discount = ($amount / $product->selling_price) * 100;
+                        @endphp
+
+                        <div>
+                            @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>新着 </span></div>
+                            @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- /.product-image -->
+
+                    <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                        @include('shop.review.review_rating')
+                        <!-- <div class="description"></div> -->
+                        @if ($product->product_qty <= 0)
+                        <div class="product-price">
+                        <span class="price" style="color: red"> 売り切れ </span>
+                    </div>
+                    @else
+                    <div class="product-price">
+                        <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                    </div>
+                    @endif
+                    @if ($product->discount_price == NULL)
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
+                    @else
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                    @endif
+                    <!-- /.product-price -->
+                </div>
+                <!-- /.product-info -->
+                @if ($product->product_qty <= 0)
+                @else
+                <div class="cart clearfix animate-effect">
+                    <div class="action">
+                        <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                                <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                            </li>
+                            <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                        </ul>
+                    </div>
+                    <!-- /.action -->
+                </div>
+            <!-- /.cart -->
+                @endif
+        </div>
+        <!-- /.product -->
+    </div>
+    <!-- /.products -->
+    </div>
+    <!-- /.item -->
+    @endforeach
+    </div>
+    <!-- /.home-owl-carousel -->
+</section>
+<!-- /.section -->
+<!-- ============================================== skip_brand_product_1 PRODUCTS : END ============================================== -->
+
+<!-- ============================================== BEST SELLER ============================================== -->
+
+<section class="section featured-product wow fadeInUp">
+    <h3 class="section-title">{{ $skip_category_10->category_name }}</h3>
+    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+        @foreach($skip_product_10 as $product)
+        <div class="item item-carousel">
+            <div class="products">
+                <div class="product">
+                    <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                        <!-- /.image -->
+
+                        @php
+                        $amount = $product->selling_price - $product->discount_price;
+                        $discount = ($amount / $product->selling_price) * 100;
+                        @endphp
+
+                        <div>
+                            @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>新着 </span></div>
+                            @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- /.product-image -->
+
+                    <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
+                        @include('shop.review.review_rating')
+                        <!-- <div class="description"></div> -->
+                        @if ($product->product_qty <= 0)
+                        <div class="product-price">
+                        <span class="price" style="color: red"> 売り切れ </span>
+                    </div>
+                    @else
+                    <div class="product-price">
+                        <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                    </div>
+                    @endif
+                    @if ($product->discount_price == NULL)
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
+                    @else
+                    <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                    @endif
+                    <!-- /.product-price -->
+                </div>
+                <!-- /.product-info -->
+                @if ($product->product_qty <= 0)
+                @else
+                <div class="cart clearfix animate-effect">
+                    <div class="action">
+                        <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                                <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                            </li>
+                            <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                        </ul>
+                    </div>
+                    <!-- /.action -->
+                </div>
+            <!-- /.cart -->
+                @endif
+        </div>
+        <!-- /.product -->
+    </div>
+    <!-- /.products -->
+    </div>
+    <!-- /.item -->
+    @endforeach
+    </div>
+    <!-- /.home-owl-carousel -->
+</section>
+<!-- /.sidebar-widget -->
+<!-- ============================================== BEST SELLER : END ============================================== -->
+
+<!-- ============================================== BLOG SLIDER ============================================== -->
+<section class="section latest-blog outer-bottom-vs wow fadeInUp">
+    <h3 class="section-title">ホームブログ</h3>
+    <div class="blog-slider-container outer-top-xs">
+        <div class="owl-carousel blog-slider custom-carousel">
+            @foreach($blogPosts as $blog)
+            <div class="item">
+                <div class="blog-post">
+                    <div class="blog-post-image">
+                        <div class="image"> <a href="blog.html"><img src="{{ Storage::disk('s3')->url("blogs/{$blog->post_blog_image}") }}" alt=""></a> </div>
+                    </div>
+                    <!-- /.blog-post-image -->
+
+                    <div class="blog-post-info text-left">
+                        <h3 class="name"><a href="#">{{ $blog->post_blog_title }}</a></h3>
+                        <span class="info">{{ Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}</span>
+                        <p class="text">{!! Str::limit($blog->post_blog_details, 100) !!}</p>
+                        <a href="{{ route('blogPost.details', $blog->id) }}" class="lnk btn btn-primary">Read more</a>
+                    </div>
+                    <!-- /.blog-post-info -->
+                </div>
+                <!-- /.blog-post -->
+            </div>
+            <!-- /.item -->
+            @endforeach
+        </div>
+        <!-- /.owl-carousel -->
+    </div>
+    <!-- /.blog-slider-container -->
+</section>
+<!-- /.section -->
+<!-- ============================================== BLOG SLIDER : END ============================================== -->
+
+<!-- ============================================== FEATURED PRODUCTS ============================================== -->
+<section class="section featured-product wow fadeInUp">
+    <h3 class="section-title">{{ $skip_brand_4->brand_name }}</h3>
+    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+        @foreach($skip_brand_product_4 as $product)
+        <div class="item item-carousel">
+            <div class="products">
+                <div class="product">
+                    <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="product_index" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a> </div>
+                        <!-- /.image -->
+
+                        @php
+                        $amount = $product->selling_price - $product->discount_price;
+                        $discount = ($amount / $product->selling_price) * 100;
+                        @endphp
+
+                        <div>
+                            @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>新着 </span></div>
+                            @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- /.product-image -->
+
+                    <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
+                        @include('shop.review.review_rating')
+                        <!-- <div class="description"></div> -->
+                        @if ($product->product_qty <= 0)
+                            <div class="product-price">
+                                <span class="price" style="color: red"> 売り切れ </span>
+                            </div>
+                        @else
+                            <div class="product-price">
+                                <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                            </div>
+                        @endif
+
+                        @if ($product->discount_price == NULL)
+                        <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></span></div>
+                        @else
+                        <div class="product-price"> <span class="price">¥ {{ number_format($product->discount_price) }}</span> <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span> </div>
+                        @endif
+                        <!-- /.product-price -->
+                    </div>
+                    <!-- /.product-info -->
+                    @if ($product->product_qty <= 0)
+                    @else
+                    <div class="cart clearfix animate-effect">
+                        <div class="action">
+                            <ul class="list-unstyled">
+                                <li class="add-cart-button btn-group">
+                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
+                                </li>
+                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
+                            </ul>
+                        </div>
+                        <!-- /.action -->
+                    </div>
+                    <!-- /.cart -->
+                    @endif
+                </div>
+                <!-- /.product -->
+            </div>
+            <!-- /.products -->
+        </div>
+        <!-- /.item -->
+        @endforeach
+    </div>
+    <!-- /.home-owl-carousel -->
+</section>
+<!-- /.section -->
+<!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+
+</div>
+<!-- /.homebanner-holder -->
+<!-- ============================================== CONTENT : END ============================================== -->
+</div>
+<!-- /.row -->
+<!-- ============================================== BRANDS CAROUSEL ============================================== -->
+
+@include('shop.body.brands')
+
+<!-- /.logo-slider -->
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+</div>
+<!-- /.container -->
 </div>
 @endsection

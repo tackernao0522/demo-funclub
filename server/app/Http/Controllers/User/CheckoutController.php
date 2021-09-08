@@ -21,23 +21,32 @@ class CheckoutController extends Controller
 
     public function checkoutStore(Request $request)
     {
-        // dd($request->all());
-        $data = array();
-        $data['shipping_name'] = $request->shipping_name;
-        $data['shipping_email'] = $request->shipping_email;
-        $data['shipping_phone'] = $request->shipping_phone;
-        $data['post_code'] = $request->post_code;
-        $data['division_id'] = $request->division_id;
-        $data['district_id'] = $request->district_id;
-        $data['notes'] = $request->notes;
-        $cartTotal = Cart::total();
+        if (Cart::total() <= 0) {
+            $notification = array(
+                'message' => 'カートに商品は入っていません。',
+                'alert-type' => 'error'
+            );
 
-        if ($request->payment_method == 'card') {
-
-            return view('shop.payment.stripe', compact('data', 'cartTotal'));
+            return redirect()->route('shop.index')->with($notification);
         } else {
+            // dd($request->all());
+            $data = array();
+            $data['shipping_name'] = $request->shipping_name;
+            $data['shipping_email'] = $request->shipping_email;
+            $data['shipping_phone'] = $request->shipping_phone;
+            $data['post_code'] = $request->post_code;
+            $data['division_id'] = $request->division_id;
+            $data['district_id'] = $request->district_id;
+            $data['notes'] = $request->notes;
+            $cartTotal = Cart::total();
 
-            return view('shop.payment.cash', compact('data', 'cartTotal'));
+            if ($request->payment_method == 'card') {
+
+                return view('shop.payment.stripe', compact('data', 'cartTotal'));
+            } else {
+
+                return view('shop.payment.cash', compact('data', 'cartTotal'));
+            }
         }
     }
 }

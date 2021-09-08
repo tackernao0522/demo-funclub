@@ -210,34 +210,49 @@
                                                         <div class="rating">
                                                             @if($avarage == 0)
                                                             評価はまだありません。
-                                                            @elseif($avarage == 1 || $avarage < 2) <span class="fa fa-star checked"></span>
+                                                            @elseif($avarage == 1 || $avarage < 2)
+                                                                <span class="fa fa-star checked"></span>
                                                                 <span class="fa fa-star"></span>
                                                                 <span class="fa fa-star"></span>
                                                                 <span class="fa fa-star"></span>
                                                                 <span class="fa fa-star"></span>
-                                                                @elseif($avarage == 2 || $avarage < 3) <span class="fa fa-star checked"></span>
-                                                                    <span class="fa fa-star checked"></span>
-                                                                    <span class="fa fa-star"></span>
-                                                                    <span class="fa fa-star"></span>
-                                                                    <span class="fa fa-star"></span>
-                                                                    @elseif($avarage == 3 || $avarage < 4) <span class="fa fa-star checked"></span>
-                                                                        <span class="fa fa-star checked"></span>
-                                                                        <span class="fa fa-star checked"></span>
-                                                                        <span class="fa fa-star"></span>
-                                                                        <span class="fa fa-star"></span>
-                                                                        @elseif($avarage == 4 || $avarage < 5) <span class="fa fa-star checked"></span>
-                                                                            <span class="fa fa-star checked"></span>
-                                                                            <span class="fa fa-star checked"></span>
-                                                                            <span class="fa fa-star checked"></span>
-                                                                            <span class="fa fa-star"></span>
-                                                                            @elseif($avarage == 5 || $avarage < 5) <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                @endif
+                                                            @elseif($avarage == 2 || $avarage < 3)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 3 || $avarage < 4)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 4 || $avarage < 5)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 5 || $avarage < 5)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                            @endif
                                                         </div>
                                                         <!-- <div class="description"></div> -->
+                                                        @if ($product->product_qty <= 0)
+                                                            <div class="product-price">
+                                                                <span class="price" style="color: red"> 売り切れ </span>
+                                                            </div>
+                                                        @else
+                                                            <div class="product-price">
+                                                                <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                                                            </div>
+                                                        @endif
+
                                                         @if ($product->discount_price == NULL)
                                                         <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
                                                         @else
@@ -246,6 +261,8 @@
                                                         <!-- /.product-price -->
                                                     </div>
                                                     <!-- /.product-info -->
+                                                    @if ($product->product_qty <= 0)
+                                                    @else
                                                     <div class="cart clearfix animate-effect">
                                                         <div class="action">
                                                             <ul class="list-unstyled">
@@ -259,6 +276,7 @@
                                                         <!-- /.action -->
                                                     </div>
                                                     <!-- /.cart -->
+                                                    @endif
                                                 </div>
                                                 <!-- /.product -->
                                             </div>
@@ -331,6 +349,17 @@
                                                                     <span class="fa fa-star checked"></span>
                                                                 @endif
                                                             </div>
+
+                                                            @if ($product->product_qty <= 0)
+                                                                <div class="product-price">
+                                                                    <span class="price" style="color: red"> 売り切れ </span>
+                                                                </div>
+                                                            @else
+                                                                <div class="product-price">
+                                                                    <span class="price" style="color: red">残在庫: {{ $product->product_qty }}</span>
+                                                                </div>
+                                                            @endif
+
                                                             @if ($product->discount_price == NULL)
                                                             <div class="product-price"> <span class="price">¥ {{ number_format($product->selling_price) }}</span></div>
                                                             @else
@@ -340,6 +369,8 @@
                                                             <div class="description m-t-10">
                                                                 {{ $product->short_descp }}
                                                             </div>
+                                                            @if ($product->product_qty <= 0)
+                                                            @else
                                                             <div class="cart clearfix animate-effect">
                                                                 <div class="action">
                                                                     <ul class="list-unstyled">
@@ -353,6 +384,7 @@
                                                                 <!-- /.action -->
                                                             </div>
                                                             <!-- /.cart -->
+                                                            @endif
                                                         </div>
                                                         <!-- /.product-info -->
                                                     </div>

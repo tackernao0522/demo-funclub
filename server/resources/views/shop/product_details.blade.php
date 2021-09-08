@@ -81,14 +81,9 @@
                                 <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
                                 <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div><!-- /.container-fluid -->
                             </div><!-- /.item -->
-
                         </div><!-- /.owl-carousel -->
                     </div>
-
                     <!-- ============================================== Testimonials: END ============================================== -->
-
-
-
                 </div>
             </div><!-- /.sidebar -->
             <div class='col-md-9'>
@@ -137,32 +132,37 @@
                                         <div class="col-sm-3">
                                             @if($avarage == 0)
                                             評価はまだありません。
-                                            @elseif($avarage == 1 || $avarage < 2) <span class="fa fa-star checked"></span>
+                                            @elseif($avarage == 1 || $avarage < 2)
+                                            <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
-                                                @elseif($avarage == 2 || $avarage < 3) <span class="fa fa-star checked"></span>
+                                            @elseif($avarage == 2 || $avarage < 3)
+                                                    <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star"></span>
                                                     <span class="fa fa-star"></span>
                                                     <span class="fa fa-star"></span>
-                                                    @elseif($avarage == 3 || $avarage < 4) <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        @elseif($avarage == 4 || $avarage < 5) <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            @elseif($avarage == 5 || $avarage < 5) <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                @endif
+                                            @elseif($avarage == 3 || $avarage < 4)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            @elseif($avarage == 4 || $avarage < 5)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                            @elseif($avarage == 5 || $avarage < 5)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            @endif
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="reviews">
@@ -174,7 +174,7 @@
 
                                 <div class="stock-container info-container m-t-10">
                                     <div class="row">
-                                        @if($product->product_qty === 0)
+                                        @if($product->product_qty <= 0)
                                         <div class="col-sm-2">
                                             <div class="stock-box">
                                                 <span class="label">残在庫 :</span>
@@ -193,7 +193,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="stock-box">
-                                                <span class="value">{{ $product->product_qty }}点あり</span>
+                                                <span class="value">{{ $product->product_qty }}点</span>
                                             </div>
                                         </div>
                                         @endif
@@ -217,7 +217,7 @@
                                             </div>
                                         </div>
 
-                                        @if ($product->product_qty === 0)
+                                        @if ($product->product_qty <= 0)
                                         @else
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
@@ -231,7 +231,7 @@
                                 </div><!-- /.price-container -->
 
                                 <!-- Add Product Color And Size -->
-                                @if($product->product_qty === 0)
+                                @if($product->product_qty <= 0)
                                 @else
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -287,8 +287,6 @@
                                         <div class="col-sm-7">
                                             <button type="submit" onclick="addToCart()" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i>カートに入れる</button>
                                         </div>
-
-
                                     </div><!-- /.row -->
                                 </div><!-- /.quantity-container -->
                                 @endif
@@ -301,7 +299,7 @@
                     </div><!-- /.row -->
                 </div>
 
-                <div class="product-tabs inner-bottom-xs  wow fadeInUp">
+                <div class="product-tabs inner-bottom-xs wow fadeInUp">
                     <div class="row">
                         <div class="col-sm-3">
                             <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
@@ -310,9 +308,7 @@
                             </ul><!-- /.nav-tabs #product-tabs -->
                         </div>
                         <div class="col-sm-9">
-
                             <div class="tab-content">
-
                                 <div id="description" class="tab-pane in active">
                                     <div class="product-tab">
                                         <p class="text">
@@ -323,7 +319,6 @@
 
                                 <div id="review" class="tab-pane">
                                     <div class="product-tab">
-
                                         <div class="product-reviews">
                                             <h4 class="title">お客様レビュー</h4>
 
@@ -452,14 +447,11 @@
                                                         <div class="action text-right">
                                                             <button type="submit" class="btn btn-primary btn-upper">レビューを投稿</button>
                                                         </div><!-- /.action -->
-
                                                     </form><!-- /.cnt-form -->
                                                 </div><!-- /.form-container -->
                                                 @endguest
                                             </div><!-- /.review-form -->
-
                                         </div><!-- /.product-add-review -->
-
                                     </div><!-- /.product-tab -->
                                 </div><!-- /.tab-pane -->
                             </div><!-- /.tab-content -->
@@ -468,72 +460,9 @@
                 </div><!-- /.product-tabs -->
 
                 <!-- ============================================== UPSELL PRODUCTS ============================================== -->
-                <section class="section featured-product wow fadeInUp">
-                    <h3 class="section-title">関連商品</h3>
-                    <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
-                        @foreach($relatedProduct as $product)
-                        <div class="item item-carousel">
-                            <div class="products">
-
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image">
-                                            <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}"><img class="tags_page_list" src="{{ Storage::disk('s3')->url("products/thambnail/{$product->product_thambnail}") }}" alt=""></a>
-                                        </div><!-- /.image -->
-
-                                        <div class="tag sale"><span>sale</span></div>
-                                    </div><!-- /.product-image -->
-
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
-                                        @include('shop.review.review_rating')
-                                        <!-- <div class="description"></div> -->
-                                        @if ($product->product_qty === 0)
-                                        <div class="product-price">
-                                            <span class="price" style="color: red"> 売り切れ </span>
-                                        </div>
-                                        @else
-                                        <div class="product-price">
-                                            <span class="price" style="color: red">残在庫 {{ $product->product_qty }}点あり</span>
-                                        </div>
-                                        @endif
-                                        @if ($product->discount_price == NULL)
-                                        <div class="product-price">
-                                            <span class="price">
-                                                ¥ {{ number_format($product->selling_price) }} </span>
-                                        </div><!-- /.product-price -->
-                                        @else
-                                        <div class="product-price">
-                                            <span class="price">
-                                                ¥ {{ number_format($product->discount_price) }} </span>
-                                            <span class="price-before-discount">¥ {{ number_format($product->selling_price) }}</span>
-                                        </div><!-- /.product-price -->
-                                        @endif
-                                    </div><!-- /.product-info -->
-                                    @if ($product->product_qty === 0)
-                                    @else
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">カートに入れる</button>
-                                                </li>
-                                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-                                            </ul>
-                                        </div><!-- /.action -->
-                                    </div><!-- /.cart -->
-                                    @endif
-                                </div><!-- /.product -->
-
-                            </div><!-- /.products -->
-                        </div><!-- /.item -->
-                        @endforeach
-                    </div><!-- /.home-owl-carousel -->
-                </section><!-- /.section -->
+                @include('shop.product.related_product')
+                <!-- /.section -->
                 <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
-
             </div><!-- /.col -->
             <div class="clearfix"></div>
         </div><!-- /.row -->

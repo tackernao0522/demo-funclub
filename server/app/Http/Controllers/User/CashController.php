@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -12,11 +13,21 @@ use Illuminate\Support\Facades\Session;
 use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 
 class CashController extends Controller
 {
     public function cashOrder(Request $request)
     {
+        if (Cart::total() <= 0) {
+            $notification = array(
+                'message' => 'カートに商品は入っていません。',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('shop.index')->with($notification);
+        }
+
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
         } else {
@@ -74,6 +85,12 @@ class CashController extends Controller
         }
 
         Cart::destroy();
+
+        $products = OrderItem::where('order_id', $order_id)->get();
+        foreach ($products as $item) {
+            Product::where('id', $item->product_id)
+                ->update(['product_qty' => DB::raw('product_qty-' . $item->qty)]);
+        }
 
         $notification = array(
             'message' => 'ご注文が完了しました。',
