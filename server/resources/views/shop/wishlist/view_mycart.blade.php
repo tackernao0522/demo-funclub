@@ -101,7 +101,7 @@
                             <tr>
                                 <td>
                                     <div class="cart-checkout-btn pull-right">
-                                        <a href="{{ route('checkout', $product->id ?? '') }}" type="submit" class="btn btn-primary checkout-btn">チェックアウトに進む</a>
+                                        <a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">チェックアウトに進む</a>
                                     </div>
                                 </td>
                             </tr>
