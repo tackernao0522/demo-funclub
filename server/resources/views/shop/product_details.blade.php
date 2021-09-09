@@ -62,7 +62,7 @@
                     <!-- ============================================== NEWSLETTER: END ============================================== -->
 
                     <!-- ============================================== Testimonials============================================== -->
-                    <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
+                    <div class="sidebar-widget  wow fadeInUp outer-top-vs" style="margin-bottom: 80px">
                         <div id="advertisement" class="advertisement">
                             <div class="item">
                                 <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>

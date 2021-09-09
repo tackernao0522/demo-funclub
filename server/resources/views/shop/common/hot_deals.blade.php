@@ -27,7 +27,7 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)
                 <!-- /.hot-deal-wrapper -->
 
                 <div class="product-info text-left m-t-20">
-                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{{ $product->product_name }}</a></h3>
+                    <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 25) !!}</a></h3>
                     @include('shop.review.review_rating')
                     @if ($product->product_qty <= 0)
                         <div class="product-price">
