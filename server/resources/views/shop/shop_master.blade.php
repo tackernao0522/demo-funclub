@@ -155,7 +155,7 @@ $seo = App\Models\Seo::find(1);
 
                             <div class="form-group">
                                 <label for="qty">数量</label>
-                                <input type="number" class="form-control" id="qty" value="1" min="1">
+                                <input type="number" class="form-control" id="qty" value="1" min="1" max="10">
                             </div> <!-- end form group composer require bumbummen99/shoppingcart "after" php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config" -->
                             <input type="hidden" id="product_id">
                             <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">カートに入れる</button>
@@ -502,12 +502,7 @@ $seo = App\Models\Seo::find(1);
                 }
             </td>
             <td class="col-md-2">
-            ${value.qty > 1
-                ? `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>`
-                : `<button type="submit" class="btn btn-danger btn-sm" disabled>-</button>`
-            }
-                <input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" >
-                <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)">+</button>
+                <strong>${value.qty} </strong>
             </td>
             <td class="col-md-2">
                 <strong>¥${value.subtotal} </strong>

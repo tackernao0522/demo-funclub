@@ -7,12 +7,18 @@
 @section('content')
 <style>
     input[type="text"] {
-        color: black;
+        color: red;
+        font-size: 5px;
+    }
+
+    td.col-md-2 {
+        text-align: center;
     }
 
     @media (max-width: 600px) {
         input[type="text"] {
-            color: black;
+            color: red;
+            font-size: 5px;
         }
     }
 </style>
@@ -95,7 +101,7 @@
                             <tr>
                                 <td>
                                     <div class="cart-checkout-btn pull-right">
-                                        <a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">チェックアウトに進む</a>
+                                        <a href="{{ route('checkout', $product->id ?? '') }}" type="submit" class="btn btn-primary checkout-btn">チェックアウトに進む</a>
                                     </div>
                                 </td>
                             </tr>

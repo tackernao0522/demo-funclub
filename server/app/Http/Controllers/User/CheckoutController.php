@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\ShipDivision;
 use App\Models\ShipDistrict;
+use App\Models\Product;
 
 class CheckoutController extends Controller
 {
@@ -21,6 +22,19 @@ class CheckoutController extends Controller
 
     public function checkoutStore(Request $request)
     {
+        $products = Product::all();
+        foreach ($products as $product) {
+            if ($product->product_qty <= 0) {
+                $notification = array(
+                    'message' => '売り切れ商品が含まれています。',
+                    'alert-type' => 'error',
+                );
+
+                return redirect()->route('shop.index')
+                    ->with($notification);
+            }
+        }
+
         if (Cart::total() <= 0) {
             $notification = array(
                 'message' => 'カートに商品は入っていません。',
