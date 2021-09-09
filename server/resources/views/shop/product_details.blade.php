@@ -234,60 +234,24 @@
                                 @if($product->product_qty <= 0)
                                 @else
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            @if($product->product_color == null)
 
-                                            @else
-                                            <label class="info-title control-label">カラー選択<span></span></label>
-                                            <select class="form-control unicase-form-control selectpicker" style="display: none;" id="color">
-                                                <!-- <option selected="" disabled="">--カラー選択--</option> -->
-                                                @foreach($product_color as $color)
-                                                <option value="{{ $color }}">{{ ucwords($color) }}</option>
-                                                @endforeach
-                                            </select>
-                                            @endif
-                                        </div> <!-- end form group -->
-                                    </div> <!-- end col 6 -->
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            @if($product->product_size == null)
-
-                                            @else
-                                            <label class="info-title control-label">サイズ選択<span></span></label>
-                                            <select class="form-control unicase-form-control selectpicker" style="display: none;" id="size">
-                                                <!-- <option selected="" disabled="">--サイズ選択--</option> -->
-                                                @foreach($product_size as $size)
-                                                <option value="{{ $size }}">{{ ucwords($size) }}</option>
-                                                @endforeach
-                                            </select>
-                                            @endif
-                                        </div> <!-- end form group -->
-                                    </div> <!-- end col 6 -->
                                 </div><!-- /.row -->
                                 <!-- End Add Product Color And Size -->
 
                                 <div class="quantity-container info-container">
-                                    <div class="row">
-
-                                        <div class="col-sm-2">
-                                            <span class="label">数量 : </span>
-                                        </div>
-
-                                        <div class="col-sm-2">
-                                            <div class="cart-quantity">
-                                                <div class="quant-input">
-                                                    <input type="number" id="qty" value="1" min="1">
+                                        @if ($product->product_qty <= 0)
+                                        @else
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <div class="add-cart-button btn-group">
+                                                    <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+                                                    <button class="btn btn-primary cart-btn" type="button" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)">カートに入れる</button>
                                                 </div>
                                             </div>
+                                            <!-- /.action -->
                                         </div>
-
-                                        <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
-
-                                        <div class="col-sm-7">
-                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i>カートに入れる</button>
-                                        </div>
-                                    </div><!-- /.row -->
+                                        <!-- /.cart -->
+                                        @endif
                                 </div><!-- /.quantity-container -->
                                 @endif
 

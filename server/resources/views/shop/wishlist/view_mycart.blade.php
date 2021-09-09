@@ -7,12 +7,18 @@
 @section('content')
 <style>
     input[type="text"] {
-        color: black;
+        color: red;
+        font-size: 5px;
+    }
+
+    td.col-md-2 {
+        text-align: center;
     }
 
     @media (max-width: 600px) {
         input[type="text"] {
-            color: black;
+            color: red;
+            font-size: 5px;
         }
     }
 </style>

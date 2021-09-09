@@ -171,6 +171,19 @@ class CartController extends Controller
 
     public function checkoutCreate()
     {
+        $products = Product::all();
+        foreach ($products as $product) {
+            if ($product->product_qty <= 0) {
+                $notification = array(
+                    'message' => '売り切れ商品が含まれています。',
+                    'alert-type' => 'error',
+                );
+
+                return redirect()->route('shop.index')
+                    ->with($notification);
+            }
+        }
+
         if (Auth::check()) {
             if (Cart::total() > 0) {
                 $carts = Cart::content();
