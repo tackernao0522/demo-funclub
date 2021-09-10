@@ -20,16 +20,18 @@ class StripeController extends Controller
 {
     public function stripeOrder(Request $request)
     {
-        $products = Product::all();
-        foreach ($products as $product) {
-            if ($product->product_qty <= 0) {
-                $notification = array(
-                    'message' => '売り切れ商品が含まれています。',
-                    'alert-type' => 'error',
-                );
+        $carts = Cart::content();
+        foreach ($carts as $cart) {
+            $products = Product::where('id', $cart->id)->get();
+            foreach ($products as $product) {
+                if ($product->product_qty <= 0) {
+                    $notification = array(
+                        'message' => $product->product_name . 'は売り切れです。',
+                        'alert-type' => 'error'
+                    );
 
-                return redirect()->route('shop.index')
-                    ->with($notification);
+                    return redirect()->route('shop.index')->with($notification);
+                }
             }
         }
 
