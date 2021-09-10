@@ -42,7 +42,7 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="module-heading">
-                        <h4 class="module-title">Customer Service</h4>
+                        <h4 class="module-title">MENU</h4>
                     </div>
                     <!-- /.module-heading -->
 
@@ -50,8 +50,8 @@
                         <ul class='list-unstyled'>
                             <li class="first"><a href="{{ route('user.dashboard') }}" title="Contact us">マイーページ</a></li>
                             <li><a href="{{ route('my.orders') }}" title="About us">購入リスト</a></li>
-                            <li><a href="#" title="faq">FAQ</a></li>
-                            <li><a href="#" title="Popular Searches">Specials</a></li>
+                            <li><a href="{{ route('return.order.list') }}" title="faq">返品依頼リスト</a></li>
+                            <li><a href="{{ route('privacy.policy') }}" title="Popular Searches">プライバシーポリシー</a></li>
                             <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
                         </ul>
                     </div>

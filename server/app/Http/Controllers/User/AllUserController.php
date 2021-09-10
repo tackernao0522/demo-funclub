@@ -126,4 +126,9 @@ class AllUserController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
+    public function privacyPolicy()
+    {
+        return view('shop.body.privacy_policy');
+    }
 }

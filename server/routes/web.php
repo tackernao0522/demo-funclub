@@ -268,6 +268,8 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::get('/cancel/orders', 'User\AllUserController@cancelOrders')->name('cancel.orders');
       // Shop Order Tracking Route
       Route::post('/order/tracking', 'User\AllUserController@orderTracking')->name('order.tracking');
+      // プライバシーポリシー(privacy policy)
+      Route::get('/shop/privacy_policy', 'User\AllUserController@privacyPolicy')->name('privacy.policy');
     });
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');
