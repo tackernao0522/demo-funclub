@@ -27,9 +27,23 @@ class CartController extends Controller
             return response()->json(['error' => '売り切れです。']);
         }
 
+
         if ($product->discount_price == NULL) {
             if ($product->product_qty < $request->quantity) {
-                return response()->json(['success' => '在庫が足りません。']);
+                return response()->json([
+                    'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - $request->quantity) . '点 足りません。'
+                ]);
+            }
+
+            foreach (Cart::content() as $row) {
+                $products = Product::where('id', $product->id)->where('id', $row->id)->get();
+                foreach ($products as $product) {
+                    if ($product->product_qty < $row->qty + $request->quantity) {
+                        return response()->json([
+                            'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - ($row->qty + $request->quantity)) . '点 足りません。'
+                        ]);
+                    }
+                }
             }
             Cart::add([
                 'id' => $id,
@@ -47,7 +61,20 @@ class CartController extends Controller
             return response()->json(['success' => 'カートに追加しました。']);
         } else {
             if ($product->product_qty < $request->quantity) {
-                return response()->json(['success' => '在庫が足りません。']);
+                return response()->json([
+                    'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - $request->quantity) . '点 足りません。'
+                ]);
+            }
+
+            foreach (Cart::content() as $row) {
+                $products = Product::where('id', $product->id)->where('id', $row->id)->get();
+                foreach ($products as $product) {
+                    if ($product->product_qty < $row->qty + $request->quantity) {
+                        return response()->json([
+                            'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - ($row->qty + $request->quantity)) . '点 足りません。'
+                        ]);
+                    }
+                }
             }
             Cart::add([
                 'id' => $id,

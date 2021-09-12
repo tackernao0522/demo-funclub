@@ -155,7 +155,7 @@ $seo = App\Models\Seo::find(1);
 
                             <div class="form-group">
                                 <label for="qty">数量</label>
-                                <input type="number" class="form-control" id="qty" value="1" min="1" max="10">
+                                <input type="number" class="form-control" id="qty" value="1" min="1" max="100">
                             </div> <!-- end form group composer require bumbummen99/shoppingcart "after" php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config" -->
                             <input type="hidden" id="product_id">
                             <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">カートに入れる</button>
