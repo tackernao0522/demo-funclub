@@ -31,7 +31,7 @@ class CartController extends Controller
         if ($product->discount_price == NULL) {
             if ($product->product_qty < $request->quantity) {
                 return response()->json([
-                    'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - $request->quantity) . '点 足りません。'
+                    'success' => $product->product_name . 'の在庫が足りません。'
                 ]);
             }
 
@@ -40,7 +40,7 @@ class CartController extends Controller
                 foreach ($products as $product) {
                     if ($product->product_qty < $row->qty + $request->quantity) {
                         return response()->json([
-                            'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - ($row->qty + $request->quantity)) . '点 足りません。'
+                            'success' => $product->product_name . 'の在庫が足りません。'
                         ]);
                     }
                 }
@@ -62,7 +62,7 @@ class CartController extends Controller
         } else {
             if ($product->product_qty < $request->quantity) {
                 return response()->json([
-                    'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - $request->quantity) . '点 足りません。'
+                    'success' => $product->product_name . 'の在庫が足りません。'
                 ]);
             }
 
@@ -71,7 +71,7 @@ class CartController extends Controller
                 foreach ($products as $product) {
                     if ($product->product_qty < $row->qty + $request->quantity) {
                         return response()->json([
-                            'success' => $product->product_name . 'の在庫が ' . abs($product->product_qty - ($row->qty + $request->quantity)) . '点 足りません。'
+                            'success' => $product->product_name . 'の在庫が足りません。'
                         ]);
                     }
                 }
