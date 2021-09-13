@@ -73,7 +73,7 @@ Top
 
     <div class="sns-box">
       <h3 class="sub-title">Youtube</h3>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/bqJtUojA1-g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/18sZ3EFJ9CU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div><!-- /.wrapper -->
 </section><!-- /#sns -->
