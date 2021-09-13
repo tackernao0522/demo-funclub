@@ -270,6 +270,10 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
       Route::post('/order/tracking', 'User\AllUserController@orderTracking')->name('order.tracking');
       // プライバシーポリシー(privacy policy)
       Route::get('/shop/privacy_policy', 'User\AllUserController@privacyPolicy')->name('privacy.policy');
+      // 特定商取引法
+      Route::get('/shop/specified_commercial', 'User\AllUserController@specifiedCommercial')->name('specified.commercial');
+      // About
+      Route::get('/shop/about', 'User\AllUserController@about')->name('about');
     });
     // Shop My Cart Page All Routes
     Route::get('/mycart', 'User\CartPageController@myCart')->name('mycart');

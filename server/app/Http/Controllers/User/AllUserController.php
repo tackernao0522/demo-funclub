@@ -131,4 +131,14 @@ class AllUserController extends Controller
     {
         return view('shop.body.privacy_policy');
     }
+
+    public function specifiedCommercial()
+    {
+        return view('shop.body.specified_ommercial');
+    }
+
+    public function about()
+    {
+        return view('shop.body.about');
+    }
 }

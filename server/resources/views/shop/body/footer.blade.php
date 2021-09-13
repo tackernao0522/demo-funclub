@@ -48,11 +48,11 @@
 
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a href="{{ route('user.dashboard') }}" title="Contact us">マイーページ</a></li>
-                            <li><a href="{{ route('my.orders') }}" title="About us">購入リスト</a></li>
-                            <li><a href="{{ route('return.order.list') }}" title="faq">返品依頼リスト</a></li>
-                            <li><a href="{{ route('privacy.policy') }}" title="Popular Searches">プライバシーポリシー</a></li>
-                            <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+                            <li class="first"><a href="{{ route('user.dashboard') }}" title="My Page">マイーページ</a></li>
+                            <li><a href="{{ route('my.orders') }}" title="購入リスト">購入リスト</a></li>
+                            <li><a href="{{ route('return.order.list') }}" title="返品依頼リスト">返品依頼リスト</a></li>
+                            <li><a href="{{ route('privacy.policy') }}" title="Privacy Policy">プライバシーポリシー</a></li>
+                            <li class="last"><a href="{{ route('specified.commercial') }}" title="特定商取引法に基づく表記">特定商取引法に基づく表記</a></li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
@@ -67,7 +67,7 @@
 
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a title="Your Account" href="#">About us</a></li>
+                            <li class="first"><a title="About" href="{{ route('about') }}">About us</a></li>
                             <li><a title="Information" href="#">Customer Service</a></li>
                             <li><a title="Addresses" href="#">Company</a></li>
                             <li><a title="Addresses" href="#">Investor Relations</a></li>
