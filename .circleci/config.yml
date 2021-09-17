@@ -47,15 +47,15 @@ jobs:
     steps:
       - add_ssh_keys
       - run:
-        name: deploy
-        command: |
-          ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd demofun-ci && \
-            git pull origin master && \
-            composer install -n --no-dev --prefer-dist --working-dir=./server/ && \
-            cd server/; npm ci && \
-            cd server/; npm run prod && \
-            cd server/; php artisan migrate --force && \
-            cd server/; php artisan config:cache"
+          name: deploy
+          command: |
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd demofun-ci && \
+              git pull origin master && \
+              composer install -n --no-dev --prefer-dist --working-dir=./server/ && \
+              cd server/; npm ci && \
+              cd server/; npm run prod && \
+              cd server/; php artisan migrate --force && \
+              cd server/; php artisan config:cache"
 
 workflows:
   version: 2
