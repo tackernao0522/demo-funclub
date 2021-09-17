@@ -276,10 +276,11 @@ Home Easy Online Shop
                                                 <div class="product-info text-left">
                                                     <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
 
-                                                    @include('shop.review.review_rating')
+                                                @include('shop.review.review_rating')
                                                     <!-- <div class="description"></div> -->
-                                                    @if ($product->product_qty <= 0) <div class="product-price">
-                                                        <span class="price" style="color: red"> 売り切れ </span>
+                                                @if ($product->product_qty <= 0)
+                                                <div class="product-price">
+                                                    <span class="price" style="color: red"> 売り切れ </span>
                                                 </div>
                                                 @else
                                                 <div class="product-price">
@@ -296,7 +297,9 @@ Home Easy Online Shop
 
                                             </div>
                                             <!-- /.product-info -->
-                                            @if ($product->product_qty <= 0) @else
+                                            @if ($product->product_qty <= 0)
+
+                                            @else
                                             <div class="cart clearfix animate-effect">
                                                 <div class="action">
                                                     <ul class="list-unstyled">
@@ -630,7 +633,7 @@ Home Easy Online Shop
                         <h3 class="name"><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_name) }}">{!! Str::limit($product->product_name, 20) !!}</a></h3>
                         @include('shop.review.review_rating')
                         <!-- <div class="description"></div> -->
-                        @if ($product->product_qty <= 0)
+                    @if ($product->product_qty <= 0)
                         <div class="product-price">
                         <span class="price" style="color: red"> 売り切れ </span>
                     </div>
@@ -662,7 +665,7 @@ Home Easy Online Shop
                     <!-- /.action -->
                 </div>
             <!-- /.cart -->
-            @endif
+                @endif
         </div>
         <!-- /.product -->
     </div>
