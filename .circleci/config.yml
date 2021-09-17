@@ -12,12 +12,18 @@ jobs:
       - save_cache:
           key: composer-v2-{{ checksum "./server/composer.lock" }}
           paths: ./server/vendor
+      - restore_cache:
+          key: npm-v2-{{ checksum "./server/package-lock.json" }}
       - run:
           name: npm ci
           command: |
             if [ ! -d ./server/node_modules ]; then
               cd server/; npm ci
             fi
+      - save_cache:
+          key: npm-v2-{{ checksum "./server/package-lock.json" }}
+          paths:
+            - ./server/node_modules
       - run: cd server/; npm run dev
       - run:
           name: php test
