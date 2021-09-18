@@ -13,7 +13,7 @@ $route = Route::current()->getName();
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
                         <img src="{{ asset('backend/images/logo-dark.png') }}" alt="">
-                        <h3><b>オンライン</b> ショップ</h3>
+                        <h3><b>Demofun</b> Shop</h3>
                     </div>
                 </a>
             </div>
