@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Payjp\Payjp;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,10 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (request()->isSecure()) {
-            \URL::forceScheme('https');
-        }
-
-        Payjp::setApiKey(config('payjp.secret_key'));
+        //
     }
 }
