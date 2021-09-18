@@ -186,7 +186,7 @@ $seo = App\Models\Seo::find(1);
                     $('#pcode').text(data.product.product_code);
                     $('#pcategory').text(data.product.category.category_name);
                     $('#pbrand').text(data.product.brand.brand_name);
-                    $('#pimage').attr('src', 'https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/' + data.product.product_thambnail);
+                    $('#pimage').attr('src', 'https://demofun-images.s3.ap-northeast-1.amazonaws.com/products/thambnail/' + data.product.product_thambnail);
 
                     $('#product_id').val(id);
                     $('#qty').val();
@@ -300,7 +300,7 @@ $seo = App\Models\Seo::find(1);
                         miniCart += `<div class="cart-item product-summary">
                     <div class="row">
                     <div class="col-xs-4">
-                        <div class="image"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.options.image}" alt=""></div>
+                        <div class="image"><img src="https://demofun-images.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.options.image}" alt=""></div>
                     </div>
                     <div class="col-xs-7">
                         <h3 class="name">${value.name}</h3>
@@ -404,7 +404,7 @@ $seo = App\Models\Seo::find(1);
 
                     $.each(response, function(key, value) {
                         rows += `<tr>
-                                    <td class="col-md-2"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.product.product_thambnail}"></td>
+                                    <td class="col-md-2"><img src="https://demofun-images.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.product.product_thambnail}"></td>
                                     <td class="col-md-7">
                                         <div class="product-name">${value.product.product_name}</div>
                                         <div class="price">
@@ -478,7 +478,7 @@ $seo = App\Models\Seo::find(1);
                     var rows = ""
                     $.each(response.carts, function(key, value) {
                         rows += `<tr>
-        <td class="col-md-2"><img src="https://melpit-user-s3.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.options.image}" alt="imga" style="width:60px; height:60px;"></td>
+        <td class="col-md-2"><img src="https://demofun-images.s3.ap-northeast-1.amazonaws.com/products/thambnail/${value.options.image}" alt="imga" style="width:60px; height:60px;"></td>
 
         <td class="col-md-2">
             <div class="product-name"><a href="product/details/${value.id}/${value.name}">${value.name}</a></div>
