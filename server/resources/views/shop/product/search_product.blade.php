@@ -68,7 +68,7 @@
                 @foreach($products as $item)
                 <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug_name) }}">
                     <div class="list border-bottom"> <img src="{{ Storage::disk('s3')->url("products/thambnail/{$item->product_thambnail}") }}" alt="商品画像" style="width: 30px; height: 30px">
-                        <div class="d-flex flex-column ml-3" style="margin-left: 10px"> <span> {{ $item->product_name }}</span> <small>¥ {{ number_format($item->selling_price) }}(税込)</small> </div>
+                        <div class="d-flex flex-column ml-3" style="margin-left: 10px"> <span> {{ $item->product_name }}</span> <small style="color: red">¥ {{ number_format($item->selling_price) }}(税込)</small> </div>
                     </div>
                 </a>
                 @endforeach
