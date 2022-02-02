@@ -166,7 +166,7 @@ Route::group(['middleware' => 'auth.very_basic'], function () {
     Route::post('/store', 'Admin\BlogController@blogCategoryStore')->name('blogCategoy.store');
     Route::get('/category/edit/{id}', 'Admin\BlogController@blogCategoryEdit')->name('blog.category.edit');
     Route::post('/category/update/{id}', 'Admin\BlogController@blogCategoryUpdate')->name('blogCategory.update');
-    Route::get('/delete/{id}', 'Admin\BlogController@categoryDelete')->name('blogCategory.delete');
+    Route::get('/category/delete/{id}', 'Admin\BlogController@categoryDelete')->name('blogCategory.delete');
     // Admin View Blog Post Routes
     Route::get('/list/post', 'Admin\BlogController@listBlogPost')->name('list.post');
     Route::get('/add/post', 'Admin\BlogController@addBlogPost')->name('add.post');
