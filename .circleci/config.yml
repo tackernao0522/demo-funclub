@@ -86,7 +86,7 @@ jobs:
             --s3-location bucket=${AWS_S3_BUCKET_NAME},key=demofun-ci.zip,bundleType=zip
   deploy:
     docker:
-      - image: circleci/php:7.4-node-browsers
+      - image: cimg/php:7.4-browsers
     steps:
       - checkout
       - add_ssh_keys
