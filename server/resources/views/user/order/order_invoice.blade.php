@@ -57,14 +57,14 @@
         <tr>
             <td valign="top">
                 <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-                <h2 style="color: green; font-size: 26px;"><strong>EasyShop - 領収書</strong></h2>
+                <h2 style="color: green; font-size: 26px;"><strong>DemofunShop - 領収書</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
                     ファンクラブ事務局
                     Email:support@example.com <br>
                     TEL: 03-111-1111 <br>
-                    〒182-0024 東京都調布市布田2-18-2 メゾン調布103 <br>
+                    〒111-1111 XXXXXXXXXXXXXXXXXX 1-1-1 <br>
             </pre>
             </td>
         </tr>
